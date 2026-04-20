@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Check if .venvloc file exists
+if [ ! -f .venvloc ]; then
+  echo "Error: .venvloc file not found. Please create this file and specify the path to your virtual environment."
+  return 1
+fi
+
+# Read the VENV_LOC from the .venvloc file
+VENV_LOC=$(<.venvloc)
+
+# Check if VENV_LOC is not empty
+if [ -z "$VENV_LOC" ]; then
+  echo "Error: .venvloc file is empty. Please specify the path to your virtual environment in this file."
+  return 1
+fi
+
+# Check if the virtual environment exists
+if [ ! -d "$VENV_LOC" ]; then
+  echo "Error: Directory $VENV_LOC does not exist. Please check the path in the .venvloc file."
+  return 1
+fi
+
+# Activate the virtual environment
+if [ -f "$VENV_LOC/bin/activate" ]; then
+  source "$VENV_LOC/bin/activate"
+  echo "Virtual environment activated: $VENV_LOC"
+else
+  echo "Error: No activate script found in $VENV_LOC/bin/. Please ensure this is a valid virtual environment."
+  return 1
+fi

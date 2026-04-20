@@ -1,0 +1,2 @@
+[tool.nbdev]
+   jupyter_hooks = true
