@@ -48,18 +48,19 @@
 - Dimensionality reduction  
   - PCA  
   - t-SNE (intuition and visualization)  
-  - Autoencoders  
+  - Autoencoders (optional)
 - Clustering  
   - k-means  
-  - Hierarchical clustering  
+  - Hierarchical clustering (optional)  
 
 ## Tree-Based Models
 - CARTs
 
 ## Ensemble Methods
 - Bagging and Random forests  
-- Boosting and AdaBoost
+- Boosting and AdaBoost 
 
+# --- EXTRAS ----
 Extras, if we have time: 
 
 ## Convolutional Neural Networks
