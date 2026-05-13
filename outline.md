@@ -46,22 +46,23 @@
 
 ## Unsupervised Learning
 - Dimensionality reduction  
-  - PCA  
-  - t-SNE (intuition and visualization)  
-  - Autoencoders (optional)
+  - 18 PCA  
 - Clustering  
-  - k-means  
-  - Hierarchical clustering (optional)  
+  - 19 k-means  
 
 ## Tree-Based Models
-- CARTs
-
-## Ensemble Methods
-- Bagging and Random forests  
-- Boosting and AdaBoost 
+- 20 CARTs
+- Ensemble trees and Methods
+  + 21 Bagging and Random forests  
+  + 22 Boosting and AdaBoost 
 
 # --- EXTRAS ----
 Extras, if we have time: 
+
+# More Unsupervised
+- t-SNE (intuition and visualization)  
+- Autoencoders 
+- Hierarchical clustering 
 
 ## Convolutional Neural Networks
 - Motivation: structured inputs (images)  
