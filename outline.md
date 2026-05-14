@@ -46,9 +46,9 @@
 
 ## Unsupervised Learning
 - Dimensionality reduction  
-  - 18 PCA  
+  - PCA  
 - Clustering  
-  - 19 k-means  
+  - k-means  
 
 ## Tree-Based Models
 - 20 CARTs
