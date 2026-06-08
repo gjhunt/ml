@@ -1,0 +1,149 @@
+# _quarto.yml
+project:
+  type: book
+  output-dir: docs
+  resources:
+    - images
+    - data
+    - static
+
+book:
+  title: "Statistical Learning"
+  author:
+    - name: "Gregory J. Hunt"
+  date: today
+  date-format: "MMMM D, YYYY"
+
+  # Repo integration
+  repo-url: "https://github.com/gjhunt/ml"
+  repo-actions: [issue]
+
+  search: true
+  page-navigation: true
+  back-to-top-navigation: true
+
+  sidebar:
+    style: docked
+    collapse-level: 2
+
+  chapters:
+    - index.ipynb
+    - part: "Foundations and Empirical Risk Minimization"
+      chapters:
+        - lectures/000_intro_and_erm.ipynb
+        - lectures/005_derivatives.ipynb
+        - lectures/010_linear_regression.ipynb
+        - lectures/020_logistic_regression.ipynb
+        - lectures/030_multiclass_logistic_regression.ipynb
+        - lectures/040_ERM_NLL.ipynb
+
+    - part: "Evaluation, Model Selection, and Nonparametric Methods"
+      chapters:
+        - lectures/050_evaluation.ipynb
+        - lectures/060_model_selection.ipynb
+        - lectures/070_knn.ipynb
+        - lectures/080_bias_variance.ipynb
+        - lectures/090_curse_dim.ipynb
+
+    - part: "Regularization and Penalized Models"
+      chapters:
+        - lectures/100_ridge.ipynb
+        - lectures/101_constr_optim.ipynb
+        - lectures/110_lasso.ipynb
+        - lectures/120_elastic_net_logistic_erm.ipynb
+
+    - part: "Neural Networks"
+      chapters:
+        - lectures/130_nn.ipynb
+        - lectures/140_backprop.ipynb
+        - lectures/150_nn_arch.ipynb
+
+    - part: "Unsupervised Learning"
+      chapters:
+        - lectures/160_unsupervised.ipynb
+        - lectures/170_svd.ipynb
+        - lectures/180_pca.ipynb
+        - lectures/190_kmeans.ipynb
+
+    - part: "Tree-Based Methods"
+      chapters:
+        - lectures/200_carts.ipynb
+        - lectures/210_random_forests.ipynb
+        - lectures/220_boosting.ipynb
+
+crossref:
+  fig-title: "Figure"
+  tbl-title: "Table"
+  eq-title: "Equation"
+  fig-prefix: "Fig."
+  tbl-prefix: "Tbl."
+  eq-prefix: "Eq."
+  lst-title: "Snippet"
+  lst-prefix: "Snippet"
+
+format:
+  html:
+    theme:
+      light: [materia, assets/light.scss]
+      dark: [darkly, assets/dark.scss]
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: false
+    code-tools: true
+    code-copy: true
+    highlight-style: pygments
+    code-block-border-left: "#e6e6e6"
+    code-block-padding-left: 6
+    code-block-padding-right: 6
+    code-block-padding-top: 4
+    code-block-padding-bottom: 4
+    fig-cap-location: bottom
+    callout-appearance: simple
+    grid:
+      sidebar-width: 300px
+      body-width: 900px
+      margin-width: 300px
+    css: assets/code_style.css
+
+  pdf:
+    toc: true
+    toc-depth: 1
+    number-sections: true
+    colorlinks: true
+    listings: false
+    keep-tex: true
+    highlight-style: pygments
+    code-block-bg: "#fbfbfb"
+    code-block-border-left: "#e6e6e6"
+    code-block-border-left-width: 10pt
+    code-block-padding-left: 6
+    code-block-padding-right: 6
+    code-block-padding-top: 4
+    code-block-padding-bottom: 4
+    engine: xelatex
+    monofont: "DejaVu Sans Mono"
+    include-in-header:
+      - assets/code_style.tex
+    include-before-body:
+      - assets/code_style_body.tex
+
+  epub:
+    toc: true
+    number-sections: true
+
+execute:
+  echo: true
+  output: true
+  execute-notebooks: false
+
+# Knitr defaults, only used when rendering R/knitr code
+knitr:
+  opts_chunk:
+    fig.align: center
+    out.width: "80%"
+
+# Global defaults for code blocks
+code-block-background: true
+
+lang: en

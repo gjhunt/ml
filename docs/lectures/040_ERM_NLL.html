@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; ERM, Maximum Likelihood, KL, and Cross Entropy – Statistical Learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lectures/050_evaluation.html" rel="next">
+<link href="../lectures/030_multiclass_logistic_regression.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="assets/code_style.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/000_intro_and_erm.html">Foundations and Empirical Risk Minimization</a></li><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, KL, and Cross Entropy</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Statistical Learning</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/gjhunt/ml" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations and Empirical Risk Minimization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/000_intro_and_erm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/005_derivatives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/010_linear_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/020_logistic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/030_multiclass_logistic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, KL, and Cross Entropy</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Evaluation, Model Selection, and Nonparametric Methods</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/050_evaluation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/060_model_selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/070_knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/080_bias_variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Regularization and Penalized Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/100_ridge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/110_lasso.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/120_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Neural Networks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/130_nn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/140_backprop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/150_nn_arch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unsupervised Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/160_unsupervised.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/170_svd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/180_pca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/190_kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tree-Based Methods</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/200_carts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/210_random_forests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/220_boosting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#modeling-x-y" id="toc-modeling-x-y" class="nav-link active" data-scroll-target="#modeling-x-y"><span class="header-section-number">7.1</span> Modeling <span class="math inline">\((x, y)\)</span></a></li>
+  <li><a href="#maximum-likelihood-estimation" id="toc-maximum-likelihood-estimation" class="nav-link" data-scroll-target="#maximum-likelihood-estimation"><span class="header-section-number">7.2</span> Maximum Likelihood Estimation</a></li>
+  <li><a href="#argmax-and-monotone-transformations" id="toc-argmax-and-monotone-transformations" class="nav-link" data-scroll-target="#argmax-and-monotone-transformations"><span class="header-section-number">7.3</span> Argmax and Monotone Transformations</a></li>
+  <li><a href="#from-mle-to-erm" id="toc-from-mle-to-erm" class="nav-link" data-scroll-target="#from-mle-to-erm"><span class="header-section-number">7.4</span> From MLE to ERM</a></li>
+  <li><a href="#linear-regression-gaussian-model" id="toc-linear-regression-gaussian-model" class="nav-link" data-scroll-target="#linear-regression-gaussian-model"><span class="header-section-number">7.5</span> Linear Regression (Gaussian Model)</a></li>
+  <li><a href="#logistic-regression-bernoulli-model" id="toc-logistic-regression-bernoulli-model" class="nav-link" data-scroll-target="#logistic-regression-bernoulli-model"><span class="header-section-number">7.6</span> Logistic Regression (Bernoulli Model)</a></li>
+  <li><a href="#kl-divergence" id="toc-kl-divergence" class="nav-link" data-scroll-target="#kl-divergence"><span class="header-section-number">8</span> KL Divergence</a>
+  <ul class="collapse">
+  <li><a href="#surprisal" id="toc-surprisal" class="nav-link" data-scroll-target="#surprisal"><span class="header-section-number">8.1</span> Surprisal</a></li>
+  <li><a href="#connection-to-erm-and-mle" id="toc-connection-to-erm-and-mle" class="nav-link" data-scroll-target="#connection-to-erm-and-mle"><span class="header-section-number">8.2</span> Connection to ERM and MLE</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/000_intro_and_erm.html">Foundations and Empirical Risk Minimization</a></li><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, KL, and Cross Entropy</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, KL, and Cross Entropy</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="modeling-x-y" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="modeling-x-y"><span class="header-section-number">7.1</span> Modeling <span class="math inline">\((x, y)\)</span></h2>
+<p>We observe data <span class="math inline">\(\{(x_n, y_n)\}_{n=1}^N\)</span>. A standard modeling assumption is that the samples are independent from <span class="math inline">\(p\)</span> where</p>
+<p><span class="math display">\[
+p_\theta(x, y) = p_\theta(y \mid x)\, p(x)
+\]</span></p>
+<p>Here:</p>
+<ul>
+<li><span class="math inline">\(p_\theta(y \mid x)\)</span> is the model we want to learn<br>
+</li>
+<li><span class="math inline">\(p(x)\)</span> does not depend on <span class="math inline">\(\theta\)</span></li>
+</ul>
+<p>This separation implies that learning <span class="math inline">\(\theta\)</span> depends only on the conditional distribution of <span class="math inline">\(y\mid x\)</span>.</p>
+</section>
+<section id="maximum-likelihood-estimation" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="maximum-likelihood-estimation"><span class="header-section-number">7.2</span> Maximum Likelihood Estimation</h2>
+<p>How should we estimate <span class="math inline">\(\theta\)</span>? We can do it with Maximum Likelihood Estimation (MLE). MLE chooses parameters to maximize the probability of the observed data:</p>
+<p><span class="math display">\[
+\hat{\theta} = \arg\max_\theta p_\theta(x_1,\ldots,x_N,y_1,\ldots, y_N)
+\]</span></p>
+<p>For our model, we can simplify things. Using independence:</p>
+<p><span class="math display">\[
+= \arg\max_\theta \prod_{n=1}^N p_\theta(x_n, y_n) = \arg\max_\theta \prod_{n=1}^N p_\theta(y_n \mid x_n)\, p(x_n)
+\]</span></p>
+<p>Since <span class="math inline">\(p(x_n)\)</span> does not depend on <span class="math inline">\(\theta\)</span>, it can be removed:</p>
+<p><span class="math display">\[
+= \arg\max_\theta \prod_{n=1}^N p_\theta(y_n \mid x_n)
+\]</span></p>
+<p>Taking logs:</p>
+<p><span class="math display">\[
+= \arg\max_\theta \sum_{n=1}^N \log p_\theta(y_n \mid x_n)
+\]</span></p>
+</section>
+<section id="argmax-and-monotone-transformations" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="argmax-and-monotone-transformations"><span class="header-section-number">7.3</span> Argmax and Monotone Transformations</h2>
+<p>A key technical tool used above is that certain transformations do not change the optimizer.</p>
+<p>If <span class="math inline">\(h\)</span> is a <strong>strictly increasing function</strong>, then for any objective <span class="math inline">\(g(\theta)\)</span>:</p>
+<p><span class="math display">\[
+\arg\max_\theta h(g(\theta)) = \arg\max_\theta g(\theta)
+\]</span></p>
+<p>and similarly:</p>
+<p><span class="math display">\[
+\arg\min_\theta h(g(\theta)) = \arg\min_\theta g(\theta)
+\]</span></p>
+<p>The intuition is that an increasing function preserves ordering. If <span class="math inline">\(g(\theta_1) &gt; g(\theta_2)\)</span>, then <span class="math inline">\(h(g(\theta_1)) &gt; h(g(\theta_2))\)</span>, so the maximizer does not change.</p>
+<p>This justifies taking logs of the likelihood:</p>
+<p><span class="math display">\[
+\arg\max_\theta \prod_{n=1}^N p_\theta(y_n \mid x_n) =
+\arg\max_\theta \sum_{n=1}^N \log p_\theta(y_n \mid x_n)
+\]</span></p>
+<p>because the logarithm is strictly increasing.</p>
+<p>Now consider a <strong>strictly decreasing function</strong> <span class="math inline">\(h\)</span>. Then the ordering reverses:</p>
+<p><span class="math display">\[
+g(\theta_1) &gt; g(\theta_2) \;\Rightarrow\; h(g(\theta_1)) &lt; h(g(\theta_2))
+\]</span></p>
+<p>So:</p>
+<p><span class="math display">\[
+\arg\max_\theta g(\theta)=
+\arg\min_\theta h(g(\theta))
+\]</span></p>
+<p>A simple example is multiplication by <span class="math inline">\(-1\)</span>, which is strictly decreasing:</p>
+<p><span class="math display">\[
+\arg\max_\theta g(\theta)=
+\arg\min_\theta -g(\theta)
+\]</span></p>
+</section>
+<section id="from-mle-to-erm" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="from-mle-to-erm"><span class="header-section-number">7.4</span> From MLE to ERM</h2>
+<p>Using the above discussion, we rewrite the objective:</p>
+<p><span class="math display">\[
+\arg\max_\theta \sum_{n=1}^N \log p_\theta(y_n \mid x_n) =
+\arg\min_\theta \frac{1}{N} \sum_{n=1}^N -\log p_\theta(y_n \mid x_n)
+\]</span></p>
+<p>This is ERM:</p>
+<p><span class="math display">\[
+\arg\min_\theta \frac{1}{N} \sum_{n=1}^N \ell(y_n, s_\theta(x_n))
+\]</span></p>
+<p>where:</p>
+<p><span class="math display">\[
+\ell(y, s_\theta(x)) = -\log p_\theta(y \mid x)
+\]</span></p>
+<p>The function <span class="math inline">\(s_\theta(x)\)</span> is the model’s score (e.g., <span class="math inline">\(w^\top x\)</span>), and the loss is derived from the likelihood.</p>
+</section>
+<section id="linear-regression-gaussian-model" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="linear-regression-gaussian-model"><span class="header-section-number">7.5</span> Linear Regression (Gaussian Model)</h2>
+<p>Assume a Gaussian conditional model:</p>
+<p><span class="math display">\[
+y_n \mid x_n \sim \mathcal{N}(w^\top x_n, \sigma^2)
+\]</span></p>
+<p>This says:</p>
+<ul>
+<li>The mean is <span class="math inline">\(w^\top x_n\)</span><br>
+</li>
+<li>The noise is Gaussian with variance <span class="math inline">\(\sigma^2\)</span></li>
+</ul>
+<p>The conditional density is:</p>
+<p><span class="math display">\[
+p_w(y_n \mid x_n)
+= \frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\left(-\frac{1}{2\sigma^2}(y_n - w^\top x_n)^2\right)
+\]</span></p>
+<p>Take the negative log:</p>
+<p><span class="math display">\[
+-\log p_w(y_n \mid x_n)
+= \frac{1}{2\sigma^2}(y_n - w^\top x_n)^2 + \text{const}
+\]</span></p>
+<p>The constant does not depend on <span class="math inline">\(w\)</span>, so it does not affect the optimizer.</p>
+<p>Define:</p>
+<p><span class="math display">\[
+s_w(x_n) = w^\top x_n
+\]</span></p>
+<p>and the squared error loss:</p>
+<p><span class="math display">\[
+\ell(y_n, s_w(x_n)) = (y_n - s_w(x_n))^2
+\]</span></p>
+<p>Then ERM becomes:</p>
+<p><span class="math display">\[
+\arg\min_w \frac{1}{N} \sum_{n=1}^N (y_n - w^\top x_n)^2
+\]</span></p>
+<p>So squared error loss arises directly from the Gaussian likelihood.</p>
+<p>One nice use of all of this is that we can use it generate simulated data. For example:</p>
+<div id="695c0e79-d75f-4f69-ac09-88df22bf5a0e" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>w_true <span class="op">=</span> np.array([<span class="op">-</span><span class="fl">1.0</span>,<span class="fl">2.0</span>,<span class="fl">5.0</span>])</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># model is actually agnostic to how we build X</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.randn(N, d<span class="op">-</span><span class="dv">1</span>)              </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.hstack([np.ones((N, <span class="dv">1</span>)), X])</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> X <span class="op">@</span> w_true</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.random.normal(loc<span class="op">=</span>s,scale<span class="op">=</span>sigma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c2428af8-41ef-493b-8001-49cd7a440ffa" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> X[:, <span class="dv">1</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x3 <span class="op">=</span> X[:, <span class="dv">2</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter points</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Scatter3d(</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>x2,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>x3,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span>y,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">'markers'</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    marker<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Add plane</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>x2_grid, x3_grid <span class="op">=</span> np.meshgrid(</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    np.linspace(x2.<span class="bu">min</span>(), x2.<span class="bu">max</span>(), <span class="dv">20</span>),</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    np.linspace(x3.<span class="bu">min</span>(), x3.<span class="bu">max</span>(), <span class="dv">20</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>y_plane <span class="op">=</span> (</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    w_true[<span class="dv">0</span>]</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> w_true[<span class="dv">1</span>] <span class="op">*</span> x2_grid</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> w_true[<span class="dv">2</span>] <span class="op">*</span> x3_grid</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Surface(</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>x2_grid,</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>x3_grid,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span>y_plane,</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    opacity<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    scene<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        xaxis_title<span class="op">=</span><span class="st">'x2'</span>,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        yaxis_title<span class="op">=</span><span class="st">'x3'</span>,</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        zaxis_title<span class="op">=</span><span class="st">'y'</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Interactive 3D plot'</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="040_ERM_NLL_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="logistic-regression-bernoulli-model" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="logistic-regression-bernoulli-model"><span class="header-section-number">7.6</span> Logistic Regression (Bernoulli Model)</h2>
+<p>Assume a Bernoulli conditional model:</p>
+<p><span class="math display">\[
+y_n \mid x_n \sim \text{Bernoulli}(p_n)
+\]</span></p>
+<p>with:</p>
+<p><span class="math display">\[
+p_n = \sigma(w^\top x_n), \quad
+\sigma(z) = \frac{1}{1 + e^{-z}}
+\]</span></p>
+<p>So:</p>
+<p><span class="math display">\[
+P(y_n = 1 \mid x_n) = \sigma(w^\top x_n)
+\]</span></p>
+<p>Equivalently:</p>
+<p><span class="math display">\[
+y_n \mid x_n \sim \text{Bernoulli}(\sigma(w^\top x_n))
+\]</span></p>
+<p>The Bernoulli likelihood can be written as:</p>
+<p><span class="math display">\[
+p_w(y_n \mid x_n)
+= \sigma(w^\top x_n)^{y_n}
+(1 - \sigma(w^\top x_n))^{1 - y_n}
+\]</span></p>
+<p>Take the negative log:</p>
+<p><span class="math display">\[
+-\log p_w(y_n \mid x_n)
+= -\Big[
+y_n \log \sigma(w^\top x_n)
++ (1 - y_n)\log(1 - \sigma(w^\top x_n))
+\Big]
+\]</span></p>
+<p>Again, this is just ERM under the correct choices.</p>
+<p>Define:</p>
+<p><span class="math display">\[
+s_w(x_n) = w^\top x_n
+\]</span></p>
+<p>and:</p>
+<p><span class="math display">\[
+\ell(y, s)
+= -\big(y \log \sigma(s) + (1-y)\log(1-\sigma(s))\big)
+\]</span></p>
+<p>Then ERM becomes:</p>
+<p><span class="math display">\[
+\arg\min_w \frac{1}{N} \sum_{n=1}^N \ell(y_n, w^\top x_n)
+\]</span></p>
+<p>This is the cross-entropy loss, derived directly from the Bernoulli likelihood.</p>
+<div id="e3c691cb-a197-4671-a0de-493d1a8a9c1c" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>w_true <span class="op">=</span> np.array([<span class="op">-</span><span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">5.0</span>])</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.randn(N, d<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.hstack([np.ones((N, <span class="dv">1</span>)), X])</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>z))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> X <span class="op">@</span> w_true</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> sigmoid(s)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.random.binomial(<span class="dv">1</span>, p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="a5d9b87e-82b2-4c73-a26d-ee9933b90bc2" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>array([0, 0, 0, 1, 0, 0, 0, 1, 1, 1])</code></pre>
+</div>
+</div>
+<div id="ad99d9ef-494f-40bd-b136-d6bc1ce70813" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> X[:, <span class="dv">1</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x3 <span class="op">=</span> X[:, <span class="dv">2</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter points (colored by class)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Scatter3d(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>x2,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>x3,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span>y,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">'markers'</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    marker<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">3</span>, color<span class="op">=</span>y)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional: decision surface (probability = 0.5)</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>x2_grid, x3_grid <span class="op">=</span> np.meshgrid(</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    np.linspace(x2.<span class="bu">min</span>(), x2.<span class="bu">max</span>(), <span class="dv">30</span>),</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    np.linspace(x3.<span class="bu">min</span>(), x3.<span class="bu">max</span>(), <span class="dv">30</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve for z = 0 plane (where p = 0.5)</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>z_plane <span class="op">=</span> (</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span>w_true[<span class="dv">0</span>]</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> w_true[<span class="dv">1</span>] <span class="op">*</span> x2_grid</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> w_true[<span class="dv">2</span>] <span class="op">*</span> x3_grid</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>) <span class="op">/</span> <span class="fl">1e-6</span> </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>y_plane <span class="op">=</span> np.zeros_like(x2_grid)  <span class="co">#z=0.5</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Surface(</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>x2_grid,</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>x3_grid,</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span><span class="fl">0.5</span> <span class="op">*</span> np.ones_like(x2_grid),</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    opacity<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    showscale<span class="op">=</span><span class="va">False</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    scene<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>        xaxis_title<span class="op">=</span><span class="st">'x2'</span>,</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>        yaxis_title<span class="op">=</span><span class="st">'x3'</span>,</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>        zaxis_title<span class="op">=</span><span class="st">'y'</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">'Logistic regression data (binary outcomes)'</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="040_ERM_NLL_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="kl-divergence" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> KL Divergence</h1>
+<p>The Kullback–Leibler (KL) divergence between two distributions <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> over a random variable <span class="math inline">\(Y\)</span> is:</p>
+<p><span class="math display">\[
+\mathrm{KL}(p \,\|\, q)
+= \mathbb{E}_{Y \sim p} \left[ \log \frac{p(Y)}{q(Y)} \right]
+\]</span></p>
+<p>It has the following properties:</p>
+<ul>
+<li><span class="math inline">\(\mathrm{KL}(p \| q) \ge 0\)</span><br>
+</li>
+<li><span class="math inline">\(\mathrm{KL}(p \| q) = 0\)</span> if and only if <span class="math inline">\(p = q\)</span><br>
+</li>
+<li>It is not symmetric</li>
+</ul>
+<p>It measures how well <span class="math inline">\(q\)</span> approximates <span class="math inline">\(p\)</span>. It is not a true distance since it is not symmetric, so we call it a divergence.</p>
+<p>A useful way to understand KL divergence is to rewrite it:</p>
+<p><span class="math display">\[
+\mathrm{KL}(p \,\|\, q)
+= \mathbb{E}_{Y \sim p}\left[\log \frac{p(Y)}{q(Y)}\right]
+= \mathbb{E}_{Y \sim p}[\log p(Y)] - \mathbb{E}_{Y \sim p}[\log q(Y)]
+\]</span></p>
+<p>Now introduce two standard quantities:</p>
+<ul>
+<li><strong>Entropy</strong>: <span class="math display">\[
+H(p) = \mathbb{E}_{Y \sim p}[-\log p(Y)]
+\]</span></li>
+<li><strong>Cross-entropy</strong>: <span class="math display">\[
+H(p, q) = \mathbb{E}_{Y \sim p}[-\log q(Y)]
+\]</span></li>
+</ul>
+<p>Using these, we can rewrite KL divergence as:</p>
+<p><span class="math display">\[
+\mathrm{KL}(p \| q)
+= H(p, q) - H(p)
+\]</span></p>
+<p>This decomposition is central.</p>
+<ul>
+<li><span class="math inline">\(H(p)\)</span> measures the inherent uncertainty in the true distribution of <span class="math inline">\(Y\)</span><br>
+</li>
+<li><span class="math inline">\(H(p, q)\)</span> measures how well the model <span class="math inline">\(q\)</span> predicts outcomes drawn from <span class="math inline">\(p\)</span></li>
+</ul>
+<p>So KL divergence is:</p>
+<blockquote class="blockquote">
+<p>The gap between how well you could do (using <span class="math inline">\(p\)</span>) and how well you actually do (using <span class="math inline">\(q\)</span>).</p>
+</blockquote>
+<div id="cbf30813-7f35-4e99-bcd4-e1682971ec01" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ipywidgets <span class="im">as</span> widgets</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_bernoulli_kl(p<span class="op">=</span><span class="fl">0.7</span>):</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    q_grid <span class="op">=</span> np.linspace(<span class="fl">0.001</span>, <span class="fl">0.999</span>, <span class="dv">500</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    H_p <span class="op">=</span> <span class="op">-</span>p <span class="op">*</span> np.log(p) <span class="op">-</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">*</span> np.log(<span class="dv">1</span> <span class="op">-</span> p)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    H_pq <span class="op">=</span> <span class="op">-</span>p <span class="op">*</span> np.log(q_grid) <span class="op">-</span> (<span class="dv">1</span> <span class="op">-</span> p) <span class="op">*</span> np.log(<span class="dv">1</span> <span class="op">-</span> q_grid)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    KL <span class="op">=</span> H_pq <span class="op">-</span> H_p</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    plt.plot(q_grid, H_pq, label<span class="op">=</span><span class="st">'Cross-entropy H(p,q)'</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    plt.plot(q_grid, KL, label<span class="op">=</span><span class="st">'KL(p||q)'</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    plt.axhline(H_p, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'Entropy H(p)'</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    plt.axvline(p, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="ss">f'p = </span><span class="sc">{</span>p<span class="sc">:.2f}</span><span class="ss">'</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Model probability q'</span>)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Value'</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'Bernoulli case with true parameter p = </span><span class="sc">{</span>p<span class="sc">:.2f}</span><span class="ss">'</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>interact(</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    plot_bernoulli_kl,</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    p<span class="op">=</span>widgets.FloatSlider(</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>        value<span class="op">=</span><span class="fl">0.7</span>,</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>        <span class="bu">min</span><span class="op">=</span><span class="fl">0.01</span>,</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>        <span class="bu">max</span><span class="op">=</span><span class="fl">0.99</span>,</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>        step<span class="op">=</span><span class="fl">0.01</span>,</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">'p'</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"594d833d6f7e4a8393fb39a259741fc5","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;function __main__.plot_bernoulli_kl(p=0.7)&gt;</code></pre>
+</div>
+</div>
+<section id="surprisal" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="surprisal"><span class="header-section-number">8.1</span> Surprisal</h2>
+<p>Another way to understand this is through the notion of <strong>surprise</strong>.</p>
+<p>For a single outcome <span class="math inline">\(Y\)</span>, define:</p>
+<p><span class="math display">\[
+\text{surprise under } q = -\log q(Y)
+\]</span></p>
+<ul>
+<li>If <span class="math inline">\(q(Y)\)</span> is large → low surprise<br>
+</li>
+<li>If <span class="math inline">\(q(Y)\)</span> is small → high surprise</li>
+</ul>
+<p>The logarithm is used because it is <em>essentially</em> the only choice (up to scaling) that behaves correctly for information.</p>
+<ul>
+<li>It makes independent events add:<br>
+<span class="math display">\[
+-\log(q(y_1)q(y_2)) = -\log q(y_1) - \log q(y_2)
+\]</span></li>
+<li>It assigns larger values to rarer events and goes to infinity as probability goes to zero<br>
+</li>
+<li>Some other nice theoretical properties</li>
+</ul>
+<p>Given this definition,</p>
+<p><span class="math display">\[
+H(p, q) = \mathbb{E}_{Y \sim p}[-\log q(Y)]
+\]</span></p>
+<p>is the <strong>average surprise</strong> when outcomes are generated from <span class="math inline">\(p\)</span> but evaluated using <span class="math inline">\(q\)</span>.</p>
+<p>Similarly:</p>
+<p><span class="math display">\[
+H(p) = \mathbb{E}_{Y \sim p}[-\log p(Y)]
+\]</span></p>
+<p>is the minimum possible average surprise, achieved when using the true distribution.</p>
+<p>Putting this together:</p>
+<p><span class="math display">\[
+\mathrm{KL}(p \| q)
+= H(p, q) - H(p)
+\]</span></p>
+<p>So KL divergence measures:</p>
+<blockquote class="blockquote">
+<p>The extra average surprise incurred by using <span class="math inline">\(q\)</span> instead of the true distribution <span class="math inline">\(p\)</span>.</p>
+</blockquote>
+<p>This explains both key properties:</p>
+<ul>
+<li>KL is always nonnegative because you cannot do better than the true distribution<br>
+</li>
+<li>KL is zero only when <span class="math inline">\(q = p\)</span></li>
+</ul>
+<p>KL divergence also <strong>strongly penalizes</strong> assigning low probability to outcomes that actually occur.</p>
+<p>If there exists a value <span class="math inline">\(y\)</span> such that: - <span class="math inline">\(p(y) &gt; 0\)</span> - <span class="math inline">\(q(y) \approx 0\)</span></p>
+<p>then:</p>
+<p><span class="math display">\[
+\log \frac{p(y)}{q(y)}
+\]</span> is very large and consequently so is KL.</p>
+</section>
+<section id="connection-to-erm-and-mle" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="connection-to-erm-and-mle"><span class="header-section-number">8.2</span> Connection to ERM and MLE</h2>
+<p>ERM/MLE solves:</p>
+<p><span class="math display">\[
+\arg\min_\theta \; \frac{1}{N} \sum_{n=1}^N -\log p_\theta(y_n \mid x_n)
+\]</span></p>
+<p>This approximates the population version:</p>
+<p><span class="math display">\[
+\arg\min_\theta \; \mathbb{E}_{(X,Y)\sim p}[-\log p_\theta(Y \mid X)]
+\]</span></p>
+<p>To understand what this objective is doing, fix a value of <span class="math inline">\(X = x\)</span>. Then consider:</p>
+<p><span class="math display">\[
+\mathbb{E}_{Y \sim p(\cdot \mid x)}[-\log p_\theta(Y \mid x)]
+\]</span></p>
+<p>This quantity is exactly the <strong>cross-entropy</strong> between the true conditional distribution <span class="math inline">\(p(\cdot \mid x)\)</span> and the model <span class="math inline">\(p_\theta(\cdot \mid x)\)</span>:</p>
+<p><span class="math display">\[
+H\big(p(\cdot \mid x),\; p_\theta(\cdot \mid x)\big)
+\]</span></p>
+<p>Recall that cross-entropy is defined as:</p>
+<p><span class="math display">\[
+H(p, q) = \mathbb{E}_{Y \sim p}[-\log q(Y)]
+\]</span></p>
+<p>So here, we are measuring the <strong>average log-loss (or surprise)</strong> when:</p>
+<ul>
+<li>data is generated from the true distribution <span class="math inline">\(p(\cdot \mid x)\)</span><br>
+</li>
+<li>but evaluated using the model <span class="math inline">\(p_\theta(\cdot \mid x)\)</span></li>
+</ul>
+<p>In other words:</p>
+<blockquote class="blockquote">
+<p>Minimizing log-loss is exactly the same as minimizing cross-entropy.</p>
+</blockquote>
+<p>Now use the decomposition:</p>
+<p><span class="math display">\[
+H(p, q) = H(p) + \mathrm{KL}(p \| q)
+\]</span></p>
+<p>to rewrite:</p>
+<p><span class="math display">\[
+\mathbb{E}_{Y \sim p(\cdot \mid x)}[-\log p_\theta(Y \mid x)]
+= H\big(p(\cdot \mid x)\big)
++ \mathrm{KL}\big(p(\cdot \mid x)\,\|\,p_\theta(\cdot \mid x)\big)
+\]</span></p>
+<p>Taking expectation over <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[
+\mathbb{E}_{(X,Y)}[-\log p_\theta(Y \mid X)]
+= \mathbb{E}_X\big[H(p(\cdot \mid X))\big]
++ \mathbb{E}_X\Big[
+\mathrm{KL}\big(p(\cdot \mid X)\,\|\,p_\theta(\cdot \mid X)\big)
+\Big]
+\]</span></p>
+<p>The entropy term:</p>
+<p><span class="math display">\[
+\mathbb{E}_X\big[H(p(\cdot \mid X))\big]
+\]</span></p>
+<p>does not depend on <span class="math inline">\(\theta\)</span>, so it can be ignored for optimization.</p>
+<p>Therefore, minimizing the population objective is equivalent to:</p>
+<p><span class="math display">\[
+\min_\theta \; \mathbb{E}_X\Big[
+\mathrm{KL}\big(p(\cdot \mid X)\,\|\,p_\theta(\cdot \mid X)\big)
+\Big]
+\]</span></p>
+<p>This gives three equivalent interpretations of the same procedure:</p>
+<ul>
+<li>Minimizing <strong>log-loss</strong> (ERM)<br>
+</li>
+<li>Minimizing <strong>cross-entropy</strong><br>
+</li>
+<li>Minimizing <strong>KL divergence</strong></li>
+</ul>
+<p>Conceptually:</p>
+<ul>
+<li>Log-loss is the pointwise quantity<br>
+</li>
+<li>Cross-entropy is its expectation under the data distribution<br>
+</li>
+<li>KL divergence is the excess over the best possible value</li>
+</ul>
+<p>So learning can be viewed either as minimizing cross-entropy directly, or as minimizing KL divergence to match the true conditional distribution.</p>
+<div id="3076b834-1eb7-4c00-8923-aa6af8459e00" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ipywidgets <span class="im">as</span> widgets</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference distribution</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>mu_ref <span class="op">=</span> np.random.normal(<span class="dv">1</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>sigma_ref <span class="op">=</span> np.<span class="bu">abs</span>(np.random.normal(<span class="dv">1</span>))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normal_pdf(x, mu, sigma):</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="fl">1.0</span> <span class="op">/</span> (np.sqrt(<span class="dv">2</span> <span class="op">*</span> np.pi) <span class="op">*</span> sigma)) <span class="op">*</span> np.exp(<span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> ((x <span class="op">-</span> mu) <span class="op">/</span> sigma) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kl_gaussian(mu_p, sigma_p, mu_q, sigma_q):</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># KL(N(mu_p, sigma_p^2) || N(mu_q, sigma_q^2))</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.log(sigma_q <span class="op">/</span> sigma_p) <span class="op">+</span> (</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        sigma_p<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (mu_p <span class="op">-</span> mu_q)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> sigma_q<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> <span class="fl">0.5</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_normals(mu<span class="op">=</span><span class="fl">1.0</span>, sigma<span class="op">=</span><span class="fl">1.5</span>):</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>    x_min <span class="op">=</span> <span class="bu">min</span>(mu_ref <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> sigma_ref, mu <span class="op">-</span> <span class="dv">4</span> <span class="op">*</span> sigma) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    x_max <span class="op">=</span> <span class="bu">max</span>(mu_ref <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> sigma_ref, mu <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> sigma) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(x_min, x_max, <span class="dv">1000</span>)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> normal_pdf(x, mu_ref, sigma_ref)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> normal_pdf(x, mu, sigma)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    kl_pq <span class="op">=</span> kl_gaussian(mu_ref, sigma_ref, mu, sigma)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    kl_qp <span class="op">=</span> kl_gaussian(mu, sigma, mu_ref, sigma_ref)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">#plt.plot(x, p, label=fr"Reference $N({mu_ref:.2f}, {sigma_ref:.2f})$")</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>    plt.plot(x, p, label<span class="op">=</span><span class="vs">fr"Reference"</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>    plt.plot(x, q, label<span class="op">=</span><span class="vs">fr"Model $N(</span><span class="sc">{</span>mu<span class="sc">:.2f}</span><span class="vs">, </span><span class="sc">{</span>sigma<span class="sc">:.2f}</span><span class="vs">)$"</span>)</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"x"</span>)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"density"</span>)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">"Two Normal Densities"</span>)</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    plt.grid(alpha<span class="op">=</span><span class="fl">0.25</span>)</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"KL(reference || model) = </span><span class="sc">{</span>kl_pq<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"KL(model || reference) = </span><span class="sc">{</span>kl_qp<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>interact(</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>    plot_normals,</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    mu<span class="op">=</span>widgets.FloatSlider(</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>        value<span class="op">=</span><span class="fl">1.0</span>,</span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>        <span class="bu">min</span><span class="op">=-</span><span class="fl">4.0</span>,</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>        <span class="bu">max</span><span class="op">=</span><span class="fl">4.0</span>,</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>        step<span class="op">=</span><span class="fl">0.01</span>,</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">'mu'</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    sigma<span class="op">=</span>widgets.FloatSlider(</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>        value<span class="op">=</span><span class="fl">1.5</span>,</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>        <span class="bu">min</span><span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>        <span class="bu">max</span><span class="op">=</span><span class="fl">4.0</span>,</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>        step<span class="op">=</span><span class="fl">0.01</span>,</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">'sigma'</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"a0c899f6b2304980a863f6cb7e307963","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;function __main__.plot_normals(mu=1.0, sigma=1.5)&gt;</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lectures/030_multiclass_logistic_regression.html" class="pagination-link" aria-label="Multiclass Logistic Regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lectures/050_evaluation.html" class="pagination-link" aria-label="Model Evaluation">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

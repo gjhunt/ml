@@ -1,0 +1,3028 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>26&nbsp; Boosting – Statistical Learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lectures/210_random_forests.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="assets/code_style.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/200_carts.html">Tree-Based Methods</a></li><li class="breadcrumb-item"><a href="../lectures/220_boosting.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Boosting</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Statistical Learning</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/gjhunt/ml" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations and Empirical Risk Minimization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/000_intro_and_erm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/005_derivatives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/010_linear_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/020_logistic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/030_multiclass_logistic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, KL, and Cross Entropy</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Evaluation, Model Selection, and Nonparametric Methods</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/050_evaluation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/060_model_selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/070_knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/080_bias_variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Regularization and Penalized Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/100_ridge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/110_lasso.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/120_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Neural Networks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/130_nn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/140_backprop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/150_nn_arch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unsupervised Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/160_unsupervised.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/170_svd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/180_pca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/190_kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tree-Based Methods</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/200_carts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/210_random_forests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/220_boosting.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#boosted-regression-trees-with-squared-error" id="toc-boosted-regression-trees-with-squared-error" class="nav-link active" data-scroll-target="#boosted-regression-trees-with-squared-error"><span class="header-section-number">27</span> Boosted regression trees with squared error</a>
+  <ul class="collapse">
+  <li><a href="#a-small-simulated-example" id="toc-a-small-simulated-example" class="nav-link" data-scroll-target="#a-small-simulated-example"><span class="header-section-number">27.1</span> A small simulated example</a></li>
+  <li><a href="#implementing-the-boosting-part-ourselves" id="toc-implementing-the-boosting-part-ourselves" class="nav-link" data-scroll-target="#implementing-the-boosting-part-ourselves"><span class="header-section-number">27.2</span> Implementing the boosting part ourselves</a></li>
+  <li><a href="#effect-of-the-learning-rate" id="toc-effect-of-the-learning-rate" class="nav-link" data-scroll-target="#effect-of-the-learning-rate"><span class="header-section-number">27.3</span> Effect of the learning rate</a></li>
+  </ul></li>
+  <li><a href="#general-gradient-boosting" id="toc-general-gradient-boosting" class="nav-link" data-scroll-target="#general-gradient-boosting"><span class="header-section-number">28</span> General gradient boosting</a>
+  <ul class="collapse">
+  <li><a href="#what-is-a-functional-gradient" id="toc-what-is-a-functional-gradient" class="nav-link" data-scroll-target="#what-is-a-functional-gradient"><span class="header-section-number">28.1</span> What is a functional gradient?</a></li>
+  <li><a href="#generic-gradient-boosting-algorithm" id="toc-generic-gradient-boosting-algorithm" class="nav-link" data-scroll-target="#generic-gradient-boosting-algorithm"><span class="header-section-number">28.2</span> Generic Gradient Boosting Algorithm</a>
+  <ul class="collapse">
+  <li><a href="#squared-error-as-a-special-case" id="toc-squared-error-as-a-special-case" class="nav-link" data-scroll-target="#squared-error-as-a-special-case"><span class="header-section-number">28.2.1</span> Squared error as a special case</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#gradient-boosting-for-binary-classification" id="toc-gradient-boosting-for-binary-classification" class="nav-link" data-scroll-target="#gradient-boosting-for-binary-classification"><span class="header-section-number">29</span> Gradient boosting for binary classification</a>
+  <ul class="collapse">
+  <li><a href="#an-example" id="toc-an-example" class="nav-link" data-scroll-target="#an-example"><span class="header-section-number">29.1</span> An Example</a></li>
+  </ul></li>
+  <li><a href="#gradient-boosting-for-multiclass-classification" id="toc-gradient-boosting-for-multiclass-classification" class="nav-link" data-scroll-target="#gradient-boosting-for-multiclass-classification"><span class="header-section-number">30</span> Gradient boosting for multiclass classification</a></li>
+  <li><a href="#regularization-in-boosting" id="toc-regularization-in-boosting" class="nav-link" data-scroll-target="#regularization-in-boosting"><span class="header-section-number">31</span> Regularization in boosting</a>
+  <ul class="collapse">
+  <li><a href="#number-of-trees" id="toc-number-of-trees" class="nav-link" data-scroll-target="#number-of-trees"><span class="header-section-number">31.0.1</span> Number of trees</a></li>
+  <li><a href="#learning-rate" id="toc-learning-rate" class="nav-link" data-scroll-target="#learning-rate"><span class="header-section-number">31.0.2</span> Learning rate</a></li>
+  <li><a href="#tree-depth" id="toc-tree-depth" class="nav-link" data-scroll-target="#tree-depth"><span class="header-section-number">31.0.3</span> Tree depth</a></li>
+  <li><a href="#minimum-leaf-size" id="toc-minimum-leaf-size" class="nav-link" data-scroll-target="#minimum-leaf-size"><span class="header-section-number">31.0.4</span> Minimum leaf size</a></li>
+  <li><a href="#subsampling" id="toc-subsampling" class="nav-link" data-scroll-target="#subsampling"><span class="header-section-number">31.0.5</span> Subsampling</a></li>
+  </ul></li>
+  <li><a href="#practical-notes" id="toc-practical-notes" class="nav-link" data-scroll-target="#practical-notes"><span class="header-section-number">32</span> Practical notes</a>
+  <ul class="collapse">
+  <li><a href="#scaling" id="toc-scaling" class="nav-link" data-scroll-target="#scaling"><span class="header-section-number">32.0.1</span> Scaling</a></li>
+  <li><a href="#categorical-variables" id="toc-categorical-variables" class="nav-link" data-scroll-target="#categorical-variables"><span class="header-section-number">32.0.2</span> Categorical variables</a></li>
+  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"><span class="header-section-number">32.0.3</span> Missing values</a></li>
+  <li><a href="#extrapolation" id="toc-extrapolation" class="nav-link" data-scroll-target="#extrapolation"><span class="header-section-number">32.0.4</span> Extrapolation</a></li>
+  </ul></li>
+  <li><a href="#learning-rate-and-early-stopping-on-a-real-regression-dataset" id="toc-learning-rate-and-early-stopping-on-a-real-regression-dataset" class="nav-link" data-scroll-target="#learning-rate-and-early-stopping-on-a-real-regression-dataset"><span class="header-section-number">33</span> Learning rate and early stopping on a real regression dataset</a></li>
+  <li><a href="#step-sizes-weak-learners-and-tree-specific-updates" id="toc-step-sizes-weak-learners-and-tree-specific-updates" class="nav-link" data-scroll-target="#step-sizes-weak-learners-and-tree-specific-updates"><span class="header-section-number">34</span> Step sizes, weak learners, and tree-specific updates</a>
+  <ul class="collapse">
+  <li><a href="#extensions-and-modern-implementations" id="toc-extensions-and-modern-implementations" class="nav-link" data-scroll-target="#extensions-and-modern-implementations"><span class="header-section-number">34.1</span> Extensions and modern implementations</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/200_carts.html">Tree-Based Methods</a></li><li class="breadcrumb-item"><a href="../lectures/220_boosting.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Boosting</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Boosting</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In the previous lectures, we studied CARTs, bagging, and random forests. A single tree is flexible but unstable. Bagging and random forests reduce this instability by averaging many trees that are fit in parallel.</p>
+<p>Boosting takes a different approach. Instead of fitting many trees independently and averaging them, boosting fits trees <strong>sequentially</strong>.</p>
+<blockquote class="blockquote">
+<p>Each new tree is chosen to improve the current model, given where the previous model did poorly.</p>
+</blockquote>
+<p>A generic boosting method constructs a sequence of score functions</p>
+<p><span class="math display">\[
+\hat s_0,\hat s_1,\dots,\hat s_M.
+\]</span></p>
+<p>Each score function in our sequence is going to focus on where the previous did poorly and try to compensate. At step <span class="math inline">\(m\)</span>, we do this by fitting a new <strong>weak learner</strong> <span class="math inline">\(\hat h_m\)</span> (somehow) focused on where <span class="math inline">\(\hat s_{m-1}\)</span> did poorly, and then creating <span class="math inline">\(\hat s_m\)</span> as:</p>
+<p><span class="math display">\[
+\hat s_m(x)=\hat s_{m-1}(x)
++
+\nu \hat h_m(x).
+\]</span></p>
+<p>for some <strong>learning rate</strong> <span class="math inline">\(\nu \in (0,1]\)</span>. Consequently, after <span class="math inline">\(M\)</span> steps our boosted method will have the basic form of an additive score function. For regression this score is scalar:</p>
+<p><span class="math display">\[
+\hat s_M(x) =
+\hat s_0(x)
++
+\sum_{m=1}^M \nu \hat h_m(x),
+\]</span></p>
+<p>where</p>
+<ul>
+<li><span class="math inline">\(\hat s_0\)</span> is an initial score function</li>
+<li><span class="math inline">\(\hat h_m\)</span> is the <span class="math inline">\(m^{th}\)</span> <strong>weak learner</strong> (usually a shallow tree)</li>
+<li><span class="math inline">\(M\)</span> is the number of <strong>boosting</strong> iterations/steps</li>
+<li><span class="math inline">\(\nu \in (0,1]\)</span> is the <strong>learning rate</strong> or <strong>shrinkage factor</strong></li>
+</ul>
+<p>The prediction function is then</p>
+<p><span class="math display">\[
+\hat f_M(x) = a(\hat s_M(x)),
+\]</span></p>
+<p>where <span class="math inline">\(a\)</span> is the action function. For regression, often <span class="math inline">\(a(s)=s\)</span>.</p>
+<p>For multiclass classification, the score function is vector-valued:</p>
+<p><span class="math display">\[
+\hat s_M(x) =
+\left(
+\hat s_{M1}(x),\ldots,\hat s_{MK}(x)
+\right),
+\]</span></p>
+<p>with one score for each class. Each of these individual scores functions are built up sequentially also just like the regression function. The action function is then</p>
+<p><span class="math display">\[
+a(\hat s_M(x))=
+\arg\max_{k \in {1,\ldots,K}} \hat s_{Mk}(x).
+\]</span></p>
+<div id="e21ed4ff" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_moons, load_diabetes, load_breast_cancer</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeRegressor</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> GradientBoostingRegressor, GradientBoostingClassifier</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, accuracy_score, log_loss</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">657677</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="boosted-regression-trees-with-squared-error" class="level1" data-number="27">
+<h1 data-number="27"><span class="header-section-number">27</span> Boosted regression trees with squared error</h1>
+<p>To make things concrete, let’s first study the simplest boosting algorithm: boosted regression trees (for squared error loss). Assume we’re solving a regression problem. Our generic boosting algorithm is:</p>
+<ol type="1">
+<li>Fit <span class="math inline">\(\hat s_0\)</span>.</li>
+<li>For <span class="math inline">\(m=1,\ldots,M\)</span>
+<ol type="1">
+<li>Determine where <span class="math inline">\(\hat s_{m-1}\)</span> did poorly,</li>
+<li>Fit <span class="math inline">\(\hat h_m\)</span> to do well where <span class="math inline">\(\hat s_{m-1}\)</span> didn’t,</li>
+<li>Boost: <span class="math inline">\(\hat s_m(x) = \hat s_{m-1}(x) + \nu \hat h_m(x)\)</span>.</li>
+</ol></li>
+<li>Return <span class="math inline">\(\hat s(x) = \hat s_M(x)\)</span>.</li>
+</ol>
+<p>For our concrete boosted regression trees, we first need a base method, let’s use the simple mean constant prediction:</p>
+<p><span class="math display">\[
+\hat s_0(x)=\bar y.
+\]</span></p>
+<p>Now, at iteration <span class="math inline">\(m\)</span> we need to determine where <span class="math inline">\(\hat s_{m-1}\)</span> did poorly. Let’s do this by calcualting the the current residuals of <span class="math inline">\(s_{m-1}\)</span> compared to the training data:</p>
+<p><span class="math display">\[
+r_{nm}=y_n-\hat s_{m-1}(x_n).
+\]</span></p>
+<p>We’re then going to try and boost our current approach to compensate. We’ll do this by fitting a small regression tree <span class="math inline">\(\hat h_m\)</span> to these residuals.</p>
+<p>Then we boost using this <strong>weak</strong> regression tree:</p>
+<p><span class="math display">\[
+\hat s_m(x)=
+\hat s_{m-1}(x)
++
+\nu \hat h_m(x).
+\]</span></p>
+<p>This is the basic boosted regression tree algorithm.</p>
+<p>The learning rate <span class="math inline">\(\nu\)</span> controls how fast we boost. It is (very) akin to the learning rate in a gradient descent. We don’t want to boost too quickly (over-fitting), we want a series of small steps. When <span class="math inline">\(\nu=1\)</span>, each tree’s fitted residual is added completely. When <span class="math inline">\(\nu\)</span> is small, each tree only makes a small correction.</p>
+<p>Small learning rates usually require larger <span class="math inline">\(M\)</span>, but they often improve test performance. The pair <span class="math inline">\((\nu,M)\)</span> is therefore a regularization pair:</p>
+<ul>
+<li>smaller <span class="math inline">\(\nu\)</span> means slower learning</li>
+<li>larger <span class="math inline">\(M\)</span> means more additive components</li>
+</ul>
+<section id="a-small-simulated-example" class="level2" data-number="27.1">
+<h2 data-number="27.1" class="anchored" data-anchor-id="a-small-simulated-example"><span class="header-section-number">27.1</span> A small simulated example</h2>
+<div id="120a568d" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">180</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> rng.uniform(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span>(N, <span class="dv">1</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> true_regression_function(x):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sin(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> x) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> np.sin(<span class="dv">6</span> <span class="op">*</span> np.pi <span class="op">*</span> x)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> true_regression_function(X[:, <span class="dv">0</span>]) <span class="op">+</span> rng.normal(<span class="dv">0</span>, <span class="fl">0.25</span>, size<span class="op">=</span>N)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>x_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">500</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>y_true_grid <span class="op">=</span> true_regression_function(x_grid[:, <span class="dv">0</span>])</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], y, alpha<span class="op">=</span><span class="fl">0.6</span>, label<span class="op">=</span><span class="st">"observed"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.plot(x_grid[:, <span class="dv">0</span>], y_true_grid, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"true function"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"y"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Simulated regression data"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="220_boosting_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="implementing-the-boosting-part-ourselves" class="level2" data-number="27.2">
+<h2 data-number="27.2" class="anchored" data-anchor-id="implementing-the-boosting-part-ourselves"><span class="header-section-number">27.2</span> Implementing the boosting part ourselves</h2>
+<p>We will use <code>DecisionTreeRegressor</code> to fit each individual tree, but we will write the boosting loop directly.</p>
+<p>This helps separate two ideas:</p>
+<ol type="1">
+<li>CART tells us how to fit one tree.</li>
+<li>Boosting tells us how to combine many trees sequentially.</li>
+</ol>
+<div id="28a941c6" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SimpleBoostedRegressionTrees:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, n_estimators<span class="op">=</span><span class="dv">100</span>, learning_rate<span class="op">=</span><span class="fl">0.1</span>, max_depth<span class="op">=</span><span class="dv">2</span>, min_samples_leaf<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n_estimators <span class="op">=</span> n_estimators</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.learning_rate <span class="op">=</span> learning_rate</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.max_depth <span class="op">=</span> max_depth</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.min_samples_leaf <span class="op">=</span> min_samples_leaf</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.init_ <span class="op">=</span> np.mean(y)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.trees_ <span class="op">=</span> []</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.train_mse_ <span class="op">=</span> []</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        current_pred <span class="op">=</span> np.repeat(<span class="va">self</span>.init_, <span class="bu">len</span>(y))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> m <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.n_estimators):</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>            residual <span class="op">=</span> y <span class="op">-</span> current_pred</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>            <span class="co"># fit tree to residuals</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>            tree <span class="op">=</span> DecisionTreeRegressor(</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                max_depth<span class="op">=</span><span class="va">self</span>.max_depth,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                min_samples_leaf<span class="op">=</span><span class="va">self</span>.min_samples_leaf,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                random_state<span class="op">=</span>m</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>            tree.fit(X, residual)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            <span class="co"># update *for training only*</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>            update <span class="op">=</span> tree.predict(X)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>            current_pred <span class="op">=</span> current_pred <span class="op">+</span> <span class="va">self</span>.learning_rate <span class="op">*</span> update</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.trees_.append(tree)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.train_mse_.append(mean_squared_error(y, current_pred))</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, X, n_estimators<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> n_estimators <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>            n_estimators <span class="op">=</span> <span class="bu">len</span>(<span class="va">self</span>.trees_)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        pred <span class="op">=</span> np.repeat(<span class="va">self</span>.init_, X.shape[<span class="dv">0</span>])</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> tree <span class="kw">in</span> <span class="va">self</span>.trees_[:n_estimators]:</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>            pred <span class="op">=</span> pred <span class="op">+</span> <span class="va">self</span>.learning_rate <span class="op">*</span> tree.predict(X)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="7f5f5dde" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>boost <span class="op">=</span> SimpleBoostedRegressionTrees(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    n_estimators<span class="op">=</span><span class="dv">200</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    learning_rate<span class="op">=</span><span class="fl">0.05</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    max_depth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    min_samples_leaf<span class="op">=</span><span class="dv">8</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>boost.fit(X, y)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.plot(np.arange(<span class="dv">1</span>, <span class="bu">len</span>(boost.train_mse_) <span class="op">+</span> <span class="dv">1</span>), boost.train_mse_)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Boosting iteration"</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Training MSE"</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Training loss over boosting iterations"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="220_boosting_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="eba33001" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">5</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], y, alpha<span class="op">=</span><span class="fl">0.35</span>, label<span class="op">=</span><span class="st">"observed"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x_grid[:, <span class="dv">0</span>], y_true_grid, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"true function"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">200</span>]:</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    plt.plot(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        x_grid[:, <span class="dv">0</span>],</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        boost.predict(x_grid, n_estimators<span class="op">=</span>m),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="ss">f"M = </span><span class="sc">{</span>m<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"prediction"</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Boosted regression tree predictions"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="220_boosting_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="effect-of-the-learning-rate" class="level2" data-number="27.3">
+<h2 data-number="27.3" class="anchored" data-anchor-id="effect-of-the-learning-rate"><span class="header-section-number">27.3</span> Effect of the learning rate</h2>
+<p>The learning rate controls how quickly the model moves. To see this, we can fit the same boosted tree procedure with different values of <span class="math inline">\(\nu\)</span>.</p>
+<div id="ff8a88c6" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>learning_rates <span class="op">=</span> [<span class="fl">1.0</span>, <span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="fl">0.03</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>histories <span class="op">=</span> {}</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nu <span class="kw">in</span> learning_rates:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> SimpleBoostedRegressionTrees(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        n_estimators<span class="op">=</span><span class="dv">200</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        learning_rate<span class="op">=</span>nu,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        max_depth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        min_samples_leaf<span class="op">=</span><span class="dv">8</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    model.fit(X, y)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    histories[nu] <span class="op">=</span> model.train_mse_</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> nu, hist <span class="kw">in</span> histories.items():</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    plt.plot(np.arange(<span class="dv">1</span>, <span class="bu">len</span>(hist) <span class="op">+</span> <span class="dv">1</span>), hist, label<span class="op">=</span><span class="ss">f"nu = </span><span class="sc">{</span>nu<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Boosting iteration"</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Training MSE"</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Learning rate and training loss"</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="220_boosting_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Large learning rates reduce training loss quickly. Small learning rates move more slowly, but the slower path is often better for test error.</p>
+<p>In practice, boosted trees are usually tuned using a validation set or cross-validation. Common tuning parameters include:</p>
+<ul>
+<li><span class="math inline">\(M\)</span>: number of trees</li>
+<li><span class="math inline">\(\nu\)</span>: learning rate</li>
+<li>tree depth or number of leaves</li>
+<li>minimum leaf size</li>
+</ul>
+</section>
+</section>
+<section id="general-gradient-boosting" class="level1" data-number="28">
+<h1 data-number="28"><span class="header-section-number">28</span> General gradient boosting</h1>
+<p>The squared error algorithm is a special case of a broader idea.</p>
+<p>For squared error, we fit residuals:</p>
+<p><span class="math display">\[
+r_n^{(m)} = y_n-\hat s_{m-1}(x_n).
+\]</span></p>
+<p>But residuals are not the right object for every loss. For example, in classification, the outcome is categorical, so the idea of fitting ordinary residuals doesn’t make a lot of sense.</p>
+<p>Gradient boosting generalizes the residual-fitting idea by replacing residuals with <strong>pseudo-residuals</strong>.</p>
+<p>For a loss function <span class="math inline">\(\ell\)</span>, the empirical risk is</p>
+<p><span class="math display">\[
+\hat R(s)=
+\frac{1}{N}\sum_{n=1}^N
+\ell(y_n,s(x_n)).
+\]</span></p>
+<p>In parametric models, if <span class="math inline">\(s=s_w\)</span> for some parameter vector <span class="math inline">\(w\)</span>, then we optimize <span class="math inline">\(\hat R(s)=\hat R(w)\)</span> over <span class="math inline">\(w\)</span>. The most basic way we have done this is with gradient descent:</p>
+<p><span class="math display">\[
+w_m = w_{m-1} - \nu \nabla_w \hat R(w_{m-1}),
+\]</span></p>
+<p>where <span class="math inline">\(\nu\)</span> is the learning rate and <span class="math inline">\(\nabla_w \hat R(w_{m-1})\)</span> is the gradient of <span class="math inline">\(\hat R\)</span> with respect to <span class="math inline">\(w\)</span>, evaluated at the current parameter value.</p>
+<p><strong>Boosting is like gradient descent, but in function space.</strong></p>
+<p>In boosting, we think of minimizing over functions <span class="math inline">\(s\)</span> directly. The current estimate is a function <span class="math inline">\(\hat s_{m-1}\)</span>, and we update it by adding another function <span class="math inline">\(\hat h_m\)</span>:</p>
+<p><span class="math display">\[
+\hat s_m(x)=
+\hat s_{m-1}(x)
++
+\nu \hat h_m(x).
+\]</span></p>
+<p>This is analogous to gradient descent, with <span class="math inline">\(\hat h_m\)</span> playing the role of a negative gradient direction. The difference is that instead of taking steps in a finite-dimensional parameter space, we take steps in a function space. This is why gradient boosting is often described as <strong>gradient descent in function space</strong>.</p>
+<p>The idea is to start with an initial guess <span class="math inline">\(\hat s_0\)</span>, then repeatedly approximate the negative functional derivative of <span class="math inline">\(\hat R(s)\)</span> with respect to <span class="math inline">\(s\)</span>, evaluated at the current function <span class="math inline">\(s=\hat s_{m-1}\)</span>. The weak learner <span class="math inline">\(\hat h_m\)</span> is fit to approximate this negative gradient direction (at the training points), and then we take a <span class="math inline">\(\nu\)</span>-sized step in that direction.</p>
+<section id="what-is-a-functional-gradient" class="level2" data-number="28.1">
+<h2 data-number="28.1" class="anchored" data-anchor-id="what-is-a-functional-gradient"><span class="header-section-number">28.1</span> What is a functional gradient?</h2>
+<p>(For a longer discussion see: <a href="https://mbernste.github.io/posts/functionals/">https://mbernste.github.io/posts/functionals/</a>).</p>
+<p>In ordinary gradient descent, we minimize a function of parameters. For example, if the score function is <span class="math inline">\(s_w(x)\)</span>, then the empirical risk can be written as a function of <span class="math inline">\(w\)</span>:</p>
+<p><span class="math display">\[
+\hat R(w)=\frac{1}{N}\sum_{n=1}^N \ell(y_n,s_w(x_n)).
+\]</span></p>
+<p>The gradient tells us how <span class="math inline">\(\hat R(w)\)</span> changes if we make a small change to the parameter vector <span class="math inline">\(w\)</span>. Then gradient descent moves <span class="math inline">\(w\)</span> in the direction that most decreases the risk.</p>
+<p>In gradient boosting, we take a different point of view. Instead of thinking of <span class="math inline">\(s\)</span> as a function indexed by parameters <span class="math inline">\(w\)</span>, we think of <span class="math inline">\(s\)</span> itself as the object we are changing. The empirical risk is now a function of a function:</p>
+<p><span class="math display">\[
+\hat R(s)=\frac{1}{N}\sum_{n=1}^N \ell(y_n,s(x_n)).
+\]</span></p>
+<p>An object that takes a function as input and returns a number is called a <strong>functional</strong>. Here, <span class="math inline">\(\hat R\)</span> takes the score function <span class="math inline">\(s\)</span> as input and returns the average loss on the training data.</p>
+<p>So what does it mean to take a derivative with respect to a function?</p>
+<p>The basic idea is the same as a directional derivative. In finite-dimensional calculus, if we have a function <span class="math inline">\(R(w)\)</span> and move from <span class="math inline">\(w\)</span> in the direction <span class="math inline">\(v\)</span>, we study</p>
+<p><span class="math display">\[
+\left. \frac{d}{d\epsilon} R(w+\epsilon v) \right|_{\epsilon=0}.
+\]</span></p>
+<p>This tells us how quickly <span class="math inline">\(R\)</span> changes if we take a small step in the direction <span class="math inline">\(v\)</span>. The gradient is the object whose inner product with <span class="math inline">\(v\)</span> gives this directional derivative:</p>
+<p><span class="math display">\[
+\left. \frac{d}{d\epsilon} R(w+\epsilon v) \right|_{\epsilon=0}= \nabla_w R(w)^\top v.
+\]</span></p>
+<p>For a functional, the input is not a vector <span class="math inline">\(w\)</span>, but a function <span class="math inline">\(s\)</span>. So instead of perturbing <span class="math inline">\(w\)</span> in the direction of a vector <span class="math inline">\(v\)</span>, we perturb <span class="math inline">\(s\)</span> in the direction of another function <span class="math inline">\(g\)</span>. For a small number <span class="math inline">\(\epsilon\)</span>, define</p>
+<p><span class="math display">\[
+s_\epsilon(x)=s(x)+\epsilon g(x).
+\]</span></p>
+<p>This means that we are modifying the current score function <span class="math inline">\(s(x)\)</span> by adding a small amount of the function <span class="math inline">\(g(x)\)</span>.</p>
+<p>The directional derivative of the risk functional at <span class="math inline">\(s\)</span> in the direction <span class="math inline">\(g\)</span> is</p>
+<p><span class="math display">\[
+\left. \frac{d}{d\epsilon} \hat R(s+\epsilon g) \right|_{\epsilon=0}.
+\]</span></p>
+<p>The <strong>functional gradient</strong> is the object whose inner product with <span class="math inline">\(g\)</span> gives this directional derivative. Symbolically, it is the analogue of <span class="math inline">\(\nabla_w R(w)\)</span>, but now the input being changed is the function <span class="math inline">\(s\)</span>, not a parameter vector <span class="math inline">\(w\)</span>. In our finite-sample setting, the risk only depends on the fitted values <span class="math inline">\(s(x_1),\ldots,s(x_N)\)</span>, so the relevant inner product becomes a finite sum over the training data, like a typical inner product. If we perturb <span class="math inline">\(s\)</span> in the direction <span class="math inline">\(g\)</span>, then</p>
+<p><span class="math display">\[
+\hat R(s+\epsilon g)=\frac{1}{N}\sum_{n=1}^N \ell(y_n,s(x_n)+\epsilon g(x_n)).
+\]</span></p>
+<p>Using the chain rule,</p>
+<p><span class="math display">\[
+\left. \frac{d}{d\epsilon} \hat R(s+\epsilon g) \right|_{\epsilon=0}=
+\frac{1}{N}\sum_{n=1}^N \frac{\partial \ell(y_n,s(x_n))}{\partial s(x_n)}g(x_n).
+\]</span></p>
+<p>This has exactly the same structure as an inner product:</p>
+<p><span class="math display">\[
+\sum_n a_n b_n.
+\]</span> where the <span class="math inline">\(a_n\)</span> are <span class="math inline">\(\frac{\partial \ell(y_n,s(x_n))}{\partial s(x_n)}\)</span> and the <span class="math inline">\(b_n\)</span> are <span class="math inline">\(g(x_n)\)</span>.</p>
+<p>So the functional gradient, evaluated at the training points, is just the gradient of <span class="math inline">\(\hat R\)</span> with respect to these <span class="math inline">\(N\)</span> score values:</p>
+<p><span class="math display">\[
+\left(\frac{\partial \ell(y_1,s(x_1))}{\partial s(x_1)},\ldots,\frac{\partial \ell(y_N,s(x_N))}{\partial s(x_N)}\right).
+\]</span></p>
+<p>At each training point <span class="math inline">\(x_n\)</span>, the quantity</p>
+<p><span class="math display">\[
+\frac{\partial \ell(y_n,s(x_n))}{\partial s(x_n)}
+\]</span></p>
+<p>measures how sensitive the loss is to the current score value <span class="math inline">\(s(x_n)\)</span>. The negative of this quantity gives the direction in which we would like to move the score value in order to reduce the loss:</p>
+<p><span class="math display">\[
+-\frac{\partial \ell(y_n,s(x_n))}{\partial s(x_n)}.
+\]</span></p>
+<p>These negative gradient values are called <strong>pseudo-residuals</strong>:</p>
+<p><span class="math display">\[
+r_n=-\frac{\partial \ell(y_n,s(x_n))}{\partial s(x_n)}.
+\]</span></p>
+<p>They are the analogue of residuals for a general loss function. For squared error, they are exactly the usual residuals. For other losses, such as logistic loss, they are not ordinary residuals, but they still tell us the direction in which the current score should move at each training point.</p>
+<p>In an idealized version of functional gradient descent, we would update the score values directly by</p>
+<p><span class="math display">\[
+s_m(x_n)=s_{m-1}(x_n)+\nu r_n^{(m)}.
+\]</span></p>
+<p>But this only defines updates at the training points. We need a function that can also make predictions at new values of <span class="math inline">\(x\)</span>.</p>
+<p><strong>Gradient boosting</strong> handles this by fitting a weak learner, usually a shallow regression tree, to the pseudo-residuals:</p>
+<p><span class="math display">\[
+\hat h_m(x_n) \approx r_n^{(m)}.
+\]</span></p>
+<p>Then the model is updated by adding this fitted function:</p>
+<p><span class="math display">\[
+\hat s_m(x)=\hat s_{m-1}(x)+\nu \hat h_m(x).
+\]</span></p>
+<p>Thus, gradient boosting can be viewed as gradient descent in function space, with the weak learner <span class="math inline">\(\hat h_m\)</span> serving as a smoothed, model-based approximation to the negative functional gradient.</p>
+</section>
+<section id="generic-gradient-boosting-algorithm" class="level2" data-number="28.2">
+<h2 data-number="28.2" class="anchored" data-anchor-id="generic-gradient-boosting-algorithm"><span class="header-section-number">28.2</span> Generic Gradient Boosting Algorithm</h2>
+<p>Notice how our previous discussion worked for any differentiable loss <span class="math inline">\(\ell\)</span>. This leads to the generic gradient boosting algorithm:</p>
+<p>Input:</p>
+<ul>
+<li>data <span class="math inline">\((x_n,y_n)_{n=1}^N\)</span></li>
+<li>differentiable loss <span class="math inline">\(\ell(y,s)\)</span></li>
+<li>weak learner class <span class="math inline">\(\mathcal{H}\)</span> (e.g.&nbsp;small trees)</li>
+<li>number of iterations <span class="math inline">\(M\)</span></li>
+<li>learning rate <span class="math inline">\(\nu\)</span></li>
+</ul>
+<p>Initialize</p>
+<p><span class="math display">\[
+\hat s_0(x)=
+\arg\min_c
+\sum_{n=1}^N
+\ell(y_n,c).
+\]</span></p>
+<p>For <span class="math inline">\(m=1,\dots,M\)</span>:</p>
+<ol type="1">
+<li>Compute pseudo-residuals</li>
+</ol>
+<p><span class="math display">\[
+r_{nm}=
+-\left[
+\frac{\partial \ell(y_n,s(x_n))}
+{\partial s(x_n)}
+\right]_{s=\hat s_{m-1}}.
+\]</span></p>
+<ol start="2" type="1">
+<li>Fit a weak learner to the pseudo-residuals</li>
+</ol>
+<p><span class="math display">\[
+\hat h_m \approx
+\arg\min_{h \in \mathcal{H}}
+\sum_{n=1}^N
+(r_{nm}-h(x_n))^2.
+\]</span></p>
+<p>(Notice this is a regression task regardless of whether or not we are doing regression, classification with whatever loss.)</p>
+<ol start="3" type="1">
+<li>Boost</li>
+</ol>
+<p><span class="math display">\[
+\hat s_m(x)=
+\hat s_{m-1}(x)
++
+\nu \hat h_m(x).
+\]</span></p>
+<p>Return <span class="math inline">\(\hat s_M\)</span>.</p>
+<section id="squared-error-as-a-special-case" class="level3" data-number="28.2.1">
+<h3 data-number="28.2.1" class="anchored" data-anchor-id="squared-error-as-a-special-case"><span class="header-section-number">28.2.1</span> Squared error as a special case</h3>
+<p>For squared error loss,</p>
+<p><span class="math display">\[
+\ell(y,s)=
+\frac{1}{2}(y-s)^2.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\frac{\partial \ell(y,s)}
+{\partial s}=
+s-y.
+\]</span></p>
+<p>So the negative gradient is</p>
+<p><span class="math display">\[
+-\frac{\partial \ell(y,s)}
+{\partial s}=
+y-s.
+\]</span></p>
+<p>At iteration <span class="math inline">\(m\)</span>,</p>
+<p><span class="math display">\[
+r_{nm}=
+y_n-\hat s_{m-1}(x_n).
+\]</span></p>
+<p>Thus ordinary residual boosting is exactly gradient boosting for squared error loss.</p>
+</section>
+</section>
+</section>
+<section id="gradient-boosting-for-binary-classification" class="level1" data-number="29">
+<h1 data-number="29"><span class="header-section-number">29</span> Gradient boosting for binary classification</h1>
+<p>Now suppose</p>
+<p><span class="math display">\[
+y_n \in \{0,1\}.
+\]</span></p>
+<p>We use a real-valued score function <span class="math inline">\(s(x)\)</span> and convert it to a probability using the sigmoid:</p>
+<p><span class="math display">\[
+p(x)=
+\sigma(s(x))=
+\frac{1}{1+e^{-s(x)}}.
+\]</span></p>
+<p>The binary cross-entropy loss is</p>
+<p><span class="math display">\[
+\ell(y,s)=
+-\left[
+y\log \sigma(s)
++
+(1-y)\log(1-\sigma(s))
+\right].
+\]</span></p>
+<p>Equivalently,</p>
+<p><span class="math display">\[
+\ell(y,s)=
+-y s+\log(1+e^s).
+\]</span></p>
+<p>Using</p>
+<p><span class="math display">\[
+p=\sigma(s),
+\]</span></p>
+<p>we have</p>
+<p><span class="math display">\[
+\frac{\partial \ell(y,s)}
+{\partial s}=
+p-y.
+\]</span></p>
+<p>Therefore the negative gradient is</p>
+<p><span class="math display">\[
+r=
+y-p.
+\]</span></p>
+<p>At iteration <span class="math inline">\(m\)</span>,</p>
+<p><span class="math display">\[
+p_{nm}=
+\sigma(\hat s_{m-1}(x_n)),
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+r_{nm}=
+y_n-p_{nm}.
+\]</span></p>
+<p>So binary logistic gradient boosting fits trees to the difference between the observed label and the current predicted probability.</p>
+<p>The update is made on the <strong>logit scale</strong>:</p>
+<p><span class="math display">\[
+\hat s_m(x)=
+\hat s_{m-1}(x)
++
+\nu \hat h_m(x),
+\]</span></p>
+<p>In this case, the initial constant score is the minimizer of the empirical cross-entropy:</p>
+<p><span class="math display">\[
+\hat s_0=
+\arg\min_c
+\sum_{n=1}^N
+\left[
+-y_n c+\log(1+e^c)
+\right].
+\]</span></p>
+<p>The solution is the empirical log-odds:</p>
+<p><span class="math display">\[
+\hat s_0=
+\log\left(
+\frac{\bar y}{1-\bar y}
+\right),
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\bar y=\frac{1}{N}\sum_{n=1}^N y_n.
+\]</span></p>
+<p>If the positive class is rare, this initial score is negative. If the positive class is common, it is positive.</p>
+<section id="an-example" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="an-example"><span class="header-section-number">29.1</span> An Example</h2>
+<div id="53751347-63d1-4a34-a0e6-22192b456cd6" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X_cls, y_cls <span class="op">=</span> make_moons(n_samples<span class="op">=</span><span class="dv">600</span>, noise<span class="op">=</span><span class="fl">0.25</span>, random_state<span class="op">=</span><span class="dv">14211</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    X_cls, y_cls, test_size<span class="op">=</span><span class="fl">0.35</span>, random_state<span class="op">=</span><span class="dv">93472</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>gb_clf <span class="op">=</span> GradientBoostingClassifier(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    n_estimators<span class="op">=</span><span class="dv">120</span>, <span class="co">#this is M</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    learning_rate<span class="op">=</span><span class="fl">0.05</span>, <span class="co">#this is nu</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    max_depth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">3928</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>gb_clf.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+}
+
+#sk-container-id-1.light {
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: black;
+  --sklearn-color-background: white;
+  --sklearn-color-border-box: black;
+  --sklearn-color-icon: #696969;
+}
+
+#sk-container-id-1.dark {
+  --sklearn-color-text-on-default-background: white;
+  --sklearn-color-background: #111;
+  --sklearn-color-border-box: white;
+  --sklearn-color-icon: #878787;
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  display: none;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-3) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3) 1pt solid;
+  color: var(--sklearn-color-fitted-level-3);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  border: var(--sklearn-color-fitted-level-0) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-0);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  border: var(--sklearn-color-fitted-level-0) 1pt solid;
+  color: var(--sklearn-color-fitted-level-0);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-unfitted-level-0);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+
+.estimator-table {
+    font-family: monospace;
+}
+
+.estimator-table summary {
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.estimator-table summary::marker {
+    font-size: 0.7rem;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 0;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table td {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+/*
+    `table td`is set in notebook with right text-align.
+    We need to overwrite it.
+*/
+.estimator-table table td.param {
+    text-align: left;
+    position: relative;
+    padding: 0;
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left !important;
+}
+
+.user-set td.value {
+    color:rgb(255, 94, 0);
+    background-color: transparent;
+}
+
+.default td {
+    color: black;
+    text-align: left !important;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+/*
+    Styles for parameter documentation links
+    We need styling for visited so jupyter doesn't overwrite it
+*/
+a.param-doc-link,
+a.param-doc-link:link,
+a.param-doc-link:visited {
+    text-decoration: underline dashed;
+    text-underline-offset: .3em;
+    color: inherit;
+    display: block;
+    padding: .5em;
+}
+
+/* "hack" to make the entire area of the cell containing the link clickable */
+a.param-doc-link::before {
+    position: absolute;
+    content: "";
+    inset: 0;
+}
+
+.param-doc-description {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    left: 0;
+    padding: .5ex;
+    margin-left: 1.5em;
+    color: var(--sklearn-color-text);
+    box-shadow: .3em .3em .4em #999;
+    width: max-content;
+    text-align: left;
+    max-height: 10em;
+    overflow-y: auto;
+
+    /* unfitted */
+    background: var(--sklearn-color-unfitted-level-0);
+    border: thin solid var(--sklearn-color-unfitted-level-3);
+}
+
+/* Fitted state for parameter tooltips */
+.fitted .param-doc-description {
+    /* fitted */
+    background: var(--sklearn-color-fitted-level-0);
+    border: thin solid var(--sklearn-color-fitted-level-3);
+}
+
+.param-doc-link:hover .param-doc-description {
+    display: block;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+</a></style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GradientBoostingClassifier(learning_rate=0.05, max_depth=2, n_estimators=120,
+                           random_state=3928)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>GradientBoostingClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html">?<span>Documentation for GradientBoostingClassifier</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                
+<table class="parameters-table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<tbody>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=loss,-%7B%27log_loss%27%2C%20%27exponential%27%7D%2C%20default%3D%27log_loss%27" class="param-doc-link" rel="noreferrer" target="_blank">loss <span class="param-doc-description">loss: {'log_loss', 'exponential'}, default='log_loss'<br>
+<br>
+The loss function to be optimized. 'log_loss' refers to binomial and<br>
+multinomial deviance, the same as used in logistic regression.<br>
+It is a good choice for classification with probabilistic outputs.<br>
+For loss 'exponential', gradient boosting recovers the AdaBoost algorithm.</span></a></td>
+<td class="value">'log_loss'</td>
+</tr>
+<tr class="even user-set">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=learning_rate,-float%2C%20default%3D0.1" class="param-doc-link" rel="noreferrer" target="_blank">learning_rate <span class="param-doc-description">learning_rate: float, default=0.1<br>
+<br>
+Learning rate shrinks the contribution of each tree by `learning_rate`.<br>
+There is a trade-off between learning_rate and n_estimators.<br>
+Values must be in the range `[0.0, inf)`.<br>
+<br>
+For an example of the effects of this parameter and its interaction with<br>
+``subsample``, see<br>
+:ref:`sphx_glr_auto_examples_ensemble_plot_gradient_boosting_regularization.py`.</span></a></td>
+<td class="value">0.05</td>
+</tr>
+<tr class="odd user-set">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=n_estimators,-int%2C%20default%3D100" class="param-doc-link" rel="noreferrer" target="_blank">n_estimators <span class="param-doc-description">n_estimators: int, default=100<br>
+<br>
+The number of boosting stages to perform. Gradient boosting<br>
+is fairly robust to over-fitting so a large number usually<br>
+results in better performance.<br>
+Values must be in the range `[1, inf)`.</span></a></td>
+<td class="value">120</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=subsample,-float%2C%20default%3D1.0" class="param-doc-link" rel="noreferrer" target="_blank">subsample <span class="param-doc-description">subsample: float, default=1.0<br>
+<br>
+The fraction of samples to be used for fitting the individual base<br>
+learners. If smaller than 1.0 this results in Stochastic Gradient<br>
+Boosting. `subsample` interacts with the parameter `n_estimators`.<br>
+Choosing `subsample &lt; 1.0` leads to a reduction of variance<br>
+and an increase in bias.<br>
+Values must be in the range `(0.0, 1.0]`.</span></a></td>
+<td class="value">1.0</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=criterion,-%7B%27friedman_mse%27%2C%20%27squared_error%27%7D%2C%20default%3D%27friedman_mse%27" class="param-doc-link" rel="noreferrer" target="_blank">criterion <span class="param-doc-description">criterion: {'friedman_mse', 'squared_error'}, default='friedman_mse'<br>
+<br>
+The function to measure the quality of a split. Supported criteria are<br>
+'friedman_mse' for the mean squared error with improvement score by<br>
+Friedman, 'squared_error' for mean squared error. The default value of<br>
+'friedman_mse' is generally the best as it can provide a better<br>
+approximation in some cases.<br>
+<br>
+.. versionadded:: 0.18</span></a></td>
+<td class="value">'friedman_mse'</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=min_samples_split,-int%20or%20float%2C%20default%3D2" class="param-doc-link" rel="noreferrer" target="_blank">min_samples_split <span class="param-doc-description">min_samples_split: int or float, default=2<br>
+<br>
+The minimum number of samples required to split an internal node:<br>
+<br>
+- If int, values must be in the range `[2, inf)`.<br>
+- If float, values must be in the range `(0.0, 1.0]` and `min_samples_split`<br>
+will be `ceil(min_samples_split * n_samples)`.<br>
+<br>
+.. versionchanged:: 0.18<br>
+Added float values for fractions.</span></a></td>
+<td class="value">2</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=min_samples_leaf,-int%20or%20float%2C%20default%3D1" class="param-doc-link" rel="noreferrer" target="_blank">min_samples_leaf <span class="param-doc-description">min_samples_leaf: int or float, default=1<br>
+<br>
+The minimum number of samples required to be at a leaf node.<br>
+A split point at any depth will only be considered if it leaves at<br>
+least ``min_samples_leaf`` training samples in each of the left and<br>
+right branches. This may have the effect of smoothing the model,<br>
+especially in regression.<br>
+<br>
+- If int, values must be in the range `[1, inf)`.<br>
+- If float, values must be in the range `(0.0, 1.0)` and `min_samples_leaf`<br>
+will be `ceil(min_samples_leaf * n_samples)`.<br>
+<br>
+.. versionchanged:: 0.18<br>
+Added float values for fractions.</span></a></td>
+<td class="value">1</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=min_weight_fraction_leaf,-float%2C%20default%3D0.0" class="param-doc-link" rel="noreferrer" target="_blank">min_weight_fraction_leaf <span class="param-doc-description">min_weight_fraction_leaf: float, default=0.0<br>
+<br>
+The minimum weighted fraction of the sum total of weights (of all<br>
+the input samples) required to be at a leaf node. Samples have<br>
+equal weight when sample_weight is not provided.<br>
+Values must be in the range `[0.0, 0.5]`.</span></a></td>
+<td class="value">0.0</td>
+</tr>
+<tr class="odd user-set">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=max_depth,-int%20or%20None%2C%20default%3D3" class="param-doc-link" rel="noreferrer" target="_blank">max_depth <span class="param-doc-description">max_depth: int or None, default=3<br>
+<br>
+Maximum depth of the individual regression estimators. The maximum<br>
+depth limits the number of nodes in the tree. Tune this parameter<br>
+for best performance; the best value depends on the interaction<br>
+of the input variables. If None, then nodes are expanded until<br>
+all leaves are pure or until all leaves contain less than<br>
+min_samples_split samples.<br>
+If int, values must be in the range `[1, inf)`.</span></a></td>
+<td class="value">2</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=min_impurity_decrease,-float%2C%20default%3D0.0" class="param-doc-link" rel="noreferrer" target="_blank">min_impurity_decrease <span class="param-doc-description">min_impurity_decrease: float, default=0.0<br>
+<br>
+A node will be split if this split induces a decrease of the impurity<br>
+greater than or equal to this value.<br>
+Values must be in the range `[0.0, inf)`.<br>
+<br>
+The weighted impurity decrease equation is the following::<br>
+<br>
+N_t / N * (impurity - N_t_R / N_t * right_impurity<br>
+- N_t_L / N_t * left_impurity)<br>
+<br>
+where ``N`` is the total number of samples, ``N_t`` is the number of<br>
+samples at the current node, ``N_t_L`` is the number of samples in the<br>
+left child, and ``N_t_R`` is the number of samples in the right child.<br>
+<br>
+``N``, ``N_t``, ``N_t_R`` and ``N_t_L`` all refer to the weighted sum,<br>
+if ``sample_weight`` is passed.<br>
+<br>
+.. versionadded:: 0.19</span></a></td>
+<td class="value">0.0</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=init,-estimator%20or%20%27zero%27%2C%20default%3DNone" class="param-doc-link" rel="noreferrer" target="_blank">init <span class="param-doc-description">init: estimator or 'zero', default=None<br>
+<br>
+An estimator object that is used to compute the initial predictions.<br>
+``init`` has to provide :term:`fit` and :term:`predict_proba`. If<br>
+'zero', the initial raw predictions are set to zero. By default, a<br>
+``DummyEstimator`` predicting the classes priors is used.</span></a></td>
+<td class="value">None</td>
+</tr>
+<tr class="even user-set">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=random_state,-int%2C%20RandomState%20instance%20or%20None%2C%20default%3DNone" class="param-doc-link" rel="noreferrer" target="_blank">random_state <span class="param-doc-description">random_state: int, RandomState instance or None, default=None<br>
+<br>
+Controls the random seed given to each Tree estimator at each<br>
+boosting iteration.<br>
+In addition, it controls the random permutation of the features at<br>
+each split (see Notes for more details).<br>
+It also controls the random splitting of the training data to obtain a<br>
+validation set if `n_iter_no_change` is not None.<br>
+Pass an int for reproducible output across multiple function calls.<br>
+See :term:`Glossary <random_state>`.</random_state></span></a></td>
+<td class="value">3928</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=max_features,-%7B%27sqrt%27%2C%20%27log2%27%7D%2C%20int%20or%20float%2C%20default%3DNone" class="param-doc-link" rel="noreferrer" target="_blank">max_features <span class="param-doc-description">max_features: {'sqrt', 'log2'}, int or float, default=None<br>
+<br>
+The number of features to consider when looking for the best split:<br>
+<br>
+- If int, values must be in the range `[1, inf)`.<br>
+- If float, values must be in the range `(0.0, 1.0]` and the features<br>
+considered at each split will be `max(1, int(max_features * n_features_in_))`.<br>
+- If 'sqrt', then `max_features=sqrt(n_features)`.<br>
+- If 'log2', then `max_features=log2(n_features)`.<br>
+- If None, then `max_features=n_features`.<br>
+<br>
+Choosing `max_features &lt; n_features` leads to a reduction of variance<br>
+and an increase in bias.<br>
+<br>
+Note: the search for a split does not stop until at least one<br>
+valid partition of the node samples is found, even if it requires to<br>
+effectively inspect more than ``max_features`` features.</span></a></td>
+<td class="value">None</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=verbose,-int%2C%20default%3D0" class="param-doc-link" rel="noreferrer" target="_blank">verbose <span class="param-doc-description">verbose: int, default=0<br>
+<br>
+Enable verbose output. If 1 then it prints progress and performance<br>
+once in a while (the more trees the lower the frequency). If greater<br>
+than 1 then it prints progress and performance for every tree.<br>
+Values must be in the range `[0, inf)`.</span></a></td>
+<td class="value">0</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=max_leaf_nodes,-int%2C%20default%3DNone" class="param-doc-link" rel="noreferrer" target="_blank">max_leaf_nodes <span class="param-doc-description">max_leaf_nodes: int, default=None<br>
+<br>
+Grow trees with ``max_leaf_nodes`` in best-first fashion.<br>
+Best nodes are defined as relative reduction in impurity.<br>
+Values must be in the range `[2, inf)`.<br>
+If `None`, then unlimited number of leaf nodes.</span></a></td>
+<td class="value">None</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=warm_start,-bool%2C%20default%3DFalse" class="param-doc-link" rel="noreferrer" target="_blank">warm_start <span class="param-doc-description">warm_start: bool, default=False<br>
+<br>
+When set to ``True``, reuse the solution of the previous call to fit<br>
+and add more estimators to the ensemble, otherwise, just erase the<br>
+previous solution. See :term:`the Glossary <warm_start>`.</warm_start></span></a></td>
+<td class="value">False</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=validation_fraction,-float%2C%20default%3D0.1" class="param-doc-link" rel="noreferrer" target="_blank">validation_fraction <span class="param-doc-description">validation_fraction: float, default=0.1<br>
+<br>
+The proportion of training data to set aside as validation set for<br>
+early stopping. Values must be in the range `(0.0, 1.0)`.<br>
+Only used if ``n_iter_no_change`` is set to an integer.<br>
+<br>
+.. versionadded:: 0.20</span></a></td>
+<td class="value">0.1</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=n_iter_no_change,-int%2C%20default%3DNone" class="param-doc-link" rel="noreferrer" target="_blank">n_iter_no_change <span class="param-doc-description">n_iter_no_change: int, default=None<br>
+<br>
+``n_iter_no_change`` is used to decide if early stopping will be used<br>
+to terminate training when validation score is not improving. By<br>
+default it is set to None to disable early stopping. If set to a<br>
+number, it will set aside ``validation_fraction`` size of the training<br>
+data as validation and terminate training when validation score is not<br>
+improving in all of the previous ``n_iter_no_change`` numbers of<br>
+iterations. The split is stratified.<br>
+Values must be in the range `[1, inf)`.<br>
+See<br>
+:ref:`sphx_glr_auto_examples_ensemble_plot_gradient_boosting_early_stopping.py`.<br>
+<br>
+.. versionadded:: 0.20</span></a></td>
+<td class="value">None</td>
+</tr>
+<tr class="odd default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=tol,-float%2C%20default%3D1e-4" class="param-doc-link" rel="noreferrer" target="_blank">tol <span class="param-doc-description">tol: float, default=1e-4<br>
+<br>
+Tolerance for the early stopping. When the loss is not improving<br>
+by at least tol for ``n_iter_no_change`` iterations (if set to a<br>
+number), the training stops.<br>
+Values must be in the range `[0.0, inf)`.<br>
+<br>
+.. versionadded:: 0.20</span></a></td>
+<td class="value">0.0001</td>
+</tr>
+<tr class="even default">
+<td><em></em></td>
+<td class="param"><a href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html#:~:text=ccp_alpha,-non-negative%20float%2C%20default%3D0.0" class="param-doc-link" rel="noreferrer" target="_blank">ccp_alpha <span class="param-doc-description">ccp_alpha: non-negative float, default=0.0<br>
+<br>
+Complexity parameter used for Minimal Cost-Complexity Pruning. The<br>
+subtree with the largest cost complexity that is smaller than<br>
+``ccp_alpha`` will be chosen. By default, no pruning is performed.<br>
+Values must be in the range `[0.0, inf)`.<br>
+See :ref:`minimal_cost_complexity_pruning` for details. See<br>
+:ref:`sphx_glr_auto_examples_tree_plot_cost_complexity_pruning.py`<br>
+for an example of such pruning.<br>
+<br>
+.. versionadded:: 0.22</span></a></td>
+<td class="value">0.0</td>
+</tr>
+</tbody>
+</table>
+
+            </details>
+        </div>
+    </div></div></div></div></div><script>function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.copy-paste-icon').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const paramName = element.parentElement.nextElementSibling
+        .textContent.trim().split(' ')[0];
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+
+
+/**
+ * Adapted from Skrub
+ * https://github.com/skrub-data/skrub/blob/403466d1d5d4dc76a7ef569b3f8228db59a31dc3/skrub/_reporting/_data/templates/report.js#L789
+ * @returns "light" or "dark"
+ */
+function detectTheme(element) {
+    const body = document.querySelector('body');
+
+    // Check VSCode theme
+    const themeKindAttr = body.getAttribute('data-vscode-theme-kind');
+    const themeNameAttr = body.getAttribute('data-vscode-theme-name');
+
+    if (themeKindAttr && themeNameAttr) {
+        const themeKind = themeKindAttr.toLowerCase();
+        const themeName = themeNameAttr.toLowerCase();
+
+        if (themeKind.includes("dark") || themeName.includes("dark")) {
+            return "dark";
+        }
+        if (themeKind.includes("light") || themeName.includes("light")) {
+            return "light";
+        }
+    }
+
+    // Check Jupyter theme
+    if (body.getAttribute('data-jp-theme-light') === 'false') {
+        return 'dark';
+    } else if (body.getAttribute('data-jp-theme-light') === 'true') {
+        return 'light';
+    }
+
+    // Guess based on a parent element's color
+    const color = window.getComputedStyle(element.parentNode, null).getPropertyValue('color');
+    const match = color.match(/^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)\s*$/i);
+    if (match) {
+        const [r, g, b] = [
+            parseFloat(match[1]),
+            parseFloat(match[2]),
+            parseFloat(match[3])
+        ];
+
+        // https://en.wikipedia.org/wiki/HSL_and_HSV#Lightness
+        const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+
+        if (luma > 180) {
+            // If the text is very bright we have a dark theme
+            return 'dark';
+        }
+        if (luma < 75) {
+            // If the text is very dark we have a light theme
+            return 'light';
+        }
+        // Otherwise fall back to the next heuristic.
+    }
+
+    // Fallback to system preference
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+
+function forceTheme(elementId) {
+    const estimatorElement = document.querySelector(`#${elementId}`);
+    if (estimatorElement === null) {
+        console.error(`Element with id ${elementId} not found.`);
+    } else {
+        const theme = detectTheme(estimatorElement);
+        estimatorElement.classList.add(theme);
+    }
+}
+
+forceTheme('sk-container-id-1');</script>
+</div>
+</div>
+<div id="1a3678e8-6934-48e1-8c91-3a91114c7922" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>p_test <span class="op">=</span> gb_clf.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> gb_clf.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="4ae952d8-f923-427e-b3a3-c3bd6596a77a" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p_test[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>array([0.96457951, 0.94669563, 0.10257523, 0.98160304, 0.05314589,
+       0.90608899, 0.05314589, 0.02361865, 0.93614862, 0.98160304])</code></pre>
+</div>
+</div>
+<div id="10e4b119-3ba6-4752-84f3-ae02bf72a0a1" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>y_pred[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>array([1, 1, 0, 1, 0, 1, 0, 0, 1, 1])</code></pre>
+</div>
+</div>
+<div id="7fb75d50-7e01-4796-a2d6-6503950e3c96" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>y_test[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>array([1, 1, 0, 1, 0, 1, 0, 0, 1, 1])</code></pre>
+</div>
+</div>
+<div id="a46c361d" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Test accuracy:"</span>, accuracy_score(y_test, y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test accuracy: 0.9476190476190476</code></pre>
+</div>
+</div>
+<div id="2dc2ac1e" class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x1_min, x1_max <span class="op">=</span> X_cls[:, <span class="dv">0</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.5</span>, X_cls[:, <span class="dv">0</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.5</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x2_min, x2_max <span class="op">=</span> X_cls[:, <span class="dv">1</span>].<span class="bu">min</span>() <span class="op">-</span> <span class="fl">0.5</span>, X_cls[:, <span class="dv">1</span>].<span class="bu">max</span>() <span class="op">+</span> <span class="fl">0.5</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>xx1, xx2 <span class="op">=</span> np.meshgrid(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    np.linspace(x1_min, x1_max, <span class="dv">300</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    np.linspace(x2_min, x2_max, <span class="dv">300</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> np.c_[xx1.ravel(), xx2.ravel()]</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>prob_grid <span class="op">=</span> gb_clf.predict_proba(grid)[:, <span class="dv">1</span>].reshape(xx1.shape)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plt.contourf(xx1, xx2, prob_grid, levels<span class="op">=</span><span class="dv">20</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>plt.contour(xx1, xx2, prob_grid, levels<span class="op">=</span>[<span class="fl">0.5</span>], linewidths<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_train[:, <span class="dv">0</span>], X_train[:, <span class="dv">1</span>], c<span class="op">=</span>y_train, edgecolor<span class="op">=</span><span class="st">"k"</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x1"</span>)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"x2"</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Gradient boosted classifier"</span>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="220_boosting_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="gradient-boosting-for-multiclass-classification" class="level1" data-number="30">
+<h1 data-number="30"><span class="header-section-number">30</span> Gradient boosting for multiclass classification</h1>
+<p>Now suppose</p>
+<p><span class="math display">\[
+y_n \in \{1,\dots,K\}.
+\]</span></p>
+<p>As in multiclass logistic regression, we use one score per class:</p>
+<p><span class="math display">\[
+s_1(x),\dots,s_K(x).
+\]</span></p>
+<p>The softmax probabilities are</p>
+<p><span class="math display">\[
+p_k(x)=
+\frac{\exp(s_k(x))}
+{\sum_{\ell=1}^K \exp(s_\ell(x))}.
+\]</span></p>
+<p>Let <span class="math inline">\(t_{nk}\)</span> be the one-hot encoding of <span class="math inline">\(y_n\)</span>:</p>
+<p><span class="math display">\[
+t_{nk}=
+\mathbf{1}\{y_n=k\}.
+\]</span></p>
+<p>The multiclass cross-entropy loss is</p>
+<p><span class="math display">\[
+\ell(y_n,s(x_n))=
+-\sum_{k=1}^K
+t_{nk}\log p_k(x_n).
+\]</span></p>
+<p>For each class <span class="math inline">\(k\)</span>,</p>
+<p><span class="math display">\[
+\frac{\partial \ell(y_n,s(x_n))}
+{\partial s_k(x_n)}=
+p_k(x_n)-t_{nk}.
+\]</span></p>
+<p>Therefore the negative gradient is</p>
+<p><span class="math display">\[
+r_{nkm}=t_{nk}-
+p_{nk}^{(m-1)}.
+\]</span></p>
+<p>So at each boosting iteration we compute one pseudo-residual for every observation and every class.</p>
+<p>A common procedure fits <span class="math inline">\(K\)</span> regression trees per boosting iteration:</p>
+<p>For <span class="math inline">\(m=1,\dots,M\)</span>:</p>
+<ol type="1">
+<li>Compute current probabilities</li>
+</ol>
+<p><span class="math display">\[
+p_{nk}^{(m-1)}=
+\frac{\exp(\hat s_{k,m-1}(x_n))}
+{\sum_{\ell=1}^K \exp(\hat s_{\ell,m-1}(x_n))}.
+\]</span></p>
+<ol start="2" type="1">
+<li>For each class <span class="math inline">\(k\)</span>, compute pseudo-residuals</li>
+</ol>
+<p><span class="math display">\[
+r_{nkm}=
+t_{nk}-p_{nk}^{(m-1)}.
+\]</span></p>
+<ol start="3" type="1">
+<li><p>Fit a regression tree <span class="math inline">\(\hat h_{km}\)</span> to <span class="math inline">\((x_n,r_{nkm})_{n=1}^N\)</span>.</p></li>
+<li><p>Update each class score</p></li>
+</ol>
+<p><span class="math display">\[
+\hat s_{k,m}(x)=
+\hat s_{k,m-1}(x)
++
+\nu \hat h_{km}(x).
+\]</span></p>
+<p>The final prediction is</p>
+<p><span class="math display">\[
+\hat f(x)=
+\arg\max_{1\le k\le K}
+\hat s_{k,M}(x).
+\]</span></p>
+</section>
+<section id="regularization-in-boosting" class="level1" data-number="31">
+<h1 data-number="31"><span class="header-section-number">31</span> Regularization in boosting</h1>
+<p>Boosting can overfit, but the form of overfitting differs from a single deep tree.</p>
+<p>The main regularization tools are:</p>
+<section id="number-of-trees" class="level3" data-number="31.0.1">
+<h3 data-number="31.0.1" class="anchored" data-anchor-id="number-of-trees"><span class="header-section-number">31.0.1</span> Number of trees</h3>
+<p><span class="math display">\[
+M.
+\]</span></p>
+<p>More trees create a more complex additive function. Early stopping chooses <span class="math inline">\(M\)</span> using a validation set.</p>
+</section>
+<section id="learning-rate" class="level3" data-number="31.0.2">
+<h3 data-number="31.0.2" class="anchored" data-anchor-id="learning-rate"><span class="header-section-number">31.0.2</span> Learning rate</h3>
+<p><span class="math display">\[
+\nu.
+\]</span></p>
+<p>Smaller learning rates slow the stagewise fitting path. They usually require larger <span class="math inline">\(M\)</span>.</p>
+</section>
+<section id="tree-depth" class="level3" data-number="31.0.3">
+<h3 data-number="31.0.3" class="anchored" data-anchor-id="tree-depth"><span class="header-section-number">31.0.3</span> Tree depth</h3>
+<p>The depth of each tree controls the complexity of each update. Shallow trees produce simpler corrections.</p>
+<p>Depth also controls interaction order in a rough sense:</p>
+<ul>
+<li>depth 1 trees capture main-effect style corrections</li>
+<li>depth 2 trees can capture simple interactions</li>
+<li>deeper trees can capture more complex interactions</li>
+</ul>
+</section>
+<section id="minimum-leaf-size" class="level3" data-number="31.0.4">
+<h3 data-number="31.0.4" class="anchored" data-anchor-id="minimum-leaf-size"><span class="header-section-number">31.0.4</span> Minimum leaf size</h3>
+<p>Larger minimum leaf sizes prevent highly local updates.</p>
+</section>
+<section id="subsampling" class="level3" data-number="31.0.5">
+<h3 data-number="31.0.5" class="anchored" data-anchor-id="subsampling"><span class="header-section-number">31.0.5</span> Subsampling</h3>
+<p>Some implementations fit each tree using a random subset of rows. This gives stochastic gradient boosting and can reduce variance.</p>
+</section>
+</section>
+<section id="practical-notes" class="level1" data-number="32">
+<h1 data-number="32"><span class="header-section-number">32</span> Practical notes</h1>
+<section id="scaling" class="level3" data-number="32.0.1">
+<h3 data-number="32.0.1" class="anchored" data-anchor-id="scaling"><span class="header-section-number">32.0.1</span> Scaling</h3>
+<p>Boosted trees are usually not sensitive to monotone rescaling of individual features. A split such as</p>
+<p><span class="math display">\[
+x_j \le t
+\]</span></p>
+<p>has an equivalent split after changing units.</p>
+</section>
+<section id="categorical-variables" class="level3" data-number="32.0.2">
+<h3 data-number="32.0.2" class="anchored" data-anchor-id="categorical-variables"><span class="header-section-number">32.0.2</span> Categorical variables</h3>
+<p>Basic CART implementations often require categorical variables to be encoded numerically. Different boosting libraries handle categorical features differently.</p>
+</section>
+<section id="missing-values" class="level3" data-number="32.0.3">
+<h3 data-number="32.0.3" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">32.0.3</span> Missing values</h3>
+<p>Basic sklearn trees require missing values to be handled before fitting. Some boosting implementations, including XGBoost-style methods, learn default directions for missing values.</p>
+</section>
+<section id="extrapolation" class="level3" data-number="32.0.4">
+<h3 data-number="32.0.4" class="anchored" data-anchor-id="extrapolation"><span class="header-section-number">32.0.4</span> Extrapolation</h3>
+<p>Boosted trees inherit the extrapolation limitations of trees. They usually do not extrapolate linearly outside the observed feature range.</p>
+</section>
+</section>
+<section id="learning-rate-and-early-stopping-on-a-real-regression-dataset" class="level1" data-number="33">
+<h1 data-number="33"><span class="header-section-number">33</span> Learning rate and early stopping on a real regression dataset</h1>
+<p>We now use the diabetes dataset to illustrate the interaction between learning rate and number of trees.</p>
+<div id="eaedcfb7" class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>diabetes <span class="op">=</span> load_diabetes(as_frame<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>X_diab <span class="op">=</span> diabetes.data</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>y_diab <span class="op">=</span> diabetes.target</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    X_diab, y_diab, test_size<span class="op">=</span><span class="fl">0.35</span>, random_state<span class="op">=</span><span class="dv">18865</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>settings <span class="op">=</span> [</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    (<span class="fl">1.0</span>, <span class="dv">80</span>),</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    (<span class="fl">0.3</span>, <span class="dv">120</span>),</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    (<span class="fl">0.1</span>, <span class="dv">300</span>),</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    (<span class="fl">0.03</span>, <span class="dv">600</span>),</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> learning_rate, n_estimators <span class="kw">in</span> settings:</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> GradientBoostingRegressor(</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>        n_estimators<span class="op">=</span>n_estimators,</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>        learning_rate<span class="op">=</span>learning_rate,</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>        max_depth<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>        random_state<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    model.fit(X_train, y_train)</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    train_mse <span class="op">=</span> []</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    test_mse <span class="op">=</span> []</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> pred_train, pred_test <span class="kw">in</span> <span class="bu">zip</span>(</span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>        model.staged_predict(X_train),</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>        model.staged_predict(X_test)</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    ):</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>        train_mse.append(mean_squared_error(y_train, pred_train))</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>        test_mse.append(mean_squared_error(y_test, pred_test))</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>    best_iteration <span class="op">=</span> <span class="bu">int</span>(np.argmin(test_mse) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>    results.append({</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>        <span class="st">"learning_rate"</span>: learning_rate,</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>        <span class="st">"n_estimators"</span>: n_estimators,</span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>        <span class="st">"best_iteration"</span>: best_iteration,</span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>        <span class="st">"best_test_mse"</span>: np.<span class="bu">min</span>(test_mse),</span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>        <span class="st">"final_test_mse"</span>: test_mse[<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>    plt.plot(np.arange(<span class="dv">1</span>, <span class="bu">len</span>(train_mse) <span class="op">+</span> <span class="dv">1</span>), train_mse, label<span class="op">=</span><span class="st">"train"</span>)</span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>    plt.plot(np.arange(<span class="dv">1</span>, <span class="bu">len</span>(test_mse) <span class="op">+</span> <span class="dv">1</span>), test_mse, label<span class="op">=</span><span class="st">"test"</span>)</span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>    plt.axvline(best_iteration, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"best test iteration"</span>)</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">"Boosting iteration"</span>)</span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"MSE"</span>)</span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f"learning_rate = </span><span class="sc">{</span>learning_rate<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>display(pd.DataFrame(results))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="220_boosting_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="220_boosting_files/figure-html/cell-15-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="220_boosting_files/figure-html/cell-15-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="220_boosting_files/figure-html/cell-15-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">learning_rate</th>
+<th data-quarto-table-cell-role="th">n_estimators</th>
+<th data-quarto-table-cell-role="th">best_iteration</th>
+<th data-quarto-table-cell-role="th">best_test_mse</th>
+<th data-quarto-table-cell-role="th">final_test_mse</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1.00</td>
+<td>80</td>
+<td>1</td>
+<td>4032.125955</td>
+<td>5673.052705</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.30</td>
+<td>120</td>
+<td>18</td>
+<td>3393.995113</td>
+<td>3999.926592</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.10</td>
+<td>300</td>
+<td>58</td>
+<td>3427.745897</td>
+<td>4001.635049</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.03</td>
+<td>600</td>
+<td>205</td>
+<td>3406.646085</td>
+<td>3629.094458</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The training loss decreases as more trees are added. The test loss may initially decrease and then flatten or increase.</p>
+<p>This is why <span class="math inline">\(M\)</span> should usually be selected using validation error, cross-validation, or early stopping rather than training error.</p>
+</section>
+<section id="step-sizes-weak-learners-and-tree-specific-updates" class="level1" data-number="34">
+<h1 data-number="34"><span class="header-section-number">34</span> Step sizes, weak learners, and tree-specific updates</h1>
+<p>So far, we have described gradient boosting as repeatedly fitting a weak learner to the negative gradient and adding it to the current score function:</p>
+<p><span class="math display">\[
+\hat s_m(x)=\hat s_{m-1}(x)+\nu \hat h_m(x).
+\]</span></p>
+<p>This is the main idea, but there is a useful refinement. In ordinary gradient descent, there are really two separate questions at each iteration.</p>
+<p>First, what direction should we move?</p>
+<p><span class="math display">\[
+d_m=-\nabla R(w_{m-1}).
+\]</span></p>
+<p>Second, how far should we move in that direction?</p>
+<p>A simple gradient descent update uses a fixed learning rate:</p>
+<p><span class="math display">\[
+w_m=w_{m-1}+\nu d_m.
+\]</span></p>
+<p>But we could also choose a step size by minimizing the objective along that direction:</p>
+<p><span class="math display">\[
+\rho_m=\arg\min_\rho R(w_{m-1}+\rho d_m),
+\]</span></p>
+<p>and then update</p>
+<p><span class="math display">\[
+w_m=w_{m-1}+\rho_m d_m.
+\]</span></p>
+<p>The first problem is a <strong>direction problem</strong>. The second problem is a <strong>step-size problem</strong>. They are related, but they are not the same.</p>
+<p>Gradient boosting has the same distinction. The negative functional gradient tells us the direction in which the current score values should move at the training points:</p>
+<p><span class="math display">\[
+r_{nm}=-\left.\frac{\partial \ell(y_n,s(x_n))}{\partial s(x_n)}\right|_{s=\hat s_{m-1}}.
+\]</span></p>
+<p>But we cannot usually add these values directly as a predictive function, because they are only defined at the training points. So we fit a weak learner to approximate this gradient direction:</p>
+<p><span class="math display">\[
+\hat h_m\approx\arg\min_{h\in\mathcal H}\sum_{n=1}^N (r_{nm}-h(x_n))^2.
+\]</span></p>
+<p>This fitting step is an approximation problem. It asks for a simple function, such as a shallow tree, whose predictions look like the negative gradient values.</p>
+<p>Once we have chosen this weak learner, there is still a separate question: how large should the update be? A global line-search version would choose</p>
+<p><span class="math display">\[
+\rho_m=\arg\min_\rho \sum_{n=1}^N \ell(y_n,\hat s_{m-1}(x_n)+\rho \hat h_m(x_n)),
+\]</span></p>
+<p>and then update</p>
+<p><span class="math display">\[
+\hat s_m(x)=\hat s_{m-1}(x)+\nu\rho_m\hat h_m(x).
+\]</span></p>
+<p>Here, <span class="math inline">\(\nu\)</span> is the user-chosen shrinkage parameter, while <span class="math inline">\(\rho_m\)</span> is a loss-based step size chosen at iteration <span class="math inline">\(m\)</span>.</p>
+<p>This makes clear that there are two optimization problems happening:</p>
+<ol type="1">
+<li>fit <span class="math inline">\(\hat h_m\)</span> to approximate the negative gradient;</li>
+<li>choose the step size for the update using the original loss.</li>
+</ol>
+<p>When the weak learner is a tree, we can improve this further. A tree does not just give one direction. It gives terminal regions</p>
+<p><span class="math display">\[
+R_{1m},\ldots,R_{J_m m}.
+\]</span></p>
+<p>Within these regions, the tree update is piecewise constant. Instead of scaling the entire tree by one global number <span class="math inline">\(\rho_m\)</span>, we can choose a different update in each leaf:</p>
+<p><span class="math display">\[
+\hat s_m(x)=\hat s_{m-1}(x)+\nu\sum_{j=1}^{J_m}\gamma_{jm}1(x\in R_{jm}).
+\]</span></p>
+<p>The leaf-specific update is chosen by minimizing the original loss inside that leaf:</p>
+<p><span class="math display">\[
+\gamma_{jm}=\arg\min_\gamma \sum_{x_n\in R_{jm}}\ell(y_n,\hat s_{m-1}(x_n)+\gamma).
+\]</span></p>
+<blockquote class="blockquote">
+<p>This is the tree-specific version of step-size selection.</p>
+</blockquote>
+<p>The tree fit to pseudo-residuals chooses the regions. The leaf updates choose how far to move in each region.</p>
+<p>For squared-error loss, these two steps collapse: the optimal leaf update is just the mean residual in the leaf. For other losses, such as logistic loss, the mean pseudo-residual gives a first-order gradient direction, but the best finite additive update in a leaf may be different. This is why practical tree boosting often uses leaf-specific updates rather than a single global step size.</p>
+<section id="extensions-and-modern-implementations" class="level2" data-number="34.1">
+<h2 data-number="34.1" class="anchored" data-anchor-id="extensions-and-modern-implementations"><span class="header-section-number">34.1</span> Extensions and modern implementations</h2>
+<p>The core idea of gradient boosting is simple: compute pseudo-residuals, fit a weak learner to approximate them, and add the weak learner to the current score function. With trees, this is usually refined by using the fitted tree to define terminal regions and then choosing leaf-wise updates that reduce the original loss. Modern boosting methods build on this same idea but improve how the trees are fit, how the leaf values are computed, and how overfitting is controlled.</p>
+<p>For example, the original <code>gbm</code> style algorithms follow the Friedman gradient boosting framework closely, with shrinkage, subsampling, and tree-based weak learners. XGBoost extends this by using second-order information, meaning both gradients and Hessians, to choose splits and compute regularized leaf values. LightGBM is designed for speed and scale; it uses efficient histogram-based split finding and grows trees leaf-wise, which can improve accuracy but also requires regularization. CatBoost adds machinery for handling categorical variables carefully, especially to reduce target leakage from naive encoding. Despite these implementation differences, the basic structure is the same: build an additive score function by sequentially adding trees that improve the current model.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lectures/210_random_forests.html" class="pagination-link" aria-label="Random Forests and Bagging">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
