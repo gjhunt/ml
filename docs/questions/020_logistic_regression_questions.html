@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>30&nbsp; Logistic Regression - Review Questions – Statistical Learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../questions/010_linear_regression_questions.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="assets/code_style.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/020_logistic_regression_questions.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Statistical Learning</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/gjhunt/ml" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations and Empirical Risk Minimization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/000_intro_and_erm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/005_derivatives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/010_linear_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/020_logistic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/030_multiclass_logistic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, KL, and Cross Entropy</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Evaluation, Model Selection, and Nonparametric Methods</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/050_evaluation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/060_model_selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/070_knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/080_bias_variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Regularization and Penalized Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/100_ridge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/110_lasso.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/120_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Neural Networks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/130_nn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/140_backprop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/150_nn_arch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unsupervised Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/160_unsupervised.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/170_svd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/180_pca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/190_kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tree-Based Methods</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/200_carts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/210_random_forests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/220_boosting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Practice Questions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/005_derivatives_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/010_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/020_logistic_regression_questions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1"><span class="header-section-number">30.0.1</span> Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">30.0.2</span> Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">30.0.3</span> Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">30.0.4</span> Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5"><span class="header-section-number">30.0.5</span> Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6"><span class="header-section-number">30.0.6</span> Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7"><span class="header-section-number">30.0.7</span> Question 7</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8"><span class="header-section-number">30.0.8</span> Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9"><span class="header-section-number">30.0.9</span> Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10"><span class="header-section-number">30.0.10</span> Question 10</a></li>
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11"><span class="header-section-number">30.0.11</span> Question 11</a></li>
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12"><span class="header-section-number">30.0.12</span> Question 12</a></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13"><span class="header-section-number">30.0.13</span> Question 13</a></li>
+  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14"><span class="header-section-number">30.0.14</span> Question 14</a></li>
+  <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15"><span class="header-section-number">30.0.15</span> Question 15</a></li>
+  <li><a href="#question-16" id="toc-question-16" class="nav-link" data-scroll-target="#question-16"><span class="header-section-number">30.0.16</span> Question 16</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/020_logistic_regression_questions.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-logistic-questions" class="quarto-section-identifier"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This notebook contains review questions for <code>020_logistic_regression.ipynb</code>. Answers are hidden in collapsible sections.</p>
+<section id="question-1" class="level3" data-number="30.0.1">
+<h3 data-number="30.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">30.0.1</span> Question 1</h3>
+<p>Starting from <span class="math display">\[
+\sigma(t)=\frac{1}{1+e^{-t}},
+\]</span> compute <span class="math inline">\(\sigma'(t)\)</span> and express the answer only in terms of <span class="math inline">\(\sigma(t)\)</span>.</p>
+<!-- Source: Sigmoid definition and the lecture claim $\sigma'(t)=\sigma(t)(1-\sigma(t))$. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>Differentiate directly: <span class="math display">\[
+\sigma'(t)=\frac{e^{-t}}{(1+e^{-t})^2}.
+\]</span> Since <span class="math inline">\(\sigma(t)=1/(1+e^{-t})\)</span> and <span class="math inline">\(1-\sigma(t)=e^{-t}/(1+e^{-t})\)</span>, <span class="math display">\[
+\sigma'(t)=\sigma(t)(1-\sigma(t)).
+\]</span></p>
+</details>
+</section>
+<section id="question-2" class="level3" data-number="30.0.2">
+<h3 data-number="30.0.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">30.0.2</span> Question 2</h3>
+<p>Verify the algebraic simplification of the binary cross-entropy loss. For <span class="math inline">\(y\in\{0,1\}\)</span>, <span class="math inline">\(s\in\mathbb{R}\)</span>, and <span class="math inline">\(p=\sigma(s)\)</span>, derive <span class="math display">\[
+-\{y\log p+(1-y)\log(1-p)\}=\log(1+e^s)-ys.
+\]</span></p>
+<!-- Source: Cross-entropy loss and the compressed simplification to $\log(1+e^s)-ys$. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>Use <span class="math inline">\(p=e^s/(1+e^s)\)</span> and <span class="math inline">\(1-p=1/(1+e^s)\)</span>. Then <span class="math display">\[
+\log p=s-\log(1+e^s),\qquad \log(1-p)=-\log(1+e^s).
+\]</span> Substitution gives <span class="math display">\[
+-\{y(s-\log(1+e^s))+(1-y)(-\log(1+e^s))\}
+=\log(1+e^s)-ys.
+\]</span></p>
+</details>
+</section>
+<section id="question-3" class="level3" data-number="30.0.3">
+<h3 data-number="30.0.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">30.0.3</span> Question 3</h3>
+<p>For the two labels separately, compute <span class="math inline">\(\ell(1,s)\)</span> and <span class="math inline">\(\ell(0,s)\)</span> from <span class="math display">\[
+\ell(y,s)=\log(1+e^s)-ys.
+\]</span> State the limits of each loss as <span class="math inline">\(s\to\infty\)</span> and <span class="math inline">\(s\to -\infty\)</span>, and identify which limits correspond to confident mistakes.</p>
+<!-- Source: Understanding the loss through the cases $y=1$ and $y=0$. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>For <span class="math inline">\(y=1\)</span>, <span class="math display">\[
+\ell(1,s)=\log(1+e^s)-s=\log(1+e^{-s}).
+\]</span> Thus <span class="math inline">\(\ell(1,s)\to0\)</span> as <span class="math inline">\(s\to\infty\)</span>, and <span class="math inline">\(\ell(1,s)\to\infty\)</span> as <span class="math inline">\(s\to-\infty\)</span>. The second limit is a confident mistake.</p>
+<p>For <span class="math inline">\(y=0\)</span>, <span class="math display">\[
+\ell(0,s)=\log(1+e^s).
+\]</span> Thus <span class="math inline">\(\ell(0,s)\to\infty\)</span> as <span class="math inline">\(s\to\infty\)</span>, and <span class="math inline">\(\ell(0,s)\to0\)</span> as <span class="math inline">\(s\to-\infty\)</span>. The first limit is a confident mistake.</p>
+</details>
+</section>
+<section id="question-4" class="level3" data-number="30.0.4">
+<h3 data-number="30.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">30.0.4</span> Question 4</h3>
+<p>Differentiate the single-observation loss <span class="math display">\[
+\ell_n(w)=-\{y_n\log p_n+(1-y_n)\log(1-p_n)\},
+\qquad p_n=\sigma(x_n^\top w),
+\]</span> with respect to <span class="math inline">\(w\)</span>. Give the chain-rule calculation leading to <span class="math inline">\(\nabla_w\ell_n=(p_n-y_n)x_n\)</span>.</p>
+<!-- Source: Gradient derivation for one summand, where the lecture says the algebra simplifies nicely. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>First, <span class="math display">\[
+\frac{\partial \ell_n}{\partial p_n}
+=-\frac{y_n}{p_n}+\frac{1-y_n}{1-p_n}
+=\frac{p_n-y_n}{p_n(1-p_n)}.
+\]</span> Also, <span class="math display">\[
+\nabla_w p_n=\sigma'(x_n^\top w)x_n=p_n(1-p_n)x_n.
+\]</span> Therefore <span class="math display">\[
+\nabla_w\ell_n
+=\frac{p_n-y_n}{p_n(1-p_n)}p_n(1-p_n)x_n
+=(p_n-y_n)x_n.
+\]</span></p>
+</details>
+</section>
+<section id="question-5" class="level3" data-number="30.0.5">
+<h3 data-number="30.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">30.0.5</span> Question 5</h3>
+<p>Translate the componentwise gradient into matrix form. Given <span class="math inline">\(X\in\mathbb{R}^{N\times D}\)</span>, <span class="math inline">\(p=\sigma(Xw)\)</span>, and <span class="math inline">\(y\in\mathbb{R}^N\)</span>, verify the dimensions and derive <span class="math display">\[
+\nabla \hat R(w)=\frac{1}{N}X^\top(p-y).
+\]</span></p>
+<!-- Source: Vector-form empirical risk and the matrix gradient $X^\top(p-y)/N$. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>The componentwise gradient is <span class="math display">\[
+\frac1N\sum_{n=1}^N(p_n-y_n)x_n.
+\]</span> Here <span class="math inline">\(p-y\in\mathbb{R}^N\)</span> and <span class="math inline">\(X^\top\in\mathbb{R}^{D\times N}\)</span>, so <span class="math inline">\(X^\top(p-y)\in\mathbb{R}^D\)</span>. Its <span class="math inline">\(j\)</span>-th coordinate is <span class="math display">\[
+\sum_{n=1}^N X_{nj}(p_n-y_n),
+\]</span> which is exactly the <span class="math inline">\(j\)</span>-th coordinate of the summation.</p>
+</details>
+</section>
+<section id="question-6" class="level3" data-number="30.0.6">
+<h3 data-number="30.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">30.0.6</span> Question 6</h3>
+<p>Compare the logistic-regression gradient with the least-squares gradient. For least squares with objective <span class="math inline">\(N^{-1}\|Xw-y\|_2^2/2\)</span>, the gradient is <span class="math inline">\(N^{-1}X^\top(Xw-y)\)</span>. State exactly what changes in logistic regression.</p>
+<!-- Source: Comparison between residuals $Xw-y$ and logistic residuals $p-y$. -->
+<details>
+<summary>
+Answer
+</summary>
+In logistic regression, <span class="math display">\[
+\nabla \hat R(w)=\frac1N X^\top(p-y),\qquad p=\sigma(Xw).
+\]</span> The linear fitted values <span class="math inline">\(Xw\)</span> are replaced by fitted probabilities <span class="math inline">\(p\)</span>.
+</details>
+</section>
+<section id="question-7" class="level3" data-number="30.0.7">
+<h3 data-number="30.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">30.0.7</span> Question 7</h3>
+<p>Diagnose the false claim: “Since logistic regression has gradient <span class="math inline">\(X^\top(p-y)/N\)</span>, the minimizer is obtained by setting <span class="math inline">\(p=y\)</span>.”</p>
+<!-- Source: No-closed-form discussion and comparison with least-squares normal equations. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>The claim confuses the condition for a zero gradient with the stronger condition <span class="math inline">\(p=y\)</span>.</p>
+<p>For logistic regression, the gradient of the empirical risk is</p>
+<p><span class="math display">\[
+\nabla_w \widehat{R}(w)=\frac{1}{N}X^\top(p-y),
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+p=\sigma(Xw).
+\]</span></p>
+<p>At a minimizer, a first-order condition is</p>
+<p><span class="math display">\[
+X^\top(p-y)=0.
+\]</span></p>
+<p>However, this does <strong>not</strong> generally imply</p>
+<p><span class="math display">\[
+p-y=0.
+\]</span></p>
+<p>It only says that the residual vector <span class="math inline">\(p-y\)</span> is orthogonal to every column of <span class="math inline">\(X\)</span>. Equivalently, <span class="math inline">\(p-y\)</span> lies in the orthogonal complement of the column space of <span class="math inline">\(X\)</span>.</p>
+<p>This is similar to least squares. In linear regression, setting the gradient to zero gives</p>
+<p><span class="math display">\[
+X^\top(Xw-y)=0,
+\]</span></p>
+<p>not necessarily</p>
+<p><span class="math display">\[
+Xw-y=0.
+\]</span></p>
+<p>The model only needs the residual to be orthogonal to the feature directions, not exactly zero for every observation.</p>
+<p>There is another issue in logistic regression: each entry of <span class="math inline">\(p\)</span> has the form</p>
+<p><span class="math display">\[
+p_n=\sigma(x_n^\top w),
+\]</span></p>
+<p>so <span class="math inline">\(p_n\)</span> always lies strictly between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> for finite <span class="math inline">\(w\)</span>. If the labels satisfy <span class="math inline">\(y_n\in\{0,1\}\)</span>, then setting <span class="math inline">\(p=y\)</span> would require probabilities to be exactly <span class="math inline">\(0\)</span> or exactly <span class="math inline">\(1\)</span>, which cannot happen for finite parameter values.</p>
+<p>Thus the correct stationarity condition is</p>
+<p><span class="math display">\[
+X^\top(p-y)=0,
+\]</span></p>
+<p>not</p>
+<p><span class="math display">\[
+p=y.
+\]</span></p>
+<p>This is one reason logistic regression does not lead to a simple closed-form normal equation like ordinary least squares. Instead, the solution is usually found using iterative methods such as gradient descent, Newton’s method, or IRLS.</p>
+</details>
+</section>
+<section id="question-8" class="level3" data-number="30.0.8">
+<h3 data-number="30.0.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">30.0.8</span> Question 8</h3>
+<p>For a single observation with <span class="math inline">\(x=(1,2)^\top\)</span>, <span class="math inline">\(y=1\)</span>, and <span class="math inline">\(w=(0,-1)^\top\)</span>, compute <span class="math inline">\(s=w^\top x\)</span>, <span class="math inline">\(p=\sigma(s)\)</span>, the loss <span class="math inline">\(\ell(y,s)\)</span>, and the gradient contribution <span class="math inline">\((p-y)x\)</span>. Give exact expressions using <span class="math inline">\(e\)</span>, not decimal approximations.</p>
+<!-- Source: Concrete score, probability, loss, and gradient contribution for one data point. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>The score is <span class="math inline">\(s=-2\)</span>. Hence <span class="math display">\[
+p=\sigma(-2)=\frac{1}{1+e^2}.
+\]</span> For <span class="math inline">\(y=1\)</span>, <span class="math display">\[
+\ell(1,-2)=\log(1+e^{-2}).
+\]</span> The gradient contribution is <span class="math display">\[
+(p-y)x=\left(\frac{1}{1+e^2}-1\right)(1,2)^\top
+=\left(-\frac{e^2}{1+e^2},-\frac{2e^2}{1+e^2}\right)^\top.
+\]</span></p>
+</details>
+</section>
+<section id="question-9" class="level3" data-number="30.0.9">
+<h3 data-number="30.0.9" class="anchored" data-anchor-id="question-9"><span class="header-section-number">30.0.9</span> Question 9</h3>
+<p>Carry out one gradient-descent update. Let <span class="math display">\[
+X=\begin{pmatrix}1&amp;0\\1&amp;1\end{pmatrix},\quad y=\begin{pmatrix}0\\1\end{pmatrix},\quad w^{(0)}=\begin{pmatrix}0\\0\end{pmatrix}.
+\]</span> With learning rate <span class="math inline">\(\eta=1\)</span>, compute <span class="math inline">\(w^{(1)}\)</span> using <span class="math inline">\(w^{(1)}=w^{(0)}-\eta X^\top(p-y)/N\)</span>.</p>
+<!-- Source: Gradient descent iteration formula for logistic regression. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>At <span class="math inline">\(w^{(0)}=0\)</span>, the logits are <span class="math inline">\((0,0)^\top\)</span>, so <span class="math inline">\(p=(1/2,1/2)^\top\)</span>. Then <span class="math display">\[
+p-y=(1/2,-1/2)^\top,
+\]</span> and <span class="math display">\[
+X^\top(p-y)=
+\begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix}
+\begin{pmatrix}1/2\\-1/2\end{pmatrix}
+=\begin{pmatrix}0\\-1/2\end{pmatrix}.
+\]</span> Since <span class="math inline">\(N=2\)</span>, the gradient is <span class="math inline">\((0,-1/4)^\top\)</span>, so <span class="math display">\[
+w^{(1)}=(0,1/4)^\top.
+\]</span></p>
+</details>
+</section>
+<section id="question-10" class="level3" data-number="30.0.10">
+<h3 data-number="30.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">30.0.10</span> Question 10</h3>
+<p>Connect the one-score and two-score forms of a binary linear classifier. Suppose</p>
+<p><span class="math display">\[
+s_1(x)=w_1^\top x,
+\qquad
+s_2(x)=w_2^\top x,
+\]</span></p>
+<p>and the classifier predicts the class with the larger score:</p>
+<p><span class="math display">\[
+\hat{y}(x)=\arg\max_{k\in\{1,2\}} s_k(x).
+\]</span></p>
+<p>Show that this decision rule can be written using a single vector <span class="math inline">\(w\)</span>.</p>
+<!-- Source: Over-complete two-score parameterization and reduction to $w=w_1-w_2$. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>The classifier predicts class <span class="math inline">\(1\)</span> exactly when the score for class <span class="math inline">\(1\)</span> is at least as large as the score for class <span class="math inline">\(2\)</span>:</p>
+<p><span class="math display">\[
+s_1(x)\ge s_2(x).
+\]</span></p>
+<p>Substituting the definitions of the two scores gives</p>
+<p><span class="math display">\[
+w_1^\top x\ge w_2^\top x.
+\]</span></p>
+<p>Moving all terms to one side,</p>
+<p><span class="math display">\[
+w_1^\top x-w_2^\top x\ge 0.
+\]</span></p>
+<p>Factoring out <span class="math inline">\(x\)</span> gives</p>
+<p><span class="math display">\[
+(w_1-w_2)^\top x\ge 0.
+\]</span></p>
+<p>Therefore, if we define</p>
+<p><span class="math display">\[
+w=w_1-w_2,
+\]</span></p>
+<p>then the same decision rule is</p>
+<p><span class="math display">\[
+\text{predict class }1 \text{ if } w^\top x\ge 0,
+\]</span></p>
+<p>and predict class <span class="math inline">\(2\)</span> otherwise.</p>
+<p>Thus the two-score classifier depends only on the difference between the two weight vectors, <span class="math inline">\(w_1-w_2\)</span>. The separate vectors <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> are an over-parameterization for binary classification, since the decision boundary is determined by the single vector</p>
+<p><span class="math display">\[
+w=w_1-w_2.
+\]</span></p>
+</details>
+</section>
+<section id="question-11" class="level3" data-number="30.0.11">
+<h3 data-number="30.0.11" class="anchored" data-anchor-id="question-11"><span class="header-section-number">30.0.11</span> Question 11</h3>
+<p>Use monotonicity of the sigmoid to prove the equivalence between predicting class 1 based on (1) the probability-threshold rule and (2) the score-threshold rule, i.e., that the two are equivalent: <span class="math display">\[
+p_w(x)\ge \frac12 \quad\Longleftrightarrow\quad w^\top x\ge0.
+\]</span></p>
+<!-- Source: Prediction rule $p_w(x)\ge1/2$ and boundary $w^\top x=0$. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>Since <span class="math inline">\(p_w(x)=\sigma(w^\top x)\)</span>, solve <span class="math inline">\(\sigma(t)\ge1/2\)</span>: <span class="math display">\[
+\frac{1}{1+e^{-t}}\ge\frac12
+\iff 2\ge1+e^{-t}
+\iff 1\ge e^{-t}
+\iff t\ge0.
+\]</span> Taking <span class="math inline">\(t=w^\top x\)</span> proves the equivalence.</p>
+</details>
+</section>
+<section id="question-12" class="level3" data-number="30.0.12">
+<h3 data-number="30.0.12" class="anchored" data-anchor-id="question-12"><span class="header-section-number">30.0.12</span> Question 12</h3>
+<p>Describe the decision boundary in <span class="math inline">\(\mathbb{R}^2\)</span> when an intercept is included. If <span class="math inline">\(\tilde x=(1,x_1,x_2)^\top\)</span> and <span class="math inline">\(w=(b,w_1,w_2)^\top\)</span>, write the decision boundary equation and solve it for <span class="math inline">\(x_2\)</span> when <span class="math inline">\(w_2\ne0\)</span>.</p>
+<!-- Source: Linear decision boundary $\hat w^\top x=0$, including the intercept column used in examples. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>The boundary is <span class="math display">\[
+b+w_1x_1+w_2x_2=0.
+\]</span> If <span class="math inline">\(w_2\ne0\)</span>, then <span class="math display">\[
+x_2=-\frac{b+w_1x_1}{w_2}
+=-\frac{w_1}{w_2}x_1-\frac{b}{w_2}.
+\]</span> This is a line in the original two-dimensional input space.</p>
+</details>
+</section>
+<section id="question-13" class="level3" data-number="30.0.13">
+<h3 data-number="30.0.13" class="anchored" data-anchor-id="question-13"><span class="header-section-number">30.0.13</span> Question 13</h3>
+<p>Classify each statement as true or false, with a one-sentence mathematical justification for each.</p>
+<ol type="1">
+<li>The logistic-regression decision boundary is always linear in the original raw variables.</li>
+<li>The logistic-regression decision boundary is linear in the columns of the chosen design matrix.</li>
+<li>Adding polynomial feature columns can produce a nonlinear boundary in the original raw variables.</li>
+</ol>
+<!-- Source: Design-matrix discussion and polynomial-feature example. -->
+<details>
+<summary>
+Answer
+</summary>
+<ol type="1">
+<li>False. If the design matrix contains nonlinear features such as <span class="math inline">\(u^2\)</span>, the boundary can be nonlinear in <span class="math inline">\(u\)</span>.</li>
+<li>True. The boundary is always <span class="math inline">\(w^\top x=0\)</span> in the chosen feature vector <span class="math inline">\(x\)</span>.</li>
+<li>True. Polynomial features can make <span class="math inline">\(w^\top x(u)=0\)</span> a polynomial equation in raw variables.</li>
+</ol>
+</details>
+</section>
+<section id="question-14" class="level3" data-number="30.0.14">
+<h3 data-number="30.0.14" class="anchored" data-anchor-id="question-14"><span class="header-section-number">30.0.14</span> Question 14</h3>
+<p>Compute classification metrics from a confusion matrix. Suppose rows are true labels <span class="math inline">\((0,1)\)</span>, columns are predicted labels <span class="math inline">\((0,1)\)</span>, and <span class="math display">\[
+\begin{pmatrix}
+40&amp;10\\
+5&amp;45
+\end{pmatrix}
+\]</span> is the confusion matrix. Compute precision and recall for class <span class="math inline">\(1\)</span>.</p>
+<!-- Source: Confusion matrix, precision, recall, and F1 definitions from the penguins example. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>Here <span class="math inline">\(\mathrm{FP}=10\)</span>, <span class="math inline">\(\mathrm{FN}=5\)</span>, and <span class="math inline">\(\mathrm{TP}=45\)</span>. Thus <span class="math display">\[
+\text{Precision}=\frac{45}{45+10}=\frac{9}{11},
+\qquad
+\text{Recall}=\frac{45}{45+5}=\frac{9}{10}.
+\]</span></p>
+</details>
+</section>
+<section id="question-15" class="level3" data-number="30.0.15">
+<h3 data-number="30.0.15" class="anchored" data-anchor-id="question-15"><span class="header-section-number">30.0.15</span> Question 15</h3>
+<p>Determine how the decision rule changes when the probability threshold is not <span class="math inline">\(1/2\)</span>. For fixed <span class="math inline">\(\tau\in(0,1)\)</span>, derive an equivalent condition on the score <span class="math inline">\(w^\top x\)</span> for predicting class <span class="math inline">\(1\)</span> under the rule <span class="math inline">\(p_w(x)\ge \tau\)</span>.</p>
+<!-- Source: Thresholding probabilities and the special $1/2$ threshold used in the lecture. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>The logistic regression probability is</p>
+<p><span class="math display">\[
+p_w(x)=\sigma(w^\top x).
+\]</span></p>
+<p>We predict class <span class="math inline">\(1\)</span> when</p>
+<p><span class="math display">\[
+p_w(x)\ge \tau.
+\]</span></p>
+<p>Substituting <span class="math inline">\(p_w(x)=\sigma(w^\top x)\)</span> gives</p>
+<p><span class="math display">\[
+\sigma(w^\top x)\ge \tau.
+\]</span></p>
+<p>Since the sigmoid function is increasing, we can apply <span class="math inline">\(\sigma^{-1}\)</span> to both sides without changing the direction of the inequality:</p>
+<p><span class="math display">\[
+w^\top x\ge \sigma^{-1}(\tau).
+\]</span></p>
+<p>Now solve for the inverse sigmoid. Let</p>
+<p><span class="math display">\[
+\tau=\sigma(t)=\frac{1}{1+e^{-t}}.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\tau(1+e^{-t})=1.
+\]</span></p>
+<p>So</p>
+<p><span class="math display">\[
+\tau e^{-t}=1-\tau.
+\]</span></p>
+<p>Dividing by <span class="math inline">\(\tau\)</span> gives</p>
+<p><span class="math display">\[
+e^{-t}=\frac{1-\tau}{\tau}.
+\]</span></p>
+<p>Taking logs,</p>
+<p><span class="math display">\[
+-t=\log\left(\frac{1-\tau}{\tau}\right).
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+t=\log\left(\frac{\tau}{1-\tau}\right).
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+\sigma^{-1}(\tau)=\log\left(\frac{\tau}{1-\tau}\right).
+\]</span></p>
+<p>So the decision rule is:</p>
+<p><span class="math display">\[
+\text{predict class }1 \text{ if } w^\top x\ge \log\left(\frac{\tau}{1-\tau}\right).
+\]</span></p>
+<p>When <span class="math inline">\(\tau=1/2\)</span>, this threshold is</p>
+<p><span class="math display">\[
+\log\left(\frac{1/2}{1-1/2}\right)=\log(1)=0.
+\]</span></p>
+<p>So the usual threshold <span class="math inline">\(\tau=1/2\)</span> gives the familiar rule: predict class <span class="math inline">\(1\)</span> when <span class="math inline">\(w^\top x\ge 0\)</span>.</p>
+</details>
+</section>
+<section id="question-16" class="level3" data-number="30.0.16">
+<h3 data-number="30.0.16" class="anchored" data-anchor-id="question-16"><span class="header-section-number">30.0.16</span> Question 16</h3>
+<p>Connect logistic regression to a probabilistic model. Suppose that, for each observation,</p>
+<p><span class="math display">\[
+Y_n\mid x_n\sim \operatorname{Bernoulli}(p_n),
+\qquad p_n=\sigma(x_n^\top w),
+\]</span></p>
+<p>independently across <span class="math inline">\(n\)</span>. This means the model assigns probability <span class="math inline">\(p_n\)</span> to the event <span class="math inline">\(Y_n=1\)</span> and probability <span class="math inline">\(1-p_n\)</span> to the event <span class="math inline">\(Y_n=0\)</span>.</p>
+<p>Write down the joint probability mass function for this model. Then take the negative log of this probability and compare the result to the empirical cross-entropy objective.</p>
+<!-- Source: The lecture's cautious probabilistic interpretation of $p_w(x)$ and cross-entropy loss. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>For one observation, the Bernoulli model assigns probability</p>
+<p><span class="math display">\[
+p_n^{y_n}(1-p_n)^{1-y_n}
+\]</span></p>
+<p>to the observed label <span class="math inline">\(y_n\)</span>.</p>
+<p>Since the observations are assumed independent, the probability assigned to the full observed label vector is the product</p>
+<p><span class="math display">\[
+\prod_{n=1}^N p_n^{y_n}(1-p_n)^{1-y_n}.
+\]</span></p>
+<p>A common way to turn this probability into a loss is to take the negative log. This gives</p>
+<p><span class="math display">\[
+-\log\left(\prod_{n=1}^N p_n^{y_n}(1-p_n)^{1-y_n}\right).
+\]</span></p>
+<p>Using the fact that the log of a product is the sum of the logs, we get</p>
+<p><span class="math display">\[
+-\sum_{n=1}^N \log\left(p_n^{y_n}(1-p_n)^{1-y_n}\right).
+\]</span></p>
+<p>Using the fact that <span class="math inline">\(\log(a^b)=b\log(a)\)</span>, this becomes</p>
+<p><span class="math display">\[
+-\sum_{n=1}^N \left[y_n\log p_n+(1-y_n)\log(1-p_n)\right].
+\]</span></p>
+<p>The empirical cross-entropy risk is this same quantity divided by <span class="math inline">\(N\)</span>:</p>
+<p><span class="math display">\[
+\widehat{R}(w)=-\frac{1}{N}\sum_{n=1}^N \left[y_n\log p_n+(1-y_n)\log(1-p_n)\right].
+\]</span></p>
+<p>Thus, minimizing empirical cross-entropy is the same as choosing the parameters that make the observed labels as probable as possible under the Bernoulli model. The factor <span class="math inline">\(1/N\)</span> changes the scale of the objective but not the minimizer.</p>
+</details>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../questions/010_linear_regression_questions.html" class="pagination-link" aria-label="Linear Regression - Review Questions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

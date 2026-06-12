@@ -364,6 +364,41 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Practice Questions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/005_derivatives_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/010_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/020_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -377,44 +412,36 @@ window.Quarto = {
   <li><a href="#taxonomy-of-derivative-objects" id="toc-taxonomy-of-derivative-objects" class="nav-link active" data-scroll-target="#taxonomy-of-derivative-objects"><span class="header-section-number">3.1</span> Taxonomy of derivative objects</a>
   <ul class="collapse">
   <li><a href="#gradients-scalar-output" id="toc-gradients-scalar-output" class="nav-link" data-scroll-target="#gradients-scalar-output"><span class="header-section-number">3.1.1</span> Gradients: Scalar Output</a></li>
+  <li><a href="#jacobians-vector-output" id="toc-jacobians-vector-output" class="nav-link" data-scroll-target="#jacobians-vector-output"><span class="header-section-number">3.1.2</span> Jacobians: Vector Output</a></li>
+  <li><a href="#matrix-valued-output" id="toc-matrix-valued-output" class="nav-link" data-scroll-target="#matrix-valued-output"><span class="header-section-number">3.1.3</span> Matrix-valued Output</a></li>
   </ul></li>
-  <li><a href="#jacobians-vector-output" id="toc-jacobians-vector-output" class="nav-link" data-scroll-target="#jacobians-vector-output"><span class="header-section-number">3.2</span> Jacobians: Vector Output</a>
+  <li><a href="#hessians" id="toc-hessians" class="nav-link" data-scroll-target="#hessians"><span class="header-section-number">3.2</span> Hessians</a></li>
+  <li><a href="#numerator-layout-and-denominator-layout" id="toc-numerator-layout-and-denominator-layout" class="nav-link" data-scroll-target="#numerator-layout-and-denominator-layout"><span class="header-section-number">3.3</span> Numerator layout and denominator layout</a>
   <ul class="collapse">
-  <li><a href="#vector-input-vector-output" id="toc-vector-input-vector-output" class="nav-link" data-scroll-target="#vector-input-vector-output"><span class="header-section-number">3.2.1</span> Vector input → vector output</a></li>
-  <li><a href="#scalar-input-vector-output" id="toc-scalar-input-vector-output" class="nav-link" data-scroll-target="#scalar-input-vector-output"><span class="header-section-number">3.2.2</span> Scalar input → vector output</a></li>
+  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table"><span class="header-section-number">3.3.1</span> Summary table</a></li>
   </ul></li>
-  <li><a href="#matrix-valued-output" id="toc-matrix-valued-output" class="nav-link" data-scroll-target="#matrix-valued-output"><span class="header-section-number">3.3</span> Matrix-valued Output</a>
+  <li><a href="#basic-derivative-identities" id="toc-basic-derivative-identities" class="nav-link" data-scroll-target="#basic-derivative-identities"><span class="header-section-number">3.4</span> Basic derivative identities</a></li>
+  <li><a href="#scalar-output-scalar-input" id="toc-scalar-output-scalar-input" class="nav-link" data-scroll-target="#scalar-output-scalar-input"><span class="header-section-number">3.5</span> Scalar output, scalar input</a></li>
+  <li><a href="#scalar-output-vector-input" id="toc-scalar-output-vector-input" class="nav-link" data-scroll-target="#scalar-output-vector-input"><span class="header-section-number">3.6</span> Scalar output, vector input</a>
   <ul class="collapse">
-  <li><a href="#scalar-input-to-matrix-output" id="toc-scalar-input-to-matrix-output" class="nav-link" data-scroll-target="#scalar-input-to-matrix-output"><span class="header-section-number">3.3.1</span> Scalar input to matrix output</a></li>
+  <li><a href="#constant-linear-and-quadratic-terms" id="toc-constant-linear-and-quadratic-terms" class="nav-link" data-scroll-target="#constant-linear-and-quadratic-terms"><span class="header-section-number">3.6.1</span> Constant, linear, and quadratic terms</a></li>
+  <li><a href="#chain-rule-through-a-vector-intermediate" id="toc-chain-rule-through-a-vector-intermediate" class="nav-link" data-scroll-target="#chain-rule-through-a-vector-intermediate"><span class="header-section-number">3.6.2</span> Chain rule through a vector intermediate</a></li>
   </ul></li>
-  <li><a href="#hessians" id="toc-hessians" class="nav-link" data-scroll-target="#hessians"><span class="header-section-number">3.4</span> Hessians</a></li>
-  <li><a href="#numerator-layout-and-denominator-layout" id="toc-numerator-layout-and-denominator-layout" class="nav-link" data-scroll-target="#numerator-layout-and-denominator-layout"><span class="header-section-number">3.5</span> Numerator layout and denominator layout</a>
+  <li><a href="#scalar-output-matrix-input" id="toc-scalar-output-matrix-input" class="nav-link" data-scroll-target="#scalar-output-matrix-input"><span class="header-section-number">3.7</span> Scalar output, matrix input</a>
   <ul class="collapse">
-  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table"><span class="header-section-number">3.5.1</span> Summary table</a></li>
+  <li><a href="#constant-and-linear-terms" id="toc-constant-and-linear-terms" class="nav-link" data-scroll-target="#constant-and-linear-terms"><span class="header-section-number">3.7.1</span> Constant and linear terms</a></li>
+  <li><a href="#frobenius-norm" id="toc-frobenius-norm" class="nav-link" data-scroll-target="#frobenius-norm"><span class="header-section-number">3.7.2</span> Frobenius norm</a></li>
   </ul></li>
-  <li><a href="#basic-derivative-identities" id="toc-basic-derivative-identities" class="nav-link" data-scroll-target="#basic-derivative-identities"><span class="header-section-number">4</span> Basic derivative identities</a>
+  <li><a href="#vector-output-vector-input" id="toc-vector-output-vector-input" class="nav-link" data-scroll-target="#vector-output-vector-input"><span class="header-section-number">3.8</span> Vector output, vector input</a>
   <ul class="collapse">
-  <li><a href="#scalar-output-scalar-input" id="toc-scalar-output-scalar-input" class="nav-link" data-scroll-target="#scalar-output-scalar-input"><span class="header-section-number">4.1</span> Scalar output, scalar input</a></li>
-  <li><a href="#scalar-output-vector-input" id="toc-scalar-output-vector-input" class="nav-link" data-scroll-target="#scalar-output-vector-input"><span class="header-section-number">4.2</span> Scalar output, vector input</a>
+  <li><a href="#linear-and-affine-maps" id="toc-linear-and-affine-maps" class="nav-link" data-scroll-target="#linear-and-affine-maps"><span class="header-section-number">3.8.1</span> Linear and affine maps</a></li>
+  <li><a href="#chain-rule-for-vector-output-functions" id="toc-chain-rule-for-vector-output-functions" class="nav-link" data-scroll-target="#chain-rule-for-vector-output-functions"><span class="header-section-number">3.8.2</span> Chain rule for vector-output functions</a></li>
+  </ul></li>
+  <li><a href="#matrix-output-scalar-input" id="toc-matrix-output-scalar-input" class="nav-link" data-scroll-target="#matrix-output-scalar-input"><span class="header-section-number">3.9</span> Matrix output, scalar input</a>
   <ul class="collapse">
-  <li><a href="#constant-linear-and-quadratic-terms" id="toc-constant-linear-and-quadratic-terms" class="nav-link" data-scroll-target="#constant-linear-and-quadratic-terms"><span class="header-section-number">4.2.1</span> Constant, linear, and quadratic terms</a></li>
-  <li><a href="#chain-rule-through-a-vector-intermediate" id="toc-chain-rule-through-a-vector-intermediate" class="nav-link" data-scroll-target="#chain-rule-through-a-vector-intermediate"><span class="header-section-number">4.2.2</span> Chain rule through a vector intermediate</a></li>
+  <li><a href="#constant-linear-and-elementwise-rules" id="toc-constant-linear-and-elementwise-rules" class="nav-link" data-scroll-target="#constant-linear-and-elementwise-rules"><span class="header-section-number">3.9.1</span> Constant, linear, and elementwise rules</a></li>
   </ul></li>
-  <li><a href="#scalar-output-matrix-input" id="toc-scalar-output-matrix-input" class="nav-link" data-scroll-target="#scalar-output-matrix-input"><span class="header-section-number">4.3</span> Scalar output, matrix input</a>
-  <ul class="collapse">
-  <li><a href="#constant-and-linear-terms" id="toc-constant-and-linear-terms" class="nav-link" data-scroll-target="#constant-and-linear-terms"><span class="header-section-number">4.3.1</span> Constant and linear terms</a></li>
-  <li><a href="#frobenius-norm" id="toc-frobenius-norm" class="nav-link" data-scroll-target="#frobenius-norm"><span class="header-section-number">4.3.2</span> Frobenius norm</a></li>
-  </ul></li>
-  <li><a href="#vector-output-vector-input" id="toc-vector-output-vector-input" class="nav-link" data-scroll-target="#vector-output-vector-input"><span class="header-section-number">4.4</span> Vector output, vector input</a>
-  <ul class="collapse">
-  <li><a href="#linear-and-affine-maps" id="toc-linear-and-affine-maps" class="nav-link" data-scroll-target="#linear-and-affine-maps"><span class="header-section-number">4.4.1</span> Linear and affine maps</a></li>
-  <li><a href="#chain-rule-for-vector-output-functions" id="toc-chain-rule-for-vector-output-functions" class="nav-link" data-scroll-target="#chain-rule-for-vector-output-functions"><span class="header-section-number">4.4.2</span> Chain rule for vector-output functions</a></li>
-  </ul></li>
-  <li><a href="#matrix-output-scalar-input" id="toc-matrix-output-scalar-input" class="nav-link" data-scroll-target="#matrix-output-scalar-input"><span class="header-section-number">4.5</span> Matrix output, scalar input</a>
-  <ul class="collapse">
-  <li><a href="#constant-linear-and-elementwise-rules" id="toc-constant-linear-and-elementwise-rules" class="nav-link" data-scroll-target="#constant-linear-and-elementwise-rules"><span class="header-section-number">4.5.1</span> Constant, linear, and elementwise rules</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">3.10</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -440,13 +467,16 @@ window.Quarto = {
 </header>
 
 
+<div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
+<p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
+</div>
 <p>In single-variable calculus, the basic question is how one quantity changes as another quantity changes. If <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span>, then the <strong>derivative</strong> <span class="math inline">\(f'(x)\)</span> measures how the scalar output changes as the scalar input changes. The familiar rules describe common patterns: constants differentiate to zero, linear terms differentiate to their coefficients, and quadratic terms produce a factor of two.</p>
 <p>In multivariable calculus, the same idea is extended to functions with several inputs. For a scalar-valued function such as <span class="math inline">\(L(w_1,\ldots,w_d)\)</span>, the <strong>gradient</strong> collects the partial derivatives into one vector. For a function with several outputs, the <strong>Jacobian</strong> records how each output coordinate changes with respect to each input coordinate. For a scalar-valued function, the <strong>Hessian</strong> records second partial derivatives and describes curvature.</p>
 <p><strong>Matrix calculus</strong> systematizes this notation and extends it to expressions involving vectors, matrices, and tensors. The underlying calculus is not new. The main difference is that every object now has a shape, and the notation has to keep track of those shapes.</p>
 <p>A term such as <span class="math inline">\(y^\top y\)</span> may look more complicated than a constant from single-variable calculus, but it is just compact notation for a real-valued object. Similarly, terms like <span class="math inline">\(w^\top a\)</span> and <span class="math inline">\(w^\top A w\)</span> are vector and matrix versions of familiar linear and quadratic expressions. Much of what we are doing is learning to recognize familiar calculus patterns after they have been written in vector and matrix notation.</p>
 <section id="taxonomy-of-derivative-objects" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="taxonomy-of-derivative-objects"><span class="header-section-number">3.1</span> Taxonomy of derivative objects</h2>
-<p>Once functions can have scalar, vector, matrix, or tensor inputs and outputs, the word “derivative” can refer to several different kinds of objects. The main task is to keep track of the input shape, the output shape, and the convention being used to arrange the derivative.</p>
+<p>Once functions can have scalar, vector, matrix, or <strong>tensor</strong> (basically, multi-dimensional matrices) inputs and outputs, the word “derivative” can refer to several different kinds of objects. The main task is to keep track of the input shape, the output shape, and the convention being used to arrange the derivative.</p>
 <section id="gradients-scalar-output" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="gradients-scalar-output"><span class="header-section-number">3.1.1</span> Gradients: Scalar Output</h3>
 <section id="scalar-input-scalar-output" class="level4" data-number="3.1.1.1">
@@ -596,11 +626,10 @@ L: \mathbb{R}^{d_1 \times d_2 \times \cdots \times d_k} \to \mathbb{R}.
 <p>This same-shape rule is one of the main conventions used in machine learning notation and software.</p>
 </section>
 </section>
-</section>
-<section id="jacobians-vector-output" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="jacobians-vector-output"><span class="header-section-number">3.2</span> Jacobians: Vector Output</h2>
-<section id="vector-input-vector-output" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="vector-input-vector-output"><span class="header-section-number">3.2.1</span> Vector input → vector output</h3>
+<section id="jacobians-vector-output" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="jacobians-vector-output"><span class="header-section-number">3.1.2</span> Jacobians: Vector Output</h3>
+<section id="vector-input-vector-output" class="level4" data-number="3.1.2.1">
+<h4 data-number="3.1.2.1" class="anchored" data-anchor-id="vector-input-vector-output"><span class="header-section-number">3.1.2.1</span> Vector input → vector output</h4>
 <p>Consider a vector-valued function of a vector:</p>
 <p><span class="math display">\[
 f: \mathbb{R}^n \to \mathbb{R}^m.
@@ -639,8 +668,8 @@ J_f(x) \in \mathbb{R}^{m \times n}.
 <p>The rows correspond to <strong>output</strong> coordinates, and the columns correspond to <strong>input</strong> coordinates. The size of the Jacobian <span class="math inline">\(J_f\)</span> is always <strong>output</strong> <span class="math inline">\(\times\)</span> <strong>input</strong>.</p>
 <p><strong>Note:</strong> This is different from the scalar-output gradient case. If the output is scalar, the gradient has the same shape as the input. If the output is vector-valued, the derivative needs to track how every output coordinate depends on every input coordinate, so it becomes a matrix.</p>
 </section>
-<section id="scalar-input-vector-output" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="scalar-input-vector-output"><span class="header-section-number">3.2.2</span> Scalar input → vector output</h3>
+<section id="scalar-input-vector-output" class="level4" data-number="3.1.2.2">
+<h4 data-number="3.1.2.2" class="anchored" data-anchor-id="scalar-input-vector-output"><span class="header-section-number">3.1.2.2</span> Scalar input → vector output</h4>
 <p>A special case of the Jacobian is a vector-valued function of one scalar:</p>
 <p><span class="math display">\[
 f: \mathbb{R} \to \mathbb{R}^m.
@@ -679,11 +708,11 @@ J_L(x) = (\nabla_x L)^\top.
 <p>This is one reason we usually say <strong>“gradient”</strong> for scalar-valued outputs and <strong>“Jacobian”</strong> for vector-valued outputs.</p>
 </section>
 </section>
-<section id="matrix-valued-output" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="matrix-valued-output"><span class="header-section-number">3.3</span> Matrix-valued Output</h2>
+<section id="matrix-valued-output" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="matrix-valued-output"><span class="header-section-number">3.1.3</span> Matrix-valued Output</h3>
 <p>Matrix-output and tensor-output functions appear whenever an operation produces an array rather than a scalar or vector. These cases are common in applied work, but the full derivative is usually not written explicitly.</p>
-<section id="scalar-input-to-matrix-output" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="scalar-input-to-matrix-output"><span class="header-section-number">3.3.1</span> Scalar input to matrix output</h3>
+<section id="scalar-input-to-matrix-output" class="level4" data-number="3.1.3.1">
+<h4 data-number="3.1.3.1" class="anchored" data-anchor-id="scalar-input-to-matrix-output"><span class="header-section-number">3.1.3.1</span> Scalar input to matrix output</h4>
 <p>A simple example is a matrix that depends on one scalar parameter:</p>
 <p><span class="math display">\[
 F:\mathbb{R} \to \mathbb{R}^{m \times n}.
@@ -715,17 +744,9 @@ R(\theta) =
 <p>This case is conceptually straightforward because there is only one input direction. The derivative is just the entrywise derivative of the matrix-valued function.</p>
 </section>
 </section>
-<section id="hessians" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="hessians"><span class="header-section-number">3.4</span> Hessians</h2>
-<p>For a scalar-valued function of a vector:</p>
-<p><span class="math display">\[
-L: \mathbb{R}^d \to \mathbb{R},
-\]</span></p>
-<p>the gradient is:</p>
-<p><span class="math display">\[
-\nabla_w L \in \mathbb{R}^d.
-\]</span></p>
-<p>(Note that the gradient <em>function</em> is a function <span class="math inline">\(\mathbb{R}^d \to \mathbb{R}^d\)</span>.)</p>
+</section>
+<section id="hessians" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="hessians"><span class="header-section-number">3.2</span> Hessians</h2>
 <p>The Hessian is the derivative of the gradient with respect to <span class="math inline">\(w\)</span>:</p>
 <p><span class="math display">\[
 H_L(w) = \nabla_w^2 L(w).
@@ -755,15 +776,19 @@ L(w) = w^\top A w,
 <p>and:</p>
 <p><span class="math display">\[
 \nabla_w^2 L = 2A.
-\]</span></p>
-<p>The Hessian is important because it describes curvature. In a second-order approximation:</p>
+\]</span> (verify these for yourself.)</p>
+<p>The Hessian is important because it describes curvature. In a second-order Taylor approximation:</p>
 <p><span class="math display">\[
 L(w + h) \approx L(w) + (\nabla_w L)^\top h + \frac{1}{2}h^\top H_L(w)h.
 \]</span></p>
-<p><strong>Note</strong> that the Hessian of a scalar-valued function is the Jacobian of its gradient, so for <span class="math inline">\(L:\mathbb{R}^d \to \mathbb{R}\)</span>, <span class="math inline">\(\nabla^2 L(w) = J_{\nabla L}(w) \in \mathbb{R}^{d \times d}\)</span>.</p>
+<p><strong>Note.</strong> With the usual column-vector convention, the Hessian of a scalar-valued function is the Jacobian of its gradient. That is, for <span class="math inline">\(L:\mathbb{R}^d \to \mathbb{R}\)</span>,</p>
+<p><span class="math display">\[
+\nabla^2 L(w) = J_{\nabla L}(w) \in \mathbb{R}^{d \times d}.
+\]</span></p>
+<p>Different derivative-layout conventions may transpose this object, but for twice continuously differentiable scalar functions the Hessian is symmetric.</p>
 </section>
-<section id="numerator-layout-and-denominator-layout" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="numerator-layout-and-denominator-layout"><span class="header-section-number">3.5</span> Numerator layout and denominator layout</h2>
+<section id="numerator-layout-and-denominator-layout" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="numerator-layout-and-denominator-layout"><span class="header-section-number">3.3</span> Numerator layout and denominator layout</h2>
 <p>There is one important notational warning. Different books arrange derivatives of vectors in different ways.</p>
 <p>For a function:</p>
 <p><span class="math display">\[
@@ -784,8 +809,8 @@ f(x + dx) \approx f(x) + J_f(x)dx.
 <p>Some sources use the transpose convention, especially in parts of statistics or older matrix calculus references. Under that convention, the Jacobian of <span class="math inline">\(f:\mathbb{R}^n \to \mathbb{R}^m\)</span> may be written with shape <span class="math inline">\(n \times m\)</span>.</p>
 <p>This can make formulas look different across books. For example, one source may write a chain rule using <span class="math inline">\(J^\top v\)</span>, while another may write an equivalent expression using <span class="math inline">\(v^\top J\)</span> or a transposed Jacobian definition.</p>
 <p>The safest habit is to check shapes. If the formula is supposed to produce a vector in <span class="math inline">\(\mathbb{R}^n\)</span>, then the multiplication must produce a vector in <span class="math inline">\(\mathbb{R}^n\)</span>. Shape checking usually reveals which convention is being used.</p>
-<section id="summary-table" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="summary-table"><span class="header-section-number">3.5.1</span> Summary table</h3>
+<section id="summary-table" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="summary-table"><span class="header-section-number">3.3.1</span> Summary table</h3>
 <p>The following table summarizes the most common derivative objects.</p>
 <table class="caption-top table">
 <colgroup>
@@ -851,10 +876,11 @@ f(x + dx) \approx f(x) + J_f(x)dx.
 </ol>
 </section>
 </section>
-<section id="basic-derivative-identities" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Basic derivative identities</h1>
-<section id="scalar-output-scalar-input" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="scalar-output-scalar-input"><span class="header-section-number">4.1</span> Scalar output, scalar input</h2>
+<section id="basic-derivative-identities" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="basic-derivative-identities"><span class="header-section-number">3.4</span> Basic derivative identities</h2>
+</section>
+<section id="scalar-output-scalar-input" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="scalar-output-scalar-input"><span class="header-section-number">3.5</span> Scalar output, scalar input</h2>
 <p>Let:</p>
 <p><span class="math display">\[
 f:\mathbb{R}\to\mathbb{R}.
@@ -878,8 +904,8 @@ f:\mathbb{R}\to\mathbb{R}.
 \frac{d}{dx}f(g(x)) = f'(g(x))g'(x).
 \]</span></p>
 </section>
-<section id="scalar-output-vector-input" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="scalar-output-vector-input"><span class="header-section-number">4.2</span> Scalar output, vector input</h2>
+<section id="scalar-output-vector-input" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="scalar-output-vector-input"><span class="header-section-number">3.6</span> Scalar output, vector input</h2>
 <p>Let:</p>
 <p><span class="math display">\[
 L:\mathbb{R}^d\to\mathbb{R}.
@@ -893,8 +919,8 @@ w \in \mathbb{R}^d,
 \nabla_w L \in \mathbb{R}^d.
 \]</span></p>
 <p>So the gradient has the same shape as the vector being differentiated.</p>
-<section id="constant-linear-and-quadratic-terms" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="constant-linear-and-quadratic-terms"><span class="header-section-number">4.2.1</span> Constant, linear, and quadratic terms</h3>
+<section id="constant-linear-and-quadratic-terms" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="constant-linear-and-quadratic-terms"><span class="header-section-number">3.6.1</span> Constant, linear, and quadratic terms</h3>
 <p>If <span class="math inline">\(c\)</span> does not depend on <span class="math inline">\(w\)</span>, then:</p>
 <p><span class="math display">\[
 \nabla_w c = 0.
@@ -928,8 +954,8 @@ w \in \mathbb{R}^d,
 \]</span></p>
 <p>when <span class="math inline">\(A\)</span> is symmetric.</p>
 </section>
-<section id="chain-rule-through-a-vector-intermediate" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="chain-rule-through-a-vector-intermediate"><span class="header-section-number">4.2.2</span> Chain rule through a vector intermediate</h3>
+<section id="chain-rule-through-a-vector-intermediate" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="chain-rule-through-a-vector-intermediate"><span class="header-section-number">3.6.2</span> Chain rule through a vector intermediate</h3>
 <p>Suppose:</p>
 <p><span class="math display">\[
 z = f(w), \qquad L = g(z),
@@ -949,8 +975,8 @@ J_f(w) \in \mathbb{R}^{m \times d},
 <p>This is the main chain rule for scalar-valued objectives. The gradient with respect to <span class="math inline">\(z\)</span> is pulled back to a gradient with respect to <span class="math inline">\(w\)</span> by multiplying by the transposed Jacobian.</p>
 </section>
 </section>
-<section id="scalar-output-matrix-input" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="scalar-output-matrix-input"><span class="header-section-number">4.3</span> Scalar output, matrix input</h2>
+<section id="scalar-output-matrix-input" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="scalar-output-matrix-input"><span class="header-section-number">3.7</span> Scalar output, matrix input</h2>
 <p>Let:</p>
 <p><span class="math display">\[
 L:\mathbb{R}^{m \times n}\to\mathbb{R}.
@@ -964,8 +990,8 @@ W \in \mathbb{R}^{m \times n},
 \nabla_W L \in \mathbb{R}^{m \times n}.
 \]</span></p>
 <p>The gradient with respect to a matrix has the same shape as the matrix.</p>
-<section id="constant-and-linear-terms" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="constant-and-linear-terms"><span class="header-section-number">4.3.1</span> Constant and linear terms</h3>
+<section id="constant-and-linear-terms" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="constant-and-linear-terms"><span class="header-section-number">3.7.1</span> Constant and linear terms</h3>
 <p>If <span class="math inline">\(c\)</span> does not depend on <span class="math inline">\(W\)</span>, then:</p>
 <p><span class="math display">\[
 \nabla_W c = 0.
@@ -983,8 +1009,8 @@ W \in \mathbb{R}^{m \times n},
 \nabla_w(a^\top w) = a.
 \]</span></p>
 </section>
-<section id="frobenius-norm" class="level3" data-number="4.3.2">
-<h3 data-number="4.3.2" class="anchored" data-anchor-id="frobenius-norm"><span class="header-section-number">4.3.2</span> Frobenius norm</h3>
+<section id="frobenius-norm" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="frobenius-norm"><span class="header-section-number">3.7.2</span> Frobenius norm</h3>
 <p>The Frobenius norm is the matrix version of the Euclidean norm:</p>
 <p><span class="math display">\[
 \|W\|_F^2 = \sum_{i=1}^m \sum_{j=1}^n W_{ij}^2 = \operatorname{tr}(W^\top W).
@@ -999,8 +1025,8 @@ W \in \mathbb{R}^{m \times n},
 \]</span></p>
 </section>
 </section>
-<section id="vector-output-vector-input" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="vector-output-vector-input"><span class="header-section-number">4.4</span> Vector output, vector input</h2>
+<section id="vector-output-vector-input" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="vector-output-vector-input"><span class="header-section-number">3.8</span> Vector output, vector input</h2>
 <p>Let:</p>
 <p><span class="math display">\[
 f:\mathbb{R}^n\to\mathbb{R}^m.
@@ -1009,8 +1035,8 @@ f:\mathbb{R}^n\to\mathbb{R}^m.
 <p><span class="math display">\[
 J_f(x) \in \mathbb{R}^{m \times n}.
 \]</span></p>
-<section id="linear-and-affine-maps" class="level3" data-number="4.4.1">
-<h3 data-number="4.4.1" class="anchored" data-anchor-id="linear-and-affine-maps"><span class="header-section-number">4.4.1</span> Linear and affine maps</h3>
+<section id="linear-and-affine-maps" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="linear-and-affine-maps"><span class="header-section-number">3.8.1</span> Linear and affine maps</h3>
 <p>If:</p>
 <p><span class="math display">\[
 f(x) = Ax,
@@ -1033,15 +1059,15 @@ J_f(x) = A.
 \]</span></p>
 <p>The constant shift <span class="math inline">\(b\)</span> does not affect the Jacobian.</p>
 </section>
-<section id="chain-rule-for-vector-output-functions" class="level3" data-number="4.4.2">
-<h3 data-number="4.4.2" class="anchored" data-anchor-id="chain-rule-for-vector-output-functions"><span class="header-section-number">4.4.2</span> Chain rule for vector-output functions</h3>
+<section id="chain-rule-for-vector-output-functions" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="chain-rule-for-vector-output-functions"><span class="header-section-number">3.8.2</span> Chain rule for vector-output functions</h3>
 <p>If:</p>
 <p><span class="math display">\[
 x \in \mathbb{R}^n, \qquad z = f(x) \in \mathbb{R}^m, \qquad y = g(z) \in \mathbb{R}^p,
 \]</span></p>
 <p>then:</p>
 <p><span class="math display">\[
-J_{g\circ f}(x) = J_g(z)J_f(x).
+J_y(x) = J_{g\circ f}(x) = J_g(z)J_f(x).
 \]</span></p>
 <p>The shapes are:</p>
 <p><span class="math display">\[
@@ -1051,14 +1077,14 @@ J_g(z) \in \mathbb{R}^{p \times m}, \qquad J_f(x) \in \mathbb{R}^{m \times n}.
 <p><span class="math display">\[
 J_{g\circ f}(x) \in \mathbb{R}^{p \times n}.
 \]</span></p>
-<p>For scalar output, this becomes the gradient chain rule:</p>
+<p>For scalar output, this becomes the gradient chain rule we saw earlier:</p>
 <p><span class="math display">\[
 \nabla_x L = J_f(x)^\top \nabla_z L.
 \]</span></p>
 </section>
 </section>
-<section id="matrix-output-scalar-input" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="matrix-output-scalar-input"><span class="header-section-number">4.5</span> Matrix output, scalar input</h2>
+<section id="matrix-output-scalar-input" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="matrix-output-scalar-input"><span class="header-section-number">3.9</span> Matrix output, scalar input</h2>
 <p>Let:</p>
 <p><span class="math display">\[
 F:\mathbb{R}\to\mathbb{R}^{m \times n}.
@@ -1071,8 +1097,8 @@ F:\mathbb{R}\to\mathbb{R}^{m \times n}.
 <p><span class="math display">\[
 \left(\frac{dF}{dt}\right)_{ij} = \frac{dF_{ij}}{dt}.
 \]</span></p>
-<section id="constant-linear-and-elementwise-rules" class="level3" data-number="4.5.1">
-<h3 data-number="4.5.1" class="anchored" data-anchor-id="constant-linear-and-elementwise-rules"><span class="header-section-number">4.5.1</span> Constant, linear, and elementwise rules</h3>
+<section id="constant-linear-and-elementwise-rules" class="level3" data-number="3.9.1">
+<h3 data-number="3.9.1" class="anchored" data-anchor-id="constant-linear-and-elementwise-rules"><span class="header-section-number">3.9.1</span> Constant, linear, and elementwise rules</h3>
 <p>If <span class="math inline">\(A\)</span> is constant with respect to <span class="math inline">\(t\)</span>, then:</p>
 <p><span class="math display">\[
 \frac{d}{dt}A = 0.
@@ -1096,11 +1122,14 @@ F(t) = t^2A,
 <p>If <span class="math inline">\(\phi\)</span> is applied entrywise to a matrix <span class="math inline">\(F(t)\)</span>, then:</p>
 <p><span class="math display">\[
 \frac{d}{dt}\phi(F(t)) = \phi'(F(t)) \odot \frac{dF}{dt}.
-\]</span> where <span class="math inline">\(\odot\)</span> is element-wise multiplication.</p>
-
-
+\]</span> where <span class="math inline">\(\odot\)</span> is element-wise (Hadamard) multiplication.</p>
 </section>
 </section>
+<section id="review-questions" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">3.10</span> Review Questions</h2>
+<p>See: <a href="../questions/005_derivatives_questions.html" class="quarto-xref"><span>Chapter 28</span></a>.</p>
+
+
 </section>
 
 </main> <!-- /main -->

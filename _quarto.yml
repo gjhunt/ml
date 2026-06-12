@@ -71,6 +71,13 @@ book:
         - lectures/210_random_forests.ipynb
         - lectures/220_boosting.ipynb
 
+    - part: "Practice Questions"
+      chapters:
+        - questions/000_intro_and_erm_questions.ipynb
+        - questions/005_derivatives_questions.ipynb
+        - questions/010_linear_regression_questions.ipynb
+        - questions/020_logistic_regression_questions.ipynb
+
 crossref:
   fig-title: "Figure"
   tbl-title: "Table"
@@ -90,6 +97,7 @@ format:
     toc-depth: 3
     number-sections: true
     code-fold: false
+    code-summary: "Show code"
     code-tools: true
     code-copy: true
     highlight-style: pygments

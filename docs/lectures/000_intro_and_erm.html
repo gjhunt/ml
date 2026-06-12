@@ -364,6 +364,41 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Practice Questions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/005_derivatives_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/010_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/020_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -382,13 +417,14 @@ window.Quarto = {
   </ul></li>
   <li><a href="#what-does-it-mean-to-learn" id="toc-what-does-it-mean-to-learn" class="nav-link" data-scroll-target="#what-does-it-mean-to-learn"><span class="header-section-number">2.3</span> What Does It Mean to “Learn”?</a></li>
   <li><a href="#statistical-setup-for-supervised-learning" id="toc-statistical-setup-for-supervised-learning" class="nav-link" data-scroll-target="#statistical-setup-for-supervised-learning"><span class="header-section-number">2.4</span> Statistical Setup for Supervised Learning</a></li>
-  <li><a href="#a-paradigm-empirical-risk-minimization-erm" id="toc-a-paradigm-empirical-risk-minimization-erm" class="nav-link" data-scroll-target="#a-paradigm-empirical-risk-minimization-erm"><span class="header-section-number">3</span> A Paradigm: Empirical Risk Minimization (ERM)</a>
+  <li><a href="#a-paradigm-empirical-risk-minimization-erm" id="toc-a-paradigm-empirical-risk-minimization-erm" class="nav-link" data-scroll-target="#a-paradigm-empirical-risk-minimization-erm"><span class="header-section-number">2.5</span> A Paradigm: Empirical Risk Minimization (ERM)</a>
   <ul class="collapse">
-  <li><a href="#score-and-action-separation" id="toc-score-and-action-separation" class="nav-link" data-scroll-target="#score-and-action-separation"><span class="header-section-number">3.0.1</span> Score and Action Separation</a></li>
-  <li><a href="#loss-functions" id="toc-loss-functions" class="nav-link" data-scroll-target="#loss-functions"><span class="header-section-number">3.0.2</span> Loss Functions</a></li>
-  <li><a href="#population-risk" id="toc-population-risk" class="nav-link" data-scroll-target="#population-risk"><span class="header-section-number">3.0.3</span> Population Risk</a></li>
-  <li><a href="#empirical-risk" id="toc-empirical-risk" class="nav-link" data-scroll-target="#empirical-risk"><span class="header-section-number">3.0.4</span> Empirical Risk</a></li>
+  <li><a href="#score-and-action-separation" id="toc-score-and-action-separation" class="nav-link" data-scroll-target="#score-and-action-separation"><span class="header-section-number">2.5.1</span> Score and Action Separation</a></li>
+  <li><a href="#loss-functions" id="toc-loss-functions" class="nav-link" data-scroll-target="#loss-functions"><span class="header-section-number">2.5.2</span> Loss Functions</a></li>
+  <li><a href="#population-risk" id="toc-population-risk" class="nav-link" data-scroll-target="#population-risk"><span class="header-section-number">2.5.3</span> Population Risk</a></li>
+  <li><a href="#empirical-risk" id="toc-empirical-risk" class="nav-link" data-scroll-target="#empirical-risk"><span class="header-section-number">2.5.4</span> Empirical Risk</a></li>
   </ul></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">2.6</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -414,6 +450,9 @@ window.Quarto = {
 </header>
 
 
+<div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
+<p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
+</div>
 <section id="what-is-statistical-machine-learning" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="what-is-statistical-machine-learning"><span class="header-section-number">2.1</span> What is Statistical Machine Learning?</h2>
 <p>Statistical machine learning is the study of how to build and analyze data-driven methods using probabilistic thinking.</p>
@@ -474,11 +513,11 @@ x_n = (X_{n1}, X_{n2}, \dots, X_{nD}) \in \mathbb{R}^D
 y \approx \hat{y} = \hat{f}(x).
 \]</span></p>
 </section>
-<section id="a-paradigm-empirical-risk-minimization-erm" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> A Paradigm: Empirical Risk Minimization (ERM)</h1>
+<section id="a-paradigm-empirical-risk-minimization-erm" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="a-paradigm-empirical-risk-minimization-erm"><span class="header-section-number">2.5</span> A Paradigm: Empirical Risk Minimization (ERM)</h2>
 <p>How should we learn from the data? There are many paradigms that we can use in statistical learning. In general our objective is to construct a function <span class="math inline">\(\hat{f}\)</span> that performs well on <strong>new</strong> data drawn from the distribution <span class="math inline">\(P\)</span>.</p>
-<section id="score-and-action-separation" class="level3" data-number="3.0.1">
-<h3 data-number="3.0.1" class="anchored" data-anchor-id="score-and-action-separation"><span class="header-section-number">3.0.1</span> Score and Action Separation</h3>
+<section id="score-and-action-separation" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="score-and-action-separation"><span class="header-section-number">2.5.1</span> Score and Action Separation</h3>
 <p>In many presentations, the prediction rule <span class="math inline">\(\hat{f}\)</span> is treated as a single object. In practice, however, it is often useful to separate it into two components.</p>
 <p>We write the prediction rule as: <span class="math display">\[
 \hat{f}(x) = a(\hat{s}(x)),
@@ -501,8 +540,8 @@ a(t) = \arg\max_{k\in\mathcal{C}} t_k.
 \]</span></p>
 <p>This score/action decomposition is not strictly necessary, but it often provides a cleaner way to think about how models produce predictions. Unless otherwise noted, these are the choices for <span class="math inline">\(a\)</span> we will use henceforth. We don’t lose anything by doing this, since if we fix <span class="math inline">\(a\)</span> then knowing <span class="math inline">\(\hat{s}\)</span> allows me to recover <span class="math inline">\(\hat{f}\)</span>.</p>
 </section>
-<section id="loss-functions" class="level3" data-number="3.0.2">
-<h3 data-number="3.0.2" class="anchored" data-anchor-id="loss-functions"><span class="header-section-number">3.0.2</span> Loss Functions</h3>
+<section id="loss-functions" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="loss-functions"><span class="header-section-number">2.5.2</span> Loss Functions</h3>
 <p>A primary thing we need to do when <em>learning</em> a prediction function <span class="math inline">\(\hat{f}\)</span> is to evaluate how <em>good</em> the predictions actually are. We can do this using a <strong>loss function</strong> <span class="math inline">\(\ell\)</span>. To evaluate a prediction <span class="math inline">\(\hat{f}(x)\)</span> against the true outcome <span class="math inline">\(y\)</span>, we let <span class="math display">\[
 \ell(y, \hat{s}(x)).
 \]</span> quantify the accuracy. Here higher loss <span class="math inline">\(\ell\)</span> is worse. Typically we want this quantification to be some non-negative number. Consequently,</p>
@@ -518,8 +557,8 @@ a(t) = \arg\max_{k\in\mathcal{C}} t_k.
     \]</span></p>
 <p>The loss function provides a way to compare different candidate prediction rules.</p>
 </section>
-<section id="population-risk" class="level3" data-number="3.0.3">
-<h3 data-number="3.0.3" class="anchored" data-anchor-id="population-risk"><span class="header-section-number">3.0.3</span> Population Risk</h3>
+<section id="population-risk" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="population-risk"><span class="header-section-number">2.5.3</span> Population Risk</h3>
 <p>Ideally, we would like to choose a function <span class="math inline">\(\hat{s}\)</span> that minimizes the loss over the true data-generating distribution <span class="math inline">\(P\)</span>. That is, for some new, unseen data from our data generating distribution, we’d like <span class="math inline">\(\hat{s}\)</span> to not incur much loss. This leads to the notion of <strong>risk</strong>: <span class="math display">\[
 R(s) = \mathbb{E}_{(x,y) \sim P}[\ell(y, s(x))].
 \]</span> This quantity measures (in expectation) how well <span class="math inline">\(s\)</span> performs on average for new samples drawn from <span class="math inline">\(P\)</span>.</p>
@@ -529,8 +568,8 @@ s^* = \arg\min_s R(s).
 <p>This represents the best possible score function within this framework, assuming we had access to the true distribution <span class="math inline">\(P\)</span>.</p>
 <p><strong>Problem:</strong> the distribution <span class="math inline">\(P\)</span> is unknown, so the expectation cannot be computed directly.</p>
 </section>
-<section id="empirical-risk" class="level3" data-number="3.0.4">
-<h3 data-number="3.0.4" class="anchored" data-anchor-id="empirical-risk"><span class="header-section-number">3.0.4</span> Empirical Risk</h3>
+<section id="empirical-risk" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="empirical-risk"><span class="header-section-number">2.5.4</span> Empirical Risk</h3>
 <p>Since we do not have access to <span class="math inline">\(P\)</span>, we approximate the population risk using the observed data. This leads to the <em>empirical risk</em>: <span class="math display">\[
 \hat{R}(s) = \hat{R}_N(s) = \frac{1}{N} \sum_{n=1}^N \ell(y_n, s(x_n)).
 \]</span></p>
@@ -556,12 +595,16 @@ s^* = \arg\min_s R(s).
 <p><span class="math display">\[
 \hat{s} = \text{Algorithm}(\mathcal{D}, \ell, \mathcal{S}, {\tt Optimizer}).
 \]</span></p>
-<p>While ERM is a natural and widely used approach, it raises important questions. For example: - Does minimizing empirical error lead to good performance on new data? - Can a model fit the training data too well? - How does the choice of model class affect the outcome?</p>
+<p>While ERM is a natural and widely used approach, it raises important questions. For example: - Does minimizing empirical risk lead to good performance on new data? - Can a model fit the training data too well? - How does the choice of model class affect the outcome?</p>
 <p>These questions, and others, motivate the study of generalization, regularization, and model complexity, which we will develop later.</p>
 <p>Furthermore, ERM isn’t the only game in town. Although, for an introductory course its a good framework to hang much of what we learn upon.</p>
-
-
 </section>
+</section>
+<section id="review-questions" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">2.6</span> Review Questions</h2>
+<p>See: <a href="../questions/000_intro_and_erm_questions.html" class="quarto-xref"><span>Chapter 27</span></a></p>
+
+
 </section>
 
 </main> <!-- /main -->
