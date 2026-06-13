@@ -77,6 +77,8 @@ book:
         - questions/005_derivatives_questions.ipynb
         - questions/010_linear_regression_questions.ipynb
         - questions/020_logistic_regression_questions.ipynb
+        - questions/030_multiclass_logistic_regression_questions.ipynb
+        - questions/040_ERM_NLL_questions.ipynb
 
 crossref:
   fig-title: "Figure"

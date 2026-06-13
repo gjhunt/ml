@@ -227,7 +227,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, KL, and Cross Entropy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
   </div>
 </li>
       </ul>
@@ -434,6 +434,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/030_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -460,8 +472,10 @@ window.Quarto = {
   </ul></li>
   <li><a href="#mnist" id="toc-mnist" class="nav-link" data-scroll-target="#mnist"><span class="header-section-number">8</span> MNIST</a></li>
   <li><a href="#one-vs-rest" id="toc-one-vs-rest" class="nav-link" data-scroll-target="#one-vs-rest"><span class="header-section-number">9</span> One-vs-rest</a></li>
-  <li><a href="#linear-classifiers." id="toc-linear-classifiers." class="nav-link" data-scroll-target="#linear-classifiers."><span class="header-section-number">10</span> Linear classifiers.</a></li>
-  <li><a href="#problem-ideas" id="toc-problem-ideas" class="nav-link" data-scroll-target="#problem-ideas"><span class="header-section-number">11</span> Problem Ideas</a></li>
+  <li><a href="#linear-classifiers." id="toc-linear-classifiers." class="nav-link" data-scroll-target="#linear-classifiers."><span class="header-section-number">10</span> Linear classifiers.</a>
+  <ul class="collapse">
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">10.1</span> Review Questions</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -470,7 +484,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/000_intro_and_erm.html">Foundations and Empirical Risk Minimization</a></li><li class="breadcrumb-item"><a href="../lectures/030_multiclass_logistic_regression.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -487,6 +501,9 @@ window.Quarto = {
 </header>
 
 
+<div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
+<p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
+</div>
 <p>Logistic regression extends naturally from the binary case to the case of <span class="math inline">\(K &gt; 2\)</span> classes. The basic idea is the same: we build <strong>linear scores</strong> from the input, turn those scores into probabilities, and then fit the parameters by minimizing <strong>cross-entropy loss</strong>.</p>
 <p>Throughout, let the response take values in <span class="math display">\[
 y \in \{1,2,\dots,K\},
@@ -539,9 +556,9 @@ p_k(x)=\frac{e^{w_k^\top x}}{\sum_{j=1}^K e^{w_j^\top x}},
 \log \left( \sum_{j=1}^K e^{w_j^\top x} \right) - w_c^\top x.
 \]</span></p>
 <p>More generally, using one-hot notation, <span class="math display">\[
-\ell(y, s(x)) =
+\ell(t, s(x)) =
 \log \left( \sum_{j=1}^K e^{w_j^\top x} \right) -
-\sum_{k=1}^K y_k w_k^\top x.
+\sum_{k=1}^K t_k w_k^\top x.
 \]</span></p>
 <p>This is sometimes also called the <strong>multinomial logistic loss</strong> or <strong>softmax loss</strong>, but more commonly the <strong>categorical cross entropy</strong> loss.</p>
 </section>
@@ -628,9 +645,6 @@ P_{na}(\mathbf{1}\{a=b\} - P_{nb}).
 <p>This is nicely similar to what we derived in the binary classification case. Isn’t that nice!? It has almost exactly the same shape as in the binary case. The only difference is that now the residual is matrix-valued: <span class="math display">\[
 P - T \in \mathbb{R}^{N \times K}.
 \]</span></p>
-<p><strong>Side comment.</strong><br>
-We just wrote a derivative with respect to a matrix <span class="math inline">\(W\)</span>, which can feel like a new step. In practice, this is mostly bookkeeping. The gradient with respect to <span class="math inline">\(W \in \mathbb{R}^{D \times K}\)</span> is just the collection of gradients with respect to each column <span class="math inline">\(w_k\)</span>, arranged into a matrix of the same shape. What is slightly new is the notation: instead of writing <span class="math inline">\(K\)</span> separate vector derivatives, we package everything into one object. This lets us write updates and derivations more compactly, but does not change the underlying calculations.</p>
-<p>The rule: &gt; When differentiating a scalar function, the gradient has the same shape as the argument. Matrix gradients are just a convenient way of organizing many partial derivatives.</p>
 <p>So gradient descent takes the form <span class="math display">\[
 W^{(t+1)}=
 W^{(t)} - \eta \frac{1}{N} X^\top (P^{(t)} - T),
@@ -721,7 +735,7 @@ P^{(t)} = \mathrm{softmax}(X W^{(t)}).
 <div id="ab4ad8a2-cf34-4979-8cd0-63720b882304" class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>T.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<pre><code>array([524., 446.,  30.])</code></pre>
+<pre><code>array([594., 157., 249.])</code></pre>
 </div>
 </div>
 <div id="fc3f2ea5-1a83-432f-b027-eb3c729f3a3a" class="cell">
@@ -730,16 +744,15 @@ P^{(t)} = \mathrm{softmax}(X W^{(t)}).
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[y<span class="op">==</span><span class="dv">0</span>,<span class="dv">1</span>],X[y<span class="op">==</span><span class="dv">0</span>,<span class="dv">2</span>],label<span class="op">=</span><span class="st">"y = 0"</span>)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[y<span class="op">==</span><span class="dv">1</span>,<span class="dv">1</span>],X[y<span class="op">==</span><span class="dv">1</span>,<span class="dv">2</span>],label<span class="op">=</span><span class="st">"y = 1"</span>)</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[y<span class="op">==</span><span class="dv">2</span>,<span class="dv">1</span>],X[y<span class="op">==</span><span class="dv">2</span>,<span class="dv">2</span>],label<span class="op">=</span><span class="st">"y = 2"</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[y<span class="op">==</span><span class="dv">3</span>,<span class="dv">1</span>],X[y<span class="op">==</span><span class="dv">3</span>,<span class="dv">2</span>],label<span class="op">=</span><span class="st">"y = 3"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"$x_1$"</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"$x_2$"</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"2D dataset"</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"equal"</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"$x_1$"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"$x_2$"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"2D dataset"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">"equal"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -886,6 +899,8 @@ w_a^\top x = w_b^\top x.
 \]</span></p>
 <p>So with raw linear features, the boundary between any pair of classes is still linear. In multiclass logistic regression, the input space gets partitioned into several regions, (at most) one region per class, separated by pairwise linear boundaries. We’ll end up calling this a <strong>linear classifier.</strong></p>
 <div id="86820034-3fe3-46f0-8e27-3204787c5146" class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -950,6 +965,7 @@ w_a^\top x = w_b^\top x.
 <span id="cb22-62"><a href="#cb22-62" aria-hidden="true" tabindex="-1"></a>    plt.title(title)</span>
 <span id="cb22-63"><a href="#cb22-63" aria-hidden="true" tabindex="-1"></a>    plt.legend()</span>
 <span id="cb22-64"><a href="#cb22-64" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="9950e546-d7e3-40fb-a520-5e8b34604664" class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plot_multiclass_decision_regions(X, y, W_hat, title<span class="op">=</span><span class="st">"Estimated multiclass decision regions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4581,7 +4597,12 @@ weighted avg       0.87      0.87      0.87      4000
 <h1 data-number="9"><span class="header-section-number">9</span> One-vs-rest</h1>
 <p>There are two common ways to extend binary logistic regression to multiple classes.</p>
 <p><strong>One-vs-rest</strong></p>
-<p>Fit <span class="math inline">\(K\)</span> separate binary classifiers: - class 1 versus not class 1: <span class="math inline">\(s_1\)</span> - class 2 versus not class 2: <span class="math inline">\(s_2\)</span> - and so on</p>
+<p>Fit <span class="math inline">\(K\)</span> separate binary classifiers:</p>
+<ul>
+<li>class 1 versus not class 1: <span class="math inline">\(s_1\)</span></li>
+<li>class 2 versus not class 2: <span class="math inline">\(s_2\)</span></li>
+<li>and so on</li>
+</ul>
 <p>This is simple, but the resulting score functions need not fit together as a single coherent multiclass model. We can still do something like:</p>
 <p><span class="math display">\[
 \hat{y} = \hat{f}(x) = \arg\max_k s_k(x)
@@ -4604,19 +4625,12 @@ w_k^\top x = w_j^\top x,
 \]</span> or <span class="math display">\[
 (w_k - w_j)^\top x = 0.
 \]</span> This is a linear equation in <span class="math inline">\(x\)</span>, so the boundary is a hyperplane.</p>
+<section id="review-questions" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">10.1</span> Review Questions</h2>
+<p>See: <a href="../questions/030_multiclass_logistic_regression_questions.html" class="quarto-xref"><span>Chapter 31</span></a>.</p>
+
+
 </section>
-<section id="problem-ideas" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Problem Ideas</h1>
-<ul>
-<li>derive the softmax gradient carefully and show that it reduces to <span class="math inline">\(X^\top(P-Y)\)</span></li>
-<li>show that adding the same vector to every class weight leaves the probabilities unchanged</li>
-<li>derive the pairwise class boundary equation <span class="math inline">\((w_a - w_b)^\top x = 0\)</span></li>
-<li>compare one-vs-rest and multinomial logistic regression on the same dataset</li>
-<li>add polynomial features and visualize how the decision regions change</li>
-<li>derive the Hessian block formula and explain why Newton’s method becomes more expensive</li>
-</ul>
-
-
 </section>
 
 </main> <!-- /main -->
@@ -5242,8 +5256,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lectures/040_ERM_NLL.html" class="pagination-link" aria-label="ERM, Maximum Likelihood, KL, and Cross Entropy">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, KL, and Cross Entropy</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/040_ERM_NLL.html" class="pagination-link" aria-label="ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
