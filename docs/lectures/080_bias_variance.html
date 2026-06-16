@@ -437,6 +437,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/080_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -451,25 +457,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
   </div>
 </li>
       </ul>
@@ -487,9 +493,8 @@ window.Quarto = {
   <li><a href="#statistical-setup" id="toc-statistical-setup" class="nav-link active" data-scroll-target="#statistical-setup"><span class="header-section-number">10.1</span> Statistical Setup</a></li>
   <li><a href="#derivation" id="toc-derivation" class="nav-link" data-scroll-target="#derivation"><span class="header-section-number">10.2</span> Derivation</a></li>
   <li><a href="#why-do-we-call-it-a-tradeoff" id="toc-why-do-we-call-it-a-tradeoff" class="nav-link" data-scroll-target="#why-do-we-call-it-a-tradeoff"><span class="header-section-number">10.3</span> Why do we call it a tradeoff?</a></li>
-  <li><a href="#global-version" id="toc-global-version" class="nav-link" data-scroll-target="#global-version"><span class="header-section-number">10.4</span> Global version</a></li>
-  <li><a href="#role-of-sample-size" id="toc-role-of-sample-size" class="nav-link" data-scroll-target="#role-of-sample-size"><span class="header-section-number">10.5</span> Role of Sample Size</a></li>
-  <li><a href="#beyond-squared-loss" id="toc-beyond-squared-loss" class="nav-link" data-scroll-target="#beyond-squared-loss"><span class="header-section-number">11</span> Beyond Squared Loss</a></li>
+  <li><a href="#role-of-sample-size" id="toc-role-of-sample-size" class="nav-link" data-scroll-target="#role-of-sample-size"><span class="header-section-number">10.4</span> Role of Sample Size</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">10.5</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -525,6 +530,7 @@ window.Quarto = {
 <p>Assume a standard data-generating model: <span class="math display">\[
 Y = f^*(X) + \varepsilon
 \]</span></p>
+<p>Here <span class="math inline">\(f^*\)</span> is the <strong>true</strong> model, now just the <em>best</em> one.</p>
 <p>Where: - <span class="math inline">\(f^*(X)\)</span>: true underlying signal - <span class="math inline">\(\varepsilon\)</span>: noise</p>
 <p>pretty mild assumptions assumptions: - <span class="math inline">\(\mathbb{E}[\varepsilon \mid X] = 0\)</span> - <span class="math inline">\(\mathrm{Var}(\varepsilon \mid X) = \sigma^2\)</span></p>
 <p>Assume we have some training data:</p>
@@ -537,24 +543,25 @@ Y = f^*(X) + \varepsilon
 <p>Here, <span class="math inline">\(\hat f\)</span> is <strong>random</strong> because it depends on the random dataset <span class="math inline">\(\mathcal{D}\)</span>.</p>
 <p>Under this model there are <strong>two sources of randomness</strong>: 1. Noise in outputs <span class="math inline">\(\varepsilon\)</span> 2. Randomness of the dataset <span class="math inline">\(\mathcal{D}\)</span></p>
 <p>Consider evaluating at a new new test point: <span class="math display">\[
-(X, Y) \overset{iid}{\sim} P
+(X, Y) \sim P
 \]</span></p>
 <p>We let’s consider the point-wise risk (for a fixed <span class="math inline">\(x\)</span>): <span class="math display">\[
-R(x) = \mathbb{E}\big[(Y - \hat f(x))^2 \mid X = x\big]
+R_f(x) = \mathbb{E}\big[(Y - \hat f(x))^2 \mid X = x\big]
 \]</span></p>
+<p>Notice here that we are using <strong>squared error</strong> to measure fit. This is important, and our derivation won’t work (exactly) without it.</p>
 <p>We define quantities <strong>at a fixed <span class="math inline">\(x\)</span></strong>. So that the expectation is over the randomness of the dataset <span class="math inline">\(\mathcal{D}\)</span>. Define the <strong>bias</strong> as : <span class="math display">\[
-\mathrm{Bias}(x) = \mathbb{E}_{\mathcal{D}}[\hat f(x)] - f^*(x)
+\mathrm{Bias}_f(x) = \mathbb{E}_{\mathcal{D}}[\hat f(x)] - f^*(x)
 \]</span></p>
 <p>The interpretation is that <em>bias</em> measures far the <em>average model</em> is from truth. Its a measure of <strong>model misspecification</strong>.</p>
 <p>Define the <strong>variance</strong> as <span class="math display">\[
-\mathrm{Var}(x) = \mathrm{Var}_{\mathcal{D}}(\hat f(x))
+\mathrm{Var}_f(x) = \mathrm{Var}_{\mathcal{D}}(\hat f(x))
 \]</span></p>
 <p>The interpretation is how much predictions fluctuate across datasets. Variance measures <strong>instability</strong>.</p>
 <p>We can show that</p>
-<p><span class="math display">\[R(x)=
-\mathrm{Bias}(x)^2
+<p><span class="math display">\[R_f(x)=
+\mathrm{Bias}_f(x)^2
 +
-\mathrm{Var}(x)
+\mathrm{Var}_f(x)
 +
 \sigma^2
 \]</span></p>
@@ -567,9 +574,9 @@ R(x) = \mathbb{E}\big[(Y - \hat f(x))^2 \mid X = x\big]
 </section>
 <section id="derivation" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="derivation"><span class="header-section-number">10.2</span> Derivation</h2>
-<p>In particular, we find: <span class="math display">\[
-R(x) = \mathbb{E}\big[(Y - \hat f(x))^2 \mid X = x\big]
-= \mathrm{Bias}(x)^2 + \mathrm{Var}(x) + \sigma^2
+<p>Let’s show that: <span class="math display">\[
+R_f(x) = \mathbb{E}\big[(Y - \hat f(x))^2 \mid X = x\big]
+= \mathrm{Bias}_f(x)^2 + \mathrm{Var}_f(x) + \sigma^2
 \]</span></p>
 <p><strong>Step 1:</strong> Substitute the data-generating model</p>
 <p>Recall: <span class="math display">\[
@@ -645,15 +652,15 @@ f^*(x) - \hat f(x)=
 <p>Putting this all together, we get:</p>
 <p><span class="math display">\[
 \mathbb{E}\big[(f^*(x) - \hat f(x))^2\big]=
-\underbrace{\big(\mathbb{E}[\hat f(x)] - f^*(x)\big)^2}_{\mathrm{Bias}(x)^2}
+\underbrace{\big(\mathbb{E}[\hat f(x)] - f^*(x)\big)^2}_{\mathrm{Bias}_f(x)^2}
 +
-\underbrace{\mathrm{Var}(\hat f(x))}_{\mathrm{Var}(x)}
+\underbrace{\mathrm{Var}(\hat f(x))}_{\mathrm{Var}_f(x)}
 \]</span></p>
 <p>So we get our result: <span class="math display">\[
 R(x)=
-\mathrm{Bias}(x)^2
+\mathrm{Bias}_f(x)^2
 +
-\mathrm{Var}(x)
+\mathrm{Var}_f(x)
 +
 \sigma^2
 \]</span></p>
@@ -681,7 +688,7 @@ R(x)=
 <li>reduces variance</li>
 </ul></li>
 </ul>
-<p>Examples of flexibility include: - Polynomial degree - Number of parameters - KNN neighborhood size - …</p>
+<p>Examples of flexibility include: - Polynomial degree - Number of parameters - KNN neighborhood size</p>
 <p>We can visualize it here:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -690,38 +697,8 @@ R(x)=
 </figure>
 </div>
 </section>
-<section id="global-version" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="global-version"><span class="header-section-number">10.4</span> Global version</h2>
-<p>So far, we have worked <strong>pointwise</strong>, fixing a particular input value <span class="math inline">\(x\)</span>. For each fixed <span class="math inline">\(x\)</span>, we showed that <span class="math display">\[
-R(x) = \mathbb{E}\big[(Y - \hat f(x))^2 \mid X = x\big]
-= \mathrm{Bias}(x)^2 + \mathrm{Var}(x) + \sigma^2
-\]</span></p>
-<p>But in practice, we may care about the model’s <strong>overall test error</strong>, not just its error at one particular value of <span class="math inline">\(x\)</span>. This leads to the <strong>global risk</strong>: <span class="math display">\[
-R = \mathbb{E}\big[(Y - \hat f(X))^2\big]
-\]</span></p>
-<p>This is the expected squared prediction error when <span class="math inline">\((X,Y)\)</span> is drawn fresh from the population.</p>
-<p>By the law of total expectation, <span class="math display">\[
-R = \mathbb{E}_X\Big[ \mathbb{E}\big[(Y - \hat f(X))^2 \mid X\big] \Big]
-\]</span></p>
-<p>But the inner term is exactly the pointwise risk <span class="math inline">\(R(X)\)</span>, so: <span class="math display">\[
-R = \mathbb{E}_X[R(X)]
-\]</span></p>
-<p>Now plug in the pointwise bias-variance decomposition: <span class="math display">\[
-R(X) = \mathrm{Bias}(X)^2 + \mathrm{Var}(X) + \sigma^2
-\]</span></p>
-<p>Therefore, <span class="math display">\[
-R = \mathbb{E}_X\big[\mathrm{Bias}(X)^2 + \mathrm{Var}(X) + \sigma^2\big]
-\]</span></p>
-<p>Using linearity of expectation, <span class="math display">\[
-R = \mathbb{E}_X[\mathrm{Bias}(X)^2] + \mathbb{E}_X[\mathrm{Var}(X)] + \sigma^2
-\]</span></p>
-<p>Equivalently, we often write: <span class="math display">\[
-R = \mathbb{E}_X[\mathrm{Bias}(X)^2 + \mathrm{Var}(X)] + \sigma^2
-\]</span></p>
-<p>So not much really changes, except that its weighted by the probability we see some particular <span class="math inline">\(x\)</span>. When we talk about minimizing test error, we are really minimizing an average of bias and variance across the population of inputs.</p>
-</section>
-<section id="role-of-sample-size" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="role-of-sample-size"><span class="header-section-number">10.5</span> Role of Sample Size</h2>
+<section id="role-of-sample-size" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="role-of-sample-size"><span class="header-section-number">10.4</span> Role of Sample Size</h2>
 <p>As the sample size increases:</p>
 <ul>
 <li><strong>Variance decreases</strong></li>
@@ -733,6 +710,7 @@ R = \mathbb{E}_X[\mathrm{Bias}(X)^2 + \mathrm{Var}(X)] + \sigma^2
 <li>If variance is high → get more data or regularize</li>
 <li>If bias is high → use a richer model</li>
 </ul>
+<p>Here is an example of what these actual quantities look like in a simulation:</p>
 <div id="010f26a7-cd00-4e23-aaaa-c7c39ec1bf34" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -825,146 +803,11 @@ R = \mathbb{E}_X[\mathrm{Bias}(X)^2 + \mathrm{Var}(X)] + \sigma^2
 </div>
 </div>
 </div>
-</section>
-<section id="beyond-squared-loss" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Beyond Squared Loss</h1>
 <p>While technically this very mathematically precise statement about a bias-variance decomposition depends on using a squared-error loss in a regression context. It is still often a good guiding principle for other losses and even classification.</p>
-<p>For binary classification, we can get something similar by considering <span class="math inline">\(\hat{p}(x)\)</span> to be the probability of being in class 1, and then doing a similar bias-variance decomposition on <span class="math inline">\(E[(\hat{p}(x)-p(x))^2]\)</span>.</p>
-<div id="db022ef9-f472-4a21-89cc-3b6a83235857" class="cell">
-<details open="" class="code-fold">
-<summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng()</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># True class probability</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> s_true(x):</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.8</span> <span class="op">*</span> (np.sin(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> x)<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">2</span>) <span class="op">**</span> <span class="dv">2</span>) <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logistic(x):</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(<span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>np.exp(<span class="op">-</span>x)))</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> p_true(x):</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> logistic(s_true(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="74b04f36-1636-47a1-b7d8-8548dc18804d" class="cell">
-<details open="" class="code-fold">
-<summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation setup</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n_train <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n_datasets <span class="op">=</span> <span class="dv">300</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">200</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>p_grid <span class="op">=</span> p_true(x_grid.ravel())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="24c48fc0-8bc8-462c-b49f-f80e90bbcbc3" class="cell">
-<details open="" class="code-fold">
-<summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.plot(x_grid,p_grid)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'prob'</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="080_bias_variance_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="6c3accc7-2f6f-488d-8814-d0cd8d4b97cc" class="cell">
-<details open="" class="code-fold">
-<summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>k_values <span class="op">=</span> np.unique(np.<span class="bu">round</span>(np.linspace(<span class="dv">1</span>, n_train, num<span class="op">=</span><span class="dv">20</span>)).astype(<span class="bu">int</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="31d1c9ef-b852-4af2-a931-5e6e33db012f" class="cell">
-<details open="" class="code-fold">
-<summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bias2_list <span class="op">=</span> []</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>var_list <span class="op">=</span> []</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>brier_list <span class="op">=</span> []</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>class_error_list <span class="op">=</span> []</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> k_values:</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    prob_preds <span class="op">=</span> []</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    class_preds <span class="op">=</span> []</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_datasets):</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Simulate one training dataset</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        X_train <span class="op">=</span> rng.uniform(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span>n_train)</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>        y_train <span class="op">=</span> rng.binomial(<span class="dv">1</span>, p_true(X_train))</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Fit KNN classifier</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span>k)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        model.fit(X_train.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), y_train)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Predict class probabilities on common grid</span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        p_hat <span class="op">=</span> model.predict_proba(x_grid)[:, <span class="dv">1</span>]</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>        y_hat <span class="op">=</span> (p_hat <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        prob_preds.append(p_hat)</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        class_preds.append(y_hat)</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    prob_preds <span class="op">=</span> np.array(prob_preds)   <span class="co"># shape: (n_datasets, len(x_grid))</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    class_preds <span class="op">=</span> np.array(class_preds)</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Mean predicted probability across training sets</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    mean_prob <span class="op">=</span> prob_preds.mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bias^2 and variance for probability estimation</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    bias2_x <span class="op">=</span> (mean_prob <span class="op">-</span> p_grid) <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    var_x <span class="op">=</span> prob_preds.var(axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    bias2 <span class="op">=</span> bias2_x.mean()</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    variance <span class="op">=</span> var_x.mean()</span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Brier-style total squared error for estimating p(x)</span></span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    brier <span class="op">=</span> bias2 <span class="op">+</span> variance</span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Approximate classification error on the grid</span></span>
-<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bayes classifier predicts 1 if p(x) &gt;= 0.5</span></span>
-<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># For each fitted classifier, compute true misclassification probability</span></span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    class_error_per_dataset <span class="op">=</span> []</span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> y_hat <span class="kw">in</span> class_preds:</span>
-<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>        err_x <span class="op">=</span> np.where(y_hat <span class="op">==</span> <span class="dv">1</span>, <span class="dv">1</span> <span class="op">-</span> p_grid, p_grid)</span>
-<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>        class_error_per_dataset.append(err_x.mean())</span>
-<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    class_error <span class="op">=</span> np.mean(class_error_per_dataset)</span>
-<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>    bias2_list.append(bias2)</span>
-<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>    var_list.append(variance)</span>
-<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>    brier_list.append(brier)</span>
-<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>    class_error_list.append(class_error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div id="e502fd66-2225-4091-9a23-e4da8aa5fed2" class="cell">
-<details open="" class="code-fold">
-<summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.plot(k_values, bias2_list, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'Bias^2'</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.plot(k_values, var_list, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'Variance'</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>plt.plot(k_values, brier_list, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'Bias^2 + Variance'</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.plot(k_values, class_error_list, marker='o', label='Classification Error')</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'k in KNN classification'</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Error'</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Bias-Variance Tradeoff in KNN Classification'</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="080_bias_variance_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+</section>
+<section id="review-questions" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">10.5</span> Review Questions</h2>
+<p>See: <a href="../questions/080_bias_variance_questions.html" class="quarto-xref"><span>Chapter 32</span></a>.</p>
 
 
 </section>

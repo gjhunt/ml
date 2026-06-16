@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>34&nbsp; Constrained Optimization via Primal–Dual Methods – Statistical Learning</title>
+<title>35&nbsp; Constrained Optimization via Primal–Dual Methods – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html">Extras</a></li><li class="breadcrumb-item"><a href="../lectures/101_constr_optim.html"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html">Extras</a></li><li class="breadcrumb-item"><a href="../lectures/101_constr_optim.html"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -403,6 +403,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/080_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -417,25 +423,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
   </div>
 </li>
       </ul>
@@ -450,32 +456,32 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#primal-problem" id="toc-primal-problem" class="nav-link active" data-scroll-target="#primal-problem"><span class="header-section-number">34.1</span> Primal Problem</a></li>
-  <li><a href="#lagrangian" id="toc-lagrangian" class="nav-link" data-scroll-target="#lagrangian"><span class="header-section-number">34.2</span> Lagrangian</a></li>
-  <li><a href="#dual-function" id="toc-dual-function" class="nav-link" data-scroll-target="#dual-function"><span class="header-section-number">34.3</span> Dual Function</a></li>
-  <li><a href="#weak-duality" id="toc-weak-duality" class="nav-link" data-scroll-target="#weak-duality"><span class="header-section-number">34.4</span> Weak Duality</a></li>
-  <li><a href="#dual-problem" id="toc-dual-problem" class="nav-link" data-scroll-target="#dual-problem"><span class="header-section-number">34.5</span> Dual Problem</a></li>
-  <li><a href="#kkt-conditions" id="toc-kkt-conditions" class="nav-link" data-scroll-target="#kkt-conditions"><span class="header-section-number">34.6</span> KKT Conditions</a>
+  <li><a href="#primal-problem" id="toc-primal-problem" class="nav-link active" data-scroll-target="#primal-problem"><span class="header-section-number">35.1</span> Primal Problem</a></li>
+  <li><a href="#lagrangian" id="toc-lagrangian" class="nav-link" data-scroll-target="#lagrangian"><span class="header-section-number">35.2</span> Lagrangian</a></li>
+  <li><a href="#dual-function" id="toc-dual-function" class="nav-link" data-scroll-target="#dual-function"><span class="header-section-number">35.3</span> Dual Function</a></li>
+  <li><a href="#weak-duality" id="toc-weak-duality" class="nav-link" data-scroll-target="#weak-duality"><span class="header-section-number">35.4</span> Weak Duality</a></li>
+  <li><a href="#dual-problem" id="toc-dual-problem" class="nav-link" data-scroll-target="#dual-problem"><span class="header-section-number">35.5</span> Dual Problem</a></li>
+  <li><a href="#kkt-conditions" id="toc-kkt-conditions" class="nav-link" data-scroll-target="#kkt-conditions"><span class="header-section-number">35.6</span> KKT Conditions</a>
   <ul class="collapse">
-  <li><a href="#primal-feasibility" id="toc-primal-feasibility" class="nav-link" data-scroll-target="#primal-feasibility"><span class="header-section-number">34.6.1</span> Primal feasibility</a></li>
-  <li><a href="#dual-feasibility" id="toc-dual-feasibility" class="nav-link" data-scroll-target="#dual-feasibility"><span class="header-section-number">34.6.2</span> Dual feasibility</a></li>
-  <li><a href="#stationarity" id="toc-stationarity" class="nav-link" data-scroll-target="#stationarity"><span class="header-section-number">34.6.3</span> Stationarity</a></li>
-  <li><a href="#complementary-slackness" id="toc-complementary-slackness" class="nav-link" data-scroll-target="#complementary-slackness"><span class="header-section-number">34.6.4</span> Complementary slackness</a></li>
+  <li><a href="#primal-feasibility" id="toc-primal-feasibility" class="nav-link" data-scroll-target="#primal-feasibility"><span class="header-section-number">35.6.1</span> Primal feasibility</a></li>
+  <li><a href="#dual-feasibility" id="toc-dual-feasibility" class="nav-link" data-scroll-target="#dual-feasibility"><span class="header-section-number">35.6.2</span> Dual feasibility</a></li>
+  <li><a href="#stationarity" id="toc-stationarity" class="nav-link" data-scroll-target="#stationarity"><span class="header-section-number">35.6.3</span> Stationarity</a></li>
+  <li><a href="#complementary-slackness" id="toc-complementary-slackness" class="nav-link" data-scroll-target="#complementary-slackness"><span class="header-section-number">35.6.4</span> Complementary slackness</a></li>
   </ul></li>
-  <li><a href="#strategy" id="toc-strategy" class="nav-link" data-scroll-target="#strategy"><span class="header-section-number">34.7</span> Strategy</a></li>
-  <li><a href="#duality-gap-identity" id="toc-duality-gap-identity" class="nav-link" data-scroll-target="#duality-gap-identity"><span class="header-section-number">34.8</span> Duality Gap Identity</a></li>
-  <li><a href="#the-squeeze" id="toc-the-squeeze" class="nav-link" data-scroll-target="#the-squeeze"><span class="header-section-number">34.9</span> The Squeeze</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">34.10</span> Conclusion</a></li>
-  <li><a href="#constrained-vs-penalized-optimization" id="toc-constrained-vs-penalized-optimization" class="nav-link" data-scroll-target="#constrained-vs-penalized-optimization"><span class="header-section-number">35</span> Constrained vs Penalized Optimization</a></li>
+  <li><a href="#strategy" id="toc-strategy" class="nav-link" data-scroll-target="#strategy"><span class="header-section-number">35.7</span> Strategy</a></li>
+  <li><a href="#duality-gap-identity" id="toc-duality-gap-identity" class="nav-link" data-scroll-target="#duality-gap-identity"><span class="header-section-number">35.8</span> Duality Gap Identity</a></li>
+  <li><a href="#the-squeeze" id="toc-the-squeeze" class="nav-link" data-scroll-target="#the-squeeze"><span class="header-section-number">35.9</span> The Squeeze</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">35.10</span> Conclusion</a></li>
+  <li><a href="#constrained-vs-penalized-optimization" id="toc-constrained-vs-penalized-optimization" class="nav-link" data-scroll-target="#constrained-vs-penalized-optimization"><span class="header-section-number">36</span> Constrained vs Penalized Optimization</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html">Extras</a></li><li class="breadcrumb-item"><a href="../lectures/101_constr_optim.html"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html">Extras</a></li><li class="breadcrumb-item"><a href="../lectures/101_constr_optim.html"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></h1>
+<h1 class="title"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></h1>
 </div>
 
 
@@ -493,8 +499,8 @@ window.Quarto = {
 
 
 <p>We consider a general constrained optimization problem. The goal is to minimize a function subject to constraints.</p>
-<section id="primal-problem" class="level2" data-number="34.1">
-<h2 data-number="34.1" class="anchored" data-anchor-id="primal-problem"><span class="header-section-number">34.1</span> Primal Problem</h2>
+<section id="primal-problem" class="level2" data-number="35.1">
+<h2 data-number="35.1" class="anchored" data-anchor-id="primal-problem"><span class="header-section-number">35.1</span> Primal Problem</h2>
 <p>Let <span class="math inline">\(x \in \mathbb{R}^n\)</span> be the decision variable.</p>
 <p>We define the <strong>primal problem</strong>:</p>
 <p><span class="math display">\[
@@ -517,8 +523,8 @@ h_j(x) = 0 \quad (j = 1,\dots,p).
 </ul>
 <p>A point <span class="math inline">\(x\)</span> satisfying all constraints is called <strong>primal feasible</strong>.</p>
 </section>
-<section id="lagrangian" class="level2" data-number="34.2">
-<h2 data-number="34.2" class="anchored" data-anchor-id="lagrangian"><span class="header-section-number">34.2</span> Lagrangian</h2>
+<section id="lagrangian" class="level2" data-number="35.2">
+<h2 data-number="35.2" class="anchored" data-anchor-id="lagrangian"><span class="header-section-number">35.2</span> Lagrangian</h2>
 <p>To handle constraints, we introduce multipliers:</p>
 <ul>
 <li><span class="math inline">\(\lambda_i \ge 0\)</span> for inequalities<br>
@@ -541,8 +547,8 @@ f_0(x)
 - The multipliers control how strongly we penalize inequality violations</p>
 <p>So the Lagrangian converts a constrained problem into an unconstrained one, parameterized by <span class="math inline">\((\lambda,\nu)\)</span>. It is (essentially) a relaxation of the problem.</p>
 </section>
-<section id="dual-function" class="level2" data-number="34.3">
-<h2 data-number="34.3" class="anchored" data-anchor-id="dual-function"><span class="header-section-number">34.3</span> Dual Function</h2>
+<section id="dual-function" class="level2" data-number="35.3">
+<h2 data-number="35.3" class="anchored" data-anchor-id="dual-function"><span class="header-section-number">35.3</span> Dual Function</h2>
 <p>For fixed multipliers <span class="math inline">\((\lambda, \nu)\)</span>, define</p>
 <p><span class="math display">\[
 g(\lambda, \nu)=
@@ -564,8 +570,8 @@ g(\lambda, \nu)=
 <li>It is just the best point under those penalties</li>
 </ul>
 </section>
-<section id="weak-duality" class="level2" data-number="34.4">
-<h2 data-number="34.4" class="anchored" data-anchor-id="weak-duality"><span class="header-section-number">34.4</span> Weak Duality</h2>
+<section id="weak-duality" class="level2" data-number="35.4">
+<h2 data-number="35.4" class="anchored" data-anchor-id="weak-duality"><span class="header-section-number">35.4</span> Weak Duality</h2>
 <p>A fundamental fact:</p>
 <p><span class="math display">\[
 g(\lambda, \nu) \le f_0(x)
@@ -577,8 +583,8 @@ g(\lambda, \nu) \le p^*
 \]</span></p>
 <p>The dual always gives a <strong>lower bound</strong> on the best possible primal value.</p>
 </section>
-<section id="dual-problem" class="level2" data-number="34.5">
-<h2 data-number="34.5" class="anchored" data-anchor-id="dual-problem"><span class="header-section-number">34.5</span> Dual Problem</h2>
+<section id="dual-problem" class="level2" data-number="35.5">
+<h2 data-number="35.5" class="anchored" data-anchor-id="dual-problem"><span class="header-section-number">35.5</span> Dual Problem</h2>
 <p>The <strong>dual problem</strong> is</p>
 <p><span class="math display">\[
 d^* =
@@ -605,31 +611,31 @@ d^* =
 <li>whether <span class="math inline">\(\hat{x}\)</span> is optimal</li>
 </ul>
 </section>
-<section id="kkt-conditions" class="level2" data-number="34.6">
-<h2 data-number="34.6" class="anchored" data-anchor-id="kkt-conditions"><span class="header-section-number">34.6</span> KKT Conditions</h2>
+<section id="kkt-conditions" class="level2" data-number="35.6">
+<h2 data-number="35.6" class="anchored" data-anchor-id="kkt-conditions"><span class="header-section-number">35.6</span> KKT Conditions</h2>
 <p>A triple <span class="math inline">\((x, \lambda, \nu)\)</span> satisfies the <strong>KKT conditions</strong> if it satisfies:</p>
-<section id="primal-feasibility" class="level3" data-number="34.6.1">
-<h3 data-number="34.6.1" class="anchored" data-anchor-id="primal-feasibility"><span class="header-section-number">34.6.1</span> Primal feasibility</h3>
+<section id="primal-feasibility" class="level3" data-number="35.6.1">
+<h3 data-number="35.6.1" class="anchored" data-anchor-id="primal-feasibility"><span class="header-section-number">35.6.1</span> Primal feasibility</h3>
 <p><span class="math display">\[
 f_i(x) \le 0,
 \qquad
 h_j(x) = 0
 \]</span></p>
 </section>
-<section id="dual-feasibility" class="level3" data-number="34.6.2">
-<h3 data-number="34.6.2" class="anchored" data-anchor-id="dual-feasibility"><span class="header-section-number">34.6.2</span> Dual feasibility</h3>
+<section id="dual-feasibility" class="level3" data-number="35.6.2">
+<h3 data-number="35.6.2" class="anchored" data-anchor-id="dual-feasibility"><span class="header-section-number">35.6.2</span> Dual feasibility</h3>
 <p><span class="math display">\[
 \lambda_i \ge 0
 \]</span></p>
 </section>
-<section id="stationarity" class="level3" data-number="34.6.3">
-<h3 data-number="34.6.3" class="anchored" data-anchor-id="stationarity"><span class="header-section-number">34.6.3</span> Stationarity</h3>
+<section id="stationarity" class="level3" data-number="35.6.3">
+<h3 data-number="35.6.3" class="anchored" data-anchor-id="stationarity"><span class="header-section-number">35.6.3</span> Stationarity</h3>
 <p><span class="math display">\[
 \nabla_x \mathcal{L}(x, \lambda, \nu) = 0
 \]</span></p>
 </section>
-<section id="complementary-slackness" class="level3" data-number="34.6.4">
-<h3 data-number="34.6.4" class="anchored" data-anchor-id="complementary-slackness"><span class="header-section-number">34.6.4</span> Complementary slackness</h3>
+<section id="complementary-slackness" class="level3" data-number="35.6.4">
+<h3 data-number="35.6.4" class="anchored" data-anchor-id="complementary-slackness"><span class="header-section-number">35.6.4</span> Complementary slackness</h3>
 <p><span class="math display">\[
 \lambda_i f_i(x) = 0
 \]</span></p>
@@ -643,8 +649,8 @@ h_j(x) = 0
 </ul>
 </section>
 </section>
-<section id="strategy" class="level2" data-number="34.7">
-<h2 data-number="34.7" class="anchored" data-anchor-id="strategy"><span class="header-section-number">34.7</span> Strategy</h2>
+<section id="strategy" class="level2" data-number="35.7">
+<h2 data-number="35.7" class="anchored" data-anchor-id="strategy"><span class="header-section-number">35.7</span> Strategy</h2>
 <p>We already have:</p>
 <ul>
 <li><span class="math inline">\((\lambda^*, \nu^*)\)</span> from the dual<br>
@@ -663,8 +669,8 @@ h_j(x) = 0
 </ul>
 <p>for <span class="math inline">\(\hat{x}\)</span>.</p>
 </section>
-<section id="duality-gap-identity" class="level2" data-number="34.8">
-<h2 data-number="34.8" class="anchored" data-anchor-id="duality-gap-identity"><span class="header-section-number">34.8</span> Duality Gap Identity</h2>
+<section id="duality-gap-identity" class="level2" data-number="35.8">
+<h2 data-number="35.8" class="anchored" data-anchor-id="duality-gap-identity"><span class="header-section-number">35.8</span> Duality Gap Identity</h2>
 <p>For any <span class="math inline">\(x\)</span> and <span class="math inline">\((\lambda, \nu)\)</span>,</p>
 <p><span class="math display">\[
 f_0(x) - g(\lambda, \nu)
@@ -706,8 +712,8 @@ f_0(\hat{x}) - g(\lambda^*, \nu^*) = 0
 f_0(\hat{x}) = g(\lambda^*, \nu^*)
 \]</span></p>
 </section>
-<section id="the-squeeze" class="level2" data-number="34.9">
-<h2 data-number="34.9" class="anchored" data-anchor-id="the-squeeze"><span class="header-section-number">34.9</span> The Squeeze</h2>
+<section id="the-squeeze" class="level2" data-number="35.9">
+<h2 data-number="35.9" class="anchored" data-anchor-id="the-squeeze"><span class="header-section-number">35.9</span> The Squeeze</h2>
 <p>We can finally complete the circuit. From weak duality:</p>
 <p><span class="math display">\[
 g(\lambda^*, \nu^*) \le p^*
@@ -729,8 +735,8 @@ f_0(\hat{x}) \le p^* \le f_0(\hat{x})
 f_0(\hat{x}) = p^*
 \]</span></p>
 </section>
-<section id="conclusion" class="level2" data-number="34.10">
-<h2 data-number="34.10" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">34.10</span> Conclusion</h2>
+<section id="conclusion" class="level2" data-number="35.10">
+<h2 data-number="35.10" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">35.10</span> Conclusion</h2>
 <p>So we have shown that:</p>
 <ul>
 <li><span class="math inline">\(\hat{x}\)</span> is feasible<br>
@@ -746,8 +752,8 @@ f_0(\hat{x}) = p^*
 x^* = \hat{x}
 \]</span></p>
 </section>
-<section id="constrained-vs-penalized-optimization" class="level1" data-number="35">
-<h1 data-number="35"><span class="header-section-number">35</span> Constrained vs Penalized Optimization</h1>
+<section id="constrained-vs-penalized-optimization" class="level1" data-number="36">
+<h1 data-number="36"><span class="header-section-number">36</span> Constrained vs Penalized Optimization</h1>
 <p>In general, for a fixed choice of <span class="math inline">\((\lambda, \nu)\)</span>, the penalized problem is generally <strong>not equivalent</strong> to the constrained problem.</p>
 <ul>
 <li>The solution may violate constraints<br>
@@ -1438,12 +1444,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../questions/040_ERM_NLL_questions.html" class="pagination-link" aria-label="ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/090_curse_dim.html" class="pagination-link" aria-label="Curse of Dimensionality">
-        <span class="nav-page-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -78,6 +78,7 @@ book:
         - questions/050_evaluation_questions.ipynb
         - questions/060_model_selection_questions.ipynb
         - questions/070_knn_questions.ipynb
+        - questions/080_bias_variance_questions.ipynb
 
 
     - part: "Extras"

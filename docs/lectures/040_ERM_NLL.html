@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>32&nbsp; ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy – Statistical Learning</title>
+<title>33&nbsp; ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../questions/040_ERM_NLL_questions.html" rel="next">
-<link href="../questions/070_knn_questions.html" rel="prev">
+<link href="../questions/080_bias_variance_questions.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -151,7 +151,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html">Extras</a></li><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html">Extras</a></li><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -441,6 +441,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/080_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -455,25 +461,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
   </div>
 </li>
       </ul>
@@ -488,36 +494,36 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation"><span class="header-section-number">32.1</span> Motivation</a></li>
-  <li><a href="#conditional-modeling-in-supervised-learning" id="toc-conditional-modeling-in-supervised-learning" class="nav-link" data-scroll-target="#conditional-modeling-in-supervised-learning"><span class="header-section-number">32.2</span> Conditional Modeling in Supervised Learning</a></li>
-  <li><a href="#maximum-likelihood-for-conditional-models" id="toc-maximum-likelihood-for-conditional-models" class="nav-link" data-scroll-target="#maximum-likelihood-for-conditional-models"><span class="header-section-number">32.3</span> Maximum Likelihood for Conditional Models</a></li>
-  <li><a href="#from-likelihood-to-negative-log-likelihood" id="toc-from-likelihood-to-negative-log-likelihood" class="nav-link" data-scroll-target="#from-likelihood-to-negative-log-likelihood"><span class="header-section-number">32.4</span> From Likelihood to Negative Log-Likelihood</a></li>
-  <li><a href="#from-mle-to-an-erm-problem" id="toc-from-mle-to-an-erm-problem" class="nav-link" data-scroll-target="#from-mle-to-an-erm-problem"><span class="header-section-number">32.5</span> From MLE to an ERM Problem</a></li>
-  <li><a href="#example-1-linear-regression-from-a-gaussian-model" id="toc-example-1-linear-regression-from-a-gaussian-model" class="nav-link" data-scroll-target="#example-1-linear-regression-from-a-gaussian-model"><span class="header-section-number">32.6</span> Example 1: Linear Regression from a Gaussian Model</a>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation"><span class="header-section-number">33.1</span> Motivation</a></li>
+  <li><a href="#conditional-modeling-in-supervised-learning" id="toc-conditional-modeling-in-supervised-learning" class="nav-link" data-scroll-target="#conditional-modeling-in-supervised-learning"><span class="header-section-number">33.2</span> Conditional Modeling in Supervised Learning</a></li>
+  <li><a href="#maximum-likelihood-for-conditional-models" id="toc-maximum-likelihood-for-conditional-models" class="nav-link" data-scroll-target="#maximum-likelihood-for-conditional-models"><span class="header-section-number">33.3</span> Maximum Likelihood for Conditional Models</a></li>
+  <li><a href="#from-likelihood-to-negative-log-likelihood" id="toc-from-likelihood-to-negative-log-likelihood" class="nav-link" data-scroll-target="#from-likelihood-to-negative-log-likelihood"><span class="header-section-number">33.4</span> From Likelihood to Negative Log-Likelihood</a></li>
+  <li><a href="#from-mle-to-an-erm-problem" id="toc-from-mle-to-an-erm-problem" class="nav-link" data-scroll-target="#from-mle-to-an-erm-problem"><span class="header-section-number">33.5</span> From MLE to an ERM Problem</a></li>
+  <li><a href="#example-1-linear-regression-from-a-gaussian-model" id="toc-example-1-linear-regression-from-a-gaussian-model" class="nav-link" data-scroll-target="#example-1-linear-regression-from-a-gaussian-model"><span class="header-section-number">33.6</span> Example 1: Linear Regression from a Gaussian Model</a>
   <ul class="collapse">
-  <li><a href="#simulating-the-gaussian-model" id="toc-simulating-the-gaussian-model" class="nav-link" data-scroll-target="#simulating-the-gaussian-model"><span class="header-section-number">32.6.1</span> Simulating the Gaussian Model</a></li>
+  <li><a href="#simulating-the-gaussian-model" id="toc-simulating-the-gaussian-model" class="nav-link" data-scroll-target="#simulating-the-gaussian-model"><span class="header-section-number">33.6.1</span> Simulating the Gaussian Model</a></li>
   </ul></li>
-  <li><a href="#example-2-logistic-regression-from-a-bernoulli-model" id="toc-example-2-logistic-regression-from-a-bernoulli-model" class="nav-link" data-scroll-target="#example-2-logistic-regression-from-a-bernoulli-model"><span class="header-section-number">32.7</span> Example 2: Logistic Regression from a Bernoulli Model</a>
+  <li><a href="#example-2-logistic-regression-from-a-bernoulli-model" id="toc-example-2-logistic-regression-from-a-bernoulli-model" class="nav-link" data-scroll-target="#example-2-logistic-regression-from-a-bernoulli-model"><span class="header-section-number">33.7</span> Example 2: Logistic Regression from a Bernoulli Model</a>
   <ul class="collapse">
-  <li><a href="#simulating-the-bernoulli-model" id="toc-simulating-the-bernoulli-model" class="nav-link" data-scroll-target="#simulating-the-bernoulli-model"><span class="header-section-number">32.7.1</span> Simulating the Bernoulli Model</a></li>
+  <li><a href="#simulating-the-bernoulli-model" id="toc-simulating-the-bernoulli-model" class="nav-link" data-scroll-target="#simulating-the-bernoulli-model"><span class="header-section-number">33.7.1</span> Simulating the Bernoulli Model</a></li>
   </ul></li>
-  <li><a href="#from-training-nll-to-population-log-loss" id="toc-from-training-nll-to-population-log-loss" class="nav-link" data-scroll-target="#from-training-nll-to-population-log-loss"><span class="header-section-number">32.8</span> From Training NLL to Population Log-Loss</a></li>
-  <li><a href="#conditional-cross-entropy" id="toc-conditional-cross-entropy" class="nav-link" data-scroll-target="#conditional-cross-entropy"><span class="header-section-number">32.9</span> Conditional Cross-Entropy</a></li>
-  <li><a href="#entropy-and-excess-log-loss" id="toc-entropy-and-excess-log-loss" class="nav-link" data-scroll-target="#entropy-and-excess-log-loss"><span class="header-section-number">32.10</span> Entropy and Excess Log-Loss</a></li>
-  <li><a href="#the-main-payoff-population-nll-minimizes-conditional-kl" id="toc-the-main-payoff-population-nll-minimizes-conditional-kl" class="nav-link" data-scroll-target="#the-main-payoff-population-nll-minimizes-conditional-kl"><span class="header-section-number">32.11</span> The Main Payoff: Population NLL Minimizes Conditional KL</a></li>
-  <li><a href="#example-bernoulli-cross-entropy" id="toc-example-bernoulli-cross-entropy" class="nav-link" data-scroll-target="#example-bernoulli-cross-entropy"><span class="header-section-number">32.12</span> Example: Bernoulli Cross-Entropy</a></li>
-  <li><a href="#example-gaussian-kl-direction-matters" id="toc-example-gaussian-kl-direction-matters" class="nav-link" data-scroll-target="#example-gaussian-kl-direction-matters"><span class="header-section-number">32.13</span> Example: Gaussian KL Direction Matters</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">32.14</span> Summary</a></li>
-  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">32.15</span> Review Questions</a></li>
+  <li><a href="#from-training-nll-to-population-log-loss" id="toc-from-training-nll-to-population-log-loss" class="nav-link" data-scroll-target="#from-training-nll-to-population-log-loss"><span class="header-section-number">33.8</span> From Training NLL to Population Log-Loss</a></li>
+  <li><a href="#conditional-cross-entropy" id="toc-conditional-cross-entropy" class="nav-link" data-scroll-target="#conditional-cross-entropy"><span class="header-section-number">33.9</span> Conditional Cross-Entropy</a></li>
+  <li><a href="#entropy-and-excess-log-loss" id="toc-entropy-and-excess-log-loss" class="nav-link" data-scroll-target="#entropy-and-excess-log-loss"><span class="header-section-number">33.10</span> Entropy and Excess Log-Loss</a></li>
+  <li><a href="#the-main-payoff-population-nll-minimizes-conditional-kl" id="toc-the-main-payoff-population-nll-minimizes-conditional-kl" class="nav-link" data-scroll-target="#the-main-payoff-population-nll-minimizes-conditional-kl"><span class="header-section-number">33.11</span> The Main Payoff: Population NLL Minimizes Conditional KL</a></li>
+  <li><a href="#example-bernoulli-cross-entropy" id="toc-example-bernoulli-cross-entropy" class="nav-link" data-scroll-target="#example-bernoulli-cross-entropy"><span class="header-section-number">33.12</span> Example: Bernoulli Cross-Entropy</a></li>
+  <li><a href="#example-gaussian-kl-direction-matters" id="toc-example-gaussian-kl-direction-matters" class="nav-link" data-scroll-target="#example-gaussian-kl-direction-matters"><span class="header-section-number">33.13</span> Example: Gaussian KL Direction Matters</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">33.14</span> Summary</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">33.15</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html">Extras</a></li><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html">Extras</a></li><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -537,8 +543,8 @@ window.Quarto = {
 <div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
-<section id="motivation" class="level2" data-number="32.1">
-<h2 data-number="32.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">32.1</span> Motivation</h2>
+<section id="motivation" class="level2" data-number="33.1">
+<h2 data-number="33.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">33.1</span> Motivation</h2>
 <p>Many machine-learning methods are introduced as empirical risk minimization problems:</p>
 <p><span class="math display">\[
 \hat{\theta}=\arg\min_\theta \frac{1}{N}\sum_{n=1}^N \ell(y_n,s_\theta(x_n)).
@@ -553,8 +559,8 @@ window.Quarto = {
 <p>Here, <span class="math inline">\(\theta\)</span> denotes the adjustable quantities defining the model. In linear regression, <span class="math inline">\(\theta\)</span> might be the coefficient vector <span class="math inline">\(w\)</span>. In logistic regression, it might again be <span class="math inline">\(w\)</span>. In a neural network, <span class="math inline">\(\theta\)</span> would include all weights and biases.</p>
 <p>The lecture develops this connection in three steps. First, conditional MLE is rewritten as ERM with NLL loss. Second, Gaussian and Bernoulli models show how squared error and logistic cross-entropy arise from likelihoods. Third, the population version of NLL is identified as cross-entropy, or equivalently KL divergence.</p>
 </section>
-<section id="conditional-modeling-in-supervised-learning" class="level2" data-number="32.2">
-<h2 data-number="32.2" class="anchored" data-anchor-id="conditional-modeling-in-supervised-learning"><span class="header-section-number">32.2</span> Conditional Modeling in Supervised Learning</h2>
+<section id="conditional-modeling-in-supervised-learning" class="level2" data-number="33.2">
+<h2 data-number="33.2" class="anchored" data-anchor-id="conditional-modeling-in-supervised-learning"><span class="header-section-number">33.2</span> Conditional Modeling in Supervised Learning</h2>
 <p>We observe training data</p>
 <p><span class="math display">\[
 \{(x_n,y_n)\}_{n=1}^N.
@@ -578,8 +584,8 @@ p_\theta(x,y)=p_\theta(y\mid x)p(x).
 <p>This is the first important simplification. In supervised learning, we often do not model how the covariates themselves are generated. We treat the observed inputs as given and focus on how <span class="math inline">\(Y\)</span> behaves conditional on <span class="math inline">\(X=x\)</span>.</p>
 <p>Learning means choosing a value of <span class="math inline">\(\theta\)</span>, and therefore choosing one conditional distribution from the family <span class="math inline">\(\{p_\theta(y\mid x):\theta\in\Theta\}\)</span>.</p>
 </section>
-<section id="maximum-likelihood-for-conditional-models" class="level2" data-number="32.3">
-<h2 data-number="32.3" class="anchored" data-anchor-id="maximum-likelihood-for-conditional-models"><span class="header-section-number">32.3</span> Maximum Likelihood for Conditional Models</h2>
+<section id="maximum-likelihood-for-conditional-models" class="level2" data-number="33.3">
+<h2 data-number="33.3" class="anchored" data-anchor-id="maximum-likelihood-for-conditional-models"><span class="header-section-number">33.3</span> Maximum Likelihood for Conditional Models</h2>
 <p>Maximum likelihood estimation chooses the parameter value that makes the observed data most probable under the model family. MLE chooses</p>
 <p><span class="math display">\[
 \hat{\theta}
@@ -602,8 +608,8 @@ p_\theta(x,y)=p_\theta(y\mid x)p(x).
 \]</span></p>
 <p>The supervised likelihood therefore depends on the conditional model for labels given inputs, not on the marginal distribution of the inputs.</p>
 </section>
-<section id="from-likelihood-to-negative-log-likelihood" class="level2" data-number="32.4">
-<h2 data-number="32.4" class="anchored" data-anchor-id="from-likelihood-to-negative-log-likelihood"><span class="header-section-number">32.4</span> From Likelihood to Negative Log-Likelihood</h2>
+<section id="from-likelihood-to-negative-log-likelihood" class="level2" data-number="33.4">
+<h2 data-number="33.4" class="anchored" data-anchor-id="from-likelihood-to-negative-log-likelihood"><span class="header-section-number">33.4</span> From Likelihood to Negative Log-Likelihood</h2>
 <p>We can now rewrite the conditional likelihood in a form that looks like an optimization objective from machine learning.</p>
 <p>The logarithm is strictly increasing, so taking logs does not change the maximizer:</p>
 <p><span class="math display">\[
@@ -618,8 +624,8 @@ p_\theta(x,y)=p_\theta(y\mid x)p(x).
 \hat\theta = \arg\min_\theta \frac{1}{N}\sum_{n=1}^N -\log p_\theta(y_n\mid x_n).
 \]</span></p>
 </section>
-<section id="from-mle-to-an-erm-problem" class="level2" data-number="32.5">
-<h2 data-number="32.5" class="anchored" data-anchor-id="from-mle-to-an-erm-problem"><span class="header-section-number">32.5</span> From MLE to an ERM Problem</h2>
+<section id="from-mle-to-an-erm-problem" class="level2" data-number="33.5">
+<h2 data-number="33.5" class="anchored" data-anchor-id="from-mle-to-an-erm-problem"><span class="header-section-number">33.5</span> From MLE to an ERM Problem</h2>
 <p>The previous expression has the form of an empirical risk minimization problem because it averages one loss value per training example.</p>
 <p>The usual ERM template is</p>
 <p><span class="math display">\[
@@ -643,8 +649,8 @@ p_\theta(x,y)=p_\theta(y\mid x)p(x).
 <li>Bernoulli conditional model <span class="math inline">\(\Rightarrow\)</span> logistic cross-entropy.</li>
 </ul>
 </section>
-<section id="example-1-linear-regression-from-a-gaussian-model" class="level2" data-number="32.6">
-<h2 data-number="32.6" class="anchored" data-anchor-id="example-1-linear-regression-from-a-gaussian-model"><span class="header-section-number">32.6</span> Example 1: Linear Regression from a Gaussian Model</h2>
+<section id="example-1-linear-regression-from-a-gaussian-model" class="level2" data-number="33.6">
+<h2 data-number="33.6" class="anchored" data-anchor-id="example-1-linear-regression-from-a-gaussian-model"><span class="header-section-number">33.6</span> Example 1: Linear Regression from a Gaussian Model</h2>
 <p>Assume the conditional model</p>
 <p><span class="math display">\[
 y_n\mid x_n\sim \mathcal{N}(w^\top x_n,\sigma^2),
@@ -667,8 +673,8 @@ p_w(y_n\mid x_n)
 =\arg\min_w \frac{1}{N}\sum_{n=1}^N (y_n-w^\top x_n)^2.
 \]</span></p>
 <p>Thus, <strong>under this Gaussian conditional model, squared-error and linear-score ERM is the same as the MLE estimate of <span class="math inline">\(w\)</span>.</strong></p>
-<section id="simulating-the-gaussian-model" class="level3" data-number="32.6.1">
-<h3 data-number="32.6.1" class="anchored" data-anchor-id="simulating-the-gaussian-model"><span class="header-section-number">32.6.1</span> Simulating the Gaussian Model</h3>
+<section id="simulating-the-gaussian-model" class="level3" data-number="33.6.1">
+<h3 data-number="33.6.1" class="anchored" data-anchor-id="simulating-the-gaussian-model"><span class="header-section-number">33.6.1</span> Simulating the Gaussian Model</h3>
 <p>The Gaussian model says that each response is a noisy draw around the conditional mean plane <span class="math inline">\(w^\top x\)</span>. This gives a direct way to simulate data from the model.</p>
 <div id="8046c710" class="cell">
 <details open="" class="code-fold">
@@ -738,8 +744,8 @@ p_w(y_n\mid x_n)
 </div>
 </section>
 </section>
-<section id="example-2-logistic-regression-from-a-bernoulli-model" class="level2" data-number="32.7">
-<h2 data-number="32.7" class="anchored" data-anchor-id="example-2-logistic-regression-from-a-bernoulli-model"><span class="header-section-number">32.7</span> Example 2: Logistic Regression from a Bernoulli Model</h2>
+<section id="example-2-logistic-regression-from-a-bernoulli-model" class="level2" data-number="33.7">
+<h2 data-number="33.7" class="anchored" data-anchor-id="example-2-logistic-regression-from-a-bernoulli-model"><span class="header-section-number">33.7</span> Example 2: Logistic Regression from a Bernoulli Model</h2>
 <p>For binary labels, assume a probabilistic model:</p>
 <p><span class="math display">\[
 y_n\mid x_n\sim \operatorname{Bernoulli}(p_n),
@@ -773,8 +779,8 @@ y_n\log\sigma(w^\top x_n)
 =-\left[y\log\sigma(s)+(1-y)\log(1-\sigma(s))\right].
 \]</span></p>
 <p>Consequently, <strong>a Bernoulli conditional model MLE and the logistic cross-entropy ERM give the same estimate of <span class="math inline">\(w\)</span>.</strong></p>
-<section id="simulating-the-bernoulli-model" class="level3" data-number="32.7.1">
-<h3 data-number="32.7.1" class="anchored" data-anchor-id="simulating-the-bernoulli-model"><span class="header-section-number">32.7.1</span> Simulating the Bernoulli Model</h3>
+<section id="simulating-the-bernoulli-model" class="level3" data-number="33.7.1">
+<h3 data-number="33.7.1" class="anchored" data-anchor-id="simulating-the-bernoulli-model"><span class="header-section-number">33.7.1</span> Simulating the Bernoulli Model</h3>
 <p>The Bernoulli model first converts the linear score <span class="math inline">\(w^\top x\)</span> into a probability, then draws a binary label from that probability. The decision boundary is the set of points where <span class="math inline">\(w^\top x=0\)</span>, equivalently <span class="math inline">\(P(Y=1\mid X=x)=0.5\)</span>.</p>
 <div id="f57d1feb" class="cell">
 <details open="" class="code-fold">
@@ -836,8 +842,8 @@ y_n\log\sigma(w^\top x_n)
 </div>
 </section>
 </section>
-<section id="from-training-nll-to-population-log-loss" class="level2" data-number="32.8">
-<h2 data-number="32.8" class="anchored" data-anchor-id="from-training-nll-to-population-log-loss"><span class="header-section-number">32.8</span> From Training NLL to Population Log-Loss</h2>
+<section id="from-training-nll-to-population-log-loss" class="level2" data-number="33.8">
+<h2 data-number="33.8" class="anchored" data-anchor-id="from-training-nll-to-population-log-loss"><span class="header-section-number">33.8</span> From Training NLL to Population Log-Loss</h2>
 <p>So far, the connection has been finite-sample: conditional MLE can be written as ERM when the loss is NLL. The same objective also has a population interpretation.</p>
 <p>The empirical NLL is</p>
 <p><span class="math display">\[
@@ -850,8 +856,8 @@ y_n\log\sigma(w^\top x_n)
 <p>This is the expected log-loss on future data. The future label <span class="math inline">\(Y\)</span> is generated from the true distribution <span class="math inline">\(p\)</span>, but it is scored using the fitted model <span class="math inline">\(p_\theta\)</span>.</p>
 <p>This reframes the question. We are no longer asking only which parameter makes the training labels likely. We are asking what average log-loss the model would incur under the true data-generating process.</p>
 </section>
-<section id="conditional-cross-entropy" class="level2" data-number="32.9">
-<h2 data-number="32.9" class="anchored" data-anchor-id="conditional-cross-entropy"><span class="header-section-number">32.9</span> Conditional Cross-Entropy</h2>
+<section id="conditional-cross-entropy" class="level2" data-number="33.9">
+<h2 data-number="33.9" class="anchored" data-anchor-id="conditional-cross-entropy"><span class="header-section-number">33.9</span> Conditional Cross-Entropy</h2>
 <p>To interpret the population objective, first fix an input value <span class="math inline">\(X=x\)</span>. The conditional expected log-loss is</p>
 <p><span class="math display">\[
 \mathbb{E}_{Y\sim p(\cdot\mid x)}[-\log p_\theta(Y\mid x)].
@@ -868,8 +874,8 @@ H\left(p(\cdot\mid x),p_\theta(\cdot\mid x)\right)
 \]</span></p>
 <p>is the model’s <strong>surprise</strong> at observing <span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span>. Cross-entropy is the average surprise under the true conditional distribution.</p>
 </section>
-<section id="entropy-and-excess-log-loss" class="level2" data-number="32.10">
-<h2 data-number="32.10" class="anchored" data-anchor-id="entropy-and-excess-log-loss"><span class="header-section-number">32.10</span> Entropy and Excess Log-Loss</h2>
+<section id="entropy-and-excess-log-loss" class="level2" data-number="33.10">
+<h2 data-number="33.10" class="anchored" data-anchor-id="entropy-and-excess-log-loss"><span class="header-section-number">33.10</span> Entropy and Excess Log-Loss</h2>
 <p>The best possible log-loss at a fixed <span class="math inline">\(x\)</span> would use the true conditional distribution itself:</p>
 <p><span class="math display">\[
 H(p(\cdot\mid x))
@@ -898,8 +904,8 @@ H\left(p(\cdot\mid x),p_\theta(\cdot\mid x)\right)
 <li>If <span class="math inline">\(q(y)=0\)</span> where <span class="math inline">\(p(y)&gt;0\)</span>, then the KL divergence is infinite.</li>
 </ul>
 </section>
-<section id="the-main-payoff-population-nll-minimizes-conditional-kl" class="level2" data-number="32.11">
-<h2 data-number="32.11" class="anchored" data-anchor-id="the-main-payoff-population-nll-minimizes-conditional-kl"><span class="header-section-number">32.11</span> The Main Payoff: Population NLL Minimizes Conditional KL</h2>
+<section id="the-main-payoff-population-nll-minimizes-conditional-kl" class="level2" data-number="33.11">
+<h2 data-number="33.11" class="anchored" data-anchor-id="the-main-payoff-population-nll-minimizes-conditional-kl"><span class="header-section-number">33.11</span> The Main Payoff: Population NLL Minimizes Conditional KL</h2>
 <p>Now average the fixed-<span class="math inline">\(x\)</span> decomposition over <span class="math inline">\(X\)</span>:</p>
 <p><span class="math display">\[
 \mathbb{E}_{(X,Y)\sim p}[-\log p_\theta(Y\mid X)]
@@ -917,8 +923,8 @@ H\left(p(\cdot\mid x),p_\theta(\cdot\mid x)\right)
 \]</span></p>
 <p>This is the population meaning of NLL. When an ERM loss is NLL, the target is not merely a small training loss; it is a conditional distribution <span class="math inline">\(p_\theta(\cdot\mid X)\)</span> that is close to the true conditional distribution <span class="math inline">\(p(\cdot\mid X)\)</span> in expected KL divergence.</p>
 </section>
-<section id="example-bernoulli-cross-entropy" class="level2" data-number="32.12">
-<h2 data-number="32.12" class="anchored" data-anchor-id="example-bernoulli-cross-entropy"><span class="header-section-number">32.12</span> Example: Bernoulli Cross-Entropy</h2>
+<section id="example-bernoulli-cross-entropy" class="level2" data-number="33.12">
+<h2 data-number="33.12" class="anchored" data-anchor-id="example-bernoulli-cross-entropy"><span class="header-section-number">33.12</span> Example: Bernoulli Cross-Entropy</h2>
 <p>For a Bernoulli random variable, let the true probability be <span class="math inline">\(p=P(Y=1)\)</span> and the model probability be <span class="math inline">\(q\)</span>. Then</p>
 <p><span class="math display">\[
 H(p,q)=-p\log q-(1-p)\log(1-q),
@@ -975,8 +981,8 @@ q=p_w(Y=1\mid X=x)=\sigma(w^\top x).
 </div>
 </div>
 </section>
-<section id="example-gaussian-kl-direction-matters" class="level2" data-number="32.13">
-<h2 data-number="32.13" class="anchored" data-anchor-id="example-gaussian-kl-direction-matters"><span class="header-section-number">32.13</span> Example: Gaussian KL Direction Matters</h2>
+<section id="example-gaussian-kl-direction-matters" class="level2" data-number="33.13">
+<h2 data-number="33.13" class="anchored" data-anchor-id="example-gaussian-kl-direction-matters"><span class="header-section-number">33.13</span> Example: Gaussian KL Direction Matters</h2>
 <p>KL is not symmetric. For normal distributions,</p>
 <p><span class="math display">\[
 \operatorname{KL}\left(\mathcal{N}(\mu_p,\sigma_p^2)\|\mathcal{N}(\mu_q,\sigma_q^2)\right)
@@ -1043,15 +1049,15 @@ q=p_w(Y=1\mid X=x)=\sigma(w^\top x).
 </div>
 </div>
 </section>
-<section id="summary" class="level2" data-number="32.14">
-<h2 data-number="32.14" class="anchored" data-anchor-id="summary"><span class="header-section-number">32.14</span> Summary</h2>
+<section id="summary" class="level2" data-number="33.14">
+<h2 data-number="33.14" class="anchored" data-anchor-id="summary"><span class="header-section-number">33.14</span> Summary</h2>
 <p>ERM is a general framework: choose a loss and minimize its empirical average. Conditional MLE is a probabilistic framework: choose parameters that make the observed labels likely given the inputs. These frameworks coincide when the loss is the negative log-likelihood for a conditional model.</p>
 <p>Under this choice, familiar losses acquire probabilistic interpretations. Squared error is the NLL for a Gaussian conditional model with fixed variance. Logistic cross-entropy is the NLL for a Bernoulli conditional model.</p>
 <p>The population interpretation is the final link. Expected NLL is conditional cross-entropy: the average log-loss when future labels are generated from the true conditional distribution but scored under the model. This equals irreducible conditional entropy plus expected conditional KL. Since the entropy term does not depend on the model, minimizing population NLL fits the conditional distribution in expected KL divergence.</p>
 </section>
-<section id="review-questions" class="level2" data-number="32.15">
-<h2 data-number="32.15" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">32.15</span> Review Questions</h2>
-<p>See: <a href="../questions/040_ERM_NLL_questions.html" class="quarto-xref"><span>Chapter 33</span></a>.</p>
+<section id="review-questions" class="level2" data-number="33.15">
+<h2 data-number="33.15" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">33.15</span> Review Questions</h2>
+<p>See: <a href="../questions/040_ERM_NLL_questions.html" class="quarto-xref"><span>Chapter 34</span></a>.</p>
 
 
 </section>
@@ -1674,13 +1680,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../questions/070_knn_questions.html" class="pagination-link" aria-label="K-Nearest Neighbors - Review Questions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span>
+      <a href="../questions/080_bias_variance_questions.html" class="pagination-link" aria-label="Bias-Variance Tradeoff - Review Questions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../questions/040_ERM_NLL_questions.html" class="pagination-link" aria-label="ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions">
-        <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

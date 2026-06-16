@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>33&nbsp; ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions – Statistical Learning</title>
+<title>34&nbsp; ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html">Extras</a></li><li class="breadcrumb-item"><a href="../questions/040_ERM_NLL_questions.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html">Extras</a></li><li class="breadcrumb-item"><a href="../questions/040_ERM_NLL_questions.html"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -403,6 +403,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/080_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -417,25 +423,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
   </div>
 </li>
       </ul>
@@ -450,28 +456,28 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1"><span class="header-section-number">33.0.1</span> Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">33.0.2</span> Question 2</a></li>
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">33.0.3</span> Question 3</a></li>
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">33.0.4</span> Question 4</a></li>
-  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5"><span class="header-section-number">33.0.5</span> Question 5</a></li>
-  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6"><span class="header-section-number">33.0.6</span> Question 6</a></li>
-  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7"><span class="header-section-number">33.0.7</span> Question 7</a></li>
-  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8"><span class="header-section-number">33.0.8</span> Question 8</a></li>
-  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9"><span class="header-section-number">33.0.9</span> Question 9</a></li>
-  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10"><span class="header-section-number">33.0.10</span> Question 10</a></li>
-  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11"><span class="header-section-number">33.0.11</span> Question 11</a></li>
-  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12"><span class="header-section-number">33.0.12</span> Question 12</a></li>
-  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13"><span class="header-section-number">33.0.13</span> Question 13</a></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1"><span class="header-section-number">34.0.1</span> Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">34.0.2</span> Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">34.0.3</span> Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">34.0.4</span> Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5"><span class="header-section-number">34.0.5</span> Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6"><span class="header-section-number">34.0.6</span> Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7"><span class="header-section-number">34.0.7</span> Question 7</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8"><span class="header-section-number">34.0.8</span> Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9"><span class="header-section-number">34.0.9</span> Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10"><span class="header-section-number">34.0.10</span> Question 10</a></li>
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11"><span class="header-section-number">34.0.11</span> Question 11</a></li>
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12"><span class="header-section-number">34.0.12</span> Question 12</a></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13"><span class="header-section-number">34.0.13</span> Question 13</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html">Extras</a></li><li class="breadcrumb-item"><a href="../questions/040_ERM_NLL_questions.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/040_ERM_NLL.html">Extras</a></li><li class="breadcrumb-item"><a href="../questions/040_ERM_NLL_questions.html"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-nll-questions" class="quarto-section-identifier"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></h1>
+<h1 class="title"><span id="sec-nll-questions" class="quarto-section-identifier"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></h1>
 </div>
 
 
@@ -492,8 +498,8 @@ window.Quarto = {
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
 <p>This notebook contains review questions for <code>lectures/040_ERM_NLL.ipynb</code>. Answers are hidden in collapsible sections.</p>
-<section id="question-1" class="level3" data-number="33.0.1">
-<h3 data-number="33.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">33.0.1</span> Question 1</h3>
+<section id="question-1" class="level3" data-number="34.0.1">
+<h3 data-number="34.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">34.0.1</span> Question 1</h3>
 <p>Suppose <span class="math display">\[
 p_\theta(x,y)=p_\theta(y\mid x)p(x).
 \]</span> Argue that: <span class="math display">\[
@@ -513,8 +519,8 @@ Answer
 \]</span> If the marginal were <span class="math inline">\(p_\theta(x)\)</span>, then <span class="math inline">\(\prod_n p_\theta(x_n)\)</span> could affect which <span class="math inline">\(\theta\)</span> maximizes the likelihood, so it could not generally be discarded.</p>
 </details>
 </section>
-<section id="question-2" class="level3" data-number="33.0.2">
-<h3 data-number="33.0.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">33.0.2</span> Question 2</h3>
+<section id="question-2" class="level3" data-number="34.0.2">
+<h3 data-number="34.0.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">34.0.2</span> Question 2</h3>
 <p>A regression model assumes Laplace conditional noise: <span class="math display">\[
 y\mid x\sim \operatorname{Laplace}(w^\top x,b),
 \]</span> with fixed scale <span class="math inline">\(b&gt;0\)</span> and density <span class="math display">\[
@@ -531,8 +537,8 @@ Answer
 \]</span></p>
 </details>
 </section>
-<section id="question-3" class="level3" data-number="33.0.3">
-<h3 data-number="33.0.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">33.0.3</span> Question 3</h3>
+<section id="question-3" class="level3" data-number="34.0.3">
+<h3 data-number="34.0.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">34.0.3</span> Question 3</h3>
 <p>Suppose a count model assumes</p>
 <p><span class="math display">\[
 y\mid x\sim \operatorname{Poisson}(\lambda_\theta(x)),
@@ -564,8 +570,8 @@ e^{s_\theta(x)}-ys_\theta(x).
 \]</span></p>
 </details>
 </section>
-<section id="question-4" class="level3" data-number="33.0.4">
-<h3 data-number="33.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">33.0.4</span> Question 4</h3>
+<section id="question-4" class="level3" data-number="34.0.4">
+<h3 data-number="34.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">34.0.4</span> Question 4</h3>
 <p>For multiclass classification with labels <span class="math inline">\(y\in\{1,\ldots,K\}\)</span>, suppose the model outputs scores <span class="math inline">\(s_1(x),\ldots,s_K(x)\)</span> and probabilities <span class="math display">\[
 p_\theta(Y=k\mid x)=\frac{e^{s_k(x)}}{\sum_{j=1}^K e^{s_j(x)}}.
 \]</span> Derive the NLL for an observation with class label <span class="math inline">\(y\)</span>. Show that this is equivalent to the multiclass cross-entropy loss.</p>
@@ -582,8 +588,8 @@ Answer
 \]</span> This is the multiclass cross-entropy loss for a single observation.</p>
 </details>
 </section>
-<section id="question-5" class="level3" data-number="33.0.5">
-<h3 data-number="33.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">33.0.5</span> Question 5</h3>
+<section id="question-5" class="level3" data-number="34.0.5">
+<h3 data-number="34.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">34.0.5</span> Question 5</h3>
 <p>The hinge loss for binary labels <span class="math inline">\(y\in\{-1,1\}\)</span> is</p>
 <p><span class="math display">\[
 \ell(y,s)=\max\{0,1-ys\}.
@@ -622,8 +628,8 @@ e^{-\ell(1,s)}+e^{-\ell(-1,s)}=1+e^{-(1+s)}.
 <p>So hinge loss is a useful classification loss, but it is not exactly the NLL of a normalized binary conditional model in this direct form.</p>
 </details>
 </section>
-<section id="question-6" class="level3" data-number="33.0.6">
-<h3 data-number="33.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">33.0.6</span> Question 6</h3>
+<section id="question-6" class="level3" data-number="34.0.6">
+<h3 data-number="34.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">34.0.6</span> Question 6</h3>
 <p>For the discrete distribution <span class="math display">\[
 p=(1/2,1/4,1/4),
 \]</span> compute the entropy <span class="math inline">\(H(p)\)</span>, leaving logarithms unevaluated.</p>
@@ -640,8 +646,8 @@ H(p)=\frac12\log 2+\frac12\log 4.
 \]</span></p>
 </details>
 </section>
-<section id="question-7" class="level3" data-number="33.0.7">
-<h3 data-number="33.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">33.0.7</span> Question 7</h3>
+<section id="question-7" class="level3" data-number="34.0.7">
+<h3 data-number="34.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">34.0.7</span> Question 7</h3>
 <p>For discrete distributions <span class="math display">\[
 p=(1/2,1/4,1/4),
 \qquad
@@ -663,8 +669,8 @@ H(p,q)=-\frac12\log\frac14-\frac14\log\frac14-\frac14\log\frac12.
 \]</span></p>
 </details>
 </section>
-<section id="question-8" class="level3" data-number="33.0.8">
-<h3 data-number="33.0.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">33.0.8</span> Question 8</h3>
+<section id="question-8" class="level3" data-number="34.0.8">
+<h3 data-number="34.0.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">34.0.8</span> Question 8</h3>
 <p>For Bernoulli distributions with true parameter <span class="math inline">\(p=0.7\)</span> and model parameter <span class="math inline">\(q=0.4\)</span>, compute the cross-entropy <span class="math inline">\(H(p,q)\)</span>, the entropy <span class="math inline">\(H(p)\)</span>, and <span class="math inline">\(\operatorname{KL}(p\|q)\)</span>. Leave logarithms unevaluated.</p>
 <details>
 <summary>
@@ -681,8 +687,8 @@ H(0.7)=-0.7\log(0.7)-0.3\log(0.3),
 \]</span></p>
 </details>
 </section>
-<section id="question-9" class="level3" data-number="33.0.9">
-<h3 data-number="33.0.9" class="anchored" data-anchor-id="question-9"><span class="header-section-number">33.0.9</span> Question 9</h3>
+<section id="question-9" class="level3" data-number="34.0.9">
+<h3 data-number="34.0.9" class="anchored" data-anchor-id="question-9"><span class="header-section-number">34.0.9</span> Question 9</h3>
 <p>For a fixed Bernoulli true parameter <span class="math inline">\(p\in(0,1)\)</span>, minimize <span class="math display">\[
 H(p,q)=-p\log q-(1-p)\log(1-q)
 \]</span> over <span class="math inline">\(q\in(0,1)\)</span>.</p>
@@ -695,8 +701,8 @@ Answer
 \]</span> The zero condition gives <span class="math inline">\((1-p)q=p(1-q)\)</span>, hence <span class="math inline">\(q=p\)</span>.</p>
 </details>
 </section>
-<section id="question-10" class="level3" data-number="33.0.10">
-<h3 data-number="33.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">33.0.10</span> Question 10</h3>
+<section id="question-10" class="level3" data-number="34.0.10">
+<h3 data-number="34.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">34.0.10</span> Question 10</h3>
 <p>For Bernoulli distributions, compute <span class="math inline">\(\operatorname{KL}(0.2\|0.6)\)</span> and <span class="math inline">\(\operatorname{KL}(0.6\|0.2)\)</span>. Leave the answer in logarithmic form and state why the two values differ.</p>
 <details>
 <summary>
@@ -711,8 +717,8 @@ Answer
 \]</span> The weights differ because the expectation is taken under the first distribution in <span class="math inline">\(\operatorname{KL}(p\|q)\)</span>.</p>
 </details>
 </section>
-<section id="question-11" class="level3" data-number="33.0.11">
-<h3 data-number="33.0.11" class="anchored" data-anchor-id="question-11"><span class="header-section-number">33.0.11</span> Question 11</h3>
+<section id="question-11" class="level3" data-number="34.0.11">
+<h3 data-number="34.0.11" class="anchored" data-anchor-id="question-11"><span class="header-section-number">34.0.11</span> Question 11</h3>
 <p>For normal distributions, use <span class="math display">\[
 \operatorname{KL}(\mathcal N(\mu_p,\sigma_p^2)\|\mathcal N(\mu_q,\sigma_q^2))
 =\log\frac{\sigma_q}{\sigma_p}+\frac{\sigma_p^2+(\mu_p-\mu_q)^2}{2\sigma_q^2}-\frac12.
@@ -728,8 +734,8 @@ Answer
 \]</span> The two directions are unequal.</p>
 </details>
 </section>
-<section id="question-12" class="level3" data-number="33.0.12">
-<h3 data-number="33.0.12" class="anchored" data-anchor-id="question-12"><span class="header-section-number">33.0.12</span> Question 12</h3>
+<section id="question-12" class="level3" data-number="34.0.12">
+<h3 data-number="34.0.12" class="anchored" data-anchor-id="question-12"><span class="header-section-number">34.0.12</span> Question 12</h3>
 <p>A false interpretation says: “For Gaussian distributions, KL divergence is zero whenever the means are equal.” Refute it with a concrete pair of Gaussian distributions and compute the KL value.</p>
 <details>
 <summary>
@@ -740,8 +746,8 @@ Answer
 \]</span> KL is zero only when the full distributions agree; for univariate Gaussians, both mean and variance must match.</p>
 </details>
 </section>
-<section id="question-13" class="level3" data-number="33.0.13">
-<h3 data-number="33.0.13" class="anchored" data-anchor-id="question-13"><span class="header-section-number">33.0.13</span> Question 13</h3>
+<section id="question-13" class="level3" data-number="34.0.13">
+<h3 data-number="34.0.13" class="anchored" data-anchor-id="question-13"><span class="header-section-number">34.0.13</span> Question 13</h3>
 <p>At fixed <span class="math inline">\(x\)</span>, explain the decomposition <span class="math display">\[
 H(p(\cdot\mid x),p_\theta(\cdot\mid x))
 =H(p(\cdot\mid x))
@@ -1377,12 +1383,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/040_ERM_NLL.html" class="pagination-link" aria-label="ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/101_constr_optim.html" class="pagination-link" aria-label="Constrained Optimization via Primal–Dual Methods">
-        <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
