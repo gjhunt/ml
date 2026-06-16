@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>22&nbsp; Principal Component Analysis (PCA) – Statistical Learning</title>
+<title>19&nbsp; Principal Component Analysis (PCA) – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -150,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/160_unsupervised.html">Unsupervised Learning</a></li><li class="breadcrumb-item"><a href="../lectures/180_pca.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/160_unsupervised.html">Unsupervised Learning</a></li><li class="breadcrumb-item"><a href="../lectures/180_pca.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -188,7 +188,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Foundations and Empirical Risk Minimization</span></a>
+ <span class="menu-text">Foundations and Linear Models</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -224,18 +224,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Evaluation, Model Selection, and Nonparametric Methods</span></a>
+ <span class="menu-text">Evaluation and Model Selection</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -244,31 +238,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/050_evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/060_model_selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/070_knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/080_bias_variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
   </div>
 </li>
       </ul>
@@ -285,25 +273,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/100_ridge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/110_lasso.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/120_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
   </div>
 </li>
       </ul>
@@ -320,19 +302,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/130_nn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/140_backprop.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/150_nn_arch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
   </div>
 </li>
       </ul>
@@ -349,25 +331,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/160_unsupervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/170_svd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/180_pca.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/190_kmeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
       </ul>
@@ -384,19 +366,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/200_carts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/210_random_forests.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/220_boosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
       </ul>
@@ -413,37 +395,84 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/005_derivatives_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/010_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/020_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/030_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/050_evaluation_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/060_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/070_knn_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Extras</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
   </div>
 </li>
       </ul>
@@ -458,39 +487,39 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#projection-matrices" id="toc-projection-matrices" class="nav-link active" data-scroll-target="#projection-matrices"><span class="header-section-number">22.1</span> Projection matrices</a></li>
-  <li><a href="#principal-components-as-linear-combinations" id="toc-principal-components-as-linear-combinations" class="nav-link" data-scroll-target="#principal-components-as-linear-combinations"><span class="header-section-number">22.2</span> Principal components as linear combinations</a></li>
-  <li><a href="#pca-objective" id="toc-pca-objective" class="nav-link" data-scroll-target="#pca-objective"><span class="header-section-number">22.3</span> PCA objective</a></li>
-  <li><a href="#aside-variance-and-covariance-notation" id="toc-aside-variance-and-covariance-notation" class="nav-link" data-scroll-target="#aside-variance-and-covariance-notation"><span class="header-section-number">22.4</span> Aside: variance and covariance notation</a></li>
-  <li><a href="#the-pca-problem" id="toc-the-pca-problem" class="nav-link" data-scroll-target="#the-pca-problem"><span class="header-section-number">22.5</span> The PCA Problem</a>
+  <li><a href="#projection-matrices" id="toc-projection-matrices" class="nav-link active" data-scroll-target="#projection-matrices"><span class="header-section-number">19.1</span> Projection matrices</a></li>
+  <li><a href="#principal-components-as-linear-combinations" id="toc-principal-components-as-linear-combinations" class="nav-link" data-scroll-target="#principal-components-as-linear-combinations"><span class="header-section-number">19.2</span> Principal components as linear combinations</a></li>
+  <li><a href="#pca-objective" id="toc-pca-objective" class="nav-link" data-scroll-target="#pca-objective"><span class="header-section-number">19.3</span> PCA objective</a></li>
+  <li><a href="#aside-variance-and-covariance-notation" id="toc-aside-variance-and-covariance-notation" class="nav-link" data-scroll-target="#aside-variance-and-covariance-notation"><span class="header-section-number">19.4</span> Aside: variance and covariance notation</a></li>
+  <li><a href="#the-pca-problem" id="toc-the-pca-problem" class="nav-link" data-scroll-target="#the-pca-problem"><span class="header-section-number">19.5</span> The PCA Problem</a>
   <ul class="collapse">
-  <li><a href="#simplified-rayleigh-quotient-theorem" id="toc-simplified-rayleigh-quotient-theorem" class="nav-link" data-scroll-target="#simplified-rayleigh-quotient-theorem"><span class="header-section-number">22.5.1</span> Simplified Rayleigh quotient theorem</a></li>
-  <li><a href="#applying-the-theorem-to-pca" id="toc-applying-the-theorem-to-pca" class="nav-link" data-scroll-target="#applying-the-theorem-to-pca"><span class="header-section-number">22.5.2</span> Applying the theorem to PCA</a></li>
+  <li><a href="#simplified-rayleigh-quotient-theorem" id="toc-simplified-rayleigh-quotient-theorem" class="nav-link" data-scroll-target="#simplified-rayleigh-quotient-theorem"><span class="header-section-number">19.5.1</span> Simplified Rayleigh quotient theorem</a></li>
+  <li><a href="#applying-the-theorem-to-pca" id="toc-applying-the-theorem-to-pca" class="nav-link" data-scroll-target="#applying-the-theorem-to-pca"><span class="header-section-number">19.5.2</span> Applying the theorem to PCA</a></li>
   </ul></li>
-  <li><a href="#checking-score-properties" id="toc-checking-score-properties" class="nav-link" data-scroll-target="#checking-score-properties"><span class="header-section-number">22.6</span> Checking Score Properties</a>
+  <li><a href="#checking-score-properties" id="toc-checking-score-properties" class="nav-link" data-scroll-target="#checking-score-properties"><span class="header-section-number">19.6</span> Checking Score Properties</a>
   <ul class="collapse">
-  <li><a href="#connection-to-the-svd" id="toc-connection-to-the-svd" class="nav-link" data-scroll-target="#connection-to-the-svd"><span class="header-section-number">22.6.1</span> Connection to the SVD</a></li>
+  <li><a href="#connection-to-the-svd" id="toc-connection-to-the-svd" class="nav-link" data-scroll-target="#connection-to-the-svd"><span class="header-section-number">19.6.1</span> Connection to the SVD</a></li>
   </ul></li>
-  <li><a href="#pca-from-svd" id="toc-pca-from-svd" class="nav-link" data-scroll-target="#pca-from-svd"><span class="header-section-number">22.7</span> PCA from SVD</a>
+  <li><a href="#pca-from-svd" id="toc-pca-from-svd" class="nav-link" data-scroll-target="#pca-from-svd"><span class="header-section-number">19.7</span> PCA from SVD</a>
   <ul class="collapse">
-  <li><a href="#guideline-pca-by-svd" id="toc-guideline-pca-by-svd" class="nav-link" data-scroll-target="#guideline-pca-by-svd"><span class="header-section-number">22.7.1</span> Guideline: PCA by SVD</a></li>
+  <li><a href="#guideline-pca-by-svd" id="toc-guideline-pca-by-svd" class="nav-link" data-scroll-target="#guideline-pca-by-svd"><span class="header-section-number">19.7.1</span> Guideline: PCA by SVD</a></li>
   </ul></li>
-  <li><a href="#total-variance-and-percent-captured" id="toc-total-variance-and-percent-captured" class="nav-link" data-scroll-target="#total-variance-and-percent-captured"><span class="header-section-number">22.8</span> Total variance and percent captured</a></li>
-  <li><a href="#mean-centering-matters" id="toc-mean-centering-matters" class="nav-link" data-scroll-target="#mean-centering-matters"><span class="header-section-number">22.9</span> Mean-centering matters</a></li>
-  <li><a href="#real-data" id="toc-real-data" class="nav-link" data-scroll-target="#real-data"><span class="header-section-number">23</span> Real data</a>
+  <li><a href="#total-variance-and-percent-captured" id="toc-total-variance-and-percent-captured" class="nav-link" data-scroll-target="#total-variance-and-percent-captured"><span class="header-section-number">19.8</span> Total variance and percent captured</a></li>
+  <li><a href="#mean-centering-matters" id="toc-mean-centering-matters" class="nav-link" data-scroll-target="#mean-centering-matters"><span class="header-section-number">19.9</span> Mean-centering matters</a></li>
+  <li><a href="#real-data" id="toc-real-data" class="nav-link" data-scroll-target="#real-data"><span class="header-section-number">20</span> Real data</a>
   <ul class="collapse">
-  <li><a href="#interpreting-loadings" id="toc-interpreting-loadings" class="nav-link" data-scroll-target="#interpreting-loadings"><span class="header-section-number">23.1</span> Interpreting loadings</a></li>
+  <li><a href="#interpreting-loadings" id="toc-interpreting-loadings" class="nav-link" data-scroll-target="#interpreting-loadings"><span class="header-section-number">20.1</span> Interpreting loadings</a></li>
   </ul></li>
-  <li><a href="#high-dimensional-visualization-mnist" id="toc-high-dimensional-visualization-mnist" class="nav-link" data-scroll-target="#high-dimensional-visualization-mnist"><span class="header-section-number">24</span> High-dimensional Visualization: MNIST</a></li>
+  <li><a href="#high-dimensional-visualization-mnist" id="toc-high-dimensional-visualization-mnist" class="nav-link" data-scroll-target="#high-dimensional-visualization-mnist"><span class="header-section-number">21</span> High-dimensional Visualization: MNIST</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/160_unsupervised.html">Unsupervised Learning</a></li><li class="breadcrumb-item"><a href="../lectures/180_pca.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/160_unsupervised.html">Unsupervised Learning</a></li><li class="breadcrumb-item"><a href="../lectures/180_pca.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -513,6 +542,8 @@ X \in \mathbb{R}^{N\times D}
 \]</span></p>
 <p>be the data matrix. Rows are observations and columns are variables.</p>
 <div id="c2797959" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -521,6 +552,7 @@ X \in \mathbb{R}^{N\times D}
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>np.set_printoptions(precision<span class="op">=</span><span class="dv">4</span>, suppress<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>PCA is a dimensionality reduction technique.</p>
 <p>The <strong>first goal</strong> is to replace variables</p>
@@ -544,6 +576,8 @@ q \ll D.
 <p>So PCA tries to find new variables with large variance.</p>
 <p>When is this reasonable? Example:</p>
 <div id="b169589d-5d12-4778-9e21-3be8fa973fa5" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -583,8 +617,11 @@ q \ll D.
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> X_centered <span class="op">@</span> V</span>
 <span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>X_projected_3d <span class="op">=</span> scores[:, :<span class="dv">2</span>] <span class="op">@</span> V[:, :<span class="dv">2</span>].T <span class="op">+</span> xbar</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="dd70d79e-16bf-4c9f-9caa-b092cbfab9a3" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a grid in PC1-PC2 coordinates</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>grid_size <span class="op">=</span> <span class="dv">25</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>pc1_grid <span class="op">=</span> np.linspace(scores[:, <span class="dv">0</span>].<span class="bu">min</span>(), scores[:, <span class="dv">0</span>].<span class="bu">max</span>(), grid_size)</span>
@@ -677,6 +714,7 @@ q \ll D.
 <span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -687,6 +725,8 @@ q \ll D.
 </div>
 <p>Here is it projected:</p>
 <div id="47be4279-c3a9-4139-a8fb-a486a54b6dd1" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>scores_2d <span class="op">=</span> scores[:, :<span class="dv">2</span>]</span>
@@ -710,6 +750,7 @@ q \ll D.
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">"equal"</span>, adjustable<span class="op">=</span><span class="st">"box"</span>)</span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -723,8 +764,8 @@ q \ll D.
 x_n \in \mathbb{R}^D.
 \]</span></p>
 <p>PCA tries to keep this simple, it looks at <strong>linear combinations</strong> of the original variables <span class="math inline">\(X_1,\ldots,X_D\)</span> to create <span class="math inline">\(Z_1,\ldots,Z_q\)</span>. Equivalently, the goal is to find a lower-dimensional (linear) <strong>subspace</strong> of <span class="math inline">\(\mathbb{R}^D\)</span> so that when we project the data onto this subspace we don’t lose too much information.</p>
-<section id="projection-matrices" class="level2" data-number="22.1">
-<h2 data-number="22.1" class="anchored" data-anchor-id="projection-matrices"><span class="header-section-number">22.1</span> Projection matrices</h2>
+<section id="projection-matrices" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="projection-matrices"><span class="header-section-number">19.1</span> Projection matrices</h2>
 <p>Let’s do a refresher on projection matrices. Let <span class="math inline">\(W\)</span> be the <span class="math inline">\(D\times q\)</span> matrix of basis elements for the lower-dimensional subspace.</p>
 <p>The projection matrix onto <span class="math inline">\(\operatorname{Col}(W)\)</span> is</p>
 <p><span class="math display">\[
@@ -762,8 +803,8 @@ XP_W = XWW^T \in \mathbb{R}^{N\times P}
 \]</span></p>
 <p>is the projected data written back in the original <span class="math inline">\(D\)</span> coordinates.</p>
 </section>
-<section id="principal-components-as-linear-combinations" class="level2" data-number="22.2">
-<h2 data-number="22.2" class="anchored" data-anchor-id="principal-components-as-linear-combinations"><span class="header-section-number">22.2</span> Principal components as linear combinations</h2>
+<section id="principal-components-as-linear-combinations" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="principal-components-as-linear-combinations"><span class="header-section-number">19.2</span> Principal components as linear combinations</h2>
 <p>Since PCA wants to find positions of the data points in the lower-dimensional space (i.e using only <span class="math inline">\(q\)</span> variables), then we are mostly interested in <span class="math display">\[
 Z=XW
 \]</span> i.e., the data matrix embedded in the lower-dimensional coordinates.</p>
@@ -777,8 +818,8 @@ Z_i = X_1w_{i1}+X_2w_{i2}+\cdots+X_Pw_{iD}.
 \]</span></p>
 <p>So, <em>equivalently</em>, each principal component is a linear combination of the original columns of <span class="math inline">\(X\)</span>.</p>
 </section>
-<section id="pca-objective" class="level2" data-number="22.3">
-<h2 data-number="22.3" class="anchored" data-anchor-id="pca-objective"><span class="header-section-number">22.3</span> PCA objective</h2>
+<section id="pca-objective" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="pca-objective"><span class="header-section-number">19.3</span> PCA objective</h2>
 <p>With all this in mind, one way to frame PCA is: it finds linear combinations of the columns (variables) of <span class="math inline">\(X\)</span> such that</p>
 <ol type="1">
 <li>the variances of the resulting <span class="math inline">\(Z_i\)</span> variables are as large as possible (recall: want to retain information <span class="math inline">\(\approx\)</span> variance)</li>
@@ -787,6 +828,8 @@ Z_i = X_1w_{i1}+X_2w_{i2}+\cdots+X_Pw_{iD}.
 </ol>
 <p>For example, to find the first PC we could sweep over all possible vectors:</p>
 <div id="da5fe6c2" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -861,6 +904,7 @@ Z_i = X_1w_{i1}+X_2w_{i2}+\cdots+X_Pw_{iD}.
 <span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Best direction angle, degrees: 36.0
 Best unit vector: [0.809  0.5878]
@@ -883,8 +927,8 @@ Max projected variance: 9.745</code></pre>
 </div>
 <p><strong>Ok, so how do we do this generally?</strong></p>
 </section>
-<section id="aside-variance-and-covariance-notation" class="level2" data-number="22.4">
-<h2 data-number="22.4" class="anchored" data-anchor-id="aside-variance-and-covariance-notation"><span class="header-section-number">22.4</span> Aside: variance and covariance notation</h2>
+<section id="aside-variance-and-covariance-notation" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="aside-variance-and-covariance-notation"><span class="header-section-number">19.4</span> Aside: variance and covariance notation</h2>
 <p>Let <span class="math inline">\(x\in\mathbb{R}^N\)</span> be a variable observed on <span class="math inline">\(N\)</span> units. (<strong>Note</strong> this is a <em>column</em> of <span class="math inline">\(X\)</span> here)</p>
 <p>Assume</p>
 <p><span class="math display">\[
@@ -917,8 +961,8 @@ S_{ij}=\widehat{\operatorname{Cov}}(X_i,X_j),
 S_{ii}=\widehat{\operatorname{Var}}(X_i).
 \]</span></p>
 </section>
-<section id="the-pca-problem" class="level2" data-number="22.5">
-<h2 data-number="22.5" class="anchored" data-anchor-id="the-pca-problem"><span class="header-section-number">22.5</span> The PCA Problem</h2>
+<section id="the-pca-problem" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="the-pca-problem"><span class="header-section-number">19.5</span> The PCA Problem</h2>
 <p>Let <span class="math inline">\(X \in \mathbb{R}^{N \times D}\)</span> be centered, so each column has sample mean zero. Define the sample covariance matrix</p>
 <p><span class="math display">\[
 S_X = \frac{1}{N-1}X^TX.
@@ -965,8 +1009,8 @@ w^T S_X w.
 <p><span class="math display">\[
 z_k = Xw_k.
 \]</span></p>
-<section id="simplified-rayleigh-quotient-theorem" class="level3" data-number="22.5.1">
-<h3 data-number="22.5.1" class="anchored" data-anchor-id="simplified-rayleigh-quotient-theorem"><span class="header-section-number">22.5.1</span> Simplified Rayleigh quotient theorem</h3>
+<section id="simplified-rayleigh-quotient-theorem" class="level3" data-number="19.5.1">
+<h3 data-number="19.5.1" class="anchored" data-anchor-id="simplified-rayleigh-quotient-theorem"><span class="header-section-number">19.5.1</span> Simplified Rayleigh quotient theorem</h3>
 <p>Let <span class="math inline">\(A \in \mathbb{R}^{D \times D}\)</span> be symmetric, with eigendecomposition</p>
 <p><span class="math display">\[
 A = V\Lambda V^T,
@@ -1029,8 +1073,8 @@ w^TAw=\lambda_kc_k^2 + \lambda_{k+1}c_{k+1}^2 + \cdots + \lambda_Dc_D^2
 w = v_k.
 \]</span></p>
 </section>
-<section id="applying-the-theorem-to-pca" class="level3" data-number="22.5.2">
-<h3 data-number="22.5.2" class="anchored" data-anchor-id="applying-the-theorem-to-pca"><span class="header-section-number">22.5.2</span> Applying the theorem to PCA</h3>
+<section id="applying-the-theorem-to-pca" class="level3" data-number="19.5.2">
+<h3 data-number="19.5.2" class="anchored" data-anchor-id="applying-the-theorem-to-pca"><span class="header-section-number">19.5.2</span> Applying the theorem to PCA</h3>
 <p>The first principal component solves</p>
 <p><span class="math display">\[
 w_1=\arg\max_{\|w\|_2=1}
@@ -1091,8 +1135,8 @@ v_1 &amp; v_2 &amp; \cdots &amp; v_q
 \]</span></p>
 </section>
 </section>
-<section id="checking-score-properties" class="level2" data-number="22.6">
-<h2 data-number="22.6" class="anchored" data-anchor-id="checking-score-properties"><span class="header-section-number">22.6</span> Checking Score Properties</h2>
+<section id="checking-score-properties" class="level2" data-number="19.6">
+<h2 data-number="19.6" class="anchored" data-anchor-id="checking-score-properties"><span class="header-section-number">19.6</span> Checking Score Properties</h2>
 <p>The PCA scores are</p>
 <p><span class="math display">\[
 Z_q = XW_q.
@@ -1114,8 +1158,8 @@ S_{Z_q}
 \]</span></p>
 <p>So the eigenvalue derivation gives exactly what PCA wants: the scores are uncorrelated, their variances are as large as possible in order, and the directions are unit vectors.</p>
 <p><strong>Caveats</strong>: If two <em>eigenvalues are equal</em>, then the corresponding eigenvectors are not uniquely determined inside that tied eigenspace. Also, <em>signs</em> are arbitrary: replacing <span class="math inline">\(v_i\)</span> by <span class="math inline">\(-v_i\)</span> only flips the sign of the corresponding score.</p>
-<section id="connection-to-the-svd" class="level3" data-number="22.6.1">
-<h3 data-number="22.6.1" class="anchored" data-anchor-id="connection-to-the-svd"><span class="header-section-number">22.6.1</span> Connection to the SVD</h3>
+<section id="connection-to-the-svd" class="level3" data-number="19.6.1">
+<h3 data-number="19.6.1" class="anchored" data-anchor-id="connection-to-the-svd"><span class="header-section-number">19.6.1</span> Connection to the SVD</h3>
 <p>Now consider the full SVD of the centered data matrix:</p>
 <p><span class="math display">\[
 X = UDV^T,
@@ -1214,15 +1258,15 @@ Z_i = Xv_i = \sigma_i u_i.
 \]</span></p>
 </section>
 </section>
-<section id="pca-from-svd" class="level2" data-number="22.7">
-<h2 data-number="22.7" class="anchored" data-anchor-id="pca-from-svd"><span class="header-section-number">22.7</span> PCA from SVD</h2>
+<section id="pca-from-svd" class="level2" data-number="19.7">
+<h2 data-number="19.7" class="anchored" data-anchor-id="pca-from-svd"><span class="header-section-number">19.7</span> PCA from SVD</h2>
 <p><strong>In summary,</strong> PCA can be computed directly from the SVD of the centered data matrix <span class="math inline">\(X\)</span>:</p>
 <p><span class="math display">\[
 X = UDV^T.
 \]</span></p>
 <p>The principal directions (weights <span class="math inline">\(W\)</span>) are the first <span class="math inline">\(q\)</span> columns of <span class="math inline">\(V\)</span>, the score vectors are the first <span class="math inline">\(q\)</span> columns of <span class="math inline">\(UD\)</span>, and the variance of the <span class="math inline">\(i\)</span>th score is <span class="math inline">\(\sigma_i^2/(N-1)\)</span>.</p>
-<section id="guideline-pca-by-svd" class="level3" data-number="22.7.1">
-<h3 data-number="22.7.1" class="anchored" data-anchor-id="guideline-pca-by-svd"><span class="header-section-number">22.7.1</span> Guideline: PCA by SVD</h3>
+<section id="guideline-pca-by-svd" class="level3" data-number="19.7.1">
+<h3 data-number="19.7.1" class="anchored" data-anchor-id="guideline-pca-by-svd"><span class="header-section-number">19.7.1</span> Guideline: PCA by SVD</h3>
 <p>So the steps for calculating PCA are:</p>
 <ol start="0" type="1">
 <li><p>Mean-center the columns of <span class="math inline">\(X\)</span>.</p></li>
@@ -1246,6 +1290,8 @@ Z=XW=XV_{1:q}.
 <p>The columns of <span class="math inline">\(W\)</span> are the <strong>loadings</strong> or <strong>principal directions</strong>.</p>
 <p>The columns of <span class="math inline">\(Z\)</span> are the <strong>principal components</strong> or <strong>scores</strong>.</p>
 <div id="18102d25-6a6a-4749-8d5e-740b079900ee" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pca_via_svd(X,q): </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    mean <span class="op">=</span> X.mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1277,6 +1323,7 @@ Z=XW=XV_{1:q}.
 <span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Variances from SVs:"</span>, s<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(X.shape[<span class="dv">0</span>]<span class="op">-</span><span class="dv">1</span>))</span>
 <span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Covariance of Z:"</span>)</span>
 <span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.cov(Z, rowvar<span class="op">=</span><span class="va">False</span>, ddof<span class="op">=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Right singular vectors V:
 [[ 0.8083 -0.5887]
@@ -1292,6 +1339,8 @@ Covariance of Z:
 </div>
 </div>
 <div id="e1564b99-8606-457d-ba32-f2b3b8ef2fee" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the PCA directions on top of the synthetic data.</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
@@ -1311,6 +1360,7 @@ Covariance of Z:
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"$X_2$"</span>)</span>
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"PCA directions are the high-variance orthogonal axes"</span>)</span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1321,8 +1371,8 @@ Covariance of Z:
 </div>
 </section>
 </section>
-<section id="total-variance-and-percent-captured" class="level2" data-number="22.8">
-<h2 data-number="22.8" class="anchored" data-anchor-id="total-variance-and-percent-captured"><span class="header-section-number">22.8</span> Total variance and percent captured</h2>
+<section id="total-variance-and-percent-captured" class="level2" data-number="19.8">
+<h2 data-number="19.8" class="anchored" data-anchor-id="total-variance-and-percent-captured"><span class="header-section-number">19.8</span> Total variance and percent captured</h2>
 <p>One useful metric is the <strong>total variance captured</strong> by the first <span class="math inline">\(q\)</span> PC scores:</p>
 <p><span class="math display">\[
 \sum_{i=1}^q \widehat{\operatorname{Var}}(z_i)
@@ -1335,9 +1385,14 @@ Covariance of Z:
 = \frac{\sum_{i=1}^q\sigma_i^2}{\sum_{i=1}^D\sigma_i^2}.
 \]</span></p>
 <div id="0598996b-3365-44e7-a717-93814a3c7b9a" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>vrs <span class="op">=</span> s<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(X.shape[<span class="dv">0</span>]<span class="op">-</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="8a7d90f2" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>explained_table <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PC"</span>: np.arange(<span class="dv">1</span>, <span class="bu">len</span>(s) <span class="op">+</span> <span class="dv">1</span>),</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"singular_value"</span>: s,</span>
@@ -1346,6 +1401,7 @@ Covariance of Z:
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"cumulative_proportion"</span>: np.cumsum(vrs<span class="op">/</span>np.<span class="bu">sum</span>(vrs)),</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>display(explained_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -1385,10 +1441,12 @@ Covariance of Z:
 </div>
 </div>
 </section>
-<section id="mean-centering-matters" class="level2" data-number="22.9">
-<h2 data-number="22.9" class="anchored" data-anchor-id="mean-centering-matters"><span class="header-section-number">22.9</span> Mean-centering matters</h2>
+<section id="mean-centering-matters" class="level2" data-number="19.9">
+<h2 data-number="19.9" class="anchored" data-anchor-id="mean-centering-matters"><span class="header-section-number">19.9</span> Mean-centering matters</h2>
 <p>If we do not center the columns, the first principal component can mostly describe the location of the data cloud relative to the origin. In that case, <span class="math inline">\(z_1\)</span> may be close to a mean direction rather than the main direction of variation around the mean.</p>
 <div id="59550d94-7cf8-4a19-b6dc-cfcb9f6f8226" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">657677</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">500</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1409,8 +1467,11 @@ Covariance of Z:
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a large mean shift</span></span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> np.array([<span class="op">-</span><span class="fl">8.0</span>, <span class="fl">6.0</span>])</span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>X_raw <span class="op">=</span> X_centered_true <span class="op">+</span> mu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="a53cc521-d1b4-4667-be68-8a4e6a87d3a4" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#uncentered</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>U_unc, s_unc, Vt_unc <span class="op">=</span> svd(X_raw, full_matrices<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>v_uncentered <span class="op">=</span> Vt_unc.T[:, <span class="dv">0</span>]</span>
@@ -1420,20 +1481,29 @@ Covariance of Z:
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>U, s, Vt <span class="op">=</span> svd(X, full_matrices<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> Vt.T</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>v_centered <span class="op">=</span> V[:, <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="d5bf59a6-dedb-4940-ac0b-0ad5e650dc3d" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>v_uncentered</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>array([ 0.8287, -0.5597])</code></pre>
 </div>
 </div>
 <div id="28918275-234e-40da-b732-c4b7edb10977" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>v_centered</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>array([0.8075, 0.5898])</code></pre>
 </div>
 </div>
 <div id="855b509c" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mean_direction <span class="op">=</span> unit(X_raw.mean(axis<span class="op">=</span><span class="dv">0</span>))</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Absolute dot product: uncentered PC1 with mean direction"</span>)</span>
@@ -1450,6 +1520,7 @@ Covariance of Z:
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Mean direction:"</span>)</span>
 <span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean_direction.<span class="bu">round</span>(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Absolute dot product: uncentered PC1 with mean direction
 0.9996
@@ -1468,12 +1539,14 @@ Mean direction:
 </div>
 </div>
 </section>
-<section id="real-data" class="level1" data-number="23">
-<h1 data-number="23"><span class="header-section-number">23</span> Real data</h1>
+<section id="real-data" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> Real data</h1>
 <p>For a real data example, use the wine data from <code>sklearn.datasets</code>.</p>
 <p>The variables are measured in different units, so we use PCA on standardized variables. This means PCA is applied to the <strong>correlation structure</strong> rather than the raw <strong>covariance structure</strong>.</p>
 <p>The same SVD method applies after standardization.</p>
 <div id="282492f5" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_wine</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>wine <span class="op">=</span> load_wine(as_frame<span class="op">=</span><span class="va">True</span>)</span>
@@ -1486,6 +1559,7 @@ Mean direction:
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>display(wine_df.head())</span>
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Data shape:"</span>, X_wine_raw.shape)</span>
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of classes:"</span>, <span class="bu">len</span>(target_names))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -1607,6 +1681,8 @@ Number of classes: 3</code></pre>
 </div>
 </div>
 <div id="4801924e-713b-42a1-8e7c-ee4079a7879f" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
@@ -1616,18 +1692,28 @@ Number of classes: 3</code></pre>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    StandardScaler(),</span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    PCA()</span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="88174dc9-09fb-45cb-808f-51c670be4383" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>X_wine_scores <span class="op">=</span> wine_pca_pipe.fit_transform(X_wine_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="85f33ba5-432c-4946-b433-d3929ba3d2f6" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>X_wine_scores.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>(178, 13)</code></pre>
 </div>
 </div>
 <div id="0c7cf17a-6478-4355-b149-a356037145db" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>X_wine_scores[:<span class="dv">10</span>,:<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>array([[ 3.3168,  1.4435, -0.1657],
        [ 2.2095, -0.3334, -2.0265],
@@ -1642,10 +1728,15 @@ Number of classes: 3</code></pre>
 </div>
 </div>
 <div id="de97f9eb-9474-4307-bdcc-ed20cb7682ac" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull out fitted PCA object</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>wine_pca <span class="op">=</span> wine_pca_pipe.named_steps[<span class="st">"pca"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="fd67d934" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>wine_explained <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"PC"</span>: np.arange(<span class="dv">1</span>, <span class="bu">len</span>(wine_pca.singular_values_) <span class="op">+</span> <span class="dv">1</span>),</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"singular_value"</span>: wine_pca.singular_values_,</span>
@@ -1655,6 +1746,7 @@ Number of classes: 3</code></pre>
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>display(wine_explained.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -1758,6 +1850,8 @@ Number of classes: 3</code></pre>
 </div>
 </div>
 <div id="8b322e52" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>plt.plot(wine_explained[<span class="st">"PC"</span>], wine_explained[<span class="st">"proportion"</span>], marker<span class="op">=</span><span class="st">"o"</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"principal component"</span>)</span>
@@ -1765,6 +1859,7 @@ Number of classes: 3</code></pre>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Wine data scree plot"</span>)</span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>plt.xticks(wine_explained[<span class="st">"PC"</span>])</span>
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1774,6 +1869,8 @@ Number of classes: 3</code></pre>
 </div>
 </div>
 <div id="973ad932" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>plt.plot(wine_explained[<span class="st">"PC"</span>], wine_explained[<span class="st">"cumulative_proportion"</span>], marker<span class="op">=</span><span class="st">"o"</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"number of PCs retained"</span>)</span>
@@ -1782,6 +1879,7 @@ Number of classes: 3</code></pre>
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>plt.xticks(wine_explained[<span class="st">"PC"</span>])</span>
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="fl">1.05</span>)</span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1791,6 +1889,8 @@ Number of classes: 3</code></pre>
 </div>
 </div>
 <div id="9fa10690" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Z_wine <span class="op">=</span> X_wine_scores</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
@@ -1811,6 +1911,7 @@ Number of classes: 3</code></pre>
 <span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1819,8 +1920,8 @@ Number of classes: 3</code></pre>
 </div>
 </div>
 </div>
-<section id="interpreting-loadings" class="level2" data-number="23.1">
-<h2 data-number="23.1" class="anchored" data-anchor-id="interpreting-loadings"><span class="header-section-number">23.1</span> Interpreting loadings</h2>
+<section id="interpreting-loadings" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="interpreting-loadings"><span class="header-section-number">20.1</span> Interpreting loadings</h2>
 <p>The loadings are the entries of the vectors <span class="math inline">\(v_i\)</span>.</p>
 <p>For PC1,</p>
 <p><span class="math display">\[
@@ -1828,6 +1929,8 @@ z_1=Xv_1=X_1v_{11}+X_2v_{12}+\cdots+X_Dv_{1P}.
 \]</span></p>
 <p>Variables with large absolute loading values contribute more to that principal component. The sign is meaningful relative to other variables, but the whole vector can be multiplied by <span class="math inline">\(-1\)</span> without changing the PCA solution. Sometimes we can “interpret” what the PCs are telling us:</p>
 <div id="b3337e39" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pc1_loadings <span class="op">=</span> pd.Series(</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    wine_pca.components_[<span class="dv">0</span>, :],</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>feature_names,</span>
@@ -1850,6 +1953,7 @@ z_1=Xv_1=X_1v_{11}+X_2v_{12}+\cdots+X_Dv_{1P}.
 <span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>display(loading_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -1949,10 +2053,13 @@ z_1=Xv_1=X_1v_{11}+X_2v_{12}+\cdots+X_Dv_{1P}.
 </div>
 </div>
 <div id="b4bb392e" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>loading_table[<span class="st">"PC1 loading"</span>].sort_values().plot(kind<span class="op">=</span><span class="st">"barh"</span>, figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"loading value"</span>)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"PC1 loadings for standardized wine variables"</span>)</span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1963,10 +2070,12 @@ z_1=Xv_1=X_1v_{11}+X_2v_{12}+\cdots+X_Dv_{1P}.
 </div>
 </section>
 </section>
-<section id="high-dimensional-visualization-mnist" class="level1" data-number="24">
-<h1 data-number="24"><span class="header-section-number">24</span> High-dimensional Visualization: MNIST</h1>
+<section id="high-dimensional-visualization-mnist" class="level1" data-number="21">
+<h1 data-number="21"><span class="header-section-number">21</span> High-dimensional Visualization: MNIST</h1>
 <p>We can also use PCA to visualize high dimensional data like MNIST:</p>
 <div id="364dce81-650f-4cb0-8686-d89e8163ae21" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_openml</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>mnist <span class="op">=</span> fetch_openml(<span class="st">"mnist_784"</span>, version<span class="op">=</span><span class="dv">1</span>, as_frame<span class="op">=</span><span class="va">False</span>)</span>
@@ -1987,12 +2096,15 @@ z_1=Xv_1=X_1v_{11}+X_2v_{12}+\cdots+X_Dv_{1P}.
 <span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Scale pixels to [0, 1]</span></span>
 <span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>X_sub <span class="op">=</span> X_sub <span class="op">/</span> <span class="fl">255.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>X shape: (70000, 784)
 y shape: (70000,)</code></pre>
 </div>
 </div>
 <div id="295a0193-cbfb-4db8-96af-6234401d601b" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PCA centers internally, so we do not need to manually subtract the mean.</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> pca.fit_transform(X_sub)</span>
@@ -2002,6 +2114,7 @@ y shape: (70000,)</code></pre>
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Total variance explained by first 2 PCs:"</span>)</span>
 <span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pca.explained_variance_ratio_.<span class="bu">sum</span>().<span class="bu">round</span>(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Explained variance ratio:
 [0.1001 0.0699]
@@ -2011,6 +2124,8 @@ Total variance explained by first 2 PCs:
 </div>
 </div>
 <div id="a704c4fb-30f1-4749-8a95-89fa4466da2e" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">=</span> plt.scatter(</span>
@@ -2031,6 +2146,7 @@ Total variance explained by first 2 PCs:
 <span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2662,12 +2778,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/170_svd.html" class="pagination-link" aria-label="Singular Value Decomposition">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/190_kmeans.html" class="pagination-link" aria-label="K-means">
-        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

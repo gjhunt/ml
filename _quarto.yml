@@ -28,27 +28,24 @@ book:
 
   chapters:
     - index.ipynb
-    - part: "Foundations and Empirical Risk Minimization"
+    - part: "Foundations and Linear Models"
       chapters:
         - lectures/000_intro_and_erm.ipynb
         - lectures/005_derivatives.ipynb
         - lectures/010_linear_regression.ipynb
         - lectures/020_logistic_regression.ipynb
         - lectures/030_multiclass_logistic_regression.ipynb
-        - lectures/040_ERM_NLL.ipynb
 
-    - part: "Evaluation, Model Selection, and Nonparametric Methods"
+    - part: "Evaluation and Model Selection"
       chapters:
         - lectures/050_evaluation.ipynb
         - lectures/060_model_selection.ipynb
         - lectures/070_knn.ipynb
         - lectures/080_bias_variance.ipynb
-        - lectures/090_curse_dim.ipynb
 
     - part: "Regularization and Penalized Models"
       chapters:
         - lectures/100_ridge.ipynb
-        - lectures/101_constr_optim.ipynb
         - lectures/110_lasso.ipynb
         - lectures/120_elastic_net_logistic_erm.ipynb
 
@@ -78,7 +75,17 @@ book:
         - questions/010_linear_regression_questions.ipynb
         - questions/020_logistic_regression_questions.ipynb
         - questions/030_multiclass_logistic_regression_questions.ipynb
+        - questions/050_evaluation_questions.ipynb
+        - questions/060_model_selection_questions.ipynb
+        - questions/070_knn_questions.ipynb
+
+
+    - part: "Extras"
+      chapters:
+        - lectures/040_ERM_NLL.ipynb
         - questions/040_ERM_NLL_questions.ipynb
+        - lectures/101_constr_optim.ipynb
+        - lectures/090_curse_dim.ipynb
 
 crossref:
   fig-title: "Figure"
@@ -98,8 +105,8 @@ format:
     toc: true
     toc-depth: 3
     number-sections: true
-    code-fold: false
     code-summary: "Show code"
+    code-fold: show   
     code-tools: true
     code-copy: true
     highlight-style: pygments

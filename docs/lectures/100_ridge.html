@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>13&nbsp; Penalized ERM and Ridge Regression – Statistical Learning</title>
+<title>11&nbsp; Penalized ERM and Ridge Regression – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../lectures/101_constr_optim.html" rel="next">
-<link href="../lectures/090_curse_dim.html" rel="prev">
+<link href="../lectures/110_lasso.html" rel="next">
+<link href="../lectures/080_bias_variance.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -151,7 +151,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/100_ridge.html">Regularization and Penalized Models</a></li><li class="breadcrumb-item"><a href="../lectures/100_ridge.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/100_ridge.html">Regularization and Penalized Models</a></li><li class="breadcrumb-item"><a href="../lectures/100_ridge.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -189,7 +189,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Foundations and Empirical Risk Minimization</span></a>
+ <span class="menu-text">Foundations and Linear Models</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -225,18 +225,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Evaluation, Model Selection, and Nonparametric Methods</span></a>
+ <span class="menu-text">Evaluation and Model Selection</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -245,31 +239,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/050_evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/060_model_selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/070_knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/080_bias_variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
   </div>
 </li>
       </ul>
@@ -286,25 +274,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/100_ridge.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/110_lasso.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/120_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
   </div>
 </li>
       </ul>
@@ -321,19 +303,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/130_nn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/140_backprop.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/150_nn_arch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
   </div>
 </li>
       </ul>
@@ -350,25 +332,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/160_unsupervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/170_svd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/180_pca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/190_kmeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
       </ul>
@@ -385,19 +367,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/200_carts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/210_random_forests.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/220_boosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
       </ul>
@@ -414,37 +396,84 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/005_derivatives_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/010_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/020_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/030_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/050_evaluation_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/060_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/070_knn_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Extras</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
   </div>
 </li>
       </ul>
@@ -459,35 +488,35 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#regularization" id="toc-regularization" class="nav-link active" data-scroll-target="#regularization"><span class="header-section-number">13.1</span> Regularization</a></li>
-  <li><a href="#penalized-erm" id="toc-penalized-erm" class="nav-link" data-scroll-target="#penalized-erm"><span class="header-section-number">13.2</span> Penalized ERM</a>
+  <li><a href="#regularization" id="toc-regularization" class="nav-link active" data-scroll-target="#regularization"><span class="header-section-number">11.1</span> Regularization</a></li>
+  <li><a href="#penalized-erm" id="toc-penalized-erm" class="nav-link" data-scroll-target="#penalized-erm"><span class="header-section-number">11.2</span> Penalized ERM</a>
   <ul class="collapse">
-  <li><a href="#parameterized-models" id="toc-parameterized-models" class="nav-link" data-scroll-target="#parameterized-models"><span class="header-section-number">13.2.1</span> Parameterized models</a></li>
+  <li><a href="#parameterized-models" id="toc-parameterized-models" class="nav-link" data-scroll-target="#parameterized-models"><span class="header-section-number">11.2.1</span> Parameterized models</a></li>
   </ul></li>
-  <li><a href="#ridge-regression" id="toc-ridge-regression" class="nav-link" data-scroll-target="#ridge-regression"><span class="header-section-number">13.3</span> Ridge Regression</a>
+  <li><a href="#ridge-regression" id="toc-ridge-regression" class="nav-link" data-scroll-target="#ridge-regression"><span class="header-section-number">11.3</span> Ridge Regression</a>
   <ul class="collapse">
-  <li><a href="#solving-for-hatw" id="toc-solving-for-hatw" class="nav-link" data-scroll-target="#solving-for-hatw"><span class="header-section-number">13.3.1</span> Solving for <span class="math inline">\(\hat{w}\)</span></a></li>
-  <li><a href="#invertibility-and-eigenvalues" id="toc-invertibility-and-eigenvalues" class="nav-link" data-scroll-target="#invertibility-and-eigenvalues"><span class="header-section-number">13.3.2</span> Invertibility and Eigenvalues</a></li>
-  <li><a href="#conditioning" id="toc-conditioning" class="nav-link" data-scroll-target="#conditioning"><span class="header-section-number">13.3.3</span> Conditioning</a></li>
-  <li><a href="#coefficients-for-correlated-variables-become-large." id="toc-coefficients-for-correlated-variables-become-large." class="nav-link" data-scroll-target="#coefficients-for-correlated-variables-become-large."><span class="header-section-number">13.3.4</span> Coefficients for correlated variables become large.</a></li>
+  <li><a href="#solving-for-hatw" id="toc-solving-for-hatw" class="nav-link" data-scroll-target="#solving-for-hatw"><span class="header-section-number">11.3.1</span> Solving for <span class="math inline">\(\hat{w}\)</span></a></li>
+  <li><a href="#invertibility-and-eigenvalues" id="toc-invertibility-and-eigenvalues" class="nav-link" data-scroll-target="#invertibility-and-eigenvalues"><span class="header-section-number">11.3.2</span> Invertibility and Eigenvalues</a></li>
+  <li><a href="#conditioning" id="toc-conditioning" class="nav-link" data-scroll-target="#conditioning"><span class="header-section-number">11.3.3</span> Conditioning</a></li>
+  <li><a href="#coefficients-for-correlated-variables-become-large." id="toc-coefficients-for-correlated-variables-become-large." class="nav-link" data-scroll-target="#coefficients-for-correlated-variables-become-large."><span class="header-section-number">11.3.4</span> Coefficients for correlated variables become large.</a></li>
   </ul></li>
-  <li><a href="#constrained-vs-penalized" id="toc-constrained-vs-penalized" class="nav-link" data-scroll-target="#constrained-vs-penalized"><span class="header-section-number">13.4</span> Constrained vs penalized</a>
+  <li><a href="#constrained-vs-penalized" id="toc-constrained-vs-penalized" class="nav-link" data-scroll-target="#constrained-vs-penalized"><span class="header-section-number">11.4</span> Constrained vs penalized</a>
   <ul class="collapse">
-  <li><a href="#geometry" id="toc-geometry" class="nav-link" data-scroll-target="#geometry"><span class="header-section-number">13.4.1</span> Geometry</a></li>
+  <li><a href="#geometry" id="toc-geometry" class="nav-link" data-scroll-target="#geometry"><span class="header-section-number">11.4.1</span> Geometry</a></li>
   </ul></li>
-  <li><a href="#bias-variance-tradeoff" id="toc-bias-variance-tradeoff" class="nav-link" data-scroll-target="#bias-variance-tradeoff"><span class="header-section-number">13.5</span> Bias-variance tradeoff</a></li>
-  <li><a href="#practical-considerations" id="toc-practical-considerations" class="nav-link" data-scroll-target="#practical-considerations"><span class="header-section-number">13.6</span> Practical considerations</a></li>
-  <li><a href="#ridge-with-orthonormal-predictors" id="toc-ridge-with-orthonormal-predictors" class="nav-link" data-scroll-target="#ridge-with-orthonormal-predictors"><span class="header-section-number">13.7</span> Ridge with orthonormal predictors</a></li>
-  <li><a href="#real-data-example" id="toc-real-data-example" class="nav-link" data-scroll-target="#real-data-example"><span class="header-section-number">14</span> Real Data Example</a></li>
+  <li><a href="#bias-variance-tradeoff" id="toc-bias-variance-tradeoff" class="nav-link" data-scroll-target="#bias-variance-tradeoff"><span class="header-section-number">11.5</span> Bias-variance tradeoff</a></li>
+  <li><a href="#practical-considerations" id="toc-practical-considerations" class="nav-link" data-scroll-target="#practical-considerations"><span class="header-section-number">11.6</span> Practical considerations</a></li>
+  <li><a href="#ridge-with-orthonormal-predictors" id="toc-ridge-with-orthonormal-predictors" class="nav-link" data-scroll-target="#ridge-with-orthonormal-predictors"><span class="header-section-number">11.7</span> Ridge with orthonormal predictors</a></li>
+  <li><a href="#real-data-example" id="toc-real-data-example" class="nav-link" data-scroll-target="#real-data-example"><span class="header-section-number">12</span> Real Data Example</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/100_ridge.html">Regularization and Penalized Models</a></li><li class="breadcrumb-item"><a href="../lectures/100_ridge.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/100_ridge.html">Regularization and Penalized Models</a></li><li class="breadcrumb-item"><a href="../lectures/100_ridge.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -531,8 +560,8 @@ window.Quarto = {
 \arg\min_w \hat{R}(w).
 \]</span></p>
 <p>We call this the <strong>ordinary least squares (OLS)</strong> estimator.</p>
-<section id="regularization" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="regularization"><span class="header-section-number">13.1</span> Regularization</h2>
+<section id="regularization" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="regularization"><span class="header-section-number">11.1</span> Regularization</h2>
 <p>Based on what we have already seen, minimizing training error alone is not sufficient.</p>
 <p>From earlier examples:</p>
 <ul>
@@ -564,8 +593,8 @@ window.Quarto = {
 <li>Other methods such as early stopping or constraints (we will see these later)</li>
 </ul>
 </section>
-<section id="penalized-erm" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="penalized-erm"><span class="header-section-number">13.2</span> Penalized ERM</h2>
+<section id="penalized-erm" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="penalized-erm"><span class="header-section-number">11.2</span> Penalized ERM</h2>
 <p>We now study how to modify the optimization problem itself by introducing a complexity <strong>penalty</strong>.</p>
 <p>Recall that the ERM problem can be written as</p>
 <p><span class="math display">\[
@@ -586,8 +615,8 @@ window.Quarto = {
 </li>
 <li>Larger <span class="math inline">\(\lambda\)</span> places more emphasis on simplicity (lower complexity)</li>
 </ul>
-<section id="parameterized-models" class="level3" data-number="13.2.1">
-<h3 data-number="13.2.1" class="anchored" data-anchor-id="parameterized-models"><span class="header-section-number">13.2.1</span> Parameterized models</h3>
+<section id="parameterized-models" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="parameterized-models"><span class="header-section-number">11.2.1</span> Parameterized models</h3>
 <p>In many cases, the model class is parameterized by a vector <span class="math inline">\(w\)</span>, so that each <span class="math inline">\(s \in \mathcal{S}\)</span> can be written as <span class="math inline">\(s = s_w\)</span>.</p>
 <p>In this setting, we can rewrite the problem entirely in terms of <span class="math inline">\(w\)</span>:</p>
 <p><span class="math display">\[
@@ -600,8 +629,8 @@ window.Quarto = {
 <p>This was the case for linear regression and logistic regression.</p>
 </section>
 </section>
-<section id="ridge-regression" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="ridge-regression"><span class="header-section-number">13.3</span> Ridge Regression</h2>
+<section id="ridge-regression" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="ridge-regression"><span class="header-section-number">11.3</span> Ridge Regression</h2>
 <p>Perhaps the simplest example of penalized ERM is <strong>ridge regression</strong>. This modifies the original OLS problem by penalizing the loss with a complexity measure on <span class="math inline">\(s_w\)</span>:</p>
 <p><span class="math display">\[
 \Omega(s_w) = \|w\|_2^2.
@@ -629,8 +658,8 @@ When features are highly correlated, we’ll show that OLS can often produce lar
 <li><p><strong>It’s Mathematically convenient.</strong><br>
 The squared <span class="math inline">\(\ell_2\)</span> norm is smooth and leads to a closed-form solution, which makes ridge regression easy to analyze and compute.</p></li>
 </ol>
-<section id="solving-for-hatw" class="level3" data-number="13.3.1">
-<h3 data-number="13.3.1" class="anchored" data-anchor-id="solving-for-hatw"><span class="header-section-number">13.3.1</span> Solving for <span class="math inline">\(\hat{w}\)</span></h3>
+<section id="solving-for-hatw" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="solving-for-hatw"><span class="header-section-number">11.3.1</span> Solving for <span class="math inline">\(\hat{w}\)</span></h3>
 <p>How do we solve this now? The idea is exactly the same as before: take the gradient and set it equal to zero. The only difference is that we now have an additional penalty term.</p>
 <p>Our objective is: <span class="math display">\[
 \hat{R}(w) = \|y - Xw\|_2^2 + \lambda \|w\|_2^2.
@@ -681,8 +710,8 @@ X^\top X w - X^\top y + \lambda w = 0.
 - stabilizes the solution when features are correlated</p>
 <p>Often we say this is <em>better</em> <strong>conditioned</strong>.</p>
 </section>
-<section id="invertibility-and-eigenvalues" class="level3" data-number="13.3.2">
-<h3 data-number="13.3.2" class="anchored" data-anchor-id="invertibility-and-eigenvalues"><span class="header-section-number">13.3.2</span> Invertibility and Eigenvalues</h3>
+<section id="invertibility-and-eigenvalues" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="invertibility-and-eigenvalues"><span class="header-section-number">11.3.2</span> Invertibility and Eigenvalues</h3>
 <p>It may help to look at the eigenvalues of the matrix <span class="math inline">\(X^\top X\)</span>. An important fact about <span class="math inline">\(X^\top X\)</span>: it is <strong>symmetric</strong> and <strong>positive semidefinite</strong>. For our purposes, this is important because it means it has real eigenvalues <span class="math inline">\(\sigma_1^2, \dots, \sigma_D^2 \ge 0\)</span> associated with orthogonal eigenvectors <span class="math inline">\(v_1,\ldots,v_D\)</span> so that</p>
 <p><span class="math display">\[
 X^\top X v_i = \sigma_i^2 v_i.
@@ -709,8 +738,8 @@ X^\top X \, v + \lambda I v=
 \]</span></p>
 <p>This means there are no zero eigenvalues and so the matrix is invertible. You can think of <span class="math inline">\(X^\top X\)</span> as having some “flat” directions (where the eigenvalue is 0 or close to it), meaning the data does not constrain the solution in those directions. Adding <span class="math inline">\(\lambda I\)</span> removes these flat directions by adding curvature everywhere, making the problem well-posed.</p>
 </section>
-<section id="conditioning" class="level3" data-number="13.3.3">
-<h3 data-number="13.3.3" class="anchored" data-anchor-id="conditioning"><span class="header-section-number">13.3.3</span> Conditioning</h3>
+<section id="conditioning" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="conditioning"><span class="header-section-number">11.3.3</span> Conditioning</h3>
 <p>Another way to understand why ridge helps is through <strong>conditioning</strong>.</p>
 <p>The stability of solving a linear system like <span class="math display">\[
 X^\top X w = X^\top y
@@ -745,8 +774,8 @@ K(X^\top X + \lambda I)=
 1 + \lambda_{\max}/\lambda
 \]</span></p>
 </section>
-<section id="coefficients-for-correlated-variables-become-large." class="level3" data-number="13.3.4">
-<h3 data-number="13.3.4" class="anchored" data-anchor-id="coefficients-for-correlated-variables-become-large."><span class="header-section-number">13.3.4</span> Coefficients for correlated variables become large.</h3>
+<section id="coefficients-for-correlated-variables-become-large." class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="coefficients-for-correlated-variables-become-large."><span class="header-section-number">11.3.4</span> Coefficients for correlated variables become large.</h3>
 <p>Why does ill-conditioning lead to large coefficients? A simple way to see this is through highly correlated features. Suppose we have two features <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> that are nearly identical: <span class="math display">\[
 x_2 \approx x_1.
 \]</span></p>
@@ -763,8 +792,8 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <p>So the data does not strongly constrain <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> individually, only their sum. Consequently, the optimization problem has directions where the loss changes very little, and small changes in the data can lead to large changes in <span class="math inline">\((w_1, w_2)\)</span>. In practice, the coefficients thus tend to run off to <span class="math inline">\(\pm \infty\)</span>.</p>
 </section>
 </section>
-<section id="constrained-vs-penalized" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="constrained-vs-penalized"><span class="header-section-number">13.4</span> Constrained vs penalized</h2>
+<section id="constrained-vs-penalized" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="constrained-vs-penalized"><span class="header-section-number">11.4</span> Constrained vs penalized</h2>
 <p>So far we have written ridge regression in <strong>penalized form</strong>: <span class="math display">\[
 \hat{w}=
 \arg\min_w
@@ -780,15 +809,20 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <p>In the <strong>penalized form</strong> we trade off fit and complexity directly in the objective, <span class="math inline">\(\lambda\)</span> controls how much we penalize large coefficients. In the <strong>constrained form</strong> we minimize training error subject to a <strong>hard constraint</strong> on complexity. Here <span class="math inline">\(t\)</span> sets the maximum allowed size of <span class="math inline">\(w\)</span>. <em>These are mathematically equivalent.</em></p>
 <p>For every value of <span class="math inline">\(\lambda\)</span>, there exists a value of <span class="math inline">\(t\)</span> such that the two problems have the same solution (and vice versa). So we can think of <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(t\)</span> as two ways of parameterizing the same tradeoff.</p>
 <p>The connection between the two formulations comes from the theory of constrained optimization. You may have seen a simplified version of this in a multivariable calculus course under the name <strong>Lagrange multipliers</strong>. For more information, see: <a href="https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions">KKT Conditions</a>.</p>
-<section id="geometry" class="level3" data-number="13.4.1">
-<h3 data-number="13.4.1" class="anchored" data-anchor-id="geometry"><span class="header-section-number">13.4.1</span> Geometry</h3>
+<section id="geometry" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="geometry"><span class="header-section-number">11.4.1</span> Geometry</h3>
 <div id="bcdaaf0d-5154-4806-8174-b7ed5b5fac59" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact, FloatSlider, Dropdown</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Circle</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="a65ae62f-0b89-482a-a4f9-2d5043eb15b1" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([</span>
@@ -802,11 +836,14 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>w_ols <span class="op">=</span> np.linalg.solve(X.T <span class="op">@</span> X, X.T <span class="op">@</span> y)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>w_ols</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>array([0.83333333, 1.        ])</code></pre>
 </div>
 </div>
 <div id="f60b6e0e-1d67-4ae0-b7e0-3ac0b2281a1b" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> risk(w1, w2):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#vectorized</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> X[:, <span class="dv">0</span>, <span class="va">None</span>, <span class="va">None</span>] <span class="op">*</span> w1 <span class="op">+</span> X[:, <span class="dv">1</span>, <span class="va">None</span>, <span class="va">None</span>] <span class="op">*</span> w2</span>
@@ -920,8 +957,11 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>    ax.legend()</span>
 <span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="1d6190f5-da10-435f-960d-4133f67a3c37" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>interact(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    plot_geometry,</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span>Dropdown(</span>
@@ -938,6 +978,7 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">'lambda'</span></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"777bf8648f2245e79e4a535fcfc0f316","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -949,8 +990,8 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <p>As we tighten the constraint (decrease <span class="math inline">\(t\)</span> or increase <span class="math inline">\(\lambda\)</span>), the solution moves continuously toward the origin. The solution balances minimizing the loss (moving toward the center of the ellipses) with keeping <span class="math inline">\(\|w\|_2\)</span> small (staying inside the ball). The shape of the ball and the ellipses determines the solution. Because the <span class="math inline">\(L_2\)</span> ball is round, the solution tends to shrink all coordinates.</p>
 </section>
 </section>
-<section id="bias-variance-tradeoff" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="bias-variance-tradeoff"><span class="header-section-number">13.5</span> Bias-variance tradeoff</h2>
+<section id="bias-variance-tradeoff" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="bias-variance-tradeoff"><span class="header-section-number">11.5</span> Bias-variance tradeoff</h2>
 <p>Ridge regression provides a direct way to control the bias-variance tradeoff through the parameter <span class="math inline">\(\lambda\)</span>.</p>
 <ul>
 <li>Small <span class="math inline">\(\lambda\)</span>:
@@ -965,11 +1006,16 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <p>This leads to the familiar <strong>U-shaped test error curve</strong>. We can choose <span class="math inline">\(\lambda\)</span> via cross-validation.</p>
 <p>First consider a simulation with high variance and many useless variables:</p>
 <div id="f00282c6-1aaf-4c92-a95d-14b998ad6fb3" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Ridge</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="d476a9fc-ebdd-48f9-b28a-8e584c4af18e" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span></span>
@@ -984,14 +1030,20 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># relatively high noise</span></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> np.random.normal(scale<span class="op">=</span><span class="fl">2.0</span>, size<span class="op">=</span>N)</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> X <span class="op">@</span> w_true <span class="op">+</span> noise</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="8320a6c7-f860-42d9-9bbe-afc53d419059" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train/test split</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.4</span>, random_state<span class="op">=</span><span class="dv">1</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="72110c1a-8272-44ca-9286-856b8d4fef0f" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>lambdas <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">250</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>train_mse <span class="op">=</span> []</span>
@@ -1006,8 +1058,11 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    train_mse.append(mean_squared_error(y_train, yhat_train))</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    test_mse.append(mean_squared_error(y_test, yhat_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="a608a155-1eca-46c0-922d-4ec12269e47c" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="dv">1</span><span class="op">/</span>lambdas, train_mse, label<span class="op">=</span><span class="st">"Training MSE"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="dv">1</span><span class="op">/</span>lambdas, test_mse, label<span class="op">=</span><span class="st">"Test MSE"</span>)</span>
@@ -1017,6 +1072,7 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Training and test error for ridge regression"</span>)</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1027,6 +1083,8 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 </div>
 <p>Now consider a simulation with high colinearity:</p>
 <div id="03078634-d34b-4939-a544-00b0ec28aaa2" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate highly collinear data</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> <span class="dv">10</span></span>
@@ -1045,8 +1103,11 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    w_true[j <span class="op">*</span> copies_per_group] <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> X <span class="op">@</span> w_true <span class="op">+</span> np.random.normal(scale<span class="op">=</span><span class="fl">3.0</span>, size<span class="op">=</span>N)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="11fe9870-0708-4515-8b6a-134ad97199df" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train/test split</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.4</span>, random_state<span class="op">=</span><span class="dv">1</span></span>
@@ -1065,8 +1126,11 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    train_mse.append(mean_squared_error(y_train, model.predict(X_train)))</span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    test_mse.append(mean_squared_error(y_test, model.predict(X_test)))</span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    coef_norms.append(np.linalg.norm(model.coef_))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="7069d9eb-f668-41a7-9e33-61e1fe5411b3" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="dv">1</span><span class="op">/</span>lambdas, train_mse, label<span class="op">=</span><span class="st">"Training MSE"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="dv">1</span><span class="op">/</span>lambdas, test_mse, label<span class="op">=</span><span class="st">"Test MSE"</span>)</span>
@@ -1076,6 +1140,7 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Ridge regression with highly collinear features"</span>)</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1085,8 +1150,8 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 </div>
 </div>
 </section>
-<section id="practical-considerations" class="level2" data-number="13.6">
-<h2 data-number="13.6" class="anchored" data-anchor-id="practical-considerations"><span class="header-section-number">13.6</span> Practical considerations</h2>
+<section id="practical-considerations" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="practical-considerations"><span class="header-section-number">11.6</span> Practical considerations</h2>
 <p>When applying ridge regression in practice, there are a few important implementation details.</p>
 <p><strong>Standardize predictors</strong></p>
 <p>Ridge penalizes the size of the coefficients: <span class="math display">\[
@@ -1117,8 +1182,8 @@ y = \alpha + Xw.
 \]</span></p>
 <p>So centering the data effectively separates out the intercept, allowing us to penalize only <span class="math inline">\(w\)</span>.</p>
 </section>
-<section id="ridge-with-orthonormal-predictors" class="level2" data-number="13.7">
-<h2 data-number="13.7" class="anchored" data-anchor-id="ridge-with-orthonormal-predictors"><span class="header-section-number">13.7</span> Ridge with orthonormal predictors</h2>
+<section id="ridge-with-orthonormal-predictors" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="ridge-with-orthonormal-predictors"><span class="header-section-number">11.7</span> Ridge with orthonormal predictors</h2>
 <p>Suppose the columns of <span class="math inline">\(X\)</span> are orthonormal, so that <span class="math display">\[
 X^\top X = I.
 \]</span></p>
@@ -1139,9 +1204,11 @@ X^\top X = I.
   \]</span></p>
 <p>As <span class="math inline">\(\lambda \to 0\)</span>, <span class="math inline">\(\hat{w}_\lambda \to \hat{w}_{\text{OLS}}\)</span>. As <span class="math inline">\(\lambda \to \infty\)</span>, <span class="math inline">\(\hat{w}_\lambda \to 0\)</span>. This formulation remains valid even when the OLS solution does not exist (e.g., when <span class="math inline">\(X^\top X\)</span> is not invertible). For any <span class="math inline">\(\lambda &gt; 0\)</span>, the ridge solution is well-defined. Moreover, as <span class="math inline">\(\lambda \to 0\)</span>, the ridge estimator approaches the OLS solution when it exists, and more generally converges to a limiting solution often referred to as <strong>ridgeless regression</strong>.</p>
 </section>
-<section id="real-data-example" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> Real Data Example</h1>
+<section id="real-data-example" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Real Data Example</h1>
 <div id="bac9b51a-3e9b-4df2-b19a-6f2c9ecc7f56" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1151,12 +1218,19 @@ X^\top X = I.
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Ridge</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> KFold, GridSearchCV, cross_val_score</span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="17c4aa48-ee69-4a30-81cb-dacb48018141" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>riboflavin_df <span class="op">=</span> pd.read_csv(<span class="st">'riboflavin.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="b250d47a-d4d7-4369-af50-88dd9568109d" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>riboflavin_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -1317,6 +1391,8 @@ X^\top X = I.
 </div>
 </div>
 <div id="b9f5330f-2ade-4c1e-a223-728960a50029" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Response is the first column, predictors are all remaining columns</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> riboflavin_df[<span class="st">"y"</span>].to_numpy(dtype<span class="op">=</span><span class="bu">float</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>X_raw <span class="op">=</span> riboflavin_df.drop(columns<span class="op">=</span>[<span class="st">"y"</span>])</span>
@@ -1329,12 +1405,15 @@ X^\top X = I.
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X shape:"</span>, X.shape)</span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"y shape:"</span>, y.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>X shape: (71, 4088)
 y shape: (71,)</code></pre>
 </div>
 </div>
 <div id="9c166c88-c46b-4c73-a680-481e75f030e2" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lambdas <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">100</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>outer_cv <span class="op">=</span> KFold(n_splits<span class="op">=</span><span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">164654</span>)</span>
@@ -1348,8 +1427,11 @@ y shape: (71,)</code></pre>
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {</span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ridge__alpha"</span>: lambdas</span>
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="86139b86-511f-47e7-b7fd-1e5403235299" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>outer_test_mse <span class="op">=</span> []</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>outer_best_lambdas <span class="op">=</span> []</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>outer_coef_norms <span class="op">=</span> []</span>
@@ -1386,6 +1468,7 @@ y shape: (71,)</code></pre>
 <span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  best lambda: </span><span class="sc">{</span>best_lambda<span class="sc">:.4g}</span><span class="ss">"</span>)</span>
 <span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  outer test MSE: </span><span class="sc">{</span>test_mse<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  coefficient norm: </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>norm(coef)<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Fold 1
   best lambda: 367.8
@@ -1410,6 +1493,8 @@ Fold 5
 </div>
 </div>
 <div id="ee02000c-f522-4c54-82cb-c55bb82f0408" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>outer_test_mse <span class="op">=</span> np.array(outer_test_mse)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>outer_best_lambdas <span class="op">=</span> np.array(outer_best_lambdas)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>outer_coef_norms <span class="op">=</span> np.array(outer_coef_norms)</span>
@@ -1418,6 +1503,7 @@ Fold 5
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-----------------"</span>)</span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean outer test MSE: </span><span class="sc">{</span>outer_test_mse<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Std outer test MSE:  </span><span class="sc">{</span>outer_test_mse<span class="sc">.</span>std(ddof<span class="op">=</span><span class="dv">1</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nested CV results
 -----------------
@@ -1427,6 +1513,8 @@ Std outer test MSE:  0.1055</code></pre>
 </div>
 <p>After estimating generalization error with nested CV, we can now tune lambda on all data and fit a final model.</p>
 <div id="13fc4995-42c5-467b-a67b-75d5d8cf8a40" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>final_search <span class="op">=</span> GridSearchCV(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    estimator<span class="op">=</span>ridge_pipeline,</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    param_grid<span class="op">=</span>param_grid,</span>
@@ -1441,12 +1529,15 @@ Std outer test MSE:  0.1055</code></pre>
 <span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>final_model <span class="op">=</span> final_search.best_estimator_</span>
 <span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Final selected lambda:"</span>, best_lambda_final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Final selected lambda: 464.1588833612782</code></pre>
 </div>
 </div>
 <p>For illustration, we can now plot CV curve from final tuning step.</p>
 <div id="ebbb2569-c31c-43fe-bac9-40b53596cd50" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>cv_results <span class="op">=</span> pd.DataFrame(final_search.cv_results_)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>mean_cv_mse <span class="op">=</span> <span class="op">-</span>cv_results[<span class="st">"mean_test_score"</span>].to_numpy()</span>
@@ -1471,6 +1562,7 @@ Std outer test MSE:  0.1055</code></pre>
 <span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Ridge tuning curve on full data"</span>)</span>
 <span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1480,6 +1572,8 @@ Std outer test MSE:  0.1055</code></pre>
 </div>
 </div>
 <div id="2b9b933e-9b0a-41e0-b714-6c50ae06034d" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>final_ridge <span class="op">=</span> final_model.named_steps[<span class="st">"ridge"</span>]</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>final_coef <span class="op">=</span> final_ridge.coef_</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1495,6 +1589,7 @@ Std outer test MSE:  0.1055</code></pre>
 <span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Final coefficient norm:"</span>, np.linalg.norm(final_coef))</span>
 <span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>coef_table.head(<span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Final coefficient norm: 0.10134550518623496</code></pre>
 </div>
@@ -1610,6 +1705,8 @@ Std outer test MSE:  0.1055</code></pre>
 </div>
 <p>We can also look at some diagnostics:</p>
 <div id="d7e81465-e3e7-4f67-b91b-2157f3771ebe" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Xs <span class="op">=</span> scaler.fit_transform(X)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1637,6 +1734,7 @@ Std outer test MSE:  0.1055</code></pre>
 <span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Ridge improves conditioning"</span>)</span>
 <span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>N: 71
 D: 4088
@@ -1653,6 +1751,8 @@ Number of zero eigenvalues of X^T X: 4018</code></pre>
 </div>
 <p>Another useful pedagogical tool is the coefficient shrinkage curves. Let’s refit over values of lambda:</p>
 <div id="6faddb41-80c1-4ee8-99bd-96dfa89be514" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>coefs <span class="op">=</span> []</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lam <span class="kw">in</span> lambdas:</span>
@@ -1668,9 +1768,12 @@ Number of zero eigenvalues of X^T X: 4018</code></pre>
 <span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>coefs <span class="op">=</span> np.array(coefs)  <span class="co"># shape: (num_lambdas, D)</span></span>
 <span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>coef_norms <span class="op">=</span> np.linalg.norm(coefs, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>then plot:</p>
 <div id="e904726b-6f60-4b6a-ab2b-3b6ea0e1c225" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.plot(lambdas, coef_norms)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1679,6 +1782,7 @@ Number of zero eigenvalues of X^T X: 4018</code></pre>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"$\|\hat</span><span class="sc">{w}</span><span class="vs">_\lambda\|_2$"</span>)</span>
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Ridge coefficient shrinkage"</span>)</span>
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1689,6 +1793,8 @@ Number of zero eigenvalues of X^T X: 4018</code></pre>
 </div>
 <p>We can also plot some individual coefficient paths:</p>
 <div id="872a676b-ab3f-4236-8ef0-abe80cf41dd8" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>top_k <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng()</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>sample_idx <span class="op">=</span> rng.choice(coefs.shape[<span class="dv">1</span>], size<span class="op">=</span>top_k, replace<span class="op">=</span><span class="va">False</span>)</span>
@@ -1706,6 +1812,7 @@ Number of zero eigenvalues of X^T X: 4018</code></pre>
 <span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>plt.legend(bbox_to_anchor<span class="op">=</span>(<span class="fl">1.05</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
 <span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1734,6 +1841,8 @@ Xw = y.
 \]</span></p>
 <p>This is called the <strong>ridgeless</strong> or <strong>minimum-norm</strong> least-squares solution. It is the solution that fits the training data exactly while keeping the coefficient vector as small as possible in <span class="math inline">\(\ell_2\)</span> norm. Under the hood, this is what <code>sklearn</code> uses for supposedly OLS regression when <span class="math inline">\(D&gt;N\)</span>.</p>
 <div id="280839d4-3d6f-4d90-8b7c-ddb431f5e454" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ols_outer_test_mse <span class="op">=</span> []</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>ols_outer_train_mse <span class="op">=</span> []</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>ols_coef_norms <span class="op">=</span> []</span>
@@ -1780,6 +1889,7 @@ Xw = y.
 <span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean outer test MSE:  </span><span class="sc">{</span>outer_test_mse<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Std outer test MSE:   </span><span class="sc">{</span>outer_test_mse<span class="sc">.</span>std(ddof<span class="op">=</span><span class="dv">1</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb34-46"><a href="#cb34-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean coefficient norm:</span><span class="sc">{</span>outer_coef_norms<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Pseudoinverse OLS results
 -------------------------
@@ -2417,13 +2527,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/090_curse_dim.html" class="pagination-link" aria-label="Curse of Dimensionality">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span>
+      <a href="../lectures/080_bias_variance.html" class="pagination-link" aria-label="Bias-Variance Tradeoff">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lectures/101_constr_optim.html" class="pagination-link" aria-label="Constrained Optimization via Primal–Dual Methods">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/110_lasso.html" class="pagination-link" aria-label="LASSO Regression">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

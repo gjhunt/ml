@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>17&nbsp; Feed-Forward Neural Networks – Statistical Learning</title>
+<title>14&nbsp; Feed-Forward Neural Networks – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/130_nn.html">Neural Networks</a></li><li class="breadcrumb-item"><a href="../lectures/130_nn.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/130_nn.html">Neural Networks</a></li><li class="breadcrumb-item"><a href="../lectures/130_nn.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -185,7 +185,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Foundations and Empirical Risk Minimization</span></a>
+ <span class="menu-text">Foundations and Linear Models</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -221,18 +221,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Evaluation, Model Selection, and Nonparametric Methods</span></a>
+ <span class="menu-text">Evaluation and Model Selection</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -241,31 +235,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/050_evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/060_model_selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/070_knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/080_bias_variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
   </div>
 </li>
       </ul>
@@ -282,25 +270,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/100_ridge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/110_lasso.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/120_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
   </div>
 </li>
       </ul>
@@ -317,19 +299,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/130_nn.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/140_backprop.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/150_nn_arch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
   </div>
 </li>
       </ul>
@@ -346,25 +328,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/160_unsupervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/170_svd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/180_pca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/190_kmeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
       </ul>
@@ -381,19 +363,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/200_carts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/210_random_forests.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/220_boosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
       </ul>
@@ -410,37 +392,84 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/005_derivatives_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/010_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/020_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/030_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/050_evaluation_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/060_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/070_knn_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Extras</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
   </div>
 </li>
       </ul>
@@ -455,19 +484,19 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#feature-learning" id="toc-feature-learning" class="nav-link active" data-scroll-target="#feature-learning"><span class="header-section-number">17.1</span> Feature Learning</a></li>
-  <li><a href="#what-is-the-form-of-each-layer" id="toc-what-is-the-form-of-each-layer" class="nav-link" data-scroll-target="#what-is-the-form-of-each-layer"><span class="header-section-number">17.2</span> What Is the Form of Each Layer?</a></li>
-  <li><a href="#why-are-they-called-networks" id="toc-why-are-they-called-networks" class="nav-link" data-scroll-target="#why-are-they-called-networks"><span class="header-section-number">17.3</span> Why Are They Called “Networks”?</a></li>
-  <li><a href="#one-hidden-layer-network" id="toc-one-hidden-layer-network" class="nav-link" data-scroll-target="#one-hidden-layer-network"><span class="header-section-number">17.4</span> One-hidden-layer Network</a>
+  <li><a href="#feature-learning" id="toc-feature-learning" class="nav-link active" data-scroll-target="#feature-learning"><span class="header-section-number">14.1</span> Feature Learning</a></li>
+  <li><a href="#what-is-the-form-of-each-layer" id="toc-what-is-the-form-of-each-layer" class="nav-link" data-scroll-target="#what-is-the-form-of-each-layer"><span class="header-section-number">14.2</span> What Is the Form of Each Layer?</a></li>
+  <li><a href="#why-are-they-called-networks" id="toc-why-are-they-called-networks" class="nav-link" data-scroll-target="#why-are-they-called-networks"><span class="header-section-number">14.3</span> Why Are They Called “Networks”?</a></li>
+  <li><a href="#one-hidden-layer-network" id="toc-one-hidden-layer-network" class="nav-link" data-scroll-target="#one-hidden-layer-network"><span class="header-section-number">14.4</span> One-hidden-layer Network</a>
   <ul class="collapse">
-  <li><a href="#regression-output" id="toc-regression-output" class="nav-link" data-scroll-target="#regression-output"><span class="header-section-number">17.4.1</span> Regression Output</a></li>
-  <li><a href="#classification-output" id="toc-classification-output" class="nav-link" data-scroll-target="#classification-output"><span class="header-section-number">17.4.2</span> Classification Output</a></li>
+  <li><a href="#regression-output" id="toc-regression-output" class="nav-link" data-scroll-target="#regression-output"><span class="header-section-number">14.4.1</span> Regression Output</a></li>
+  <li><a href="#classification-output" id="toc-classification-output" class="nav-link" data-scroll-target="#classification-output"><span class="header-section-number">14.4.2</span> Classification Output</a></li>
   </ul></li>
-  <li><a href="#loss-functions-and-erm" id="toc-loss-functions-and-erm" class="nav-link" data-scroll-target="#loss-functions-and-erm"><span class="header-section-number">17.5</span> Loss Functions and ERM</a>
+  <li><a href="#loss-functions-and-erm" id="toc-loss-functions-and-erm" class="nav-link" data-scroll-target="#loss-functions-and-erm"><span class="header-section-number">14.5</span> Loss Functions and ERM</a>
   <ul class="collapse">
-  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression"><span class="header-section-number">17.5.1</span> Regression</a></li>
-  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification"><span class="header-section-number">17.5.2</span> Classification</a></li>
-  <li><a href="#erm-problem" id="toc-erm-problem" class="nav-link" data-scroll-target="#erm-problem"><span class="header-section-number">17.5.3</span> ERM Problem</a></li>
+  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression"><span class="header-section-number">14.5.1</span> Regression</a></li>
+  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification"><span class="header-section-number">14.5.2</span> Classification</a></li>
+  <li><a href="#erm-problem" id="toc-erm-problem" class="nav-link" data-scroll-target="#erm-problem"><span class="header-section-number">14.5.3</span> ERM Problem</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -475,9 +504,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/130_nn.html">Neural Networks</a></li><li class="breadcrumb-item"><a href="../lectures/130_nn.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/130_nn.html">Neural Networks</a></li><li class="breadcrumb-item"><a href="../lectures/130_nn.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -544,8 +573,8 @@ s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 \hat{R}(\theta) = \frac{1}{N}\sum_{n=1}^N \ell(y_n, s_\theta(x_n)).
 \]</span></p>
 <p>For some loss function <span class="math inline">\(\ell\)</span>. Typically we’ll use squared-error for regression and categorical cross entropy for classification tasks.</p>
-<section id="feature-learning" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="feature-learning"><span class="header-section-number">17.1</span> Feature Learning</h2>
+<section id="feature-learning" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="feature-learning"><span class="header-section-number">14.1</span> Feature Learning</h2>
 <p>Linear and logistic regression are often quite useful. They are simple, interpretable, and relatively easy to fit. But they also have a major limitation: the score function is linear in the input representation. There are two broad ways to address this.</p>
 <p>The first approach is <strong>feature engineering</strong>. We can manually construct new features and put them into the design matrix <span class="math inline">\(X\)</span>. For example, if the raw input has two components,</p>
 <p><span class="math display">\[
@@ -585,8 +614,8 @@ x \mapsto h^{(1)} \mapsto h^{(2)} \mapsto \cdots \mapsto h^{(L-1)} \mapsto s_\th
 \]</span></p>
 <p>This is the sense in which the network learns features internally. Each hidden layer produces features that are learned from the data, and the final layer combines those learned features to make a prediction.</p>
 </section>
-<section id="what-is-the-form-of-each-layer" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="what-is-the-form-of-each-layer"><span class="header-section-number">17.2</span> What Is the Form of Each Layer?</h2>
+<section id="what-is-the-form-of-each-layer" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="what-is-the-form-of-each-layer"><span class="header-section-number">14.2</span> What Is the Form of Each Layer?</h2>
 <p>The next question is: what is the form of each layer <span class="math inline">\(s_i\)</span>?</p>
 <p>In a standard feed-forward neural network, each hidden layer usually has two parts:</p>
 <ol type="1">
@@ -691,8 +720,8 @@ x \mapsto h^{(1)} \mapsto h^{(2)} \mapsto \cdots.
 \]</span></p>
 <p>The identity activation is often used in the output layer for regression. Nonlinear activations such as ReLU, sigmoid, or tanh are used in hidden layers to make the network more flexible than a purely linear model. If we don’t include any activation functions then the network will essentially reduce to a very complicated representation of a linear score.</p>
 </section>
-<section id="why-are-they-called-networks" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="why-are-they-called-networks"><span class="header-section-number">17.3</span> Why Are They Called “Networks”?</h2>
+<section id="why-are-they-called-networks" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="why-are-they-called-networks"><span class="header-section-number">14.3</span> Why Are They Called “Networks”?</h2>
 <p>They are called <strong>neural networks</strong> because the model is organized as a network of connected units.</p>
 <p>Each unit, or node, takes inputs from the previous layer, forms a weighted combination of those inputs, applies an activation function, and passes the result forward to the next layer. The connections between units are the weights. The values at the hidden units are intermediate learned features.</p>
 <p>For example, in a feed-forward network, information flows through the model as</p>
@@ -703,6 +732,8 @@ x \mapsto h^{(1)} \mapsto h^{(2)} \mapsto \cdots \mapsto s_\theta(x).
 <p>The word “neural” comes from a loose analogy with biological neurons, but in this course we should think of these as mathematical models: compositions of weighted sums and nonlinear activation functions.</p>
 <p>An example:</p>
 <div id="fd34d9c4-5d36-442e-b91f-47b3211c3958" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -775,6 +806,7 @@ x \mapsto h^{(1)} \mapsto h^{(2)} \mapsto \cdots \mapsto s_\theta(x).
 <span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
 <span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -813,8 +845,8 @@ d_i d_{i-1} + d_i.
 \]</span></p>
 <p>Thus, wider layers usually mean more parameters, and deeper networks mean more layers of learned transformations.</p>
 </section>
-<section id="one-hidden-layer-network" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="one-hidden-layer-network"><span class="header-section-number">17.4</span> One-hidden-layer Network</h2>
+<section id="one-hidden-layer-network" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="one-hidden-layer-network"><span class="header-section-number">14.4</span> One-hidden-layer Network</h2>
 <p>Consider a simple one-hidden-layer network. Suppose the input is</p>
 <p><span class="math display">\[
 x \in \mathbb{R}^D.
@@ -860,8 +892,8 @@ h_H
 \]</span></p>
 <p>So the hidden layer transforms the original input vector <span class="math inline">\(x \in \mathbb{R}^D\)</span> into a learned feature vector <span class="math inline">\(h \in \mathbb{R}^H\)</span>.</p>
 <p>The output layer then depends on the prediction task.</p>
-<section id="regression-output" class="level3" data-number="17.4.1">
-<h3 data-number="17.4.1" class="anchored" data-anchor-id="regression-output"><span class="header-section-number">17.4.1</span> Regression Output</h3>
+<section id="regression-output" class="level3" data-number="14.4.1">
+<h3 data-number="14.4.1" class="anchored" data-anchor-id="regression-output"><span class="header-section-number">14.4.1</span> Regression Output</h3>
 <p>For regression, we usually want a single real-valued prediction. So the output layer (the last layer) maps</p>
 <p><span class="math display">\[
 \mathbb{R}^H \to \mathbb{R}.
@@ -893,8 +925,8 @@ h = \phi(Wx + b),
 \]</span></p>
 <p>and then applies a linear regression-style output layer to those learned features.</p>
 </section>
-<section id="classification-output" class="level3" data-number="17.4.2">
-<h3 data-number="17.4.2" class="anchored" data-anchor-id="classification-output"><span class="header-section-number">17.4.2</span> Classification Output</h3>
+<section id="classification-output" class="level3" data-number="14.4.2">
+<h3 data-number="14.4.2" class="anchored" data-anchor-id="classification-output"><span class="header-section-number">14.4.2</span> Classification Output</h3>
 <p>For classification with <span class="math inline">\(K\)</span> classes, we want the network to output one predicted probability for each class.</p>
 <p>To do this, we choose the final layer to have width <span class="math inline">\(K\)</span>. If the hidden representation is</p>
 <p><span class="math display">\[
@@ -943,11 +975,11 @@ s_\theta(x) = \text{softmax}(Vh+c)
 <p>These are the usual default choices because regression requires real-valued predictions, while classification requires predicted class probabilities.</p>
 </section>
 </section>
-<section id="loss-functions-and-erm" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="loss-functions-and-erm"><span class="header-section-number">17.5</span> Loss Functions and ERM</h2>
+<section id="loss-functions-and-erm" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="loss-functions-and-erm"><span class="header-section-number">14.5</span> Loss Functions and ERM</h2>
 <p>Once we have defined the network architecture defining <span class="math inline">\(s_\theta(x)\)</span>, we still need to choose a loss function. The loss function should match the prediction task.</p>
-<section id="regression" class="level3" data-number="17.5.1">
-<h3 data-number="17.5.1" class="anchored" data-anchor-id="regression"><span class="header-section-number">17.5.1</span> Regression</h3>
+<section id="regression" class="level3" data-number="14.5.1">
+<h3 data-number="14.5.1" class="anchored" data-anchor-id="regression"><span class="header-section-number">14.5.1</span> Regression</h3>
 <p>For regression, the target is continuous:</p>
 <p><span class="math display">\[
 y \in \mathbb{R}.
@@ -969,8 +1001,8 @@ s_\theta(x) \in \mathbb{R}.
 (y_n - s_\theta(x_n))^2.
 \]</span></p>
 </section>
-<section id="classification" class="level3" data-number="17.5.2">
-<h3 data-number="17.5.2" class="anchored" data-anchor-id="classification"><span class="header-section-number">17.5.2</span> Classification</h3>
+<section id="classification" class="level3" data-number="14.5.2">
+<h3 data-number="14.5.2" class="anchored" data-anchor-id="classification"><span class="header-section-number">14.5.2</span> Classification</h3>
 <p>For classification with <span class="math inline">\(K\)</span> classes, the network output is a vector of predicted class probabilities:</p>
 <p><span class="math display">\[
 s_\theta(x)=p_\theta(x)
@@ -1006,8 +1038,8 @@ t_K
 -\sum_{k=1}^K t_k \log(s_{\theta,k}(x)).
 \]</span></p>
 </section>
-<section id="erm-problem" class="level3" data-number="17.5.3">
-<h3 data-number="17.5.3" class="anchored" data-anchor-id="erm-problem"><span class="header-section-number">17.5.3</span> ERM Problem</h3>
+<section id="erm-problem" class="level3" data-number="14.5.3">
+<h3 data-number="14.5.3" class="anchored" data-anchor-id="erm-problem"><span class="header-section-number">14.5.3</span> ERM Problem</h3>
 <p>In either case, the overall framework is unchanged. We choose parameters by minimizing empirical risk:</p>
 <p><span class="math display">\[
 \hat{\theta}=
@@ -1646,12 +1678,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/120_elastic_net_logistic_erm.html" class="pagination-link" aria-label="Elastic Net and Penalized Logistic Regression">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/140_backprop.html" class="pagination-link" aria-label="Training Neural Networks with Backpropagation">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

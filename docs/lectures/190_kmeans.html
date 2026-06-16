@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>23&nbsp; K-means – Statistical Learning</title>
+<title>20&nbsp; K-means – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,7 +151,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/160_unsupervised.html">Unsupervised Learning</a></li><li class="breadcrumb-item"><a href="../lectures/190_kmeans.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/160_unsupervised.html">Unsupervised Learning</a></li><li class="breadcrumb-item"><a href="../lectures/190_kmeans.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -189,7 +189,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Foundations and Empirical Risk Minimization</span></a>
+ <span class="menu-text">Foundations and Linear Models</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -225,18 +225,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Evaluation, Model Selection, and Nonparametric Methods</span></a>
+ <span class="menu-text">Evaluation and Model Selection</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -245,31 +239,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/050_evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/060_model_selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/070_knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/080_bias_variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
   </div>
 </li>
       </ul>
@@ -286,25 +274,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/100_ridge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/110_lasso.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/120_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
   </div>
 </li>
       </ul>
@@ -321,19 +303,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/130_nn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/140_backprop.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/150_nn_arch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
   </div>
 </li>
       </ul>
@@ -350,25 +332,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/160_unsupervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/170_svd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/180_pca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/190_kmeans.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
       </ul>
@@ -385,19 +367,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/200_carts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/210_random_forests.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/220_boosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
       </ul>
@@ -414,37 +396,84 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/005_derivatives_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/010_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/020_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/030_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/050_evaluation_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/060_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/070_knn_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Extras</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
   </div>
 </li>
       </ul>
@@ -459,16 +488,16 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#a-first-clustering-example" id="toc-a-first-clustering-example" class="nav-link active" data-scroll-target="#a-first-clustering-example"><span class="header-section-number">23.1</span> A first clustering example</a></li>
-  <li><a href="#the-k-means-objective" id="toc-the-k-means-objective" class="nav-link" data-scroll-target="#the-k-means-objective"><span class="header-section-number">23.2</span> The k-means objective</a></li>
-  <li><a href="#lloyds-algorithm" id="toc-lloyds-algorithm" class="nav-link" data-scroll-target="#lloyds-algorithm"><span class="header-section-number">23.3</span> Lloyd’s algorithm</a></li>
-  <li><a href="#using-a-package" id="toc-using-a-package" class="nav-link" data-scroll-target="#using-a-package"><span class="header-section-number">23.4</span> Using a package</a></li>
-  <li><a href="#choosing-the-number-of-clusters" id="toc-choosing-the-number-of-clusters" class="nav-link" data-scroll-target="#choosing-the-number-of-clusters"><span class="header-section-number">23.5</span> Choosing the number of clusters</a></li>
-  <li><a href="#scaling-matters" id="toc-scaling-matters" class="nav-link" data-scroll-target="#scaling-matters"><span class="header-section-number">23.6</span> Scaling matters</a></li>
-  <li><a href="#when-k-means-works-well-and-when-it-does-not" id="toc-when-k-means-works-well-and-when-it-does-not" class="nav-link" data-scroll-target="#when-k-means-works-well-and-when-it-does-not"><span class="header-section-number">23.7</span> When k-means works well, and when it does not</a></li>
-  <li><a href="#real-data-example-wine-chemistry-data" id="toc-real-data-example-wine-chemistry-data" class="nav-link" data-scroll-target="#real-data-example-wine-chemistry-data"><span class="header-section-number">24</span> Real data example: wine chemistry data</a>
+  <li><a href="#a-first-clustering-example" id="toc-a-first-clustering-example" class="nav-link active" data-scroll-target="#a-first-clustering-example"><span class="header-section-number">20.1</span> A first clustering example</a></li>
+  <li><a href="#the-k-means-objective" id="toc-the-k-means-objective" class="nav-link" data-scroll-target="#the-k-means-objective"><span class="header-section-number">20.2</span> The k-means objective</a></li>
+  <li><a href="#lloyds-algorithm" id="toc-lloyds-algorithm" class="nav-link" data-scroll-target="#lloyds-algorithm"><span class="header-section-number">20.3</span> Lloyd’s algorithm</a></li>
+  <li><a href="#using-a-package" id="toc-using-a-package" class="nav-link" data-scroll-target="#using-a-package"><span class="header-section-number">20.4</span> Using a package</a></li>
+  <li><a href="#choosing-the-number-of-clusters" id="toc-choosing-the-number-of-clusters" class="nav-link" data-scroll-target="#choosing-the-number-of-clusters"><span class="header-section-number">20.5</span> Choosing the number of clusters</a></li>
+  <li><a href="#scaling-matters" id="toc-scaling-matters" class="nav-link" data-scroll-target="#scaling-matters"><span class="header-section-number">20.6</span> Scaling matters</a></li>
+  <li><a href="#when-k-means-works-well-and-when-it-does-not" id="toc-when-k-means-works-well-and-when-it-does-not" class="nav-link" data-scroll-target="#when-k-means-works-well-and-when-it-does-not"><span class="header-section-number">20.7</span> When k-means works well, and when it does not</a></li>
+  <li><a href="#real-data-example-wine-chemistry-data" id="toc-real-data-example-wine-chemistry-data" class="nav-link" data-scroll-target="#real-data-example-wine-chemistry-data"><span class="header-section-number">21</span> Real data example: wine chemistry data</a>
   <ul class="collapse">
-  <li><a href="#visualizing-the-wine-clusters-with-pca" id="toc-visualizing-the-wine-clusters-with-pca" class="nav-link" data-scroll-target="#visualizing-the-wine-clusters-with-pca"><span class="header-section-number">24.1</span> Visualizing the wine clusters with PCA</a></li>
+  <li><a href="#visualizing-the-wine-clusters-with-pca" id="toc-visualizing-the-wine-clusters-with-pca" class="nav-link" data-scroll-target="#visualizing-the-wine-clusters-with-pca"><span class="header-section-number">21.1</span> Visualizing the wine clusters with PCA</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -476,9 +505,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/160_unsupervised.html">Unsupervised Learning</a></li><li class="breadcrumb-item"><a href="../lectures/190_kmeans.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/160_unsupervised.html">Unsupervised Learning</a></li><li class="breadcrumb-item"><a href="../lectures/190_kmeans.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -515,6 +544,8 @@ X =
 <p>because we have a target value <span class="math inline">\(y\)</span>. In unsupervised learning, we do not have such a target. So we usually define a criterion that expresses the kind of structure we want to find.</p>
 <p>For clustering, the structure we want is a partition of the data into groups. Informally, points in the same group should be close to each other, and points in different groups should be far apart.</p>
 <div id="0efdea3e" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -527,11 +558,14 @@ X =
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">657677</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<section id="a-first-clustering-example" class="level2" data-number="23.1">
-<h2 data-number="23.1" class="anchored" data-anchor-id="a-first-clustering-example"><span class="header-section-number">23.1</span> A first clustering example</h2>
+<section id="a-first-clustering-example" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="a-first-clustering-example"><span class="header-section-number">20.1</span> A first clustering example</h2>
 <p>To make the problem concrete, start with simulated data in two dimensions. The labels used to simulate the data will not be used by the clustering algorithm. They are only included so that we can check what happens.</p>
 <div id="cf22c7fb" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X, true_labels <span class="op">=</span> make_blobs(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    n_samples<span class="op">=</span><span class="dv">300</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    centers<span class="op">=</span><span class="dv">3</span>,</span>
@@ -546,6 +580,7 @@ X =
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Unlabeled data"</span>)</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -562,8 +597,8 @@ X =
 </ol>
 <p>For k-means, the summary of a cluster is its <strong>centroid</strong> (typically their average location).</p>
 </section>
-<section id="the-k-means-objective" class="level2" data-number="23.2">
-<h2 data-number="23.2" class="anchored" data-anchor-id="the-k-means-objective"><span class="header-section-number">23.2</span> The k-means objective</h2>
+<section id="the-k-means-objective" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="the-k-means-objective"><span class="header-section-number">20.2</span> The k-means objective</h2>
 <p>Fix a number of clusters <span class="math inline">\(K\)</span>. K-means tries to find:</p>
 <ul>
 <li>cluster assignments</li>
@@ -632,8 +667,8 @@ N_k = |\{n:c_n=k\}|
 </ul>
 <p>We can alternate back and forth between these until our assignments and centroids stop changing. This is basically <strong>Lloyd’s algorithm</strong>.</p>
 </section>
-<section id="lloyds-algorithm" class="level2" data-number="23.3">
-<h2 data-number="23.3" class="anchored" data-anchor-id="lloyds-algorithm"><span class="header-section-number">23.3</span> Lloyd’s algorithm</h2>
+<section id="lloyds-algorithm" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="lloyds-algorithm"><span class="header-section-number">20.3</span> Lloyd’s algorithm</h2>
 <p>When people talk about K-means they usually mean <strong>Lloyd’s algorithm</strong>, the following alternating minimization algorithm:</p>
 <ol type="1">
 <li>Initialize <span class="math inline">\(K\)</span> centroids.</li>
@@ -643,6 +678,8 @@ N_k = |\{n:c_n=k\}|
 </ol>
 <p><strong>Note</strong>: Each assignment step decreases, or at least does not increase, the objective. Each centroid update also decreases, or at least does not increase, the objective. So the algorithm is guaranteed to stop at a <strong>local optimum</strong>. However, it is not guaranteed to find the global optimum.</p>
 <div id="a772a676" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> assign_clusters(X, centers):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Assign each row of X to its nearest center."""</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    distances <span class="op">=</span> np.linalg.norm(X[:, <span class="va">None</span>, :] <span class="op">-</span> centers[<span class="va">None</span>, :, :], axis<span class="op">=</span><span class="dv">2</span>)</span>
@@ -665,8 +702,11 @@ N_k = |\{n:c_n=k\}|
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kmeans_objective(X, centers, labels):</span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute the k-means objective for fixed centers and labels."""</span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>((X <span class="op">-</span> centers[labels])<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="9741f714" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fit_kmeans_manual(X, K, max_iter<span class="op">=</span><span class="dv">20</span>, seed<span class="op">=</span><span class="dv">0</span>):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    rng_local <span class="op">=</span> np.random.default_rng(seed)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    initial_idx <span class="op">=</span> rng_local.choice(X.shape[<span class="dv">0</span>], size<span class="op">=</span>K, replace<span class="op">=</span><span class="va">False</span>)</span>
@@ -702,9 +742,13 @@ N_k = |\{n:c_n=k\}|
 <span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    })</span>
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> centers, labels, history</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="1322a711-946b-4019-add8-cb3ce3ef2194" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>array([[ 3.33034338, -5.99152997],
        [ 8.8845576 ,  8.37515542],
@@ -719,6 +763,8 @@ N_k = |\{n:c_n=k\}|
 </div>
 </div>
 <div id="03b8ad63-d1aa-4379-aec7-e737cecf0894" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">30</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"$x_1$"</span>)</span>
@@ -726,6 +772,7 @@ N_k = |\{n:c_n=k\}|
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Unlabeled data"</span>)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -735,6 +782,8 @@ N_k = |\{n:c_n=k\}|
 </div>
 </div>
 <div id="6cfea2d7" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>centers_manual, labels_manual, history <span class="op">=</span> fit_kmeans_manual(X, K<span class="op">=</span><span class="dv">3</span>, max_iter<span class="op">=</span><span class="dv">15</span>, seed<span class="op">=</span><span class="dv">4</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>objective_history <span class="op">=</span> pd.DataFrame({</span>
@@ -743,6 +792,7 @@ N_k = |\{n:c_n=k\}|
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>display(objective_history)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -813,6 +863,8 @@ N_k = |\{n:c_n=k\}|
 </div>
 </div>
 <div id="4f659d09" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_kmeans_state(X, state, title<span class="op">=</span><span class="va">None</span>):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> state[<span class="st">"labels"</span>]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    centers <span class="op">=</span> state[<span class="st">"centers"</span>]</span>
@@ -829,11 +881,15 @@ N_k = |\{n:c_n=k\}|
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        plt.title(title)</span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="aaea05c9-407a-470a-94ca-1ebadbfe39af" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plot_kmeans_state(X, history[<span class="dv">0</span>], title<span class="op">=</span><span class="st">"Initialization"</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plot_kmeans_state(X, history[<span class="dv">1</span>], title<span class="op">=</span><span class="st">"After one update"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plot_kmeans_state(X, history[<span class="op">-</span><span class="dv">1</span>], title<span class="op">=</span><span class="st">"Final clustering"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -857,6 +913,8 @@ N_k = |\{n:c_n=k\}|
 </div>
 </div>
 <div id="8e704451-f2c2-4a41-a801-9623795057d1" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact, IntSlider</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -916,6 +974,7 @@ N_k = |\{n:c_n=k\}|
 <span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"iteration"</span></span>
 <span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"d2933b34dbfc431088daeab52fcc83b2","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -924,6 +983,8 @@ N_k = |\{n:c_n=k\}|
 </div>
 <p>Huh, that sucked, based on the bad initialization. Let’s try again:</p>
 <div id="e6e28626-22ff-46ed-a870-752c319bfbdc" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>centers_manual, labels_manual, history <span class="op">=</span> fit_kmeans_manual(X, K<span class="op">=</span><span class="dv">3</span>, max_iter<span class="op">=</span><span class="dv">50</span>, seed<span class="op">=</span><span class="dv">9879</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>objective_history <span class="op">=</span> pd.DataFrame({</span>
@@ -932,6 +993,7 @@ N_k = |\{n:c_n=k\}|
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>display(objective_history)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -973,6 +1035,8 @@ N_k = |\{n:c_n=k\}|
 </div>
 <p>That looks much better!</p>
 <div id="a1cde72b-7ac3-4903-8b50-eb41097d82fe" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ipywidgets <span class="im">import</span> interact, IntSlider</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1032,6 +1096,7 @@ N_k = |\{n:c_n=k\}|
 <span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a>        description<span class="op">=</span><span class="st">"iteration"</span></span>
 <span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"fcf3a224fb7e4c8cace14380e48b6d38","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -1040,8 +1105,8 @@ N_k = |\{n:c_n=k\}|
 </div>
 <p>K-means can be quite sentitive to the initialization of the clusters, unfortunately. This is why algorithms often have multiple starts and then pick the best one.</p>
 </section>
-<section id="using-a-package" class="level2" data-number="23.4">
-<h2 data-number="23.4" class="anchored" data-anchor-id="using-a-package"><span class="header-section-number">23.4</span> Using a package</h2>
+<section id="using-a-package" class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="using-a-package"><span class="header-section-number">20.4</span> Using a package</h2>
 <p>For real work, it is better to use a tested implementation. In <code>sklearn</code>, the main class is <code>KMeans</code>.</p>
 <p>The most important arguments are:</p>
 <ul>
@@ -1050,6 +1115,8 @@ N_k = |\{n:c_n=k\}|
 <li><code>random_state</code>: used for reproducibility.</li>
 </ul>
 <div id="853a8dbd" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">657677</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> kmeans.fit_predict(X)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>centers <span class="op">=</span> kmeans.cluster_centers_</span>
@@ -1057,6 +1124,7 @@ N_k = |\{n:c_n=k\}|
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Inertia:"</span>, <span class="bu">round</span>(kmeans.inertia_, <span class="dv">2</span>))</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Cluster sizes:"</span>)</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.Series(labels).value_counts().sort_index())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Inertia: 363.57
 Cluster sizes:
@@ -1067,6 +1135,8 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <div id="0a6c08d5" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>labels, s<span class="op">=</span><span class="dv">30</span>, alpha<span class="op">=</span><span class="fl">0.75</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(</span>
@@ -1078,6 +1148,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"K-means clustering with $K=3$"</span>)</span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1089,8 +1160,8 @@ Name: count, dtype: int64</code></pre>
 <p>Cluster labels are arbitrary. If we re-run the algorithm, cluster 0 might become cluster 2, and cluster 2 might become cluster 1. The labels are just names for groups.</p>
 <p>What matters is the partition of the observations, not the numerical values of the labels.</p>
 </section>
-<section id="choosing-the-number-of-clusters" class="level2" data-number="23.5">
-<h2 data-number="23.5" class="anchored" data-anchor-id="choosing-the-number-of-clusters"><span class="header-section-number">23.5</span> Choosing the number of clusters</h2>
+<section id="choosing-the-number-of-clusters" class="level2" data-number="20.5">
+<h2 data-number="20.5" class="anchored" data-anchor-id="choosing-the-number-of-clusters"><span class="header-section-number">20.5</span> Choosing the number of clusters</h2>
 <p>K-means requires us to choose <span class="math inline">\(K\)</span>. This is part of the modeling decision.</p>
 <p>The objective always decreases as <span class="math inline">\(K\)</span> increases, because more centroids can only make it easier to fit the data. In the extreme case, if <span class="math inline">\(K=N\)</span>, each point can be its own centroid and the objective is zero.</p>
 <p>So we cannot simply choose the <span class="math inline">\(K\)</span> with the smallest objective. Two common diagnostics are:</p>
@@ -1100,6 +1171,8 @@ Name: count, dtype: int64</code></pre>
 </ol>
 <p>These are heuristics, and there are many more of them.</p>
 <div id="dfaa48df" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>K_values <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">9</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>inertias <span class="op">=</span> []</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>silhouettes <span class="op">=</span> []</span>
@@ -1121,6 +1194,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>display(k_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -1190,6 +1264,8 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <div id="4c757a57" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.plot(k_table[<span class="st">"K"</span>], k_table[<span class="st">"inertia"</span>], marker<span class="op">=</span><span class="st">"o"</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"number of clusters $K$"</span>)</span>
@@ -1205,6 +1281,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Silhouette score by $K$"</span>)</span>
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1221,8 +1298,8 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </section>
-<section id="scaling-matters" class="level2" data-number="23.6">
-<h2 data-number="23.6" class="anchored" data-anchor-id="scaling-matters"><span class="header-section-number">23.6</span> Scaling matters</h2>
+<section id="scaling-matters" class="level2" data-number="20.6">
+<h2 data-number="20.6" class="anchored" data-anchor-id="scaling-matters"><span class="header-section-number">20.6</span> Scaling matters</h2>
 <p>K-means is based on Euclidean distance:</p>
 <p><span class="math display">\[
 \|x_n - \mu_k\|_2^2=
@@ -1234,6 +1311,8 @@ Name: count, dtype: int64</code></pre>
 \]</span></p>
 <p>so that each column has mean zero and standard deviation one.</p>
 <div id="ac1f6cce-9617-4c26-82a9-9b40d92fb26b" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1269,8 +1348,11 @@ Name: count, dtype: int64</code></pre>
 <span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Distort the scale of the first coordinate</span></span>
 <span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>X_scaled_bad <span class="op">=</span> X_scale_demo.copy()</span>
 <span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>X_scaled_bad[:, <span class="dv">0</span>] <span class="op">*=</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="c4b6eaf3-2f8a-4392-b15a-3b28544f864b" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with standardization</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1288,6 +1370,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1297,6 +1380,8 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <div id="dae29e72-fa5c-4b23-86ae-eafe8f0cd8cc" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># K-means without standardization</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>km_raw <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, n_init<span class="op">=</span><span class="dv">50</span>, random_state<span class="op">=</span><span class="dv">9987</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>labels_raw_scale <span class="op">=</span> km_raw.fit_predict(X_scaled_bad)</span>
@@ -1307,8 +1392,11 @@ Name: count, dtype: int64</code></pre>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>km_standardized <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, n_init<span class="op">=</span><span class="dv">50</span>, random_state<span class="op">=</span><span class="dv">9879</span>)</span>
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>labels_standardized <span class="op">=</span> km_standardized.fit_predict(X_standardized)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="86bc9958" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot k-means without standardization</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1344,6 +1432,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1361,8 +1450,8 @@ Name: count, dtype: int64</code></pre>
 </div>
 <p>The point is not that standardization is always correct. The point is that k-means is sensitive to the scale on which variables are measured. If the units are arbitrary or incomparable, standardization is usually a sensible default.</p>
 </section>
-<section id="when-k-means-works-well-and-when-it-does-not" class="level2" data-number="23.7">
-<h2 data-number="23.7" class="anchored" data-anchor-id="when-k-means-works-well-and-when-it-does-not"><span class="header-section-number">23.7</span> When k-means works well, and when it does not</h2>
+<section id="when-k-means-works-well-and-when-it-does-not" class="level2" data-number="20.7">
+<h2 data-number="20.7" class="anchored" data-anchor-id="when-k-means-works-well-and-when-it-does-not"><span class="header-section-number">20.7</span> When k-means works well, and when it does not</h2>
 <p>K-means tends to work well when clusters are roughly:</p>
 <ul>
 <li>compact;</li>
@@ -1379,6 +1468,8 @@ Name: count, dtype: int64</code></pre>
 </ul>
 <p>As an exaple consider the moons or “swiss roll” data:</p>
 <div id="0e2a1f64" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>X_moons, y_moons <span class="op">=</span> make_moons(n_samples<span class="op">=</span><span class="dv">400</span>, noise<span class="op">=</span><span class="fl">0.07</span>, random_state<span class="op">=</span><span class="dv">657677</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>km_moons <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">2</span>, n_init<span class="op">=</span><span class="dv">10</span>, random_state<span class="op">=</span><span class="dv">657677</span>)</span>
@@ -1391,6 +1482,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"K-means on non-convex clusters"</span>)</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1400,11 +1492,13 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </section>
-<section id="real-data-example-wine-chemistry-data" class="level1" data-number="24">
-<h1 data-number="24"><span class="header-section-number">24</span> Real data example: wine chemistry data</h1>
+<section id="real-data-example-wine-chemistry-data" class="level1" data-number="21">
+<h1 data-number="21"><span class="header-section-number">21</span> Real data example: wine chemistry data</h1>
 <p>Now consider a real data example. The wine data contain chemical measurements on wines from three cultivars. We will ignore the class labels when fitting k-means, then use them afterward only as a diagnostic.</p>
 <p>Because the variables are measured on different scales, we standardize the features before clustering.</p>
 <div id="ba456786" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>wine <span class="op">=</span> load_wine()</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>X_wine_raw <span class="op">=</span> pd.DataFrame(wine.data, columns<span class="op">=</span>wine.feature_names)</span>
@@ -1413,6 +1507,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape:"</span>, X_wine_raw.shape)</span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>display(X_wine_raw.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Shape: (178, 13)</code></pre>
 </div>
@@ -1527,6 +1622,8 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <div id="c98547cf" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>wine_cluster_pipe <span class="op">=</span> make_pipeline(</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    StandardScaler(),</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, n_init<span class="op">=</span><span class="dv">20</span>, random_state<span class="op">=</span><span class="dv">987003</span>)</span>
@@ -1538,6 +1635,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Inertia:"</span>, kmeans.inertia_)</span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Cluster sizes:"</span>)</span>
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.Series(wine_clusters).value_counts().sort_index())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Inertia: 363.5730992306482
 Cluster sizes:
@@ -1548,6 +1646,8 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 <div id="f4c98fd1" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>X_wine_standardized <span class="op">=</span> wine_cluster_pipe.named_steps[<span class="st">"standardscaler"</span>].transform(X_wine_raw)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Silhouette score:"</span>)</span>
@@ -1555,6 +1655,7 @@ Name: count, dtype: int64</code></pre>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Adjusted Rand index, using the true cultivar labels only for evaluation:"</span>)</span>
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(adjusted_rand_score(target, wine_clusters), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Silhouette score:
 0.2849
@@ -1565,6 +1666,8 @@ Adjusted Rand index, using the true cultivar labels only for evaluation:
 <p>The adjusted Rand index uses the known cultivar labels, so it is not an unsupervised fitting criterion. It is included here only because this dataset happens to have labels. In a genuine unsupervised problem, we usually do not have such labels.</p>
 <p>We can also make a “confusion-like” matrix:</p>
 <div id="3a94a894" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>cluster_vs_class <span class="op">=</span> pd.crosstab(</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    pd.Series(wine_clusters, name<span class="op">=</span><span class="st">"cluster"</span>),</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    pd.Series(target, name<span class="op">=</span><span class="st">"cultivar"</span>)</span>
@@ -1573,6 +1676,7 @@ Adjusted Rand index, using the true cultivar labels only for evaluation:
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>cluster_vs_class.columns <span class="op">=</span> target_names</span>
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>display(cluster_vs_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -1617,8 +1721,8 @@ Adjusted Rand index, using the true cultivar labels only for evaluation:
 </div>
 </div>
 </div>
-<section id="visualizing-the-wine-clusters-with-pca" class="level2" data-number="24.1">
-<h2 data-number="24.1" class="anchored" data-anchor-id="visualizing-the-wine-clusters-with-pca"><span class="header-section-number">24.1</span> Visualizing the wine clusters with PCA</h2>
+<section id="visualizing-the-wine-clusters-with-pca" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="visualizing-the-wine-clusters-with-pca"><span class="header-section-number">21.1</span> Visualizing the wine clusters with PCA</h2>
 <p>The wine data have more than two variables, so we cannot directly plot the fitted clusters in the original feature space. A common approach is to use PCA only for visualization.</p>
 <p>The workflow is:</p>
 <ol type="1">
@@ -1629,6 +1733,8 @@ Adjusted Rand index, using the true cultivar labels only for evaluation:
 </ol>
 <p><strong>Note:</strong> The PCA projection is only a visualization. The clustering above was fit using all standardized variables.</p>
 <div id="7406fdfe" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>Z_wine <span class="op">=</span> pca.fit_transform(X_wine_standardized)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1640,6 +1746,7 @@ Adjusted Rand index, using the true cultivar labels only for evaluation:
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Wine data: k-means clusters shown in PCA space"</span>)</span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2272,12 +2379,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/180_pca.html" class="pagination-link" aria-label="Principal Component Analysis (PCA)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/200_carts.html" class="pagination-link" aria-label="Imports">
-        <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Imports</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>15&nbsp; LASSO Regression – Statistical Learning</title>
+<title>12&nbsp; LASSO Regression – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../lectures/120_elastic_net_logistic_erm.html" rel="next">
-<link href="../lectures/101_constr_optim.html" rel="prev">
+<link href="../lectures/100_ridge.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -151,7 +151,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/100_ridge.html">Regularization and Penalized Models</a></li><li class="breadcrumb-item"><a href="../lectures/110_lasso.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LASSO Regression</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/100_ridge.html">Regularization and Penalized Models</a></li><li class="breadcrumb-item"><a href="../lectures/110_lasso.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -189,7 +189,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Foundations and Empirical Risk Minimization</span></a>
+ <span class="menu-text">Foundations and Linear Models</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -225,18 +225,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Evaluation, Model Selection, and Nonparametric Methods</span></a>
+ <span class="menu-text">Evaluation and Model Selection</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -245,31 +239,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/050_evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/060_model_selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/070_knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/080_bias_variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
   </div>
 </li>
       </ul>
@@ -286,25 +274,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/100_ridge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/110_lasso.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/120_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
   </div>
 </li>
       </ul>
@@ -321,19 +303,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/130_nn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/140_backprop.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/150_nn_arch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
   </div>
 </li>
       </ul>
@@ -350,25 +332,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/160_unsupervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/170_svd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/180_pca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/190_kmeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
       </ul>
@@ -385,19 +367,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/200_carts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/210_random_forests.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/220_boosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
       </ul>
@@ -414,37 +396,84 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/005_derivatives_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/010_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/020_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/030_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/050_evaluation_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/060_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/070_knn_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Extras</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
   </div>
 </li>
       </ul>
@@ -459,34 +488,34 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#lasso-regression" id="toc-lasso-regression" class="nav-link active" data-scroll-target="#lasso-regression"><span class="header-section-number">15.1</span> LASSO Regression</a></li>
-  <li><a href="#what-changes-relative-to-ridge" id="toc-what-changes-relative-to-ridge" class="nav-link" data-scroll-target="#what-changes-relative-to-ridge"><span class="header-section-number">15.2</span> What changes relative to ridge?</a></li>
-  <li><a href="#solving-lasso-in-practice" id="toc-solving-lasso-in-practice" class="nav-link" data-scroll-target="#solving-lasso-in-practice"><span class="header-section-number">15.3</span> Solving LASSO in practice</a>
+  <li><a href="#lasso-regression" id="toc-lasso-regression" class="nav-link active" data-scroll-target="#lasso-regression"><span class="header-section-number">12.1</span> LASSO Regression</a></li>
+  <li><a href="#what-changes-relative-to-ridge" id="toc-what-changes-relative-to-ridge" class="nav-link" data-scroll-target="#what-changes-relative-to-ridge"><span class="header-section-number">12.2</span> What changes relative to ridge?</a></li>
+  <li><a href="#solving-lasso-in-practice" id="toc-solving-lasso-in-practice" class="nav-link" data-scroll-target="#solving-lasso-in-practice"><span class="header-section-number">12.3</span> Solving LASSO in practice</a>
   <ul class="collapse">
-  <li><a href="#the-subgradient-idea" id="toc-the-subgradient-idea" class="nav-link" data-scroll-target="#the-subgradient-idea"><span class="header-section-number">15.3.1</span> The subgradient idea</a></li>
-  <li><a href="#two-common-algorithms" id="toc-two-common-algorithms" class="nav-link" data-scroll-target="#two-common-algorithms"><span class="header-section-number">15.3.2</span> Two common algorithms</a></li>
-  <li><a href="#case-1-c_j-leq-lambda" id="toc-case-1-c_j-leq-lambda" class="nav-link" data-scroll-target="#case-1-c_j-leq-lambda"><span class="header-section-number">15.3.3</span> Case 1: <span class="math inline">\(|c_j| \leq \lambda\)</span></a></li>
-  <li><a href="#case-2-c_j-lambda" id="toc-case-2-c_j-lambda" class="nav-link" data-scroll-target="#case-2-c_j-lambda"><span class="header-section-number">15.3.4</span> Case 2: <span class="math inline">\(c_j &gt; \lambda\)</span></a></li>
-  <li><a href="#case-3-c_j--lambda" id="toc-case-3-c_j--lambda" class="nav-link" data-scroll-target="#case-3-c_j--lambda"><span class="header-section-number">15.3.5</span> Case 3: <span class="math inline">\(c_j &lt; -\lambda\)</span></a></li>
+  <li><a href="#the-subgradient-idea" id="toc-the-subgradient-idea" class="nav-link" data-scroll-target="#the-subgradient-idea"><span class="header-section-number">12.3.1</span> The subgradient idea</a></li>
+  <li><a href="#two-common-algorithms" id="toc-two-common-algorithms" class="nav-link" data-scroll-target="#two-common-algorithms"><span class="header-section-number">12.3.2</span> Two common algorithms</a></li>
+  <li><a href="#case-1-c_j-leq-lambda" id="toc-case-1-c_j-leq-lambda" class="nav-link" data-scroll-target="#case-1-c_j-leq-lambda"><span class="header-section-number">12.3.3</span> Case 1: <span class="math inline">\(|c_j| \leq \lambda\)</span></a></li>
+  <li><a href="#case-2-c_j-lambda" id="toc-case-2-c_j-lambda" class="nav-link" data-scroll-target="#case-2-c_j-lambda"><span class="header-section-number">12.3.4</span> Case 2: <span class="math inline">\(c_j &gt; \lambda\)</span></a></li>
+  <li><a href="#case-3-c_j--lambda" id="toc-case-3-c_j--lambda" class="nav-link" data-scroll-target="#case-3-c_j--lambda"><span class="header-section-number">12.3.5</span> Case 3: <span class="math inline">\(c_j &lt; -\lambda\)</span></a></li>
   </ul></li>
-  <li><a href="#constrained-vs-penalized" id="toc-constrained-vs-penalized" class="nav-link" data-scroll-target="#constrained-vs-penalized"><span class="header-section-number">15.4</span> Constrained vs penalized</a>
+  <li><a href="#constrained-vs-penalized" id="toc-constrained-vs-penalized" class="nav-link" data-scroll-target="#constrained-vs-penalized"><span class="header-section-number">12.4</span> Constrained vs penalized</a>
   <ul class="collapse">
-  <li><a href="#geometry" id="toc-geometry" class="nav-link" data-scroll-target="#geometry"><span class="header-section-number">15.4.1</span> Geometry</a></li>
+  <li><a href="#geometry" id="toc-geometry" class="nav-link" data-scroll-target="#geometry"><span class="header-section-number">12.4.1</span> Geometry</a></li>
   </ul></li>
-  <li><a href="#lasso-and-correlated-variables" id="toc-lasso-and-correlated-variables" class="nav-link" data-scroll-target="#lasso-and-correlated-variables"><span class="header-section-number">15.5</span> LASSO and correlated variables</a></li>
-  <li><a href="#bias-variance-tradeoff" id="toc-bias-variance-tradeoff" class="nav-link" data-scroll-target="#bias-variance-tradeoff"><span class="header-section-number">15.6</span> Bias-variance tradeoff</a></li>
-  <li><a href="#practical-considerations" id="toc-practical-considerations" class="nav-link" data-scroll-target="#practical-considerations"><span class="header-section-number">15.7</span> Practical considerations</a></li>
-  <li><a href="#lasso-with-orthonormal-predictors" id="toc-lasso-with-orthonormal-predictors" class="nav-link" data-scroll-target="#lasso-with-orthonormal-predictors"><span class="header-section-number">15.8</span> LASSO with orthonormal predictors</a></li>
-  <li><a href="#real-data-example" id="toc-real-data-example" class="nav-link" data-scroll-target="#real-data-example"><span class="header-section-number">16</span> Real Data Example</a></li>
+  <li><a href="#lasso-and-correlated-variables" id="toc-lasso-and-correlated-variables" class="nav-link" data-scroll-target="#lasso-and-correlated-variables"><span class="header-section-number">12.5</span> LASSO and correlated variables</a></li>
+  <li><a href="#bias-variance-tradeoff" id="toc-bias-variance-tradeoff" class="nav-link" data-scroll-target="#bias-variance-tradeoff"><span class="header-section-number">12.6</span> Bias-variance tradeoff</a></li>
+  <li><a href="#practical-considerations" id="toc-practical-considerations" class="nav-link" data-scroll-target="#practical-considerations"><span class="header-section-number">12.7</span> Practical considerations</a></li>
+  <li><a href="#lasso-with-orthonormal-predictors" id="toc-lasso-with-orthonormal-predictors" class="nav-link" data-scroll-target="#lasso-with-orthonormal-predictors"><span class="header-section-number">12.8</span> LASSO with orthonormal predictors</a></li>
+  <li><a href="#real-data-example" id="toc-real-data-example" class="nav-link" data-scroll-target="#real-data-example"><span class="header-section-number">13</span> Real Data Example</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/100_ridge.html">Regularization and Penalized Models</a></li><li class="breadcrumb-item"><a href="../lectures/110_lasso.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LASSO Regression</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/100_ridge.html">Regularization and Penalized Models</a></li><li class="breadcrumb-item"><a href="../lectures/110_lasso.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LASSO Regression</span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -504,8 +533,8 @@ window.Quarto = {
 
 
 <p>Let’s continue with penalized ERM, but now use a different penalty.</p>
-<section id="lasso-regression" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="lasso-regression"><span class="header-section-number">15.1</span> LASSO Regression</h2>
+<section id="lasso-regression" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="lasso-regression"><span class="header-section-number">12.1</span> LASSO Regression</h2>
 <p>A second important example of penalized ERM is <strong>LASSO regression</strong>. LASSO stands for <strong>least absolute shrinkage and selection operator</strong>.</p>
 <p>Ridge regression used the squared <span class="math inline">\(\ell_2\)</span> penalty:</p>
 <p><span class="math display">\[
@@ -521,6 +550,8 @@ window.Quarto = {
 \]</span></p>
 <p>We can visualize these:</p>
 <div id="f062e269-b11e-48c9-99cb-dd9cd2cafbc2" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -562,6 +593,7 @@ window.Quarto = {
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -591,8 +623,8 @@ window.Quarto = {
 <li>It performs variable selection by removing some predictors from the model.</li>
 </ol>
 </section>
-<section id="what-changes-relative-to-ridge" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="what-changes-relative-to-ridge"><span class="header-section-number">15.2</span> What changes relative to ridge?</h2>
+<section id="what-changes-relative-to-ridge" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="what-changes-relative-to-ridge"><span class="header-section-number">12.2</span> What changes relative to ridge?</h2>
 <p>Ridge regression solves</p>
 <p><span class="math display">\[
 \min_w
@@ -619,11 +651,11 @@ window.Quarto = {
 <p>has a sharp corner at <span class="math inline">\(w_j=0\)</span>, the objective is convex but not smooth. So, in general, there is no simple closed-form matrix formula like ridge.</p>
 <p>This is not just a technical nuisance. The sharp corner is exactly what allows LASSO to set coefficients equal to zero.</p>
 </section>
-<section id="solving-lasso-in-practice" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="solving-lasso-in-practice"><span class="header-section-number">15.3</span> Solving LASSO in practice</h2>
+<section id="solving-lasso-in-practice" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="solving-lasso-in-practice"><span class="header-section-number">12.3</span> Solving LASSO in practice</h2>
 <p>Since the LASSO objective is convex, but not differentiable everywhere. We cannot solve the problem by ordinary differentiation in the same way we solved ridge.</p>
-<section id="the-subgradient-idea" class="level3" data-number="15.3.1">
-<h3 data-number="15.3.1" class="anchored" data-anchor-id="the-subgradient-idea"><span class="header-section-number">15.3.1</span> The subgradient idea</h3>
+<section id="the-subgradient-idea" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="the-subgradient-idea"><span class="header-section-number">12.3.1</span> The subgradient idea</h3>
 <p>To handle the non-differentiability, we use the idea of a <strong>subgradient</strong>.</p>
 <p>For <span class="math inline">\(w_j \neq 0\)</span>, the derivative of <span class="math inline">\(|w_j|\)</span> is ordinary:</p>
 <p><span class="math display">\[
@@ -666,8 +698,8 @@ h(w_j) = |w_j|.
 \]</span></p>
 <p>That is, zero must belong to the set of possible subgradients at <span class="math inline">\(\hat{w}\)</span>.</p>
 </section>
-<section id="two-common-algorithms" class="level3" data-number="15.3.2">
-<h3 data-number="15.3.2" class="anchored" data-anchor-id="two-common-algorithms"><span class="header-section-number">15.3.2</span> Two common algorithms</h3>
+<section id="two-common-algorithms" class="level3" data-number="12.3.2">
+<h3 data-number="12.3.2" class="anchored" data-anchor-id="two-common-algorithms"><span class="header-section-number">12.3.2</span> Two common algorithms</h3>
 <p>There are many algorithms for solving LASSO. Two especially useful ones are:</p>
 <ol type="1">
 <li><strong>Coordinate descent</strong></li>
@@ -765,8 +797,8 @@ g(w_j) = \frac{1}{2}a_j w_j^2 - c_j w_j + \lambda |w_j|.
 \]</span></p>
 <p>Now split according to the value of <span class="math inline">\(c_j\)</span>.</p>
 </section>
-<section id="case-1-c_j-leq-lambda" class="level3" data-number="15.3.3">
-<h3 data-number="15.3.3" class="anchored" data-anchor-id="case-1-c_j-leq-lambda"><span class="header-section-number">15.3.3</span> Case 1: <span class="math inline">\(|c_j| \leq \lambda\)</span></h3>
+<section id="case-1-c_j-leq-lambda" class="level3" data-number="12.3.3">
+<h3 data-number="12.3.3" class="anchored" data-anchor-id="case-1-c_j-leq-lambda"><span class="header-section-number">12.3.3</span> Case 1: <span class="math inline">\(|c_j| \leq \lambda\)</span></h3>
 <p>At <span class="math inline">\(w_j = 0\)</span>,</p>
 <p><span class="math display">\[
 \partial g(0) = [-c_j-\lambda,\,-c_j+\lambda].
@@ -785,8 +817,8 @@ g(w_j) = \frac{1}{2}a_j w_j^2 - c_j w_j + \lambda |w_j|.
 w_j \leftarrow 0.
 \]</span></p>
 </section>
-<section id="case-2-c_j-lambda" class="level3" data-number="15.3.4">
-<h3 data-number="15.3.4" class="anchored" data-anchor-id="case-2-c_j-lambda"><span class="header-section-number">15.3.4</span> Case 2: <span class="math inline">\(c_j &gt; \lambda\)</span></h3>
+<section id="case-2-c_j-lambda" class="level3" data-number="12.3.4">
+<h3 data-number="12.3.4" class="anchored" data-anchor-id="case-2-c_j-lambda"><span class="header-section-number">12.3.4</span> Case 2: <span class="math inline">\(c_j &gt; \lambda\)</span></h3>
 <p>At <span class="math inline">\(w_j = 0\)</span>,</p>
 <p><span class="math display">\[
 \partial g(0) = [-c_j-\lambda,\,-c_j+\lambda].
@@ -826,8 +858,8 @@ c_j &gt; \lambda,
 w_j \leftarrow \frac{c_j-\lambda}{a_j}.
 \]</span></p>
 </section>
-<section id="case-3-c_j--lambda" class="level3" data-number="15.3.5">
-<h3 data-number="15.3.5" class="anchored" data-anchor-id="case-3-c_j--lambda"><span class="header-section-number">15.3.5</span> Case 3: <span class="math inline">\(c_j &lt; -\lambda\)</span></h3>
+<section id="case-3-c_j--lambda" class="level3" data-number="12.3.5">
+<h3 data-number="12.3.5" class="anchored" data-anchor-id="case-3-c_j--lambda"><span class="header-section-number">12.3.5</span> Case 3: <span class="math inline">\(c_j &lt; -\lambda\)</span></h3>
 <p>At <span class="math inline">\(w_j = 0\)</span>,</p>
 <p><span class="math display">\[
 \partial g(0) = [-c_j-\lambda,\,-c_j+\lambda].
@@ -928,11 +960,16 @@ S(c_j,\lambda)=0,
 <p>Thus, coordinate descent makes the variable selection behavior of LASSO very explicit.</p>
 <p>Let’s look at a minimal implementation:</p>
 <div id="d33bec6a-100a-428c-9595-1ca3f9e69fbc" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="b5e8e57c-4fe5-4c47-8599-e7f1b4f8cf45" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span></span>
@@ -949,9 +986,12 @@ S(c_j,\lambda)=0,
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># This lets us fit without an intercept.</span></span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> StandardScaler().fit_transform(X)</span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> y <span class="op">-</span> y.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Now we do the coordinate descent:</p>
 <div id="8ad6dfe0-aa0c-4ffc-b4b1-73a3e2a63ba2" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> soft_threshold(c, lam):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> c <span class="op">&gt;</span> lam:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> c <span class="op">-</span> lam</span>
@@ -999,14 +1039,18 @@ S(c_j,\lambda)=0,
 <span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
 <span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w, iteration <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="5fa86613-c977-411e-bf81-eab26b9b080a" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> <span class="fl">0.10</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>w_cd, n_iter <span class="op">=</span> lasso_coordinate_descent(X, y, lam)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Coordinate descent finished in </span><span class="sc">{</span>n_iter<span class="sc">}</span><span class="ss"> iterations"</span>)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.<span class="bu">round</span>(w_cd, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Coordinate descent finished in 9 iterations
 [ 0.     2.35   0.     0.    -1.716  0.     0.     0.967  0.     0.
@@ -1015,6 +1059,8 @@ S(c_j,\lambda)=0,
 </div>
 <p>We can compare this to <code>sklearn</code>:</p>
 <div id="43f84836-f987-44b1-bee2-11ad4cb60968" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>lasso <span class="op">=</span> Lasso(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    alpha<span class="op">=</span>lam,</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    fit_intercept<span class="op">=</span><span class="va">False</span>,</span>
@@ -1027,6 +1073,7 @@ S(c_j,\lambda)=0,
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>w_sklearn <span class="op">=</span> lasso.coef_</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.<span class="bu">round</span>(w_sklearn, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[ 0.     2.35  -0.     0.    -1.716 -0.    -0.     0.967  0.    -0.
   0.     0.    -0.004  0.    -0.     0.    -0.    -0.     0.    -0.   ]</code></pre>
@@ -1090,6 +1137,8 @@ S(u_j,\eta \lambda),
 </ul>
 <p>So proximal gradient descent alternates between reducing prediction error and pulling coefficients toward zero.</p>
 <div id="fb528236-1848-41b2-b912-0a899d5065ea" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> soft_threshold_vector(u, lam):</span>
@@ -1129,8 +1178,11 @@ S(u_j,\eta \lambda),
 <span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
 <span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w, iteration <span class="op">+</span> <span class="dv">1</span>, eta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="700a9a53-28ba-47b3-b176-4013b172be32" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> <span class="fl">0.10</span></span>
@@ -1160,6 +1212,7 @@ S(u_j,\eta \lambda),
 <span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
 <span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sklearn coefficients:"</span>)</span>
 <span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.<span class="bu">round</span>(w_sklearn, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Proximal gradient descent finished in 10000 iterations
 Step size eta = 0.0010
@@ -1175,8 +1228,8 @@ sklearn coefficients:
 </div>
 </section>
 </section>
-<section id="constrained-vs-penalized" class="level2" data-number="15.4">
-<h2 data-number="15.4" class="anchored" data-anchor-id="constrained-vs-penalized"><span class="header-section-number">15.4</span> Constrained vs penalized</h2>
+<section id="constrained-vs-penalized" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="constrained-vs-penalized"><span class="header-section-number">12.4</span> Constrained vs penalized</h2>
 <p>As with ridge, LASSO can be written in <strong>penalized form</strong>:</p>
 <p><span class="math display">\[
 \hat{w}=
@@ -1208,9 +1261,11 @@ sklearn coefficients:
 \|w\|_0 \le k,
 \]</span></p>
 <p>where <span class="math inline">\(\|w\|_0\)</span> counts the number of nonzero coefficients. This directly limits the model to use at most <span class="math inline">\(k\)</span> predictors. However, the <span class="math inline">\(L_0\)</span> constraint is nonconvex and generally difficult to optimize. LASSO replaces this hard sparsity constraint with the convex constraint <span class="math inline">\(\|w\|_1 \le t\)</span>. The <span class="math inline">\(L_1\)</span> constraint does not count nonzero coefficients directly, but it encourages sparsity and is much easier to optimize.</p>
-<section id="geometry" class="level3" data-number="15.4.1">
-<h3 data-number="15.4.1" class="anchored" data-anchor-id="geometry"><span class="header-section-number">15.4.1</span> Geometry</h3>
+<section id="geometry" class="level3" data-number="12.4.1">
+<h3 data-number="12.4.1" class="anchored" data-anchor-id="geometry"><span class="header-section-number">12.4.1</span> Geometry</h3>
 <div id="bb0775a1" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1222,8 +1277,11 @@ sklearn coefficients:
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    Dropdown <span class="op">=</span> <span class="va">None</span></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Polygon</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="196d29d3" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">1.0</span>, <span class="fl">0.0</span>],</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.0</span>, <span class="fl">1.0</span>],</span>
@@ -1235,11 +1293,14 @@ sklearn coefficients:
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>w_ols <span class="op">=</span> np.linalg.lstsq(X, y, rcond<span class="op">=</span><span class="va">None</span>)[<span class="dv">0</span>]</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>w_ols</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>array([0.83333333, 1.        ])</code></pre>
 </div>
 </div>
 <div id="e2fc32dd" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> risk(w1, w2):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># vectorized</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> X[:, <span class="dv">0</span>, <span class="va">None</span>, <span class="va">None</span>] <span class="op">*</span> w1 <span class="op">+</span> X[:, <span class="dv">1</span>, <span class="va">None</span>, <span class="va">None</span>] <span class="op">*</span> w2</span>
@@ -1360,8 +1421,11 @@ sklearn coefficients:
 <span id="cb15-118"><a href="#cb15-118" aria-hidden="true" tabindex="-1"></a>    ax.set_aspect(<span class="st">"equal"</span>, adjustable<span class="op">=</span><span class="st">"box"</span>)</span>
 <span id="cb15-119"><a href="#cb15-119" aria-hidden="true" tabindex="-1"></a>    ax.legend()</span>
 <span id="cb15-120"><a href="#cb15-120" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="2e561037" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> interact <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    interact(</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        plot_geometry,</span>
@@ -1382,6 +1446,7 @@ sklearn coefficients:
 <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
 <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"ipywidgets is not installed, so showing a static constrained-form plot."</span>)</span>
 <span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    plot_geometry(mode<span class="op">=</span><span class="st">"constrained"</span>, t<span class="op">=</span><span class="fl">1.0</span>, lam<span class="op">=</span><span class="fl">0.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"2e732ff3b8904e5b9c5b6bcfd1c2cb5d","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -1404,8 +1469,8 @@ sklearn coefficients:
 <p>Because the LASSO ball has corners on the axes, the point of tangency often lands on an axis. This gives coefficients exactly equal to zero.</p>
 </section>
 </section>
-<section id="lasso-and-correlated-variables" class="level2" data-number="15.5">
-<h2 data-number="15.5" class="anchored" data-anchor-id="lasso-and-correlated-variables"><span class="header-section-number">15.5</span> LASSO and correlated variables</h2>
+<section id="lasso-and-correlated-variables" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="lasso-and-correlated-variables"><span class="header-section-number">12.5</span> LASSO and correlated variables</h2>
 <p>LASSO behaves differently from ridge when variables are highly correlated.</p>
 <p>Suppose two features are nearly identical:</p>
 <p><span class="math display">\[
@@ -1427,8 +1492,8 @@ y \approx w_1 x_1 + w_2 x_2.
 <p>This is useful for variable selection, but it also means LASSO can be unstable when predictors are strongly correlated. Small changes in the data can change which variable is selected.</p>
 <p>This is one motivation for the <strong>elastic net</strong>, which combines the <span class="math inline">\(\ell_1\)</span> and <span class="math inline">\(\ell_2\)</span> penalties. (We’ll see this later.)</p>
 </section>
-<section id="bias-variance-tradeoff" class="level2" data-number="15.6">
-<h2 data-number="15.6" class="anchored" data-anchor-id="bias-variance-tradeoff"><span class="header-section-number">15.6</span> Bias-variance tradeoff</h2>
+<section id="bias-variance-tradeoff" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="bias-variance-tradeoff"><span class="header-section-number">12.6</span> Bias-variance tradeoff</h2>
 <p>LASSO provides another way to control the bias-variance tradeoff through <span class="math inline">\(\lambda\)</span>.</p>
 <ul>
 <li>Small <span class="math inline">\(\lambda\)</span>:
@@ -1450,11 +1515,16 @@ y \approx w_1 x_1 + w_2 x_2.
 <p>Compared to ridge, LASSO also changes model complexity by changing the number of nonzero coefficients.</p>
 <p>First consider a simulation with high variance and many useless variables:</p>
 <div id="49a97592" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="17f4102c" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span></span>
@@ -1469,13 +1539,19 @@ y \approx w_1 x_1 + w_2 x_2.
 <span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># relatively high noise</span></span>
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> np.random.normal(scale<span class="op">=</span><span class="fl">2.0</span>, size<span class="op">=</span>N)</span>
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> X <span class="op">@</span> w_true <span class="op">+</span> noise</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="6608b773" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.4</span>, random_state<span class="op">=</span><span class="dv">1</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="0ca0f612" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>lambdas <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">250</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>train_mse <span class="op">=</span> []</span>
@@ -1498,8 +1574,11 @@ y \approx w_1 x_1 + w_2 x_2.
 <span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    test_mse.append(mean_squared_error(y_test, yhat_test))</span>
 <span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    nonzero_counts.append(np.<span class="bu">sum</span>(model.coef_ <span class="op">!=</span> <span class="dv">0</span>))</span>
 <span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    coef_l1_norms.append(np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(model.coef_)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="64d71caa" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="dv">1</span><span class="op">/</span>lambdas, train_mse, label<span class="op">=</span><span class="st">"Training MSE"</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="dv">1</span><span class="op">/</span>lambdas, test_mse, label<span class="op">=</span><span class="st">"Test MSE"</span>)</span>
@@ -1509,6 +1588,7 @@ y \approx w_1 x_1 + w_2 x_2.
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Training and test error for LASSO regression"</span>)</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1518,6 +1598,8 @@ y \approx w_1 x_1 + w_2 x_2.
 </div>
 </div>
 <div id="55d2451b" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.plot(lambdas, nonzero_counts)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>plt.xscale(<span class="st">"log"</span>)</span>
@@ -1525,6 +1607,7 @@ y \approx w_1 x_1 + w_2 x_2.
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Number of nonzero coefficients"</span>)</span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"LASSO selects fewer variables as lambda increases"</span>)</span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1536,6 +1619,8 @@ y \approx w_1 x_1 + w_2 x_2.
 <p>As <span class="math inline">\(\lambda\)</span> increases, the number of selected variables decreases. This is different from ridge, where coefficients shrink toward zero but usually remain nonzero.</p>
 <p>Now consider a simulation with high collinearity:</p>
 <div id="67b2960a" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">2</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span></span>
@@ -1555,8 +1640,11 @@ y \approx w_1 x_1 + w_2 x_2.
 <span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    w_true[j <span class="op">*</span> copies_per_group] <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> X <span class="op">@</span> w_true <span class="op">+</span> np.random.normal(scale<span class="op">=</span><span class="fl">3.0</span>, size<span class="op">=</span>N)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="d13b11fc" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.4</span>, random_state<span class="op">=</span><span class="dv">1</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -1580,8 +1668,11 @@ y \approx w_1 x_1 + w_2 x_2.
 <span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    test_mse.append(mean_squared_error(y_test, model.predict(X_test)))</span>
 <span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>    nonzero_counts.append(np.<span class="bu">sum</span>(model.coef_ <span class="op">!=</span> <span class="dv">0</span>))</span>
 <span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    coef_l1_norms.append(np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(model.coef_)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="c371ae4e" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="dv">1</span><span class="op">/</span>lambdas, train_mse, label<span class="op">=</span><span class="st">"Training MSE"</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>plt.plot(<span class="dv">1</span><span class="op">/</span>lambdas, test_mse, label<span class="op">=</span><span class="st">"Test MSE"</span>)</span>
@@ -1591,6 +1682,7 @@ y \approx w_1 x_1 + w_2 x_2.
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"LASSO regression with highly collinear features"</span>)</span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1600,6 +1692,8 @@ y \approx w_1 x_1 + w_2 x_2.
 </div>
 </div>
 <div id="8bee6800" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plt.plot(lambdas, nonzero_counts)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>plt.xscale(<span class="st">"log"</span>)</span>
@@ -1607,6 +1701,7 @@ y \approx w_1 x_1 + w_2 x_2.
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Number of nonzero coefficients"</span>)</span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Selected variables under collinearity"</span>)</span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1618,8 +1713,8 @@ y \approx w_1 x_1 + w_2 x_2.
 <p>In the collinear setting, LASSO can improve test error by reducing variance, but the selected variables should be interpreted carefully.</p>
 <p>If several variables carry almost the same information, LASSO may select one of them and ignore the others. The prediction can still be good, but the selected set is not necessarily unique or stable.</p>
 </section>
-<section id="practical-considerations" class="level2" data-number="15.7">
-<h2 data-number="15.7" class="anchored" data-anchor-id="practical-considerations"><span class="header-section-number">15.7</span> Practical considerations</h2>
+<section id="practical-considerations" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="practical-considerations"><span class="header-section-number">12.7</span> Practical considerations</h2>
 <p>When applying LASSO in practice, there are a few important implementation details.</p>
 <p><strong>Standardize predictors</strong></p>
 <p>LASSO penalizes the size of coefficients:</p>
@@ -1658,8 +1753,8 @@ y \approx w_1 x_1 + w_2 x_2.
 <li>It should not be treated as automatic causal variable selection.</li>
 </ul>
 </section>
-<section id="lasso-with-orthonormal-predictors" class="level2" data-number="15.8">
-<h2 data-number="15.8" class="anchored" data-anchor-id="lasso-with-orthonormal-predictors"><span class="header-section-number">15.8</span> LASSO with orthonormal predictors</h2>
+<section id="lasso-with-orthonormal-predictors" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="lasso-with-orthonormal-predictors"><span class="header-section-number">12.8</span> LASSO with orthonormal predictors</h2>
 <p>LASSO does not usually have a closed-form solution. But there is one useful special case.</p>
 <p>Suppose the columns of <span class="math inline">\(X\)</span> are orthonormal after scaling, so that</p>
 <p><span class="math display">\[
@@ -1684,6 +1779,8 @@ S(z_j,\lambda),
 <p>So LASSO is not just shrinkage. It is <strong>thresholded shrinkage</strong>.</p>
 <p>We can visualize soft-thresholding directly:</p>
 <div id="3367409f" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> soft_threshold(z, lam):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sign(z) <span class="op">*</span> np.maximum(np.<span class="bu">abs</span>(z) <span class="op">-</span> lam, <span class="fl">0.0</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1703,6 +1800,7 @@ S(z_j,\lambda),
 <span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"LASSO soft-thresholding vs. ridge shrinkage"</span>)</span>
 <span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1712,11 +1810,13 @@ S(z_j,\lambda),
 </div>
 </div>
 </section>
-<section id="real-data-example" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> Real Data Example</h1>
+<section id="real-data-example" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Real Data Example</h1>
 <p>For a self-contained example, use the diabetes regression data from <code>sklearn</code>. The goal is to predict a quantitative disease progression measure from patient covariates.</p>
 <p>This is not as high-dimensional as the gene-expression example, but it is useful for illustrating tuning, coefficient paths, and variable selection.</p>
 <div id="c6118f84" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1727,8 +1827,11 @@ S(z_j,\lambda),
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> Lasso, LinearRegression</span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> KFold, GridSearchCV</span>
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="ff849507" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>diabetes <span class="op">=</span> load_diabetes()</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> diabetes.data</span>
@@ -1738,6 +1841,7 @@ S(z_j,\lambda),
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X shape:"</span>, X.shape)</span>
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"y shape:"</span>, y.shape)</span>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"feature names:"</span>, feature_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>X shape: (442, 10)
 y shape: (442,)
@@ -1745,6 +1849,8 @@ feature names: ['age' 'sex' 'bmi' 'bp' 's1' 's2' 's3' 's4' 's5' 's6']</code></pr
 </div>
 </div>
 <div id="575d544b" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>lambdas <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">100</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>outer_cv <span class="op">=</span> KFold(n_splits<span class="op">=</span><span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">164654</span>)</span>
@@ -1758,8 +1864,11 @@ feature names: ['age' 'sex' 'bmi' 'bp' 's1' 's2' 's3' 's4' 's5' 's6']</code></pr
 <span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {</span>
 <span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"lasso__alpha"</span>: lambdas</span>
 <span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="455cd724" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>outer_test_mse <span class="op">=</span> []</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>outer_best_lambdas <span class="op">=</span> []</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>outer_nonzero_counts <span class="op">=</span> []</span>
@@ -1799,6 +1908,7 @@ feature names: ['age' 'sex' 'bmi' 'bp' 's1' 's2' 's3' 's4' 's5' 's6']</code></pr
 <span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  outer test MSE: </span><span class="sc">{</span>test_mse<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  number nonzero: </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">sum</span>(coef <span class="op">!=</span> <span class="dv">0</span>)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  L1 norm: </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">sum</span>(np.<span class="bu">abs</span>(coef))<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Fold 1
   best lambda: 0.5722
@@ -1828,6 +1938,8 @@ Fold 5
 </div>
 </div>
 <div id="869dd057" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>outer_test_mse <span class="op">=</span> np.array(outer_test_mse)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>outer_best_lambdas <span class="op">=</span> np.array(outer_best_lambdas)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>outer_nonzero_counts <span class="op">=</span> np.array(outer_nonzero_counts)</span>
@@ -1839,6 +1951,7 @@ Fold 5
 <span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Std outer test MSE:  </span><span class="sc">{</span>outer_test_mse<span class="sc">.</span>std(ddof<span class="op">=</span><span class="dv">1</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean nonzero count:  </span><span class="sc">{</span>outer_nonzero_counts<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
 <span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean L1 norm:        </span><span class="sc">{</span>outer_l1_norms<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nested CV results
 -----------------
@@ -1850,6 +1963,8 @@ Mean L1 norm:        121.1421</code></pre>
 </div>
 <p>After estimating generalization error with nested CV, we can now tune <span class="math inline">\(\lambda\)</span> on all data and fit a final model.</p>
 <div id="b798f5d9" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>final_search <span class="op">=</span> GridSearchCV(</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    estimator<span class="op">=</span>lasso_pipeline,</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    param_grid<span class="op">=</span>param_grid,</span>
@@ -1864,12 +1979,15 @@ Mean L1 norm:        121.1421</code></pre>
 <span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>final_model <span class="op">=</span> final_search.best_estimator_</span>
 <span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Final selected lambda:"</span>, best_lambda_final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Final selected lambda: 1.3219411484660286</code></pre>
 </div>
 </div>
 <p>For illustration, we can now plot the CV curve from the final tuning step.</p>
 <div id="b449497d" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>cv_results <span class="op">=</span> pd.DataFrame(final_search.cv_results_)</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>mean_cv_mse <span class="op">=</span> <span class="op">-</span>cv_results[<span class="st">"mean_test_score"</span>].to_numpy()</span>
@@ -1897,6 +2015,7 @@ Mean L1 norm:        121.1421</code></pre>
 <span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"LASSO tuning curve on full data"</span>)</span>
 <span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1906,6 +2025,8 @@ Mean L1 norm:        121.1421</code></pre>
 </div>
 </div>
 <div id="da4cda90" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>final_lasso <span class="op">=</span> final_model.named_steps[<span class="st">"lasso"</span>]</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>final_coef <span class="op">=</span> final_lasso.coef_</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1923,6 +2044,7 @@ Mean L1 norm:        121.1421</code></pre>
 <span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Final number selected:"</span>, np.<span class="bu">sum</span>(final_coef <span class="op">!=</span> <span class="dv">0</span>))</span>
 <span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Final L1 norm:"</span>, np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(final_coef)))</span>
 <span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>coef_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Final number selected: 7
 Final L1 norm: 88.20292362083823</code></pre>
@@ -2020,6 +2142,8 @@ Final L1 norm: 88.20292362083823</code></pre>
 </div>
 <p>Another useful pedagogical tool is the coefficient shrinkage curve. Let’s refit over values of <span class="math inline">\(\lambda\)</span>:</p>
 <div id="1eb28def" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>coefs <span class="op">=</span> []</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> lam <span class="kw">in</span> lambdas:</span>
@@ -2036,9 +2160,12 @@ Final L1 norm: 88.20292362083823</code></pre>
 <span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>coefs <span class="op">=</span> np.array(coefs)</span>
 <span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>coef_l1_norms <span class="op">=</span> np.<span class="bu">sum</span>(np.<span class="bu">abs</span>(coefs), axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>nonzero_counts <span class="op">=</span> np.<span class="bu">sum</span>(coefs <span class="op">!=</span> <span class="dv">0</span>, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>then plot:</p>
 <div id="9197f3c0" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>plt.plot(lambdas, coef_l1_norms)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2047,6 +2174,7 @@ Final L1 norm: 88.20292362083823</code></pre>
 <span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"$\|\hat</span><span class="sc">{w}</span><span class="vs">_\lambda\|_1$"</span>)</span>
 <span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"LASSO coefficient shrinkage"</span>)</span>
 <span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2056,6 +2184,8 @@ Final L1 norm: 88.20292362083823</code></pre>
 </div>
 </div>
 <div id="bbc259e9" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>plt.plot(lambdas, nonzero_counts)</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2064,6 +2194,7 @@ Final L1 norm: 88.20292362083823</code></pre>
 <span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Number of nonzero coefficients"</span>)</span>
 <span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"LASSO sparsity path"</span>)</span>
 <span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2074,6 +2205,8 @@ Final L1 norm: 88.20292362083823</code></pre>
 </div>
 <p>We can also plot individual coefficient paths:</p>
 <div id="0b6b75d3" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(coefs.shape[<span class="dv">1</span>]):</span>
@@ -2087,6 +2220,7 @@ Final L1 norm: 88.20292362083823</code></pre>
 <span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>plt.legend(bbox_to_anchor<span class="op">=</span>(<span class="fl">1.05</span>, <span class="dv">1</span>), loc<span class="op">=</span><span class="st">"upper left"</span>)</span>
 <span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2097,6 +2231,8 @@ Final L1 norm: 88.20292362083823</code></pre>
 </div>
 <p>Notice that if we zoom in enough on any of these curves they are piecewise-linear on a linear-linear scale. This is a general feature of the LASSO path, its piecewise linear.</p>
 <div id="2304e4fb-69a2-4151-8b86-5261f851d04b" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">6</span>))</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>k<span class="op">=</span><span class="dv">2</span></span>
@@ -2113,6 +2249,7 @@ Final L1 norm: 88.20292362083823</code></pre>
 <span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="co">#plt.legend(bbox_to_anchor=(1.05, 1), loc="upper left")</span></span>
 <span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2123,6 +2260,8 @@ Final L1 norm: 88.20292362083823</code></pre>
 </div>
 <p>We can also compare to the OLS baseline. For a direct comparison, use the same outer cross-validation splits.</p>
 <div id="82651e7d" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>ols_outer_test_mse <span class="op">=</span> []</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>ols_outer_train_mse <span class="op">=</span> []</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>ols_coef_l1_norms <span class="op">=</span> []</span>
@@ -2173,6 +2312,7 @@ Final L1 norm: 88.20292362083823</code></pre>
 <span id="cb46-48"><a href="#cb46-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Std outer test MSE:   </span><span class="sc">{</span>outer_test_mse<span class="sc">.</span>std(ddof<span class="op">=</span><span class="dv">1</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb46-49"><a href="#cb46-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean nonzero count:   </span><span class="sc">{</span>outer_nonzero_counts<span class="sc">.</span>mean()<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
 <span id="cb46-50"><a href="#cb46-50" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean L1 norm:         </span><span class="sc">{</span>outer_l1_norms<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>OLS results
 -----------
@@ -2812,13 +2952,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/101_constr_optim.html" class="pagination-link" aria-label="Constrained Optimization via Primal–Dual Methods">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span>
+      <a href="../lectures/100_ridge.html" class="pagination-link" aria-label="Penalized ERM and Ridge Regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/120_elastic_net_logistic_erm.html" class="pagination-link" aria-label="Elastic Net and Penalized Logistic Regression">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

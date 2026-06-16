@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>18&nbsp; Training Neural Networks with Backpropagation – Statistical Learning</title>
+<title>15&nbsp; Training Neural Networks with Backpropagation – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,7 +151,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/130_nn.html">Neural Networks</a></li><li class="breadcrumb-item"><a href="../lectures/140_backprop.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/130_nn.html">Neural Networks</a></li><li class="breadcrumb-item"><a href="../lectures/140_backprop.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -189,7 +189,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Foundations and Empirical Risk Minimization</span></a>
+ <span class="menu-text">Foundations and Linear Models</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -225,18 +225,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Evaluation, Model Selection, and Nonparametric Methods</span></a>
+ <span class="menu-text">Evaluation and Model Selection</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -245,31 +239,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/050_evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/060_model_selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/070_knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/080_bias_variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
   </div>
 </li>
       </ul>
@@ -286,25 +274,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/100_ridge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/110_lasso.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/120_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
   </div>
 </li>
       </ul>
@@ -321,19 +303,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/130_nn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/140_backprop.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/150_nn_arch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
   </div>
 </li>
       </ul>
@@ -350,25 +332,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/160_unsupervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/170_svd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/180_pca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/190_kmeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
       </ul>
@@ -385,19 +367,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/200_carts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/210_random_forests.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/220_boosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
       </ul>
@@ -414,37 +396,84 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/005_derivatives_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/010_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/020_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/030_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/050_evaluation_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/060_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/070_knn_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Extras</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
   </div>
 </li>
       </ul>
@@ -459,21 +488,21 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-different-from-linear-and-logistic-regression" id="toc-what-is-different-from-linear-and-logistic-regression" class="nav-link active" data-scroll-target="#what-is-different-from-linear-and-logistic-regression"><span class="header-section-number">18.1</span> What Is Different from Linear and Logistic Regression?</a>
+  <li><a href="#what-is-different-from-linear-and-logistic-regression" id="toc-what-is-different-from-linear-and-logistic-regression" class="nav-link active" data-scroll-target="#what-is-different-from-linear-and-logistic-regression"><span class="header-section-number">15.1</span> What Is Different from Linear and Logistic Regression?</a>
   <ul class="collapse">
-  <li><a href="#stochastic-and-mini-batch-gradient-descent" id="toc-stochastic-and-mini-batch-gradient-descent" class="nav-link" data-scroll-target="#stochastic-and-mini-batch-gradient-descent"><span class="header-section-number">18.1.1</span> Stochastic and Mini-Batch Gradient Descent</a></li>
+  <li><a href="#stochastic-and-mini-batch-gradient-descent" id="toc-stochastic-and-mini-batch-gradient-descent" class="nav-link" data-scroll-target="#stochastic-and-mini-batch-gradient-descent"><span class="header-section-number">15.1.1</span> Stochastic and Mini-Batch Gradient Descent</a></li>
   </ul></li>
-  <li><a href="#how-to-calculate-derivatives-chain-rule-computational-graphs-and-backpropagation" id="toc-how-to-calculate-derivatives-chain-rule-computational-graphs-and-backpropagation" class="nav-link" data-scroll-target="#how-to-calculate-derivatives-chain-rule-computational-graphs-and-backpropagation"><span class="header-section-number">18.2</span> How to calculate derivatives: Chain Rule, Computational Graphs, and Backpropagation</a>
+  <li><a href="#how-to-calculate-derivatives-chain-rule-computational-graphs-and-backpropagation" id="toc-how-to-calculate-derivatives-chain-rule-computational-graphs-and-backpropagation" class="nav-link" data-scroll-target="#how-to-calculate-derivatives-chain-rule-computational-graphs-and-backpropagation"><span class="header-section-number">15.2</span> How to calculate derivatives: Chain Rule, Computational Graphs, and Backpropagation</a>
   <ul class="collapse">
-  <li><a href="#the-chain-rule" id="toc-the-chain-rule" class="nav-link" data-scroll-target="#the-chain-rule"><span class="header-section-number">18.2.1</span> The Chain Rule</a></li>
-  <li><a href="#computational-graphs" id="toc-computational-graphs" class="nav-link" data-scroll-target="#computational-graphs"><span class="header-section-number">18.2.2</span> Computational Graphs</a></li>
-  <li><a href="#a-fully-worked-backward-pass-example" id="toc-a-fully-worked-backward-pass-example" class="nav-link" data-scroll-target="#a-fully-worked-backward-pass-example"><span class="header-section-number">18.2.3</span> A Fully Worked Backward Pass Example</a></li>
-  <li><a href="#forward-pass" id="toc-forward-pass" class="nav-link" data-scroll-target="#forward-pass"><span class="header-section-number">18.2.4</span> Forward Pass</a></li>
-  <li><a href="#backward-pass" id="toc-backward-pass" class="nav-link" data-scroll-target="#backward-pass"><span class="header-section-number">18.2.5</span> Backward Pass</a></li>
-  <li><a href="#final-gradients" id="toc-final-gradients" class="nav-link" data-scroll-target="#final-gradients"><span class="header-section-number">18.2.6</span> Final Gradients</a></li>
-  <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation"><span class="header-section-number">18.2.7</span> Backpropagation</a></li>
-  <li><a href="#chain-rule-in-higher-dimensions" id="toc-chain-rule-in-higher-dimensions" class="nav-link" data-scroll-target="#chain-rule-in-higher-dimensions"><span class="header-section-number">18.2.8</span> Chain Rule in Higher Dimensions</a></li>
-  <li><a href="#optimizer-variants" id="toc-optimizer-variants" class="nav-link" data-scroll-target="#optimizer-variants"><span class="header-section-number">18.2.9</span> Optimizer Variants</a></li>
+  <li><a href="#the-chain-rule" id="toc-the-chain-rule" class="nav-link" data-scroll-target="#the-chain-rule"><span class="header-section-number">15.2.1</span> The Chain Rule</a></li>
+  <li><a href="#computational-graphs" id="toc-computational-graphs" class="nav-link" data-scroll-target="#computational-graphs"><span class="header-section-number">15.2.2</span> Computational Graphs</a></li>
+  <li><a href="#a-fully-worked-backward-pass-example" id="toc-a-fully-worked-backward-pass-example" class="nav-link" data-scroll-target="#a-fully-worked-backward-pass-example"><span class="header-section-number">15.2.3</span> A Fully Worked Backward Pass Example</a></li>
+  <li><a href="#forward-pass" id="toc-forward-pass" class="nav-link" data-scroll-target="#forward-pass"><span class="header-section-number">15.2.4</span> Forward Pass</a></li>
+  <li><a href="#backward-pass" id="toc-backward-pass" class="nav-link" data-scroll-target="#backward-pass"><span class="header-section-number">15.2.5</span> Backward Pass</a></li>
+  <li><a href="#final-gradients" id="toc-final-gradients" class="nav-link" data-scroll-target="#final-gradients"><span class="header-section-number">15.2.6</span> Final Gradients</a></li>
+  <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation"><span class="header-section-number">15.2.7</span> Backpropagation</a></li>
+  <li><a href="#chain-rule-in-higher-dimensions" id="toc-chain-rule-in-higher-dimensions" class="nav-link" data-scroll-target="#chain-rule-in-higher-dimensions"><span class="header-section-number">15.2.8</span> Chain Rule in Higher Dimensions</a></li>
+  <li><a href="#optimizer-variants" id="toc-optimizer-variants" class="nav-link" data-scroll-target="#optimizer-variants"><span class="header-section-number">15.2.9</span> Optimizer Variants</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -481,9 +510,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/130_nn.html">Neural Networks</a></li><li class="breadcrumb-item"><a href="../lectures/140_backprop.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/130_nn.html">Neural Networks</a></li><li class="breadcrumb-item"><a href="../lectures/140_backprop.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -548,8 +577,8 @@ s_\theta(x)=s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 <li>minimize empirical risk.</li>
 </ol>
 <p>The difference is that the model class is now a neural network.</p>
-<section id="what-is-different-from-linear-and-logistic-regression" class="level2" data-number="18.1">
-<h2 data-number="18.1" class="anchored" data-anchor-id="what-is-different-from-linear-and-logistic-regression"><span class="header-section-number">18.1</span> What Is Different from Linear and Logistic Regression?</h2>
+<section id="what-is-different-from-linear-and-logistic-regression" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="what-is-different-from-linear-and-logistic-regression"><span class="header-section-number">15.1</span> What Is Different from Linear and Logistic Regression?</h2>
 <p>Although the ERM framework is the same, the optimization problem is different.</p>
 <p>In ordinary least squares, the empirical risk has a special quadratic form. Under appropriate conditions, we can write down the solution using linear algebra. In logistic regression, the objective is not quadratic, but it is convex. This means that optimization is still relatively well behaved. If we minimize the empirical risk successfully, we are finding a global minimizer.</p>
 <p>Neural networks are different. Because the network is built from compositions of nonlinear functions, the empirical risk is usually <strong>nonconvex</strong> as a function of <span class="math inline">\(\theta\)</span>.</p>
@@ -573,20 +602,31 @@ s_\theta(x)=s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 <p>The learning rate controls the size of the step. If <span class="math inline">\(\eta\)</span> is too small, training may be very slow. If <span class="math inline">\(\eta\)</span> is too large, training may be unstable.</p>
 <p>Consider a small example NN:</p>
 <div id="b0de337e-ff2c-4f40-a5a7-9a909cbc53be" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="9aabfe26-3d41-420e-9b48-e0590015f21b" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">30</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, N)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="3d135a5a-ee70-4746-8c01-806a1c1ecd7a" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(z):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>z))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="601092d2-d825-4242-8248-39c8319667a2" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> s(x, theta):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> theta[<span class="st">"w"</span>]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> theta[<span class="st">"b"</span>]</span>
@@ -598,8 +638,11 @@ s_\theta(x)=s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> v <span class="op">*</span> h <span class="op">+</span> c</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="b85b5915-9539-4788-84fe-bf4e2859fdc3" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># True parameters used to generate the data</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>theta_true <span class="op">=</span> {</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"w"</span>: <span class="fl">1.5</span>,</span>
@@ -611,14 +654,18 @@ s_\theta(x)=s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate data from the one-hidden-unit network plus noise</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> s(x, theta_true)</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> y_true <span class="op">+</span> np.random.normal(scale<span class="op">=</span><span class="fl">0.08</span>, size<span class="op">=</span>N)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="5c172e5a-847a-4a5f-9048-c81e5af3d86b" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, label<span class="op">=</span><span class="st">"Observed data"</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y_true, label<span class="op">=</span><span class="st">"True curve"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"y"</span>)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -629,6 +676,8 @@ s_\theta(x)=s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 </div>
 <p>Let’s do gradient descent for this:</p>
 <div id="42ff6669-dbb4-4955-91e4-0a8d0d554380" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grad_risk(x, y, theta):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="bu">len</span>(x)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -652,8 +701,11 @@ s_\theta(x)=s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"v"</span>: np.<span class="bu">sum</span>((error <span class="op">/</span> N) <span class="op">*</span> h),</span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">"c"</span>: np.<span class="bu">sum</span>(error <span class="op">/</span> N),</span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="8aa2bb4b-339d-494f-8457-8398ef77ab6b" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize parameters</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> {</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"w"</span>: <span class="fl">0.1</span>,</span>
@@ -681,13 +733,17 @@ s_\theta(x)=s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    theta[<span class="st">"b"</span>] <span class="op">=</span> theta[<span class="st">"b"</span>] <span class="op">-</span> eta <span class="op">*</span> dR_dtheta[<span class="st">"b"</span>]</span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    theta[<span class="st">"v"</span>] <span class="op">=</span> theta[<span class="st">"v"</span>] <span class="op">-</span> eta <span class="op">*</span> dR_dtheta[<span class="st">"v"</span>]</span>
 <span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    theta[<span class="st">"c"</span>] <span class="op">=</span> theta[<span class="st">"c"</span>] <span class="op">-</span> eta <span class="op">*</span> dR_dtheta[<span class="st">"c"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="b25d79fa-186c-43ae-b01e-5a0bf691c073" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(risk_history))</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Gradient descent step"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"$\hat</span><span class="sc">{R}</span><span class="vs">(\theta)$"</span>)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Full-batch gradient descent"</span>)</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -697,7 +753,10 @@ s_\theta(x)=s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 </div>
 </div>
 <div id="7e9db394-0fe3-438b-bd96-79056fd22144" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>theta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>{'w': np.float64(1.3441947462842796),
  'b': np.float64(-0.17921079269749549),
@@ -706,12 +765,17 @@ s_\theta(x)=s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 </div>
 </div>
 <div id="331f7e16-1969-4da1-abe9-bb7598eff23b" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>theta_true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>{'w': 1.5, 'b': -0.3, 'v': 1.2, 'c': 0.25}</code></pre>
 </div>
 </div>
 <div id="eb65016e-95d1-4d42-9046-8c8d4cbe1031" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x_grid <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="dv">300</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>s_grid <span class="op">=</span> s(x_grid, theta)</span>
@@ -724,6 +788,7 @@ s_\theta(x)=s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"y"</span>)</span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -733,8 +798,8 @@ s_\theta(x)=s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 </div>
 </div>
 <p>While gradient descent is very simple, it is very general and thus we will be able to use it on all of our architectures, and break it apart to modular components to calculate it in a more scalable manner.</p>
-<section id="stochastic-and-mini-batch-gradient-descent" class="level3" data-number="18.1.1">
-<h3 data-number="18.1.1" class="anchored" data-anchor-id="stochastic-and-mini-batch-gradient-descent"><span class="header-section-number">18.1.1</span> Stochastic and Mini-Batch Gradient Descent</h3>
+<section id="stochastic-and-mini-batch-gradient-descent" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="stochastic-and-mini-batch-gradient-descent"><span class="header-section-number">15.1.1</span> Stochastic and Mini-Batch Gradient Descent</h3>
 <p>The gradient descent update above uses the full empirical risk</p>
 <p><span class="math display">\[
 \hat{R}(\theta)=
@@ -805,6 +870,8 @@ N = 1000
 <p>Mini-batch gradient descent is the standard approach for training neural networks. It scales better than full gradient descent and is less noisy than single-observation stochastic gradient descent.</p>
 <p>We can look at our previous example now using minibatch SGD:</p>
 <div id="20133848-2447-4af9-87df-75b57ab38321" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> {</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"w"</span>: <span class="fl">0.1</span>,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"b"</span>: <span class="fl">0.1</span>,</span>
@@ -835,13 +902,17 @@ N = 1000
 <span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Update parameters</span></span>
 <span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> key <span class="kw">in</span> theta:</span>
 <span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>        theta[key] <span class="op">-=</span> eta <span class="op">*</span> dR_dtheta[key]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="2a0ebfc2-a82a-4b05-a72b-34f7fc8d9984" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.plot(np.log10(risk_history))</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Gradient descent step"</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"$\hat</span><span class="sc">{R}</span><span class="vs">_</span><span class="sc">{batch}</span><span class="vs">(\theta)$"</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Full-batch gradient descent"</span>)</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -851,7 +922,10 @@ N = 1000
 </div>
 </div>
 <div id="90e8cf9a-1c25-4de5-8fe4-44ab7dd4b8be" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>theta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>{'w': np.float64(1.3441947462842796),
  'b': np.float64(-0.17921079269749549),
@@ -860,12 +934,17 @@ N = 1000
 </div>
 </div>
 <div id="6dc510fb-057d-4701-b347-ac678adbd759" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>theta_true</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>{'w': 1.5, 'b': -0.3, 'v': 1.2, 'c': 0.25}</code></pre>
 </div>
 </div>
 <div id="cfb8757b-492e-44ad-8397-ebb0d63d57f3" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x_grid <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="dv">300</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>s_grid <span class="op">=</span> s(x_grid, theta)</span>
@@ -878,6 +957,7 @@ N = 1000
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"y"</span>)</span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -888,8 +968,8 @@ N = 1000
 </div>
 </section>
 </section>
-<section id="how-to-calculate-derivatives-chain-rule-computational-graphs-and-backpropagation" class="level2" data-number="18.2">
-<h2 data-number="18.2" class="anchored" data-anchor-id="how-to-calculate-derivatives-chain-rule-computational-graphs-and-backpropagation"><span class="header-section-number">18.2</span> How to calculate derivatives: Chain Rule, Computational Graphs, and Backpropagation</h2>
+<section id="how-to-calculate-derivatives-chain-rule-computational-graphs-and-backpropagation" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="how-to-calculate-derivatives-chain-rule-computational-graphs-and-backpropagation"><span class="header-section-number">15.2</span> How to calculate derivatives: Chain Rule, Computational Graphs, and Backpropagation</h2>
 <p>The problem with the previous approach was that it was <strong>bespoke</strong> to the particular network. However, the structure of NNs means we can derive all of this in an extremely general and modular way.</p>
 <p>To understand how neural networks are trained, we need to understand how to compute derivatives of the loss with respect to the model parameters.</p>
 <p>Recall that a neural network is a composition of functions. For example,</p>
@@ -902,8 +982,8 @@ s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 \ell(y, s_\theta(x)).
 \]</span></p>
 <p>So the full training objective is built from a large composition of smaller operations. This is exactly the setting where the <strong>chain rule</strong> is useful.</p>
-<section id="the-chain-rule" class="level3" data-number="18.2.1">
-<h3 data-number="18.2.1" class="anchored" data-anchor-id="the-chain-rule"><span class="header-section-number">18.2.1</span> The Chain Rule</h3>
+<section id="the-chain-rule" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="the-chain-rule"><span class="header-section-number">15.2.1</span> The Chain Rule</h3>
 <p>Start with a simple composition of two functions. Suppose</p>
 <p><span class="math display">\[
 u = g(x)
@@ -947,8 +1027,8 @@ h^{(2)} = s_2(h^{(1)}),
 \]</span></p>
 <p>This is how we’re ultimately going to be calculating the gradient, using the chain rule.</p>
 </section>
-<section id="computational-graphs" class="level3" data-number="18.2.2">
-<h3 data-number="18.2.2" class="anchored" data-anchor-id="computational-graphs"><span class="header-section-number">18.2.2</span> Computational Graphs</h3>
+<section id="computational-graphs" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="computational-graphs"><span class="header-section-number">15.2.2</span> Computational Graphs</h3>
 <p>A <strong>computational graph</strong> is a way of representing a complicated function as a sequence of simpler operations.</p>
 <p>Each node in the graph represents a quantity. Each edge represents a dependency.</p>
 <p>For example, suppose we compute</p>
@@ -984,6 +1064,8 @@ x,w,b \mapsto a \mapsto h \mapsto s \mapsto L.
 </ol>
 <p>This is often called the <strong>forward pass</strong>.</p>
 <div id="65439d94-406d-4a55-a699-ba7d7d87d628" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Circle, Rectangle</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1057,6 +1139,7 @@ x,w,b \mapsto a \mapsto h \mapsto s \mapsto L.
 <span id="cb22-71"><a href="#cb22-71" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
 <span id="cb22-72"><a href="#cb22-72" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-73"><a href="#cb22-73" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1144,6 +1227,8 @@ q = f(r).
 \]</span></p>
 <p>At the end of the backprop we have the deriv w.r.t. all the parameters.</p>
 <div id="f61ca074-6af9-4efe-a780-f01a98044a55" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Circle, Rectangle</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1270,6 +1355,7 @@ q = f(r).
 <span id="cb23-124"><a href="#cb23-124" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
 <span id="cb23-125"><a href="#cb23-125" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-126"><a href="#cb23-126" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1280,6 +1366,8 @@ q = f(r).
 </div>
 <p>Let’s apply this to our simple computational graph:</p>
 <div id="348f4800-c2bc-447a-8722-f849965b3a2e" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Circle, Rectangle</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1353,6 +1441,7 @@ q = f(r).
 <span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
 <span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1362,8 +1451,8 @@ q = f(r).
 </div>
 </div>
 </section>
-<section id="a-fully-worked-backward-pass-example" class="level3" data-number="18.2.3">
-<h3 data-number="18.2.3" class="anchored" data-anchor-id="a-fully-worked-backward-pass-example"><span class="header-section-number">18.2.3</span> A Fully Worked Backward Pass Example</h3>
+<section id="a-fully-worked-backward-pass-example" class="level3" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="a-fully-worked-backward-pass-example"><span class="header-section-number">15.2.3</span> A Fully Worked Backward Pass Example</h3>
 <p>To make the backward pass more concrete, consider a very small regression example with one input, one hidden unit, and one output.</p>
 <p>The forward computation is</p>
 <p><span class="math display">\[
@@ -1409,8 +1498,8 @@ v = 1.5,
 c = -0.2.
 \]</span></p>
 </section>
-<section id="forward-pass" class="level3" data-number="18.2.4">
-<h3 data-number="18.2.4" class="anchored" data-anchor-id="forward-pass"><span class="header-section-number">18.2.4</span> Forward Pass</h3>
+<section id="forward-pass" class="level3" data-number="15.2.4">
+<h3 data-number="15.2.4" class="anchored" data-anchor-id="forward-pass"><span class="header-section-number">15.2.4</span> Forward Pass</h3>
 <p>First compute the pre-activation:</p>
 <p><span class="math display">\[
 a = wx + b.
@@ -1456,8 +1545,8 @@ s \approx 0.9254,
 L \approx 0.0028.
 \]</span></p>
 </section>
-<section id="backward-pass" class="level3" data-number="18.2.5">
-<h3 data-number="18.2.5" class="anchored" data-anchor-id="backward-pass"><span class="header-section-number">18.2.5</span> Backward Pass</h3>
+<section id="backward-pass" class="level3" data-number="15.2.5">
+<h3 data-number="15.2.5" class="anchored" data-anchor-id="backward-pass"><span class="header-section-number">15.2.5</span> Backward Pass</h3>
 <p>Now we compute how the loss changes with respect to each parameter.</p>
 <p>The parameters are</p>
 <p><span class="math display">\[
@@ -1470,8 +1559,8 @@ w, b, v, c.
 \times
 \text{local derivative}.
 \]</span></p>
-<section id="step-1-start-at-the-loss" class="level4" data-number="18.2.5.1">
-<h4 data-number="18.2.5.1" class="anchored" data-anchor-id="step-1-start-at-the-loss"><span class="header-section-number">18.2.5.1</span> Step 1: Start at the Loss</h4>
+<section id="step-1-start-at-the-loss" class="level4" data-number="15.2.5.1">
+<h4 data-number="15.2.5.1" class="anchored" data-anchor-id="step-1-start-at-the-loss"><span class="header-section-number">15.2.5.1</span> Step 1: Start at the Loss</h4>
 <p>The loss is</p>
 <p><span class="math display">\[
 L = \frac{1}{2}(y-s)^2.
@@ -1489,8 +1578,8 @@ s-y.
 \]</span></p>
 <p>This derivative becomes the incoming derivative for the node that computed <span class="math inline">\(s\)</span>.</p>
 </section>
-<section id="step-2-backpropagate-through-the-output-score" class="level4" data-number="18.2.5.2">
-<h4 data-number="18.2.5.2" class="anchored" data-anchor-id="step-2-backpropagate-through-the-output-score"><span class="header-section-number">18.2.5.2</span> Step 2: Backpropagate Through the Output Score</h4>
+<section id="step-2-backpropagate-through-the-output-score" class="level4" data-number="15.2.5.2">
+<h4 data-number="15.2.5.2" class="anchored" data-anchor-id="step-2-backpropagate-through-the-output-score"><span class="header-section-number">15.2.5.2</span> Step 2: Backpropagate Through the Output Score</h4>
 <p>The output score is</p>
 <p><span class="math display">\[
 s = vh + c.
@@ -1553,8 +1642,8 @@ s = vh + c.
 \]</span></p>
 <p>The first two derivatives, <span class="math inline">\(\partial L/\partial v\)</span> and <span class="math inline">\(\partial L/\partial c\)</span>, are parameter gradients. The third derivative, <span class="math inline">\(\partial L/\partial h\)</span>, is passed backward to the previous node.</p>
 </section>
-<section id="step-3-backpropagate-through-the-sigmoid-activation" class="level4" data-number="18.2.5.3">
-<h4 data-number="18.2.5.3" class="anchored" data-anchor-id="step-3-backpropagate-through-the-sigmoid-activation"><span class="header-section-number">18.2.5.3</span> Step 3: Backpropagate Through the Sigmoid Activation</h4>
+<section id="step-3-backpropagate-through-the-sigmoid-activation" class="level4" data-number="15.2.5.3">
+<h4 data-number="15.2.5.3" class="anchored" data-anchor-id="step-3-backpropagate-through-the-sigmoid-activation"><span class="header-section-number">15.2.5.3</span> Step 3: Backpropagate Through the Sigmoid Activation</h4>
 <p>The hidden unit is</p>
 <p><span class="math display">\[
 h = \sigma(a).
@@ -1594,8 +1683,8 @@ h(1-h).
 \]</span></p>
 <p>This derivative, <span class="math inline">\(\partial L/\partial a\)</span>, is passed backward to the previous node.</p>
 </section>
-<section id="step-4-backpropagate-through-the-pre-activation" class="level4" data-number="18.2.5.4">
-<h4 data-number="18.2.5.4" class="anchored" data-anchor-id="step-4-backpropagate-through-the-pre-activation"><span class="header-section-number">18.2.5.4</span> Step 4: Backpropagate Through the Pre-Activation</h4>
+<section id="step-4-backpropagate-through-the-pre-activation" class="level4" data-number="15.2.5.4">
+<h4 data-number="15.2.5.4" class="anchored" data-anchor-id="step-4-backpropagate-through-the-pre-activation"><span class="header-section-number">15.2.5.4</span> Step 4: Backpropagate Through the Pre-Activation</h4>
 <p>The pre-activation is</p>
 <p><span class="math display">\[
 a = wx + b.
@@ -1649,8 +1738,8 @@ a = wx + b.
 \]</span></p>
 </section>
 </section>
-<section id="final-gradients" class="level3" data-number="18.2.6">
-<h3 data-number="18.2.6" class="anchored" data-anchor-id="final-gradients"><span class="header-section-number">18.2.6</span> Final Gradients</h3>
+<section id="final-gradients" class="level3" data-number="15.2.6">
+<h3 data-number="15.2.6" class="anchored" data-anchor-id="final-gradients"><span class="header-section-number">15.2.6</span> Final Gradients</h3>
 <p>The parameter gradients are therefore</p>
 <p><span class="math display">\[
 \frac{\partial L}{\partial w} \approx -0.0419,
@@ -1684,6 +1773,8 @@ a = wx + b.
 </ol>
 <p>In this way we can do gradient descent by alternating between forward and backward passes over minibatches.</p>
 <div id="8df6b277-993d-490a-ac35-cc2155063174" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Circle, Rectangle</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1857,6 +1948,7 @@ a = wx + b.
 <span id="cb25-171"><a href="#cb25-171" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
 <span id="cb25-172"><a href="#cb25-172" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-173"><a href="#cb25-173" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1935,6 +2027,8 @@ a = wx + b.
 </tbody>
 </table>
 <div id="2dac27fb-ba7c-49af-8301-d3d31b8fbca0" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Circle, Rectangle</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ipywidgets <span class="im">as</span> widgets</span>
@@ -2189,6 +2283,7 @@ a = wx + b.
 <span id="cb26-252"><a href="#cb26-252" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw initial figure</span></span>
 <span id="cb26-253"><a href="#cb26-253" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> out:</span>
 <span id="cb26-254"><a href="#cb26-254" aria-hidden="true" tabindex="-1"></a>    draw_backprop_step(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"ee38e3668a7444819c35510994ee1ae6","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -2201,8 +2296,8 @@ a = wx + b.
 </div>
 </div>
 </section>
-<section id="backpropagation" class="level3" data-number="18.2.7">
-<h3 data-number="18.2.7" class="anchored" data-anchor-id="backpropagation"><span class="header-section-number">18.2.7</span> Backpropagation</h3>
+<section id="backpropagation" class="level3" data-number="15.2.7">
+<h3 data-number="15.2.7" class="anchored" data-anchor-id="backpropagation"><span class="header-section-number">15.2.7</span> Backpropagation</h3>
 <p><strong>Backpropagation</strong> is the systematic use of these ideas on the computational graph of the neural network.</p>
 <p>During the forward pass, the network computes and stores intermediate quantities, e.g.,</p>
 <p><span class="math display">\[
@@ -2239,6 +2334,8 @@ a^{(1)}, h^{(1)}, a^{(2)}, h^{(2)}, \dots, s_\theta(x), \ell(y, s_\theta(x)).
 <p>Backpropagation is not itself the optimization algorithm. It is the efficient derivative-computation step used inside the optimization algorithm. A neural network may have many layers and many parameters. Naively computing each derivative separately would be very inefficient because the same intermediate derivatives would be recomputed many times.</p>
 <p>Let’s go back and implement this for our samll example:</p>
 <div id="4fdadec5-cbff-474f-a6eb-f864a32915c5" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> forward_pass(x, y, theta):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> theta[<span class="st">"w"</span>]</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> theta[<span class="st">"b"</span>]</span>
@@ -2265,16 +2362,22 @@ a^{(1)}, h^{(1)}, a^{(2)}, h^{(2)}, \dots, s_\theta(x), \ell(y, s_\theta(x)).
 <span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> risk, cache</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="fe800141-0a9a-4138-aa7e-cba4e203ea19" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recall: Forward pass</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># a = w * x + b</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># h = sigmoid(a)</span></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># s_hat = v * h + c</span></span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co"># L_n = 1/2 (y_n - s_hat_n)**2</span></span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># R_hat = (1/N) sum_n L_n</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="b0b4ead8-363b-4657-a7f2-89d3f024d5f9" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> backward_pass(x, y, theta, cache):</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="bu">len</span>(x)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2352,8 +2455,11 @@ a^{(1)}, h^{(1)}, a^{(2)}, h^{(2)}, \dots, s_\theta(x), \ell(y, s_\theta(x)).
 <span id="cb29-75"><a href="#cb29-75" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb29-76"><a href="#cb29-76" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-77"><a href="#cb29-77" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grads, backward_cache</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="6bcbf6f8-a2f7-4994-aa20-1bf429eb1e4e" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> {</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"w"</span>: <span class="fl">0.1</span>,</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"b"</span>: <span class="fl">0.1</span>,</span>
@@ -2409,6 +2515,7 @@ a^{(1)}, h^{(1)}, a^{(2)}, h^{(2)}, \dots, s_\theta(x), \ell(y, s_\theta(x)).
 <span id="cb30-53"><a href="#cb30-53" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"v = </span><span class="sc">{</span>theta[<span class="st">'v'</span>]<span class="sc">:.3f}</span><span class="ss">, "</span></span>
 <span id="cb30-54"><a href="#cb30-54" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"c = </span><span class="sc">{</span>theta[<span class="st">'c'</span>]<span class="sc">:.3f}</span><span class="ss">"</span></span>
 <span id="cb30-55"><a href="#cb30-55" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>epoch   10 | risk = 0.091621 | w = 0.384, b = 0.121, v = 0.527, c = 0.579
 epoch   20 | risk = 0.052386 | w = 0.676, b = 0.097, v = 0.767, c = 0.464
@@ -2433,11 +2540,14 @@ epoch  200 | risk = 0.003555 | w = 1.240, b = -0.090, v = 1.417, c = 0.129</code
 </div>
 </div>
 <div id="f413f445-b049-452f-b7cc-c2dceb9674c9" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>plt.plot(risk_history)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Epoch"</span>)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"$\hat</span><span class="sc">{R}</span><span class="vs">(\theta)$"</span>)</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Mini-batch SGD"</span>)</span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2447,6 +2557,8 @@ epoch  200 | risk = 0.003555 | w = 1.240, b = -0.090, v = 1.417, c = 0.129</code
 </div>
 </div>
 <div id="f81ddd4f-e105-4cbb-9c85-bcd8c86256b5" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>x_grid <span class="op">=</span> np.linspace(<span class="op">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="dv">300</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>s_grid <span class="op">=</span> s(x_grid, theta)</span>
@@ -2459,6 +2571,7 @@ epoch  200 | risk = 0.003555 | w = 1.240, b = -0.090, v = 1.417, c = 0.129</code
 <span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"y"</span>)</span>
 <span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2468,8 +2581,8 @@ epoch  200 | risk = 0.003555 | w = 1.240, b = -0.090, v = 1.417, c = 0.129</code
 </div>
 </div>
 </section>
-<section id="chain-rule-in-higher-dimensions" class="level3" data-number="18.2.8">
-<h3 data-number="18.2.8" class="anchored" data-anchor-id="chain-rule-in-higher-dimensions"><span class="header-section-number">18.2.8</span> Chain Rule in Higher Dimensions</h3>
+<section id="chain-rule-in-higher-dimensions" class="level3" data-number="15.2.8">
+<h3 data-number="15.2.8" class="anchored" data-anchor-id="chain-rule-in-higher-dimensions"><span class="header-section-number">15.2.8</span> Chain Rule in Higher Dimensions</h3>
 <p>So far, we have written the chain rule as if every quantity were one-dimensional. In neural networks, however, most quantities are vectors or matrices. For example, a hidden layer may have many units, so</p>
 <p><span class="math display">\[
 h^{(i)} \in \mathbb{R}^{d_i}.
@@ -2541,8 +2654,8 @@ J_f(r).
 \]</span></p>
 <p>So even though we often explain backpropagation using one observation and scalar quantities, the practical version applies the same chain-rule logic to vector- or matrix-valued layers and to many observations in a mini-batch at once. The key computational object is usually not the full Jacobian itself, but the vector-Jacobian product needed to keep propagating derivatives backward.</p>
 </section>
-<section id="optimizer-variants" class="level3" data-number="18.2.9">
-<h3 data-number="18.2.9" class="anchored" data-anchor-id="optimizer-variants"><span class="header-section-number">18.2.9</span> Optimizer Variants</h3>
+<section id="optimizer-variants" class="level3" data-number="15.2.9">
+<h3 data-number="15.2.9" class="anchored" data-anchor-id="optimizer-variants"><span class="header-section-number">15.2.9</span> Optimizer Variants</h3>
 <p>So far, we have described gradient descent and mini-batch SGD. These methods update parameters by moving in the negative gradient direction.</p>
 <p>Many practical neural networks use variants of SGD that modify the update rule. Common examples include:</p>
 <ul>
@@ -3176,12 +3289,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/130_nn.html" class="pagination-link" aria-label="Feed-Forward Neural Networks">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/150_nn_arch.html" class="pagination-link" aria-label="NNs: Generalization, Regularization, and Modeling">
-        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

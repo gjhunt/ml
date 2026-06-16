@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Model Evaluation – Statistical Learning</title>
+<title>7&nbsp; Model Evaluation – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../lectures/060_model_selection.html" rel="next">
-<link href="../lectures/040_ERM_NLL.html" rel="prev">
+<link href="../lectures/030_multiclass_logistic_regression.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -150,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/050_evaluation.html">Evaluation, Model Selection, and Nonparametric Methods</a></li><li class="breadcrumb-item"><a href="../lectures/050_evaluation.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/050_evaluation.html">Evaluation and Model Selection</a></li><li class="breadcrumb-item"><a href="../lectures/050_evaluation.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -188,7 +188,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Foundations and Empirical Risk Minimization</span></a>
+ <span class="menu-text">Foundations and Linear Models</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -224,18 +224,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Evaluation, Model Selection, and Nonparametric Methods</span></a>
+ <span class="menu-text">Evaluation and Model Selection</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -244,31 +238,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/050_evaluation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/060_model_selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/070_knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/080_bias_variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
   </div>
 </li>
       </ul>
@@ -285,25 +273,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/100_ridge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/110_lasso.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/120_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
   </div>
 </li>
       </ul>
@@ -320,19 +302,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/130_nn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/140_backprop.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/150_nn_arch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
   </div>
 </li>
       </ul>
@@ -349,25 +331,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/160_unsupervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/170_svd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/180_pca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/190_kmeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
       </ul>
@@ -384,19 +366,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/200_carts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/210_random_forests.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/220_boosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
       </ul>
@@ -413,37 +395,84 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/005_derivatives_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/010_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/020_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/030_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/050_evaluation_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/060_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/070_knn_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Extras</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
   </div>
 </li>
       </ul>
@@ -458,32 +487,31 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-do-we-actually-want-to-measure" id="toc-what-do-we-actually-want-to-measure" class="nav-link active" data-scroll-target="#what-do-we-actually-want-to-measure"><span class="header-section-number">8.1</span> What do we actually want to measure?</a></li>
-  <li><a href="#what-should-we-actually-do" id="toc-what-should-we-actually-do" class="nav-link" data-scroll-target="#what-should-we-actually-do"><span class="header-section-number">8.2</span> What should we actually do?</a></li>
-  <li><a href="#isnt-the-training-data-informative" id="toc-isnt-the-training-data-informative" class="nav-link" data-scroll-target="#isnt-the-training-data-informative"><span class="header-section-number">8.3</span> Isn’t the training data informative?</a></li>
-  <li><a href="#overfitting" id="toc-overfitting" class="nav-link" data-scroll-target="#overfitting"><span class="header-section-number">8.4</span> Overfitting</a></li>
-  <li><a href="#efrons-optimism-theorem" id="toc-efrons-optimism-theorem" class="nav-link" data-scroll-target="#efrons-optimism-theorem"><span class="header-section-number">8.5</span> Efron’s optimism theorem</a>
+  <li><a href="#what-do-we-actually-want-to-measure" id="toc-what-do-we-actually-want-to-measure" class="nav-link active" data-scroll-target="#what-do-we-actually-want-to-measure"><span class="header-section-number">7.1</span> What do we actually want to measure?</a></li>
+  <li><a href="#what-should-we-actually-do" id="toc-what-should-we-actually-do" class="nav-link" data-scroll-target="#what-should-we-actually-do"><span class="header-section-number">7.2</span> What should we actually do?</a></li>
+  <li><a href="#isnt-the-training-data-informative" id="toc-isnt-the-training-data-informative" class="nav-link" data-scroll-target="#isnt-the-training-data-informative"><span class="header-section-number">7.3</span> Isn’t the training data informative?</a></li>
+  <li><a href="#overfitting" id="toc-overfitting" class="nav-link" data-scroll-target="#overfitting"><span class="header-section-number">7.4</span> Overfitting</a></li>
+  <li><a href="#efrons-optimism-theorem" id="toc-efrons-optimism-theorem" class="nav-link" data-scroll-target="#efrons-optimism-theorem"><span class="header-section-number">7.5</span> Efron’s optimism theorem</a>
   <ul class="collapse">
-  <li><a href="#concrete-example-linear-regression" id="toc-concrete-example-linear-regression" class="nav-link" data-scroll-target="#concrete-example-linear-regression"><span class="header-section-number">8.5.1</span> Concrete example: linear regression</a></li>
+  <li><a href="#concrete-example-linear-regression" id="toc-concrete-example-linear-regression" class="nav-link" data-scroll-target="#concrete-example-linear-regression"><span class="header-section-number">7.5.1</span> Concrete example: linear regression</a></li>
   </ul></li>
-  <li><a href="#some-simulations" id="toc-some-simulations" class="nav-link" data-scroll-target="#some-simulations"><span class="header-section-number">9</span> Some Simulations</a>
+  <li><a href="#some-simulations" id="toc-some-simulations" class="nav-link" data-scroll-target="#some-simulations"><span class="header-section-number">7.6</span> Some Simulations</a>
   <ul class="collapse">
-  <li><a href="#why-does-overfitting-get-worse-as-model-complexity-increases" id="toc-why-does-overfitting-get-worse-as-model-complexity-increases" class="nav-link" data-scroll-target="#why-does-overfitting-get-worse-as-model-complexity-increases"><span class="header-section-number">9.0.1</span> Why does overfitting get worse as model complexity increases?</a></li>
+  <li><a href="#why-does-overfitting-get-worse-as-model-complexity-increases" id="toc-why-does-overfitting-get-worse-as-model-complexity-increases" class="nav-link" data-scroll-target="#why-does-overfitting-get-worse-as-model-complexity-increases"><span class="header-section-number">7.6.1</span> Why does overfitting get worse as model complexity increases?</a></li>
   </ul></li>
-  <li><a href="#how-can-we-deal-with-this" id="toc-how-can-we-deal-with-this" class="nav-link" data-scroll-target="#how-can-we-deal-with-this"><span class="header-section-number">10</span> How can we deal with this?</a>
-  <ul class="collapse">
-  <li><a href="#what-model-do-we-actually-use" id="toc-what-model-do-we-actually-use" class="nav-link" data-scroll-target="#what-model-do-we-actually-use"><span class="header-section-number">10.1</span> What model do we actually use?</a></li>
-  </ul></li>
-  <li><a href="#code-example" id="toc-code-example" class="nav-link" data-scroll-target="#code-example"><span class="header-section-number">11</span> Code Example:</a></li>
+  <li><a href="#how-can-we-deal-with-this" id="toc-how-can-we-deal-with-this" class="nav-link" data-scroll-target="#how-can-we-deal-with-this"><span class="header-section-number">7.7</span> How can we deal with this?</a></li>
+  <li><a href="#what-model-do-we-actually-use" id="toc-what-model-do-we-actually-use" class="nav-link" data-scroll-target="#what-model-do-we-actually-use"><span class="header-section-number">7.8</span> What model do we actually use?</a></li>
+  <li><a href="#code-example" id="toc-code-example" class="nav-link" data-scroll-target="#code-example"><span class="header-section-number">7.9</span> Code Example:</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">7.10</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/050_evaluation.html">Evaluation, Model Selection, and Nonparametric Methods</a></li><li class="breadcrumb-item"><a href="../lectures/050_evaluation.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/050_evaluation.html">Evaluation and Model Selection</a></li><li class="breadcrumb-item"><a href="../lectures/050_evaluation.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Evaluation</span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -500,10 +528,7 @@ window.Quarto = {
 </header>
 
 
-<p>Consider our world. We have a trained model <span class="math inline">\(\hat f\)</span> (or, equivalently, a scoring function <span class="math inline">\(\hat s\)</span>), and we want to say:</p>
-<blockquote class="blockquote">
-<p>How well does <span class="math inline">\(\hat f\)</span> perform on new data?</p>
-</blockquote>
+<p>Consider our world. We have a trained model <span class="math inline">\(\hat f\)</span> (or, equivalently, a scoring function <span class="math inline">\(\hat s\)</span>), and we want to say: <strong>How well does <span class="math inline">\(\hat f\)</span> perform on new data?</strong></p>
 <p>We might want to do this for several reasons, among them:</p>
 <ul>
 <li>model evaulation “How good is <em>this</em> model?”</li>
@@ -528,21 +553,12 @@ window.Quarto = {
 \]</span></p></li>
 <li><p><strong>F1 score:</strong> computed from counts of true positives, false positives, and false negatives</p></li>
 </ul>
-<p>The key point is:</p>
-<blockquote class="blockquote">
-<p><span class="math inline">\(\hat{\text{Perf}}(D, f)\)</span> is just a rule that takes a dataset <span class="math inline">\(D\)</span> and a model <span class="math inline">\(f\)</span>, and returns a number measuring performance.</p>
-</blockquote>
+<p>The key point is: <strong><span class="math inline">\(\hat{\text{Perf}}(D, f)\)</span> is just a rule that takes a dataset <span class="math inline">\(D\)</span> and a model <span class="math inline">\(f\)</span>, and returns a number measuring performance.</strong></p>
 <p>Sometimes we use losses because they are mathematically convenient, but other times we prefer metrics that are easier to interpret.</p>
-<section id="what-do-we-actually-want-to-measure" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="what-do-we-actually-want-to-measure"><span class="header-section-number">8.1</span> What do we actually want to measure?</h2>
-<p>We have defined a metric <span class="math inline">\(\hat{\text{Perf}}(D, f)\)</span>. The next question is:</p>
-<blockquote class="blockquote">
-<p>What data should we apply this metric to?</p>
-</blockquote>
-<p>The answer is:</p>
-<blockquote class="blockquote">
-<p>We want to measure performance on <strong>new, independent data</strong>.</p>
-</blockquote>
+<section id="what-do-we-actually-want-to-measure" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="what-do-we-actually-want-to-measure"><span class="header-section-number">7.1</span> What do we actually want to measure?</h2>
+<p>We have defined a metric <span class="math inline">\(\hat{\text{Perf}}(D, f)\)</span>. The next question is: <strong>What data should we apply this metric to?</strong></p>
+<p>The answer is: <strong>We want to measure performance on </strong>new, independent data<strong>.</strong></p>
 <p>Isn’t that the whole point of our ML world?</p>
 <p>Assume we have a model <span class="math inline">\(\hat{f}\)</span> that has been trained from data <span class="math inline">\(D_{train}\)</span>: <span class="math display">\[
 \hat{f} = A(D_{train})
@@ -564,14 +580,11 @@ We compute our chosen metric on that dataset using the trained model.</p></li>
 <li><p><strong><span class="math inline">\(\mathbb{E}[\cdot \mid \hat f]\)</span></strong><br>
 We treat the trained model <span class="math inline">\(\hat f\)</span> as fixed, and take the expectation over all possible fresh datasets <span class="math inline">\(D\)</span>.</p></li>
 </ul>
-<p>In any case, <span class="math inline">\(\text{Perf}(\hat f)\)</span> is the expected value of our evaluation metric when applied to new, independent datasets, holding the trained model fixed.</p>
-<p>This captures exactly what we mean by:</p>
-<blockquote class="blockquote">
-<p>“How well does this model perform on new data?”</p>
-</blockquote>
+<p><strong>In any case, <span class="math inline">\(\text{Perf}(\hat f)\)</span> is the expected value of our evaluation metric when applied to new, independent datasets, holding the trained model fixed.</strong></p>
+<p>This captures exactly what we mean by: “How well does this model perform on new data?”</p>
 </section>
-<section id="what-should-we-actually-do" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="what-should-we-actually-do"><span class="header-section-number">8.2</span> What should we actually do?</h2>
+<section id="what-should-we-actually-do" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="what-should-we-actually-do"><span class="header-section-number">7.2</span> What should we actually do?</h2>
 <p>In practice we have two (hopefully independent) datasets, <span class="math inline">\(D_{train}\)</span> and <span class="math inline">\(D_{eval}\)</span>. We then:</p>
 <ol type="1">
 <li><p>Train: <span class="math display">\[
@@ -594,39 +607,21 @@ We treat the trained model <span class="math inline">\(\hat f\)</span> as fixed,
 <p>If these conditions do not hold, the evaluation data may reflect how the model was constructed, and the estimate can be biased.</p>
 <p>For example, if we evaluate on the training data (<span class="math inline">\(D_{eval} = D_{train}\)</span>), then the model has already been adapted to that dataset, and the resulting estimate is typically overly optimistic. Indeed, <strong>evaluating on the training data set typically leads to unrealistically low error estimates.</strong></p>
 <p><strong>Some analogies for why this happens</strong></p>
-<p>One way to think about it is:</p>
-<blockquote class="blockquote">
-<p>The model has already “seen” the training data.</p>
-</blockquote>
+<p>One way to think about it is: <strong>The model has already “seen” the training data.</strong></p>
 <p>It has been explicitly optimized to perform well on that dataset, so evaluating on it does not tell us how it behaves on anything new.</p>
-<p>Another perspective:</p>
-<blockquote class="blockquote">
-<p>The model can exploit quirks of the dataset that do not generalize.</p>
-</blockquote>
+<p>Another perspective: <strong>The model can exploit quirks of the dataset that do not generalize.</strong></p>
 <p>Even if there is real signal, there are also random patterns in any finite dataset. A flexible model can partially fit those patterns, which lowers the training error but does not reflect true performance.</p>
-<p>Alternatively:</p>
-<blockquote class="blockquote">
-<p>Training data tells us how well the model fits <em>this dataset</em>, not how well it generalizes.</p>
-</blockquote>
+<p>Alternatively: <strong>Training data tells us how well the model fits <em>this dataset</em>, not how well it generalizes.</strong></p>
 <p>Evaluation is about generalization, so we need data that the model has not been adapted to.</p>
-<p>Analogy:</p>
-<blockquote class="blockquote">
-<p>It’s like studying for an exam using a set of questions, and then grading yourself on those same questions.</p>
-</blockquote>
+<p>Analogy: <strong>It’s like studying for an exam using a set of questions, and then grading yourself on those same questions.</strong></p>
 <p>You will likely do very well, but that score does not reflect how you would perform on new questions. This is the <strong>memorization</strong> problem.</p>
-<p>Slightly more technical intuition:</p>
-<blockquote class="blockquote">
-<p>The training process pushes the model to reduce error on that specific dataset.</p>
-</blockquote>
+<p>Slightly more technical intuition: <strong>The training process pushes the model to reduce error on that specific dataset.</strong></p>
 <p>So any evaluation on that dataset is “contaminated” by the optimization process itself, which systematically makes the error look smaller than it really is.</p>
-<p>Another way to think about it:</p>
-<blockquote class="blockquote">
-<p>The model can “hallucinate” structure that is not really there.</p>
-</blockquote>
+<p>Another way to think about it: <strong>The model can “hallucinate” structure that is not really there.</strong></p>
 <p>When optimizing on a fixed dataset, the model may latch onto patterns that look meaningful in that sample but are actually accidental. These spurious patterns improve performance on the training data, but break down on new data.</p>
 </section>
-<section id="isnt-the-training-data-informative" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="isnt-the-training-data-informative"><span class="header-section-number">8.3</span> Isn’t the training data informative?</h2>
+<section id="isnt-the-training-data-informative" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="isnt-the-training-data-informative"><span class="header-section-number">7.3</span> Isn’t the training data informative?</h2>
 <p>Yes, but about a different quantity. Training data tells us which models fit this dataset well. What we actually care about is performance on new data. These are not completely unrelated, of course, but we have to be careful not to treat the training dataset as the be-all and end-all.</p>
 <p>The issue is that we construct the model using the training data: <span class="math display">\[
 \hat f = A(D_{train})
@@ -639,21 +634,18 @@ We treat the trained model <span class="math inline">\(\hat f\)</span> as fixed,
 <li><strong>Evaluation data</strong> to measure performance without having influenced the model</li>
 </ul>
 </section>
-<section id="overfitting" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="overfitting"><span class="header-section-number">8.4</span> Overfitting</h2>
+<section id="overfitting" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="overfitting"><span class="header-section-number">7.4</span> Overfitting</h2>
 <p>Overfitting is when a model fits the training data too closely, including patterns that are not part of the true underlying signal.</p>
 <p>More concretely, the model captures: - real structure in the data<br>
 - but also noise and sample-specific quirks</p>
 <p>As a result: - it achieves low training error<br>
 - but performs worse on new, unseen data</p>
-<p>A useful way to think about it is:</p>
-<blockquote class="blockquote">
-<p>The model is not just learning the pattern, it is partially memorizing the dataset.</p>
-</blockquote>
+<p>A useful way to think about it is: <strong>The model is not just learning the pattern, it is partially memorizing the dataset.</strong></p>
 <p>This is why more flexible models are more prone to overfitting: they have enough capacity to fit both signal and noise.</p>
 </section>
-<section id="efrons-optimism-theorem" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="efrons-optimism-theorem"><span class="header-section-number">8.5</span> Efron’s optimism theorem</h2>
+<section id="efrons-optimism-theorem" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="efrons-optimism-theorem"><span class="header-section-number">7.5</span> Efron’s optimism theorem</h2>
 <p>In practice, training error is almost always too optimistic. The model has been tuned to perform well on that specific dataset, so it tends to look better than it really is. Making this intuition fully precise is actually quite tricky, and requires more advanced tools from statistics and learning theory. Moreover, there is no single clean result that covers all models; results typically depend on the model class and learning procedure.</p>
 <p>Nonetheless, there is a result that helps quantify this effect in some settings, and provides useful intuition.</p>
 <p>For a broad class of estimators (in particular, those where predictions depend smoothly on the data), one can show something like: <span class="math display">\[
@@ -663,13 +655,10 @@ We treat the trained model <span class="math inline">\(\hat f\)</span> as fixed,
 <p>where: - <span class="math inline">\(\hat y_i = \hat f(x_i)\)</span><br>
 - the expectation is over the randomness in the responses <span class="math inline">\(y\)</span> (typically assuming fixed <span class="math inline">\(x_i\)</span>)</p>
 <p>The quantity <span class="math inline">\(\text{Perf}(\hat f) - \hat{\text{Perf}}(D_{train}, \hat f)\)</span> is often called <strong>optimism</strong>. It measures how much training error underestimates true error.</p>
-<p>The key feature of this expression is:</p>
-<blockquote class="blockquote">
-<p>The gap depends on how sensitive the model’s predictions are to the data.</p>
-</blockquote>
+<p>The key feature of this expression is: <strong>The gap depends on how sensitive the model’s predictions are to the data.</strong></p>
 <p>The more the model adapts to the data, the larger the covariance term (typically <span class="math inline">\(y\)</span> and <span class="math inline">\(\hat{y}\)</span> are positively correlated) and the more optimistic the training error becomes. What if our <span class="math inline">\(\hat{y}\)</span> are completely independent of <span class="math inline">\(y\)</span>? Then we have no optimism, and we don’t run into these issues.</p>
-<section id="concrete-example-linear-regression" class="level3" data-number="8.5.1">
-<h3 data-number="8.5.1" class="anchored" data-anchor-id="concrete-example-linear-regression"><span class="header-section-number">8.5.1</span> Concrete example: linear regression</h3>
+<section id="concrete-example-linear-regression" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="concrete-example-linear-regression"><span class="header-section-number">7.5.1</span> Concrete example: linear regression</h3>
 <p>For least squares regression with noise of variance <span class="math inline">\(\sigma^2\)</span>: <span class="math display">\[
 \mathbb{E}[\text{Perf}(\hat f) - \hat{\text{Perf}}(D_{train}, \hat f)]
 = \frac{2\sigma^2}{N} \cdot d
@@ -694,10 +683,12 @@ We treat the trained model <span class="math inline">\(\hat f\)</span> as fixed,
 <p>For more complex models (e.g., trees, ensembles), the same intuition holds, but the covariance term is difficult to compute or interpret directly.</p>
 </section>
 </section>
-<section id="some-simulations" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Some Simulations</h1>
+<section id="some-simulations" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="some-simulations"><span class="header-section-number">7.6</span> Some Simulations</h2>
 <p>Let’s generate some independent training and evaluation data, and then fit a series of polynomial regression models:</p>
 <div id="a706c727-3828-4a64-ae68-9738424f6d2a" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -733,27 +724,32 @@ We treat the trained model <span class="math inline">\(\hat f\)</span> as fixed,
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        test_mse[i] <span class="op">=</span> np.mean((y_test <span class="op">-</span> yhat_test) <span class="op">**</span> <span class="dv">2</span>)</span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> degrees, train_mse, test_mse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="5e008483-3c31-4040-a22c-b366f224c1d1" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate train/test datasets</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x_train, y_train <span class="op">=</span> make_data(n<span class="op">=</span><span class="dv">30</span>, rng<span class="op">=</span>rng)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x_test, y_test <span class="op">=</span> make_data(n<span class="op">=</span><span class="dv">1000</span>, rng<span class="op">=</span>rng)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>degrees, train_mse, test_mse <span class="op">=</span> fit_and_eval_polynomials(</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    x_train, y_train, x_test, y_test, max_degree<span class="op">=</span><span class="dv">15</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot train and test error versus polynomial degree</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.plot(degrees, np.log10(train_mse), marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"Training MSE"</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.plot(degrees, np.log10(test_mse), marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"Testing MSE"</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Polynomial degree"</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"log10(Mean squared error)"</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Polynomial regression: training vs testing error"</span>)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.xticks(degrees)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">12313</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x_train, y_train <span class="op">=</span> make_data(n<span class="op">=</span><span class="dv">30</span>, rng<span class="op">=</span>rng)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>x_test, y_test <span class="op">=</span> make_data(n<span class="op">=</span><span class="dv">1000</span>, rng<span class="op">=</span>rng)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>degrees, train_mse, test_mse <span class="op">=</span> fit_and_eval_polynomials(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    x_train, y_train, x_test, y_test, max_degree<span class="op">=</span><span class="dv">15</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot train and test error versus polynomial degree</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.plot(degrees, np.log10(train_mse), marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"Training MSE"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.plot(degrees, np.log10(test_mse), marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"Testing MSE"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Polynomial degree"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"log10(Mean squared error)"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Polynomial regression: training vs testing error"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.xticks(degrees)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -770,6 +766,8 @@ We treat the trained model <span class="math inline">\(\hat f\)</span> as fixed,
 </ul>
 <p>Let’s do it a bunch of times and summarize the results:</p>
 <div id="32b71dce-f1bc-4435-82dc-7bac5aa4f051" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> monte_carlo_polynomial_eval(</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    n_reps: <span class="bu">int</span> <span class="op">=</span> <span class="dv">200</span>,</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    n_train: <span class="bu">int</span> <span class="op">=</span> <span class="dv">30</span>,</span>
@@ -803,8 +801,11 @@ We treat the trained model <span class="math inline">\(\hat f\)</span> as fixed,
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    med <span class="op">=</span> np.log10(np.percentile(curves, <span class="dv">50</span>, axis<span class="op">=</span><span class="dv">0</span>))</span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    q75 <span class="op">=</span> np.log10(np.percentile(curves, <span class="dv">75</span>, axis<span class="op">=</span><span class="dv">0</span>))</span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> q25, med, q75</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="c12555e8-4ad3-4cff-834d-2339e6e6c9ca" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>degrees, all_train, all_test <span class="op">=</span> monte_carlo_polynomial_eval(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    n_reps<span class="op">=</span><span class="dv">200</span>,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    n_train<span class="op">=</span><span class="dv">30</span>,</span>
@@ -831,6 +832,7 @@ We treat the trained model <span class="math inline">\(\hat f\)</span> as fixed,
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -846,8 +848,8 @@ We treat the trained model <span class="math inline">\(\hat f\)</span> as fixed,
 <figcaption>Evaluation and training error versus model complexity.</figcaption>
 </figure>
 </div>
-<section id="why-does-overfitting-get-worse-as-model-complexity-increases" class="level3" data-number="9.0.1">
-<h3 data-number="9.0.1" class="anchored" data-anchor-id="why-does-overfitting-get-worse-as-model-complexity-increases"><span class="header-section-number">9.0.1</span> Why does overfitting get worse as model complexity increases?</h3>
+<section id="why-does-overfitting-get-worse-as-model-complexity-increases" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="why-does-overfitting-get-worse-as-model-complexity-increases"><span class="header-section-number">7.6.1</span> Why does overfitting get worse as model complexity increases?</h3>
 <p>There are a few complementary ways to understand this.</p>
 <p><strong>Heuristic:</strong></p>
 <p>As model complexity increases, the model has more capacity:</p>
@@ -881,15 +883,15 @@ D \perp \hat f
 - even if that fit is partly due to noise or non-generalizable shapes.</p>
 </section>
 </section>
-<section id="how-can-we-deal-with-this" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> How can we deal with this?</h1>
+<section id="how-can-we-deal-with-this" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="how-can-we-deal-with-this"><span class="header-section-number">7.7</span> How can we deal with this?</h2>
 <p>In practice, we want to estimate performance. There are several ways to do this:</p>
 <p><strong>1. Train/Eval Split</strong> Split the data into two parts:</p>
 <ul>
 <li><span class="math inline">\(p\%\)</span> goes into <span class="math inline">\(D_{train}\)</span></li>
 <li><span class="math inline">\((1-p)\%\)</span> goes into <span class="math inline">\(D_{eval}\)</span></li>
 </ul>
-<p>Then we train on <span class="math inline">\(D_{train}\)</span> and evaluate on <span class="math inline">\(D_{eval}\)</span> to calculate <span class="math inline">\(\hat{\text{Perf}}(D_{eval}, \hat{f})\)</span>. We can choose different values for <span class="math inline">\(p\)</span> e.g.&nbsp;<span class="math inline">\(0.5\)</span>, %0.95$, …</p>
+<p>Then we train on <span class="math inline">\(D_{train}\)</span> and evaluate on <span class="math inline">\(D_{eval}\)</span> to calculate <span class="math inline">\(\hat{\text{Perf}}(D_{eval}, \hat{f})\)</span>. We can choose different values for <span class="math inline">\(p\)</span> e.g.&nbsp;<span class="math inline">\(0.5\)</span>, <span class="math inline">\(0.95\)</span>, …</p>
 <p>This is always a <em>little</em> pessimistic since we only use <span class="math inline">\(p\)</span> percent for training.</p>
 <p><strong>2. Cross-validation</strong> Instead of a single split, we repeatedly split the data into training and evaluation sets. For example, in <span class="math inline">\(k\)</span>-fold cross-validation:</p>
 <ul>
@@ -920,16 +922,11 @@ D \perp \hat f
 \]</span></li>
 </ul>
 <p>Each split produces a slightly different estimate, and averaging over many such splits reduces variability and gives a more stable estimate of performance. Resampling is a bit better at estimating variability than cross-validation, but a little less systematic.</p>
-<section id="what-model-do-we-actually-use" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="what-model-do-we-actually-use"><span class="header-section-number">10.1</span> What model do we actually use?</h2>
-<p>A common question is:</p>
-<blockquote class="blockquote">
-<p>If we train <span class="math inline">\(k\)</span> models in cross-validation, which one do we actually use?</p>
-</blockquote>
-<p>The answer is:</p>
-<blockquote class="blockquote">
-<p>None of them.</p>
-</blockquote>
+</section>
+<section id="what-model-do-we-actually-use" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="what-model-do-we-actually-use"><span class="header-section-number">7.8</span> What model do we actually use?</h2>
+<p>A common question is: <strong>If we train <span class="math inline">\(k\)</span> models in cross-validation, which one do we actually use?</strong></p>
+<p>The answer is: <strong>None of them.</strong></p>
 <p>Cross-validation (and similar procedures) are used for <strong>estimating performance</strong>, not for producing the final model.</p>
 <p>Once we have estimated performance, we then train a <strong>final model on all available data</strong>: <span class="math display">\[
 \hat f = A(D_{all})
@@ -950,12 +947,13 @@ D \perp \hat f
 \]</span></p>
 <p>This is the expected value of <span class="math inline">\(\text{Perf}(\hat f)\)</span> over the randomness in the training data (i.e., averaging over the different models <span class="math inline">\(\hat f\)</span> that the procedure could produce).</p>
 </section>
-</section>
-<section id="code-example" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Code Example:</h1>
+<section id="code-example" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="code-example"><span class="header-section-number">7.9</span> Code Example:</h2>
 <p><strong>Basic train/eval split</strong>:</p>
 <p>Let’s go back to our <strong>mnist</strong> dataset and do a simple test/train split:</p>
 <div id="124b91cb-d097-4ee6-a69b-324c7f80ebb7" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_openml</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> fetch_openml(<span class="st">"mnist_784"</span>, version<span class="op">=</span><span class="dv">1</span>, as_frame<span class="op">=</span><span class="va">False</span>, return_X_y<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> y.astype(<span class="bu">int</span>)</span>
@@ -965,59 +963,87 @@ D \perp \hat f
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">2000</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X[:n]</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> y[:n]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="de62233a-ca19-48a5-9a08-2179279c37be" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>(2000, 784)</code></pre>
 </div>
 </div>
 <div id="3bed3e35-cfd3-420a-b6ea-48e01ead6564" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>y.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>(2000,)</code></pre>
 </div>
 </div>
 <p>Let’s assume that <code>X</code> and <code>y</code> have <em>all</em> of our data. We can do a “test/train” (i.e.&nbsp;eval/train) split using the function <code>train_test_split</code>:</p>
 <div id="ea1bf31a-c6e1-4cc2-b3c1-db72a4bb6cc9" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="d6d9e813-c087-4e07-8859-5a89a2dd7e6d" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">8789687</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="671724b9-3ace-44ab-9b0e-fa089ae338fa" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>X_train.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>(1600, 784)</code></pre>
 </div>
 </div>
 <div id="00d424f1-4557-4f62-863e-ff8b80240d48" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>y_train.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>(1600,)</code></pre>
 </div>
 </div>
 <div id="dcdfc39a-be9b-49d3-a6b5-92b0ef3125bc" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>X_test.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>(400, 784)</code></pre>
 </div>
 </div>
 <div id="f096947d-141f-4750-a126-6987b4092cc6" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>y_test.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>(400,)</code></pre>
 </div>
 </div>
 <p>Now we fit the model:</p>
 <div id="76aa6aff-e13b-4fff-83b5-fc232b22a027" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> LogisticRegression()</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>mod.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
-<style>#sk-container-id-4 {
+<style>#sk-container-id-1 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
   --sklearn-color-text-muted: #666;
@@ -1034,7 +1060,7 @@ D \perp \hat f
   --sklearn-color-fitted-level-3: cornflowerblue;
 }
 
-#sk-container-id-4.light {
+#sk-container-id-1.light {
   /* Specific color for light theme */
   --sklearn-color-text-on-default-background: black;
   --sklearn-color-background: white;
@@ -1042,22 +1068,22 @@ D \perp \hat f
   --sklearn-color-icon: #696969;
 }
 
-#sk-container-id-4.dark {
+#sk-container-id-1.dark {
   --sklearn-color-text-on-default-background: white;
   --sklearn-color-background: #111;
   --sklearn-color-border-box: white;
   --sklearn-color-icon: #878787;
 }
 
-#sk-container-id-4 {
+#sk-container-id-1 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-4 pre {
+#sk-container-id-1 pre {
   padding: 0;
 }
 
-#sk-container-id-4 input.sk-hidden--visually {
+#sk-container-id-1 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -1069,7 +1095,7 @@ D \perp \hat f
   width: 1px;
 }
 
-#sk-container-id-4 div.sk-dashed-wrapped {
+#sk-container-id-1 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -1077,7 +1103,7 @@ D \perp \hat f
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-4 div.sk-container {
+#sk-container-id-1 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -1087,7 +1113,7 @@ D \perp \hat f
   position: relative;
 }
 
-#sk-container-id-4 div.sk-text-repr-fallback {
+#sk-container-id-1 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -1103,14 +1129,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-4 div.sk-parallel-item::after {
+#sk-container-id-1 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-4 div.sk-parallel {
+#sk-container-id-1 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -1118,28 +1144,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-4 div.sk-parallel-item {
+#sk-container-id-1 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-4 div.sk-parallel-item:first-child::after {
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-4 div.sk-parallel-item:last-child::after {
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-4 div.sk-parallel-item:only-child::after {
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-4 div.sk-serial {
+#sk-container-id-1 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1157,14 +1183,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-4 div.sk-toggleable {
+#sk-container-id-1 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-4 label.sk-toggleable__label {
+#sk-container-id-1 label.sk-toggleable__label {
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -1177,13 +1203,13 @@ clickable and can be expanded/collapsed.
   gap: 0.5em;
 }
 
-#sk-container-id-4 label.sk-toggleable__label .caption {
+#sk-container-id-1 label.sk-toggleable__label .caption {
   font-size: 0.6rem;
   font-weight: lighter;
   color: var(--sklearn-color-text-muted);
 }
 
-#sk-container-id-4 label.sk-toggleable__label-arrow:before {
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -1191,25 +1217,25 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-4 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-4 div.sk-toggleable__content {
+#sk-container-id-1 div.sk-toggleable__content {
   display: none;
   text-align: left;
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-4 div.sk-toggleable__content.fitted {
+#sk-container-id-1 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-4 div.sk-toggleable__content pre {
+#sk-container-id-1 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -1217,78 +1243,78 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-4 div.sk-toggleable__content.fitted pre {
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-4 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   display: block;
   width: 100%;
   overflow: visible;
 }
 
-#sk-container-id-4 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-4 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-4 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-4 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-4 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-4 div.sk-label label.sk-toggleable__label,
-#sk-container-id-4 div.sk-label label {
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-4 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-4 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-4 div.sk-label label {
+#sk-container-id-1 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   line-height: 1.2em;
 }
 
-#sk-container-id-4 div.sk-label-container {
+#sk-container-id-1 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-4 div.sk-estimator {
+#sk-container-id-1 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -1298,18 +1324,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-4 div.sk-estimator.fitted {
+#sk-container-id-1 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-4 div.sk-estimator:hover {
+#sk-container-id-1 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-4 div.sk-estimator.fitted:hover {
+#sk-container-id-1 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -1400,7 +1426,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-4 a.estimator_doc_link {
+#sk-container-id-1 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -1415,7 +1441,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-4 a.estimator_doc_link.fitted {
+#sk-container-id-1 a.estimator_doc_link.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
@@ -1423,14 +1449,14 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 }
 
 /* On hover */
-#sk-container-id-4 a.estimator_doc_link:hover {
+#sk-container-id-1 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-4 a.estimator_doc_link.fitted:hover {
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
@@ -1567,7 +1593,7 @@ a.param-doc-link::before {
     height: 14px;
     cursor: pointer;
 }
-</a></style><div id="sk-container-id-4" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" checked=""><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LogisticRegression</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.8/modules/generated/sklearn.linear_model.LogisticRegression.html">?<span>Documentation for LogisticRegression</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+</a></style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LogisticRegression</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.8/modules/generated/sklearn.linear_model.LogisticRegression.html">?<span>Documentation for LogisticRegression</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -1927,19 +1953,25 @@ function forceTheme(elementId) {
     }
 }
 
-forceTheme('sk-container-id-4');</script>
+forceTheme('sk-container-id-1');</script>
 </div>
 </div>
 <div id="e4e710db-ef8b-4395-8454-9c265c77eb2f" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, f1_score</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> mod.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="d6ef5e91-5fc5-46db-b160-f51ed8b5d075" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>acc <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> f1_score(y_test, y_pred, average<span class="op">=</span><span class="st">'macro'</span>)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Accuracy:"</span>, acc)</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"F1:"</span>, f1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Accuracy: 0.89
 F1: 0.8881210849042066</code></pre>
@@ -1947,6 +1979,8 @@ F1: 0.8881210849042066</code></pre>
 </div>
 <p><strong>Cross validation</strong></p>
 <div id="2e5cc6d1-e3d1-4a60-bf48-5aae6c331abb" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> KFold</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>kf <span class="op">=</span> KFold(n_splits<span class="op">=</span><span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">7987564</span>)</span>
@@ -1955,6 +1989,7 @@ F1: 0.8881210849042066</code></pre>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(train_idx[(<span class="op">-</span><span class="dv">10</span>):])</span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(eval_idx[(<span class="op">-</span><span class="dv">10</span>):])</span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1985 1986 1987 1989 1992 1993 1995 1996 1997 1999]
 [1951 1952 1956 1958 1965 1988 1990 1991 1994 1998]
@@ -1979,6 +2014,8 @@ F1: 0.8881210849042066</code></pre>
 </div>
 </div>
 <div id="84872048-fa19-4b5b-ba75-5912d6cdcdce" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> KFold</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>kf <span class="op">=</span> KFold(n_splits<span class="op">=</span><span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">7987564</span>)</span>
@@ -1992,21 +2029,31 @@ F1: 0.8881210849042066</code></pre>
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    mod.fit(X_train, y_train)</span>
 <span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    y_pred <span class="op">=</span> mod.predict(X_eval)</span>
 <span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    acc.append(accuracy_score(y_eval, y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="aba83854-7506-4061-b25b-a83465fd9a07" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>acc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>[0.865, 0.895, 0.885, 0.88, 0.8725]</code></pre>
 </div>
 </div>
 <div id="cece11ff-ea06-4307-aed8-f2d739971396" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>np.median(acc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>np.float64(0.88)</code></pre>
 </div>
 </div>
 <div id="9761a41d-b61f-4bb2-b6dd-70d4b5373c48" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>np.std(acc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <pre><code>np.float64(0.010295630140987002)</code></pre>
 </div>
@@ -2014,22 +2061,35 @@ F1: 0.8881210849042066</code></pre>
 <p><strong>Sklearn built in cross-val</strong></p>
 <p>This will generally work as long as we have a <code>.fit</code> and <code>.predict</code> method defined for the object passed in.</p>
 <div id="16e3ab80-131f-4e5b-ab7e-f669d309c2a9" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="9a2ab63c-65c4-4d6b-b5e7-59373e90f51b" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>mod <span class="op">=</span> LogisticRegression()</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(mod, X, y, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">'accuracy'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="67f37a17-74d5-4306-9f0e-98a3cdbc1324" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Scores:"</span>, scores)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mean accuracy:"</span>, scores.mean())</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Std accuracy:"</span>, scores.std())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Scores: [0.8875 0.8275 0.84   0.86   0.92  ]
 Mean accuracy: 0.867
 Std accuracy: 0.033369147426927176</code></pre>
 </div>
 </div>
+</section>
+<section id="review-questions" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">7.10</span> Review Questions</h2>
+<p>See: <a href="../questions/050_evaluation_questions.html" class="quarto-xref"><span>Chapter 29</span></a>.</p>
 
 
 </section>
@@ -2652,13 +2712,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/040_ERM_NLL.html" class="pagination-link" aria-label="ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span>
+      <a href="../lectures/030_multiclass_logistic_regression.html" class="pagination-link" aria-label="Multiclass Logistic Regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/060_model_selection.html" class="pagination-link" aria-label="Model Selection">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Model Selection</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
