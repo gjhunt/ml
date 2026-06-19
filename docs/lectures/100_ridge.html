@@ -447,39 +447,16 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Extras</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
+  <a href="../questions/100_ridge_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+  <a href="../questions/110_lasso_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
   </div>
 </li>
       </ul>
@@ -513,7 +490,8 @@ window.Quarto = {
   <li><a href="#bias-variance-tradeoff" id="toc-bias-variance-tradeoff" class="nav-link" data-scroll-target="#bias-variance-tradeoff"><span class="header-section-number">11.5</span> Bias-variance tradeoff</a></li>
   <li><a href="#practical-considerations" id="toc-practical-considerations" class="nav-link" data-scroll-target="#practical-considerations"><span class="header-section-number">11.6</span> Practical considerations</a></li>
   <li><a href="#ridge-with-orthonormal-predictors" id="toc-ridge-with-orthonormal-predictors" class="nav-link" data-scroll-target="#ridge-with-orthonormal-predictors"><span class="header-section-number">11.7</span> Ridge with orthonormal predictors</a></li>
-  <li><a href="#real-data-example" id="toc-real-data-example" class="nav-link" data-scroll-target="#real-data-example"><span class="header-section-number">12</span> Real Data Example</a></li>
+  <li><a href="#real-data-example" id="toc-real-data-example" class="nav-link" data-scroll-target="#real-data-example"><span class="header-section-number">11.8</span> Real Data Example</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">11.9</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -543,22 +521,22 @@ window.Quarto = {
 <ul>
 <li>Data: <span class="math inline">\((x_n, y_n)\)</span>, <span class="math inline">\(n = 1,\dots,N\)</span>, where <span class="math inline">\(x_n \in \mathbb{R}^D\)</span><br>
 </li>
-<li>Linear model family: <span class="math inline">\(\mathcal{F} = \{f_w(x) = x^\top w\}\)</span><br>
+<li>Linear model family: <span class="math inline">\(\mathcal{S} = \{s_w(x) = x^\top w\}\)</span><br>
 </li>
 <li>Design matrix: <span class="math inline">\(X \in \mathbb{R}^{N \times D}\)</span></li>
 </ul>
-<p>We use the squared error loss <span class="math inline">\(\ell(y, f_w(x)) = (y - f_w(x))^2\)</span>, which gives the empirical risk:</p>
+<p>We use the squared error loss <span class="math inline">\(\ell(y, s_w(x)) = (y - s_w(x))^2\)</span>, which gives the empirical risk:</p>
 <p><span class="math display">\[
-\hat{R}(f)=
-\frac{1}{N} \sum_{n=1}^N (y_n - f_w(x_n))^2=
+\hat{R}(s)=
+\frac{1}{N} \sum_{n=1}^N (y_n - s_w(x_n))^2=
 \frac{1}{N} \sum_{n=1}^N (y_n - x_n^\top w)^2=
 \frac{1}{N} \|y - Xw\|_2^2=
 \hat{R}(w)
 \]</span></p>
 <p>Finding the ERM estimator</p>
 <p><span class="math display">\[
-\hat{f}=
-\arg\min_{f \in \mathcal{F}} \hat{R}(f)
+\hat{s}=
+\arg\min_{s \in \mathcal{S}} \hat{R}(s)
 \]</span></p>
 <p>amounts to solving</p>
 <p><span class="math display">\[
@@ -761,8 +739,13 @@ K(A) = \frac{\lambda_{\max}(A)}{\lambda_{\min}(A)},
 </ul></li>
 <li>If <span class="math inline">\(K(A)\)</span> is <strong>small</strong>, the problem is stable</li>
 </ul>
-<p>In particular: - If <span class="math inline">\(\lambda_{\min}(A)\)</span> is close to 0, then <span class="math inline">\(K(A)\)</span> is very large<br>
-- If <span class="math inline">\(\lambda_{\min}(A) = 0\)</span>, the matrix is not invertible - The minimum value we can get for a condition number is 1</p>
+<p>In particular:</p>
+<ul>
+<li>If <span class="math inline">\(\lambda_{\min}(A)\)</span> is close to 0, then <span class="math inline">\(K(A)\)</span> is very large<br>
+</li>
+<li>If <span class="math inline">\(\lambda_{\min}(A) = 0\)</span>, the matrix is not invertible</li>
+<li>The minimum value we can get for a condition number is 1</li>
+</ul>
 <p>OLS depends on <span class="math inline">\(K(X^\top X)\)</span>. If <span class="math inline">\(X^\top X\)</span> has very small eigenvalues (due to multicollinearity like <span class="math inline">\(D &gt; N\)</span>), then the condition number is large and the solution is unstable.</p>
 <p>Ridge replaces <span class="math inline">\(X^\top X\)</span> with <span class="math display">\[
 X^\top X + \lambda I.
@@ -1163,15 +1146,30 @@ w_1 x_1 + w_2 x_2 \approx (w_1 + w_2) x_1.
 <p>Ridge penalizes the size of the coefficients: <span class="math display">\[
 \lambda \|w\|_2^2 = \lambda \sum_j w_j^2.
 \]</span></p>
-<p>If predictors are on different scales, this penalty is not applied fairly: - a variable with large scale (e.g., values in the thousands) will tend to have a smaller coefficient<br>
-- a variable with small scale will need a larger coefficient</p>
-<p>So without standardization: - the penalty depends on the units of the variables</p>
-<p>Typically, we: - center each feature (mean 0)<br>
-- scale to unit variance</p>
+<p>If predictors are on different scales, this penalty is not applied fairly:</p>
+<ul>
+<li>a variable with large scale (e.g., values in the thousands) will tend to have a smaller coefficient<br>
+</li>
+<li>a variable with small scale will need a larger coefficient</li>
+</ul>
+<p>So without standardization:</p>
+<ul>
+<li>the penalty depends on the units of the variables</li>
+</ul>
+<p>Typically, we:</p>
+<ul>
+<li>center each feature (mean 0)<br>
+</li>
+<li>scale to unit variance</li>
+</ul>
 <p>This ensures the penalty treats all predictors comparably.</p>
 <p>We also typically <strong>do not penalize the intercept</strong>. The intercept represents the baseline level of the response and does not reflect model complexity.</p>
-<p>If we penalize it: - we artificially shrink the overall level of the predictions<br>
-- this can introduce unnecessary bias</p>
+<p>If we penalize it:</p>
+<ul>
+<li>we artificially shrink the overall level of the predictions<br>
+</li>
+<li>this can introduce unnecessary bias</li>
+</ul>
 <p>So in practice we exclude the intercept from the penalty. Equivalently, we center the data so that the intercept is handled separately.</p>
 <p>Mathematically, we can write the model with an explicit intercept: <span class="math display">\[
 y = \alpha + Xw.
@@ -1208,10 +1206,10 @@ X^\top X = I.
 <p>So ridge simply <strong>rescales all coefficients by the same factor</strong>. The shrinkage factor is: <span class="math display">\[
   \frac{1}{1+\lambda} \in (0,1)
   \]</span></p>
-<p>As <span class="math inline">\(\lambda \to 0\)</span>, <span class="math inline">\(\hat{w}_\lambda \to \hat{w}_{\text{OLS}}\)</span>. As <span class="math inline">\(\lambda \to \infty\)</span>, <span class="math inline">\(\hat{w}_\lambda \to 0\)</span>. This formulation remains valid even when the OLS solution does not exist (e.g., when <span class="math inline">\(X^\top X\)</span> is not invertible). For any <span class="math inline">\(\lambda &gt; 0\)</span>, the ridge solution is well-defined. Moreover, as <span class="math inline">\(\lambda \to 0\)</span>, the ridge estimator approaches the OLS solution when it exists, and more generally converges to a limiting solution often referred to as <strong>ridgeless regression</strong>.</p>
+<p>As <span class="math inline">\(\lambda \to 0\)</span>, <span class="math inline">\(\hat{w}_\lambda \to \hat{w}_{\text{OLS}}\)</span>. As <span class="math inline">\(\lambda \to \infty\)</span>, <span class="math inline">\(\hat{w}_\lambda \to 0\)</span>. This formulation remains valid even when the OLS solution does not exist (e.g., when <span class="math inline">\(X^\top X\)</span> is not invertible). For any <span class="math inline">\(\lambda &gt; 0\)</span>, the ridge solution is well-defined. Moreover, as <span class="math inline">\(\lambda \to 0\)</span>, the ridge estimator approaches the OLS solution when it exists, and more generally converges to a limiting solution often referred to as <strong>ridgeless regression</strong>. <em>This is what sklearn defaults to in the case of linear regression when the design matrix has co-linear columns.</em></p>
 </section>
-<section id="real-data-example" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Real Data Example</h1>
+<section id="real-data-example" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="real-data-example"><span class="header-section-number">11.8</span> Real Data Example</h2>
 <div id="bac9b51a-3e9b-4df2-b19a-6f2c9ecc7f56" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1911,6 +1909,10 @@ Std outer test MSE:   0.1055
 Mean coefficient norm:0.1049</code></pre>
 </div>
 </div>
+</section>
+<section id="review-questions" class="level2" data-number="11.9">
+<h2 data-number="11.9" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">11.9</span> Review Questions</h2>
+<p>See: <a href="../questions/100_ridge_questions.html" class="quarto-xref"><span>Chapter 33</span></a>.</p>
 
 
 </section>

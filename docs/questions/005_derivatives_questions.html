@@ -409,39 +409,16 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Extras</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
+  <a href="../questions/100_ridge_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+  <a href="../questions/110_lasso_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
   </div>
 </li>
       </ul>
@@ -474,7 +451,6 @@ window.Quarto = {
   <li><a href="#question-16" id="toc-question-16" class="nav-link" data-scroll-target="#question-16"><span class="header-section-number">25.0.16</span> Question 16</a></li>
   <li><a href="#question-17" id="toc-question-17" class="nav-link" data-scroll-target="#question-17"><span class="header-section-number">25.0.17</span> Question 17</a></li>
   <li><a href="#question-18" id="toc-question-18" class="nav-link" data-scroll-target="#question-18"><span class="header-section-number">25.0.18</span> Question 18</a></li>
-  <li><a href="#question-19" id="toc-question-19" class="nav-link" data-scroll-target="#question-19"><span class="header-section-number">25.0.19</span> Question 19</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -806,23 +782,6 @@ Answer
 </section>
 <section id="question-18" class="level3" data-number="25.0.18">
 <h3 data-number="25.0.18" class="anchored" data-anchor-id="question-18"><span class="header-section-number">25.0.18</span> Question 18</h3>
-<p>Give two scalar-valued functions of <span class="math inline">\(w\in\mathbb{R}^d\)</span> that have the same Hessian everywhere but different gradients.</p>
-<!-- Source: Hessian as derivative of the gradient and the role of linear terms -->
-<details>
-<summary>
-Answer
-</summary>
-<p>Take <span class="math display">\[L_1(w)=\frac12w^\top w,
-\qquad
-L_2(w)=\frac12w^\top w+a^\top w\]</span> for a fixed nonzero <span class="math inline">\(a\in\mathbb{R}^d\)</span>. Then <span class="math display">\[\nabla L_1(w)=w,
-\qquad
-\nabla L_2(w)=w+a,\]</span> so the gradients differ. But <span class="math display">\[\nabla^2L_1(w)=I,
-\qquad
-\nabla^2L_2(w)=I,\]</span> because the linear term contributes a constant gradient and zero Hessian.</p>
-</details>
-</section>
-<section id="question-19" class="level3" data-number="25.0.19">
-<h3 data-number="25.0.19" class="anchored" data-anchor-id="question-19"><span class="header-section-number">25.0.19</span> Question 19</h3>
 <p>Sort the following derivative rules into scalar-output gradient rules, vector-output Jacobian rules, and scalar-input matrix-output rules: <span class="math inline">\(\nabla_W\|W\|_F^2=2W\)</span>, <span class="math inline">\(J_{Ax+b}=A\)</span>, <span class="math inline">\(\frac{d}{dt}(t^2A)=2tA\)</span>, <span class="math inline">\(\nabla_w(w^\top Aw)=(A+A^\top)w\)</span>, and <span class="math inline">\(J_{g\circ f}=J_gJ_f\)</span>.</p>
 <!-- Source: summary distinction among derivative objects and basic identities -->
 <details>

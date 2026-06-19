@@ -79,14 +79,16 @@ book:
         - questions/060_model_selection_questions.ipynb
         - questions/070_knn_questions.ipynb
         - questions/080_bias_variance_questions.ipynb
+        - questions/100_ridge_questions.ipynb
+        - questions/110_lasso_questions.ipynb
 
 
-    - part: "Extras"
-      chapters:
-        - lectures/040_ERM_NLL.ipynb
-        - questions/040_ERM_NLL_questions.ipynb
-        - lectures/101_constr_optim.ipynb
-        - lectures/090_curse_dim.ipynb
+    #- part: "Extras"
+    #  chapters:
+    #    - lectures/040_ERM_NLL.ipynb
+    #    - questions/040_ERM_NLL_questions.ipynb
+    #    - lectures/101_constr_optim.ipynb
+    #    - lectures/090_curse_dim.ipynb
 
 crossref:
   fig-title: "Figure"

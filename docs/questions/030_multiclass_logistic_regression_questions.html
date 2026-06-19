@@ -409,39 +409,16 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Extras</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
+  <a href="../questions/100_ridge_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+  <a href="../questions/110_lasso_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
   </div>
 </li>
       </ul>
@@ -553,7 +530,7 @@ Answer
 </section>
 <section id="question-6" class="level3" data-number="28.0.6">
 <h3 data-number="28.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">28.0.6</span> Question 6</h3>
-<p>For one data point with scores <span class="math inline">\(z\in\mathbb{R}^K\)</span> and one-hot label <span class="math inline">\(t\)</span>, define <span class="math display">\[L(z)=-\sum_{a=1}^K t_a\log p_a,\qquad p_a=\frac{e^{z_a}}{\sum_j e^{z_j}}.\]</span> Using the softmax derivative identity <span class="math inline">\(\partial p_a/\partial z_b=p_a(\mathbf 1\{a=b\}-p_b)\)</span> from the lecture, compute <span class="math inline">\(\partial L/\partial z_b\)</span> and simplify it to a compact expression.</p>
+<p>For one data point with scores <span class="math inline">\(z=W^\top x\in\mathbb{R}^K\)</span> and one-hot label <span class="math inline">\(t\)</span>, define <span class="math display">\[L(z)=-\sum_{a=1}^K t_a\log p_a,\qquad p_a=\frac{e^{z_a}}{\sum_j e^{z_j}}.\]</span> Using the softmax derivative identity <span class="math inline">\(\partial p_a/\partial z_b=p_a(\mathbf 1\{a=b\}-p_b)\)</span>, compute <span class="math inline">\(\partial L/\partial z_b\)</span> and simplify it to a compact expression.</p>
 <details>
 <summary>
 Answer
@@ -563,7 +540,7 @@ Answer
 </section>
 <section id="question-7" class="level3" data-number="28.0.7">
 <h3 data-number="28.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">28.0.7</span> Question 7</h3>
-<p>The lecture states the standard softmax derivative identity</p>
+<p>Consider the standard softmax derivative identity</p>
 <p><span class="math display">\[
 \frac{\partial P_{na}}{\partial Z_{nb}} = P_{na}(\mathbf{1}\{a=b\}-P_{nb}).
 \]</span></p>

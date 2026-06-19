@@ -446,39 +446,16 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Extras</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/040_ERM_NLL.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy</span></span></a>
+  <a href="../questions/100_ridge_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../questions/040_ERM_NLL_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">ERM, Maximum Likelihood, NLL, KL, and Cross-Entropy - Review Questions</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/101_constr_optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Constrained Optimization via Primal–Dual Methods</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/090_curse_dim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Curse of Dimensionality</span></span></a>
+  <a href="../questions/110_lasso_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
   </div>
 </li>
       </ul>
@@ -504,8 +481,6 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#linear-decision-boundary" id="toc-linear-decision-boundary" class="nav-link" data-scroll-target="#linear-decision-boundary"><span class="header-section-number">5.5.1</span> Linear Decision Boundary</a></li>
   <li><a href="#optimization-issues" id="toc-optimization-issues" class="nav-link" data-scroll-target="#optimization-issues"><span class="header-section-number">5.5.2</span> Optimization Issues</a></li>
-  <li><a href="#case-1-y-1" id="toc-case-1-y-1" class="nav-link" data-scroll-target="#case-1-y-1"><span class="header-section-number">5.5.3</span> Case 1: <span class="math inline">\(y = 1\)</span></a></li>
-  <li><a href="#case-2-y-0" id="toc-case-2-y-0" class="nav-link" data-scroll-target="#case-2-y-0"><span class="header-section-number">5.5.4</span> Case 2: <span class="math inline">\(y = 0\)</span></a></li>
   </ul></li>
   <li><a href="#code-examples" id="toc-code-examples" class="nav-link" data-scroll-target="#code-examples"><span class="header-section-number">5.6</span> Code Examples</a>
   <ul class="collapse">
@@ -513,10 +488,6 @@ window.Quarto = {
   <li><a href="#a-separable-case" id="toc-a-separable-case" class="nav-link" data-scroll-target="#a-separable-case"><span class="header-section-number">5.6.2</span> A separable Case</a></li>
   </ul></li>
   <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">5.7</span> Review Questions</a></li>
-  <li><a href="#extras" id="toc-extras" class="nav-link" data-scroll-target="#extras"><span class="header-section-number">5.8</span> Extras</a>
-  <ul class="collapse">
-  <li><a href="#newtons-method" id="toc-newtons-method" class="nav-link" data-scroll-target="#newtons-method"><span class="header-section-number">5.8.1</span> Newton’s Method</a></li>
-  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -1081,69 +1052,7 @@ y_i = 0 \implies w^\top x_i &lt; 0.
 \]</span></p>
 <p>In this case, the model can classify all points correctly with a linear decision boundary. While this seems good (maybe too good to be true), it can cause some numeric weirdness, which may get reported to the user.</p>
 <p>What weirdness can happen?</p>
-<blockquote class="blockquote">
-<p>If the above works for a vector <span class="math inline">\(w\)</span> then it also works for a vector <span class="math inline">\(cw\)</span> for some constant <span class="math inline">\(c\)</span>.</p>
-</blockquote>
-<p><strong>No minimum achieved.</strong> Recall the loss is representable as: <span class="math display">\[
-\ell(y, s) = \log(1 + e^{s}) - y\,s.
-\]</span></p>
-<p>If the data is separable, we can scale <span class="math inline">\(w\)</span> by a large constant <span class="math inline">\(c\)</span>: <span class="math display">\[
-w \mapsto c\,w.
-\]</span></p>
-<p>Then:</p>
-<ul>
-<li>for <span class="math inline">\(y=1\)</span>, <span class="math inline">\(w^\top x \to +\infty\)</span><br>
-</li>
-<li>for <span class="math inline">\(y=0\)</span>, <span class="math inline">\(w^\top x \to -\infty\)</span></li>
-</ul>
-<p>This drives the loss toward zero: <span class="math display">\[
-\ell(y_i, w^\top x_i) \to 0 \quad \text{for all } i.
-\]</span></p>
-</section>
-<section id="case-1-y-1" class="level3" data-number="5.5.3">
-<h3 data-number="5.5.3" class="anchored" data-anchor-id="case-1-y-1"><span class="header-section-number">5.5.3</span> Case 1: <span class="math inline">\(y = 1\)</span></h3>
-<p>Then the loss is: <span class="math display">\[
-\ell(1, s) = \log(1 + e^{s}) - s.
-\]</span></p>
-<p>Plugging in <span class="math inline">\(s = c\,w^\top x\)</span>: <span class="math display">\[
-\ell(1, c\,w^\top x)
-= \log(1 + e^{c\,w^\top x}) - c\,w^\top x.
-\]</span></p>
-<p>If the point is correctly classified, then <span class="math inline">\(w^\top x &gt; 0\)</span>, so as <span class="math inline">\(c \to \infty\)</span>:</p>
-<ul>
-<li><span class="math inline">\(e^{c\,w^\top x}\)</span> becomes very large<br>
-</li>
-<li><span class="math inline">\(\log(1 + e^{c\,w^\top x}) \approx c\,w^\top x\)</span></li>
-</ul>
-<p>So: <span class="math display">\[
-\ell(1, c\,w^\top x)
-\approx c\,w^\top x - c\,w^\top x = 0.
-\]</span></p>
-</section>
-<section id="case-2-y-0" class="level3" data-number="5.5.4">
-<h3 data-number="5.5.4" class="anchored" data-anchor-id="case-2-y-0"><span class="header-section-number">5.5.4</span> Case 2: <span class="math inline">\(y = 0\)</span></h3>
-<p>Then the loss is: <span class="math display">\[
-\ell(0, s) = \log(1 + e^{s}).
-\]</span></p>
-<p>Plugging in <span class="math inline">\(s = c\,w^\top x\)</span>: <span class="math display">\[
-\ell(0, c\,w^\top x)
-= \log(1 + e^{c\,w^\top x}).
-\]</span></p>
-<p>If the point is correctly classified, then <span class="math inline">\(w^\top x &lt; 0\)</span>, so as <span class="math inline">\(c \to \infty\)</span>:</p>
-<ul>
-<li><span class="math inline">\(c\,w^\top x \to -\infty\)</span><br>
-</li>
-<li><span class="math inline">\(e^{c\,w^\top x} \to 0\)</span></li>
-</ul>
-<p>So: <span class="math display">\[
-\ell(0, c\,w^\top x)
-\approx \log(1 + 0) = 0.
-\]</span></p>
-<p>The key issue is:</p>
-<blockquote class="blockquote">
-<p>The loss can always be made smaller by increasing the magnitude of <span class="math inline">\(w\)</span>.</p>
-</blockquote>
-<p>So there is <strong>no finite minimizer</strong> of the objective and an infinite number of solutions that give a perfect classification. Since our loss function is on <span class="math inline">\(s\)</span> not <span class="math inline">\(f\)</span>, even though many different vectors <span class="math inline">\(w\)</span> correctly separate the data, logistic regression prefers larger and larger margins. Sometimes, methods will throw an error or warning if they sense that this is happening.</p>
+<p>One can show that <strong>If the above works for a vector <span class="math inline">\(w\)</span> then it also works for a vector <span class="math inline">\(cw\)</span> for some constant <span class="math inline">\(c\)</span>.</strong> So there is <strong>no finite minimizer</strong> of the objective and an infinite number of solutions that give a perfect classification. Since our loss function is on <span class="math inline">\(s\)</span> not <span class="math inline">\(f\)</span>, even though many different vectors <span class="math inline">\(w\)</span> correctly separate the data, logistic regression prefers larger and larger margins. Sometimes, methods will throw an error or warning if they sense that this is happening.</p>
 </section>
 </section>
 <section id="code-examples" class="level2" data-number="5.6">
@@ -4907,197 +4816,8 @@ forceTheme('sk-container-id-3');</script>
 <section id="review-questions" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">5.7</span> Review Questions</h2>
 <p>See: <a href="../questions/020_logistic_regression_questions.html" class="quarto-xref"><span>Chapter 27</span></a>.</p>
-</section>
-<section id="extras" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="extras"><span class="header-section-number">5.8</span> Extras</h2>
-<section id="newtons-method" class="level3" data-number="5.8.1">
-<h3 data-number="5.8.1" class="anchored" data-anchor-id="newtons-method"><span class="header-section-number">5.8.1</span> Newton’s Method</h3>
-<p>Gradient descent uses only slope information. Newton’s method goes one step further: it also uses <strong>curvature</strong>.</p>
-<p>The basic idea behind Newton’s method is to use a <strong>local quadratic approximation</strong> of the objective to choose a better update direction.</p>
-<p>To see where this comes from, recall the second-order Taylor approximation in one dimension. If <span class="math inline">\(f:\mathbb{R}\to\mathbb{R}\)</span> is smooth, then near a point <span class="math inline">\(w\)</span>, <span class="math display">\[
-f(w + \Delta)
-\approx
-f(w)
-+
-f'(w)\,\Delta
-+
-\frac{1}{2} f''(w)\,\Delta^2.
-\]</span></p>
-<p>This is just saying: locally, a smooth function looks like a <strong>quadratic curve</strong>.</p>
-<p>In higher dimensions, the same idea holds. For our objective <span class="math inline">\(\hat{R}(w)\)</span>, we have the approximation:</p>
-<p><span class="math display">\[
-\hat{R}(w+\Delta)
-\approx
-\hat{R}(w)
-+
-\nabla \hat{R}(w)^\top \Delta
-+
-\frac{1}{2}\Delta^\top H(w)\Delta,
-\]</span></p>
-<p>where:</p>
-<ul>
-<li><span class="math inline">\(\nabla \hat{R}(w)\)</span> is the gradient<br>
-</li>
-<li><span class="math inline">\(H(w)\)</span> is the Hessian (matrix of all mixed partial second derivatives):</li>
-</ul>
-<p><span class="math display">\[
-H(w)_{ij} = \frac{\partial^2 \hat{R}(w)}{\partial w_i \partial w_j}.
-\]</span></p>
-<p>So locally, we are replacing our complicated objective with a <strong>quadratic function in <span class="math inline">\(\Delta\)</span></strong>.</p>
-<p>Now, instead of minimizing <span class="math inline">\(\hat{R}\)</span> directly, we minimize this quadratic approximation. This is much easier, since it has a closed-form solution.</p>
-<p>Taking the gradient with respect to <span class="math inline">\(\Delta\)</span> and setting it equal to zero: <span class="math display">\[
-\nabla \hat{R}(w) + H(w)\Delta = 0,
-\]</span> which gives: <span class="math display">\[
-\Delta^\star = -H(w)^{-1}\nabla \hat{R}(w).
-\]</span></p>
-<p>We use a <em>Newton</em> update in place of the standard gradient descent with <span class="math inline">\(\eta\)</span>:</p>
-<p><span class="math display">\[
-w \leftarrow w + \Delta^\star = w - H(w)^{-1}\nabla \hat{R}(w).
-\]</span></p>
-<p>with <span class="math inline">\(H(w)^{-1}\)</span> playing the place of <span class="math inline">\(\eta\)</span>.</p>
-<p>Intuition:</p>
-<ul>
-<li>Gradient descent uses only <strong>first-order information</strong> (slope)<br>
-</li>
-<li>Newton’s method also uses <strong>second-order information</strong> (curvature)</li>
-</ul>
-<p>The Hessian tells us how the function is curved, so:</p>
-<ul>
-<li>we take <strong>smaller steps</strong> in steep directions<br>
-</li>
-<li>and <strong>larger steps</strong> in flatter directions</li>
-</ul>
-<p>As a result, Newton’s method often converges in far fewer iterations than gradient descent (though each step is more expensive).</p>
-<p>For logistic regression, the Hessian also has a clean form. Let <span class="math display">\[
-p = \sigma(Xw),
-\]</span> and define the diagonal matrix <span class="math display">\[
-W = \mathrm{diag}(p_1(1-p_1), \dots, p_N(1-p_N)).
-\]</span></p>
-<p>Then <span class="math display">\[
-\nabla^2 \hat{R}(w) = H(w) =
-\frac{1}{N}X^\top W X.
-\]</span></p>
-<p>So the Newton step becomes <span class="math display">\[
-w^{(t+1)}=
-w^{(t)} - (X^\top W^{(t)} X)^{-1}X^\top(p^{(t)}-y).
-\]</span></p>
-<p>A few remarks:</p>
-<ul>
-<li>each step is typically much more expensive than a gradient descent step</li>
-<li>but Newton’s method often needs far fewer iterations</li>
-<li>the matrix <span class="math inline">\(W\)</span> changes from one iteration to the next</li>
-</ul>
-<p><strong>Fun-fact</strong>: This is sometimes rewritten as (what is called) a <strong>weighted</strong> least-squares problem, leading to what people call the Iteratively Re-weighted Least-Squares (IRLS) algorithm for fitting logistic regression. This is effectively Newton’s method that we present here.</p>
-<p>Let’s look at it in code:</p>
-<div id="c6cd3c50-ea26-4557-aaf2-443d2d7fc1c9" class="cell">
-<details open="" class="code-fold">
-<summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logistic_hessian(X, y, w):</span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> sigmoid(X <span class="op">@</span> w)</span>
-<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>    W <span class="op">=</span> p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p)   <span class="co"># diagonal entries only</span></span>
-<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (X.T <span class="op">@</span> (W[:, <span class="va">None</span>] <span class="op">*</span> X)) <span class="op">/</span> <span class="bu">len</span>(y) <span class="co"># some hax to avoid large mtx multiplications</span></span>
-<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> newton_method_with_path(X, y, w0, n_steps<span class="op">=</span><span class="dv">50</span>, tol<span class="op">=</span><span class="fl">1e-6</span>):</span>
-<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> w0.copy()</span>
-<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> [w.copy()]</span>
-<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a>    losses <span class="op">=</span> [cross_entropy_loss(X, y, w)]</span>
-<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-11"><a href="#cb75-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_steps):</span>
-<span id="cb75-12"><a href="#cb75-12" aria-hidden="true" tabindex="-1"></a>        grad <span class="op">=</span> logistic_gradient(X, y, w)</span>
-<span id="cb75-13"><a href="#cb75-13" aria-hidden="true" tabindex="-1"></a>        H <span class="op">=</span> logistic_hessian(X, y, w)</span>
-<span id="cb75-14"><a href="#cb75-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-15"><a href="#cb75-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Solve H delta = grad, then update w &lt;- w - delta</span></span>
-<span id="cb75-16"><a href="#cb75-16" aria-hidden="true" tabindex="-1"></a>        delta <span class="op">=</span> np.linalg.solve(H, grad)</span>
-<span id="cb75-17"><a href="#cb75-17" aria-hidden="true" tabindex="-1"></a>        w_new <span class="op">=</span> w <span class="op">-</span> delta</span>
-<span id="cb75-18"><a href="#cb75-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-19"><a href="#cb75-19" aria-hidden="true" tabindex="-1"></a>        path.append(w_new.copy())</span>
-<span id="cb75-20"><a href="#cb75-20" aria-hidden="true" tabindex="-1"></a>        losses.append(cross_entropy_loss(X, y, w_new))</span>
-<span id="cb75-21"><a href="#cb75-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-22"><a href="#cb75-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> np.linalg.norm(w_new <span class="op">-</span> w) <span class="op">&lt;</span> tol:</span>
-<span id="cb75-23"><a href="#cb75-23" aria-hidden="true" tabindex="-1"></a>            w <span class="op">=</span> w_new</span>
-<span id="cb75-24"><a href="#cb75-24" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb75-25"><a href="#cb75-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-26"><a href="#cb75-26" aria-hidden="true" tabindex="-1"></a>        w <span class="op">=</span> w_new</span>
-<span id="cb75-27"><a href="#cb75-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb75-28"><a href="#cb75-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> w, np.array(losses), np.array(path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p>We can run the Newton’s method:</p>
-<div id="83ee4071-1188-47fb-94b0-268e1d3f4b17" class="cell">
-<details open="" class="code-fold">
-<summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>w0 <span class="op">=</span> np.array([<span class="fl">0.0</span>, <span class="fl">0.0</span>])</span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>w_hat, losses, path <span class="op">=</span> newton_method_with_path(X, y, w0, n_steps<span class="op">=</span><span class="dv">10000</span>, tol<span class="op">=</span><span class="fl">1e-4</span>)</span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Final weights:"</span>, w_hat)</span>
-<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Final loss:"</span>, losses[<span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of steps:"</span>, <span class="bu">len</span>(losses) <span class="op">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Final weights: [2.04598493 2.88999245]
-Final loss: 0.1882123177852671
-Number of steps: 8</code></pre>
-</div>
-</div>
-<p>And then plot loss v. iteration:</p>
-<div id="cad33a14-1621-4929-9b24-4906762079f1" class="cell">
-<details open="" class="code-fold">
-<summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>plt.plot(losses, marker<span class="op">=</span><span class="st">"o"</span>, markersize<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Iteration"</span>)</span>
-<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Cross-entropy loss"</span>)</span>
-<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Loss during Newton's method"</span>)</span>
-<span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb78-7"><a href="#cb78-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="020_logistic_regression_files/figure-html/cell-55-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="557522b7-3926-4ae9-a000-5b1e0a98637a" class="cell">
-<details open="" class="code-fold">
-<summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>w1_vals <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">200</span>)</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>w2_vals <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">200</span>)</span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>W1, W2 <span class="op">=</span> np.meshgrid(w1_vals, w2_vals)</span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> np.zeros_like(W1)</span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(W1.shape[<span class="dv">0</span>]):</span>
-<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(W1.shape[<span class="dv">1</span>]):</span>
-<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a>        w <span class="op">=</span> np.array([W1[i, j], W2[i, j]])</span>
-<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a>        Z[i, j] <span class="op">=</span> cross_entropy_loss(X, y, w)</span>
-<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">6</span>))</span>
-<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a>contours <span class="op">=</span> plt.contour(W1, W2, np.log(Z), levels<span class="op">=</span><span class="dv">25</span>)</span>
-<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a>plt.clabel(contours, inline<span class="op">=</span><span class="va">True</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-15"><a href="#cb79-15" aria-hidden="true" tabindex="-1"></a>plt.plot(path[:, <span class="dv">0</span>], path[:, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">"o"</span>, markersize<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb79-16"><a href="#cb79-16" aria-hidden="true" tabindex="-1"></a>plt.scatter(path[<span class="dv">0</span>, <span class="dv">0</span>], path[<span class="dv">0</span>, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">80</span>, marker<span class="op">=</span><span class="st">"x"</span>, label<span class="op">=</span><span class="st">"start"</span>)</span>
-<span id="cb79-17"><a href="#cb79-17" aria-hidden="true" tabindex="-1"></a>plt.scatter(path[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>], path[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">80</span>, marker<span class="op">=</span><span class="st">"*"</span>, label<span class="op">=</span><span class="st">"end"</span>)</span>
-<span id="cb79-18"><a href="#cb79-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-19"><a href="#cb79-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r"$w_1$"</span>)</span>
-<span id="cb79-20"><a href="#cb79-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="vs">r"$w_2$"</span>)</span>
-<span id="cb79-21"><a href="#cb79-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Loss surface and gradient descent path"</span>)</span>
-<span id="cb79-22"><a href="#cb79-22" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb79-23"><a href="#cb79-23" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb79-24"><a href="#cb79-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="020_logistic_regression_files/figure-html/cell-56-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
