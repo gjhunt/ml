@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Gregory Hunt">
 
 <title>14&nbsp; Feed-Forward Neural Networks – Statistical Learning</title>
 <style>
@@ -461,6 +462,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/130_nn_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -487,6 +494,7 @@ window.Quarto = {
   <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification"><span class="header-section-number">14.5.2</span> Classification</a></li>
   <li><a href="#erm-problem" id="toc-erm-problem" class="nav-link" data-scroll-target="#erm-problem"><span class="header-section-number">14.5.3</span> ERM Problem</a></li>
   </ul></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">14.6</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -502,8 +510,20 @@ window.Quarto = {
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Gregory Hunt </p>
+          </div>
+  </div>
     
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 20, 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -512,6 +532,9 @@ window.Quarto = {
 </header>
 
 
+<div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
+<p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
+</div>
 <p>Let’s now consider another class of models within the ERM framework: <strong>feed-forward neural networks</strong>.</p>
 <p>As a point of reference, consider two of our basic models:</p>
 <ol type="1">
@@ -542,7 +565,8 @@ p_W(x) = \mathrm{softmax}(W^\top x).
 \]</span></p>
 <p>and optimized <span class="math inline">\(W\)</span> using the categorical cross-entropy loss.</p></li>
 </ol>
-<p>Neural networks fit into this same setup. The main difference is that we will replace the simple linear score function with a more flexible function <span class="math inline">\(s_\theta\)</span>. At a high level, the neural network score function is built by composing several simpler functions. For example, we might write</p>
+<p>While these models seem relatively basic, remember that we can do any sort of feature engineering on <span class="math inline">\(x\)</span> beforehand to make complex models that are non-linear in <span class="math inline">\(x\)</span>.</p>
+<p>Neural networks fit into this same setup. The main difference is that we will replace the linear score function in <span class="math inline">\(x\)</span> with a more flexible function <span class="math inline">\(s_\theta\)</span> made of a series of function compositions. At a high level, the neural network score function is built by composing several simpler functions. For example, we might write</p>
 <p><span class="math display">\[
 s_\theta(x)=
 s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
@@ -551,8 +575,8 @@ s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
 <p><span class="math display">\[
 \theta = (\theta_1, \theta_2, \dots, \theta_L).
 \]</span></p>
-<p>This composition structure is the key difference from linear and logistic regression. In linear and logistic regression, the score function was a single linear function of the input. In a neural network, the score function is built by passing the input through a sequence of learned transformations.</p>
-<p>In the simplest feed-forward networks, each layer applies an affine transformation followed by a nonlinear activation function. We will make this precise shortly. For now, the important point is that <span class="math inline">\(s_\theta(x)\)</span> is not just a single weighted sum of the original features. It is a layered function whose intermediate representations are learned from the data.</p>
+<p>This composition structure is the key difference from linear and logistic regression. In linear and logistic regression, the score function was a single linear function of the input. In a neural network, the score function is built by passing the input through a sequence of learned transformations. <strong>Now, the model will no longer be linear in the parameters <span class="math inline">\(\theta\)</span> like it was linear in <span class="math inline">\(w\)</span> for linear and logistic regression.</strong> In fact, in general, it may no longer be convex in <span class="math inline">\(\theta\)</span>.</p>
+<p>In the simplest feed-forward networks, each layer applies an affine transformation followed by a nonlinear activation function. We will make this precise shortly. For now, the important point is that <span class="math inline">\(s_\theta(x)\)</span> is not just a single weighted sum of the features. It is a layered function whose intermediate representations are learned from the data.</p>
 <p>So the ERM setup becomes</p>
 <p><span class="math display">\[
 \hat{\theta} = \arg\min_\theta \hat{R}(\theta),
@@ -622,7 +646,7 @@ s_i(h) = \phi_i(W^{(i)}h + b^{(i)}).
 <li><span class="math inline">\(b^{(i)}\)</span> is a vector of bias/intercept terms</li>
 <li><span class="math inline">\(\phi_i\)</span> is the activation function used at layer <span class="math inline">\(i\)</span></li>
 </ul>
-<p>The subscript on <span class="math inline">\(\phi_i\)</span> allows different layers to use different activation functions, although in many basic feed-forward networks we use the same activation function for every hidden layer.</p>
+<p>The subscript on <span class="math inline">\(\phi_i\)</span> allows different layers to use different activation functions.</p>
 <p>So each layer first forms weighted combinations of the previous layer’s features, then applies a nonlinear transformation.</p>
 <p>Suppose the input to layer <span class="math inline">\(i\)</span> has dimension <span class="math inline">\(d_{i-1}\)</span>, and the output of layer <span class="math inline">\(i\)</span> has dimension <span class="math inline">\(d_i\)</span>. That is,</p>
 <p><span class="math display">\[
@@ -916,7 +940,7 @@ h = \phi(Wx + b),
 </section>
 <section id="classification-output" class="level3" data-number="14.4.2">
 <h3 data-number="14.4.2" class="anchored" data-anchor-id="classification-output"><span class="header-section-number">14.4.2</span> Classification Output</h3>
-<p>For classification with <span class="math inline">\(K\)</span> classes, we want the network to output one predicted probability for each class.</p>
+<p>For classification with <span class="math inline">\(K\)</span> classes, we usually want the network to produce one score for each class. These scores are called <strong>logits</strong>.</p>
 <p>To do this, we choose the final layer to have width <span class="math inline">\(K\)</span>. If the hidden representation is</p>
 <p><span class="math display">\[
 h \in \mathbb{R}^H,
@@ -937,31 +961,37 @@ c \in \mathbb{R}^K.
 <p><span class="math display">\[
 Vh+c \in \mathbb{R}^K.
 \]</span></p>
-<p>These <span class="math inline">\(K\)</span> values are class scores, also called logits. To convert them into predicted class probabilities, we use the <strong>softmax activation function</strong>, so that the final layer all together is:</p>
+<p>These <span class="math inline">\(K\)</span> values are the class logits, or class scores. By default, we will treat the network output as these logits:</p>
 <p><span class="math display">\[
-s_\theta(x)=\text{softmax}(Vh+c).
+s_\theta(x) = Vh+c.
 \]</span></p>
-<p>and all together we have:</p>
+<p>Since the hidden representation is given by</p>
 <p><span class="math display">\[
-s_\theta(x)=\text{softmax}(V\phi(Wx+b)+c).
+h = \phi(Wx+b),
 \]</span></p>
-<p>The final output <span class="math inline">\(s_\theta(x)\)</span> is a vector in <span class="math inline">\(\mathbb{R}^K\)</span>, where each entry is nonnegative and the entries sum to one. (i.e.&nbsp;they’re probabilities).</p>
-<p>One small notational point is worth mentioning. Earlier, in logistic regression, we used the word <strong>score</strong> for the value before applying the sigmoid function. Here, for classification networks, we are instead writing <span class="math inline">\(s_\theta(x)\)</span> for the final output after applying softmax.</p>
-<p>This is just a convention. The intermediate values</p>
+<p>the full network output is</p>
 <p><span class="math display">\[
-Vh + c
+s_\theta(x) = V\phi(Wx+b)+c.
 \]</span></p>
-<p>are often called <strong>logits</strong> or <strong>class scores</strong>, while</p>
+<p>The vector <span class="math inline">\(s_\theta(x)\)</span> is in <span class="math inline">\(\mathbb{R}^K\)</span>, but its entries are not probabilities. They can be positive, negative, or zero, and they do not have to sum to one.</p>
+<p>To convert the logits into predicted class probabilities, we apply the <strong>softmax function</strong>:</p>
 <p><span class="math display">\[
-s_\theta(x) = \text{softmax}(Vh+c)
+p_\theta(x) = \operatorname{softmax}(s_\theta(x)).
 \]</span></p>
-<p>is the vector of predicted probabilities. Later, when we define the loss function for classification, we will make sure it matches this convention.</p>
+<p>Equivalently,</p>
+<p><span class="math display">\[
+p_\theta(x) = \operatorname{softmax}(V\phi(Wx+b)+c).
+\]</span></p>
+<p>The vector <span class="math inline">\(p_\theta(x)\)</span> is in <span class="math inline">\(\mathbb{R}^K\)</span>. Each entry is nonnegative, and the entries sum to one. Therefore, <span class="math inline">\(p_\theta(x)\)</span> can be interpreted as a vector of predicted class probabilities.</p>
+<p>This distinction is useful because many software libraries expect the model itself to output logits. The softmax step is then applied inside the loss function, such as cross-entropy loss, or later when we want to report predicted probabilities. Later, when we define the loss function for classification, we will use the logits as the default network output and make sure the loss function matches this convention.</p>
+<p>Sometimes, an alternative convention is to describe the classification network as having a <strong>softmax output layer</strong>. This usually means that the final affine layer produces logits and softmax is applied afterward to convert those logits into probabilities: <span class="math display">\[
+s_\theta(x) = \operatorname{softmax}(V\phi(Wx+b)+c).
+\]</span> Both conventions are common, but in software it is often cleaner to treat the model output as logits and let the loss function handle the softmax step.</p>
 <p>The main point is that the final output layer usually depends on the task:</p>
 <ul>
-<li>For regression, the standard choice is a <strong>linear output layer</strong>.</li>
-<li>For classification, the standard choice is a <strong>softmax output layer</strong>.</li>
+<li>For regression, the standard choice is a <strong>linear output layer</strong> that produces real-valued predictions.</li>
+<li>For classification, the standard choice is a <strong>linear output layer</strong> that produces <span class="math inline">\(K\)</span> logits. Softmax is applied afterward when probabilities are needed.</li>
 </ul>
-<p>These are the usual default choices because regression requires real-valued predictions, while classification requires predicted class probabilities.</p>
 </section>
 </section>
 <section id="loss-functions-and-erm" class="level2" data-number="14.5">
@@ -992,25 +1022,17 @@ s_\theta(x) \in \mathbb{R}.
 </section>
 <section id="classification" class="level3" data-number="14.5.2">
 <h3 data-number="14.5.2" class="anchored" data-anchor-id="classification"><span class="header-section-number">14.5.2</span> Classification</h3>
-<p>For classification with <span class="math inline">\(K\)</span> classes, the network output is a vector of predicted class probabilities:</p>
+<p>For classification with <span class="math inline">\(K\)</span> classes, the network output is a vector of logits:</p>
 <p><span class="math display">\[
-s_\theta(x)=p_\theta(x)
-\in \mathbb{R}^K.
-\]</span></p>
-<p>Since we are using the convention that <span class="math inline">\(s_\theta(x)\)</span> is the output <strong>after</strong> the softmax activation, the entries satisfy</p>
-<p><span class="math display">\[
-s_{\theta,k}(x) \ge 0
-\]</span></p>
-<p>and</p>
-<p><span class="math display">\[
-\sum_{k=1}^K s_{\theta,k}(x) = 1.
+s_\theta(x)\in \mathbb{R}^K.
 \]</span></p>
 <p>Like multi-class logistic regression, a common loss function for multiclass classification is <strong>categorical cross-entropy</strong>.</p>
 <p>If the true class label is <span class="math inline">\(y \in \{1,\dots,K\}\)</span>, then the loss is</p>
 <p><span class="math display">\[
 \ell(y, s_\theta(x))=
--\log(s_{\theta,y}(x)).
+-\log(p_{\theta,y}(x)).
 \]</span></p>
+<p>where <span class="math inline">\(p_\theta(x) = \operatorname{softmax}(s_\theta(x)).\)</span></p>
 <p>Equivalently, if the outcome is represented as a one-hot vector</p>
 <p><span class="math display">\[
 t =
@@ -1024,7 +1046,7 @@ t_K
 <p>where <span class="math inline">\(t_k = 1\)</span> for the correct class and <span class="math inline">\(t_k = 0\)</span> otherwise, then categorical cross-entropy can be written as</p>
 <p><span class="math display">\[
 \ell(y, s_\theta(x))=
--\sum_{k=1}^K t_k \log(s_{\theta,k}(x)).
+-\sum_{k=1}^K t_k \log(p_{\theta,k}(x)).
 \]</span></p>
 </section>
 <section id="erm-problem" class="level3" data-number="14.5.3">
@@ -1043,9 +1065,13 @@ t_K
 \ell(y_n, s_\theta(x_n)).
 \]</span></p>
 <p>The model class has changed from a linear score function to a neural network, but the learning problem is still an ERM problem.</p>
-
-
 </section>
+</section>
+<section id="review-questions" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">14.6</span> Review Questions</h2>
+<p>See: <a href="../questions/130_nn_questions.html" class="quarto-xref"><span>Chapter 36</span></a>.</p>
+
+
 </section>
 
 </main> <!-- /main -->

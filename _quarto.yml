@@ -82,6 +82,7 @@ book:
         - questions/100_ridge_questions.ipynb
         - questions/110_lasso_questions.ipynb
         - questions/120_elastic_net_logistic_erm_questions.ipynb
+        - questions/130_nn_questions.ipynb
 
 
     #- part: "Extras"
