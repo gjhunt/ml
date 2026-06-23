@@ -83,6 +83,8 @@ book:
         - questions/110_lasso_questions.ipynb
         - questions/120_elastic_net_logistic_erm_questions.ipynb
         - questions/130_nn_questions.ipynb
+        - questions/140_backprop_questions.ipynb
+        - questions/150_nn_arch_questions.ipynb
 
 
     #- part: "Extras"

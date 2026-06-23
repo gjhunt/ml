@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Gregory Hunt">
+
+<title>37&nbsp; Training Neural Networks with Backpropagation - Review Questions – Statistical Learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../questions/150_nn_arch_questions.html" rel="next">
+<link href="../questions/130_nn_questions.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="assets/code_style.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/140_backprop_questions.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Statistical Learning</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/gjhunt/ml" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations and Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/000_intro_and_erm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/005_derivatives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/010_linear_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/020_logistic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/030_multiclass_logistic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Evaluation and Model Selection</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/050_evaluation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/060_model_selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/070_knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/080_bias_variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Regularization and Penalized Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/100_ridge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/110_lasso.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/120_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Neural Networks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/130_nn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/140_backprop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/150_nn_arch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unsupervised Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/160_unsupervised.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/170_svd.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/180_pca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/190_kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tree-Based Methods</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/200_carts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/210_random_forests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/220_boosting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Practice Questions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/005_derivatives_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/010_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/020_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/030_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/050_evaluation_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/060_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/070_knn_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/080_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/100_ridge_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/110_lasso_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/120_elastic_net_logistic_erm_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/130_nn_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/140_backprop_questions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/150_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1"><span class="header-section-number">37.0.1</span> Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">37.0.2</span> Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">37.0.3</span> Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">37.0.4</span> Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5"><span class="header-section-number">37.0.5</span> Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6"><span class="header-section-number">37.0.6</span> Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7"><span class="header-section-number">37.0.7</span> Question 7</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8"><span class="header-section-number">37.0.8</span> Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9"><span class="header-section-number">37.0.9</span> Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10"><span class="header-section-number">37.0.10</span> Question 10</a></li>
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11"><span class="header-section-number">37.0.11</span> Question 11</a></li>
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12"><span class="header-section-number">37.0.12</span> Question 12</a></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13"><span class="header-section-number">37.0.13</span> Question 13</a></li>
+  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14"><span class="header-section-number">37.0.14</span> Question 14</a></li>
+  <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15"><span class="header-section-number">37.0.15</span> Question 15</a></li>
+  <li><a href="#question-16" id="toc-question-16" class="nav-link" data-scroll-target="#question-16"><span class="header-section-number">37.0.16</span> Question 16</a></li>
+  <li><a href="#question-17" id="toc-question-17" class="nav-link" data-scroll-target="#question-17"><span class="header-section-number">37.0.17</span> Question 17</a></li>
+  <li><a href="#question-18" id="toc-question-18" class="nav-link" data-scroll-target="#question-18"><span class="header-section-number">37.0.18</span> Question 18</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/140_backprop_questions.html"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-backprop-questions" class="quarto-section-identifier"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Gregory Hunt </p>
+          </div>
+  </div>
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 23, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
+<p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
+</div>
+<section id="question-1" class="level3" data-number="37.0.1">
+<h3 data-number="37.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">37.0.1</span> Question 1</h3>
+<p>State what remains the same and what changes when the lecture moves from linear/logistic regression to neural-network training. Your answer should mention the empirical risk, the score function, and the optimization problem.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The ERM structure is unchanged: choose a score function, choose a loss, and minimize</p>
+<p><span class="math display">\[
+\hat R(\theta)=\frac1N\sum_{n=1}^N \ell(y_n,s_\theta(x_n)).
+\]</span></p>
+<p>What changes is the score class. Instead of a linear score, the model uses a layered composition</p>
+<p><span class="math display">\[
+s_\theta(x)=s_L(s_{L-1}(\cdots s_1(x)\cdots)),
+\]</span></p>
+<p>with many parameters across layers. The resulting optimization problem is usually nonconvex and generally has no closed-form solution, so gradient-based iterative methods are used.</p>
+</details>
+</section>
+<section id="question-2" class="level3" data-number="37.0.2">
+<h3 data-number="37.0.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">37.0.2</span> Question 2</h3>
+<p>For the one-hidden-unit model</p>
+<p><span class="math display">\[
+a_n=wx_n+b,\qquad h_n=\sigma(a_n),\qquad s_n=vh_n+c,
+\]</span></p>
+<p>with empirical risk</p>
+<p><span class="math display">\[
+\hat{R}(\theta)=\frac{1}{N}\sum_{n=1}^N \frac{1}{2}(y_n-s_n)^2
+\]</span></p>
+<p>derive the gradients</p>
+<p><span class="math display">\[
+\frac{\partial \hat{R}}{\partial v},\qquad
+\frac{\partial \hat{R}}{\partial c},\qquad
+\frac{\partial \hat{R}}{\partial w},\qquad
+\frac{\partial \hat{R}}{\partial b}
+\]</span></p>
+<p>using the chain rule.</p>
+<p>Hint: Work first with one observation,</p>
+<p><span class="math display">\[
+\ell_n=\frac{1}{2}(y_n-s_n)^2.
+\]</span></p>
+<p>Use the paths</p>
+<p><span class="math display">\[
+\ell_n \to s_n \to v,\qquad
+\ell_n \to s_n \to c,\qquad
+\ell_n \to s_n \to h_n \to a_n \to w,\qquad
+\ell_n \to s_n \to h_n \to a_n \to b.
+\]</span></p>
+<p>Compute the intermediate derivatives</p>
+<p><span class="math display">\[
+\frac{\partial \ell_n}{\partial s_n},\quad
+\frac{\partial s_n}{\partial v},\quad
+\frac{\partial s_n}{\partial c},\quad
+\frac{\partial s_n}{\partial h_n},\quad
+\frac{\partial h_n}{\partial a_n},\quad
+\frac{\partial a_n}{\partial w},\quad
+\frac{\partial a_n}{\partial b},
+\]</span></p>
+<p>then average over <span class="math inline">\(n=1,...,N\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>Let</p>
+<p><span class="math display">\[
+e_n=s_n-y_n.
+\]</span></p>
+<p>Since</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial s_n}\left(\frac{1}{2}(y_n-s_n)^2\right)
+=s_n-y_n=e_n,
+\]</span></p>
+<p>we have</p>
+<p><span class="math display">\[
+\frac{\partial \hat{R}}{\partial v}
+=\frac{1}{N}\sum_{n=1}^N e_n h_n,
+\qquad
+\frac{\partial \hat{R}}{\partial c}
+=\frac{1}{N}\sum_{n=1}^N e_n.
+\]</span></p>
+<p>Also,</p>
+<p><span class="math display">\[
+\frac{\partial s_n}{\partial h_n}=v,
+\qquad
+\frac{\partial h_n}{\partial a_n}=h_n(1-h_n),
+\qquad
+\frac{\partial a_n}{\partial w}=x_n,
+\qquad
+\frac{\partial a_n}{\partial b}=1.
+\]</span></p>
+<p>Therefore</p>
+<p><span class="math display">\[
+\frac{\partial \hat{R}}{\partial w}
+=\frac{1}{N}\sum_{n=1}^N e_n v h_n(1-h_n)x_n,
+\qquad
+\frac{\partial \hat{R}}{\partial b}
+=\frac{1}{N}\sum_{n=1}^N e_n v h_n(1-h_n).
+\]</span></p>
+</details>
+</section>
+<section id="question-3" class="level3" data-number="37.0.3">
+<h3 data-number="37.0.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">37.0.3</span> Question 3</h3>
+<p>Recompute the forward pass for</p>
+<p><span class="math display">\[
+x=2,\quad y=1,\quad w=0.5,\quad b=0.1,\quad v=1.5,\quad c=-0.2,
+\]</span></p>
+<p>using <span class="math inline">\(a=wx+b\)</span>, <span class="math inline">\(h=\sigma(a)\)</span>, <span class="math inline">\(s=vh+c\)</span>, and <span class="math inline">\(L=\frac12(y-s)^2\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The pre-activation is</p>
+<p><span class="math display">\[
+a=(0.5)(2)+0.1=1.1.
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+h=\sigma(1.1)=\frac1{1+e^{-1.1}}\approx 0.7503.
+\]</span></p>
+<p>The score is</p>
+<p><span class="math display">\[
+s=(1.5)(0.7503)-0.2\approx 0.9254.
+\]</span></p>
+<p>Finally,</p>
+<p><span class="math display">\[
+L=\frac12(1-0.9254)^2\approx 0.0028.
+\]</span></p>
+</details>
+</section>
+<section id="question-4" class="level3" data-number="37.0.4">
+<h3 data-number="37.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">37.0.4</span> Question 4</h3>
+<p>Carry the backward pass through the same scalar example from Question 4. Compute</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial s},\quad
+\frac{\partial L}{\partial v},\quad
+\frac{\partial L}{\partial c},\quad
+\frac{\partial L}{\partial h},\quad
+\frac{\partial L}{\partial a},\quad
+\frac{\partial L}{\partial w},\quad
+\frac{\partial L}{\partial b}.
+\]</span></p>
+<details>
+<summary>
+Answer
+</summary>
+<p>From the forward pass, <span class="math inline">\(h\approx0.7503\)</span> and <span class="math inline">\(s\approx0.9254\)</span>. The loss derivative is</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial s}=s-y\approx -0.0746.
+\]</span></p>
+<p>For <span class="math inline">\(s=vh+c\)</span>,</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial v}=(-0.0746)(0.7503)\approx -0.0560,
+\qquad
+\frac{\partial L}{\partial c}= -0.0746,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial h}=(-0.0746)(1.5)\approx -0.1119.
+\]</span></p>
+<p>For <span class="math inline">\(h=\sigma(a)\)</span>,</p>
+<p><span class="math display">\[
+\frac{\partial h}{\partial a}=h(1-h)\approx(0.7503)(0.2497)\approx0.1874,
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial a}\approx(-0.1119)(0.1874)\approx -0.0210.
+\]</span></p>
+<p>For <span class="math inline">\(a=wx+b\)</span> with <span class="math inline">\(x=2\)</span>,</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w}\approx(-0.0210)(2)=-0.0419,
+\qquad
+\frac{\partial L}{\partial b}\approx -0.0210.
+\]</span></p>
+</details>
+</section>
+<section id="question-5" class="level3" data-number="37.0.5">
+<h3 data-number="37.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">37.0.5</span> Question 5</h3>
+<p>After the backward pass in Question 5, gradient descent with learning rate <span class="math inline">\(\eta&gt;0\)</span> updates <span class="math inline">\(w\)</span> by</p>
+<p><span class="math display">\[
+w^{(t+1)}=w^{(t)}-\eta \frac{\partial L}{\partial w}.
+\]</span></p>
+<p>Does this step increase or decrease <span class="math inline">\(w\)</span> in the numerical example?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>Here</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w}\approx -0.0419&lt;0.
+\]</span></p>
+<p>Therefore</p>
+<p><span class="math display">\[
+w^{(t+1)}=w^{(t)}-\eta(-0.0419)=w^{(t)}+0.0419\eta.
+\]</span></p>
+<p>For any <span class="math inline">\(\eta&gt;0\)</span>, the update increases <span class="math inline">\(w\)</span>. This is consistent with moving opposite the gradient: a negative derivative means increasing <span class="math inline">\(w\)</span> locally reduces the loss.</p>
+</details>
+</section>
+<section id="question-6" class="level3" data-number="37.0.6">
+<h3 data-number="37.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">37.0.6</span> Question 6</h3>
+<p>Classify the update rule by its batch size. For a dataset of size <span class="math inline">\(N\)</span>, identify which case is full-batch gradient descent, which is strict stochastic gradient descent, and which is mini-batch gradient descent:</p>
+<p><span class="math display">\[
+|B_t|=N,\qquad |B_t|=1,\qquad 1&lt;|B_t|&lt;N.
+\]</span></p>
+<details>
+<summary>
+Answer
+</summary>
+<p>If <span class="math inline">\(|B_t|=N\)</span>, the update uses every training observation, so it is full-batch gradient descent.</p>
+<p>If <span class="math inline">\(|B_t|=1\)</span>, the update uses one randomly selected observation, so it is stochastic gradient descent in the strict sense.</p>
+<p>If <span class="math inline">\(1&lt;|B_t|&lt;N\)</span>, the update uses a subset larger than one but smaller than the whole dataset, so it is mini-batch gradient descent. As the lecture notes, neural-network practice often uses “SGD” broadly to include this mini-batch case.</p>
+</details>
+</section>
+<section id="question-7" class="level3" data-number="37.0.7">
+<h3 data-number="37.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">37.0.7</span> Question 7</h3>
+<p>Assume a mini-batch of size <span class="math inline">\(B\)</span> is sampled uniformly with replacement from the training indices <span class="math inline">\({1,\dots,N}\)</span>. Let <span class="math inline">\(k_1,\dots,k_B\)</span> denote the sampled indices, and define the mini-batch gradient as</p>
+<p><span class="math display">\[
+\hat g_B=\frac{1}{B}\sum_{j=1}^B \nabla_\theta \ell(y_{k_j},s_\theta(x_{k_j})).
+\]</span></p>
+<p>Show that the expected value of this mini-batch gradient equals the full empirical-risk gradient:</p>
+<p><span class="math display">\[
+\mathbb E[\hat g_B]=\nabla_\theta \hat R(\theta).
+\]</span></p>
+<details>
+<summary>
+Answer
+</summary>
+<p>For each training observation, define its individual gradient contribution as</p>
+<p><span class="math display">\[
+g_i=\nabla_\theta \ell(y_i,s_\theta(x_i)).
+\]</span></p>
+<p>Since <span class="math inline">\(k_1,\dots,k_B\)</span> are sampled uniformly with replacement from <span class="math inline">\({1,\dots,N}\)</span>, each sampled index <span class="math inline">\(k_j\)</span> has the same distribution. Therefore, for each draw,</p>
+<p><span class="math display">\[
+\mathbb E[g_{k_j}]=\frac{1}{N}\sum_{i=1}^N g_i.
+\]</span></p>
+<p>The mini-batch gradient can be written as</p>
+<p><span class="math display">\[
+\hat g_B=\frac{1}{B}\sum_{j=1}^B g_{k_j}.
+\]</span></p>
+<p>By linearity of expectation,</p>
+<p><span class="math display">\[
+\mathbb E[\hat g_B]=\frac{1}{B}\sum_{j=1}^B \mathbb E[g_{k_j}].
+\]</span></p>
+<p>Substituting the expression for each <span class="math inline">\(\mathbb E[g_{k_j}]\)</span> gives</p>
+<p><span class="math display">\[
+\mathbb E[\hat g_B]=\frac{1}{B}\sum_{j=1}^B \left(\frac{1}{N}\sum_{i=1}^N g_i\right).
+\]</span></p>
+<p>Since the same quantity is added <span class="math inline">\(B\)</span> times,</p>
+<p><span class="math display">\[
+\mathbb E[\hat g_B]=\frac{1}{N}\sum_{i=1}^N g_i.
+\]</span></p>
+<p>Now,</p>
+<p><span class="math display">\[
+\hat R(\theta)=\frac{1}{N}\sum_{i=1}^N \ell(y_i,s_\theta(x_i)).
+\]</span></p>
+<p>Taking the gradient gives</p>
+<p><span class="math display">\[
+\nabla_\theta \hat R(\theta)=\frac{1}{N}\sum_{i=1}^N \nabla_\theta \ell(y_i,s_\theta(x_i)).
+\]</span></p>
+<p>Using the definition of <span class="math inline">\(g_i\)</span>, this becomes</p>
+<p><span class="math display">\[
+\nabla_\theta \hat R(\theta)=\frac{1}{N}\sum_{i=1}^N g_i.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\mathbb E[\hat g_B]=\nabla_\theta \hat R(\theta).
+\]</span></p>
+</details>
+</section>
+<section id="question-8" class="level3" data-number="37.0.8">
+<h3 data-number="37.0.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">37.0.8</span> Question 8</h3>
+Suppose there are <span class="math inline">\(N=1250\)</span> training observations and the mini-batch size is <span class="math inline">\(64\)</span>. How many updates are in one epoch if the algorithm uses every observation once and includes a final smaller mini-batch?
+<details>
+<summary>
+Answer
+</summary>
+<p>The exact number of updates is</p>
+<p><span class="math display">\[
+\left\lceil \frac{1250}{64}\right\rceil=20.
+\]</span></p>
+<p>There are <span class="math inline">\(19\)</span> full mini-batches of size <span class="math inline">\(64\)</span>, which use <span class="math inline">\(19\cdot64=1216\)</span> observations. This leaves <span class="math inline">\(1250-1216=34\)</span> observations for one final smaller mini-batch.</p>
+<p>So one epoch has <span class="math inline">\(20\)</span> updates. The rough calculation <span class="math inline">\(1250/64\approx19.5\)</span> suggests about <span class="math inline">\(20\)</span> updates, and the exact count is <span class="math inline">\(20\)</span> when the final partial mini-batch is included.</p>
+</details>
+</section>
+<section id="question-9" class="level3" data-number="37.0.9">
+<h3 data-number="37.0.9" class="anchored" data-anchor-id="question-9"><span class="header-section-number">37.0.9</span> Question 9</h3>
+<p>In the chain</p>
+<p><span class="math display">\[
+x\to q\to r\to t\to u\to L,
+\]</span></p>
+<p>show explicitly how reusing <span class="math inline">\(\partial L/\partial r\)</span> avoids recomputing the full chain-rule expression for <span class="math inline">\(\partial L/\partial q\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The full chain-rule expression is</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial q}=
+\frac{\partial L}{\partial u}
+\frac{\partial u}{\partial t}
+\frac{\partial t}{\partial r}
+\frac{\partial r}{\partial q}.
+\]</span></p>
+<p>But the first three factors are exactly</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial r}=
+\frac{\partial L}{\partial u}
+\frac{\partial u}{\partial t}
+\frac{\partial t}{\partial r}.
+\]</span></p>
+<p>Therefore</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial q}=
+\frac{\partial L}{\partial r}\frac{\partial r}{\partial q}.
+\]</span></p>
+<p>Backpropagation stores or passes the already-computed derivative <span class="math inline">\(\partial L/\partial r\)</span> and multiplies by only the next local derivative.</p>
+</details>
+</section>
+<section id="question-10" class="level3" data-number="37.0.10">
+<h3 data-number="37.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">37.0.10</span> Question 10</h3>
+<p>At a single node <span class="math inline">\(r=f(q)\)</span>, suppose the upstream gradient is</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial r}=5,
+\]</span></p>
+<p>and <span class="math inline">\(f(q)=q^3\)</span> at <span class="math inline">\(q=2\)</span>. Compute the downstream gradient <span class="math inline">\(\partial L/\partial q\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The local derivative is</p>
+<p><span class="math display">\[
+\frac{\partial r}{\partial q}=f'(q)=3q^2.
+\]</span></p>
+<p>At <span class="math inline">\(q=2\)</span>,</p>
+<p><span class="math display">\[
+\frac{\partial r}{\partial q}=3(2)^2=12.
+\]</span></p>
+<p>The downstream gradient is upstream times local derivative:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial q}=
+\frac{\partial L}{\partial r}\frac{\partial r}{\partial q}
+=5\cdot12=60.
+\]</span></p>
+</details>
+</section>
+<section id="question-11" class="level3" data-number="37.0.11">
+<h3 data-number="37.0.11" class="anchored" data-anchor-id="question-11"><span class="header-section-number">37.0.11</span> Question 11</h3>
+<p>Combine the local derivatives in the scalar graph to obtain a single formula for <span class="math inline">\(\partial J/\partial \alpha\)</span> for one observation. Use</p>
+<p><span class="math display">\[
+J=\frac{1}{4}(u-t)^4,\qquad u=\gamma r+\delta,\qquad r=\tanh(q),\qquad q=\alpha z+\beta.
+\]</span></p>
+<p>Note: <span class="math inline">\(\tanh'(q)=1-\tanh^2(q).\)</span></p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The path from <span class="math inline">\(\alpha\)</span> to <span class="math inline">\(J\)</span> is</p>
+<p><span class="math display">\[
+\alpha \to q \to r \to u \to J.
+\]</span></p>
+<p>The chain rule gives</p>
+<p><span class="math display">\[
+\frac{\partial J}{\partial \alpha}=\frac{\partial J}{\partial u}\frac{\partial u}{\partial r}\frac{\partial r}{\partial q}\frac{\partial q}{\partial \alpha}.
+\]</span></p>
+<p>The local derivatives are</p>
+<p><span class="math display">\[
+\frac{\partial J}{\partial u}=(u-t)^3,\qquad \frac{\partial u}{\partial r}=\gamma,\qquad \frac{\partial r}{\partial q}=\tanh'(q),\qquad \frac{\partial q}{\partial \alpha}=z.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\frac{\partial J}{\partial \alpha}=(u-t)^3\gamma\tanh'(q)z.
+\]</span></p>
+<p>Since <span class="math inline">\(\tanh'(q)=1-\tanh^2(q)\)</span> and <span class="math inline">\(r=\tanh(q)\)</span>, this can also be written as</p>
+<p><span class="math display">\[
+\frac{\partial J}{\partial \alpha}=(u-t)^3\gamma(1-r^2)z.
+\]</span></p>
+</details>
+</section>
+<section id="question-12" class="level3" data-number="37.0.12">
+<h3 data-number="37.0.12" class="anchored" data-anchor-id="question-12"><span class="header-section-number">37.0.12</span> Question 12</h3>
+<p>For a mini-batch <span class="math inline">\(B\)</span> of scalar observations, let <span class="math inline">\(M=|B|\)</span> and define</p>
+<p><span class="math display">\[
+J_B=\frac{1}{M}\sum_{n\in B} L_n,
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+L_n=\frac{1}{4}(u_n-t_n)^4,\qquad u_n=\gamma r_n+\delta,\qquad r_n=\tanh(q_n),\qquad q_n=\alpha z_n+\beta.
+\]</span></p>
+<p>Write the gradients of <span class="math inline">\(J_B\)</span> with respect to <span class="math inline">\(\alpha,\beta,\gamma,\delta\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>Since</p>
+<p><span class="math display">\[
+J_B=\frac{1}{M}\sum_{n\in B} L_n,
+\]</span></p>
+<p>each parameter gradient is the average of the corresponding single-observation gradients. First compute</p>
+<p><span class="math display">\[
+\frac{\partial L_n}{\partial u_n}=(u_n-t_n)^3.
+\]</span></p>
+<p>For compactness, define</p>
+<p><span class="math display">\[
+d_n=(u_n-t_n)^3.
+\]</span></p>
+<p>For <span class="math inline">\(\gamma\)</span>, the chain rule gives</p>
+<p><span class="math display">\[
+\frac{\partial L_n}{\partial \gamma}=\frac{\partial L_n}{\partial u_n}\frac{\partial u_n}{\partial \gamma}=d_n r_n.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\frac{\partial J_B}{\partial \gamma}=\frac{1}{M}\sum_{n\in B} d_n r_n.
+\]</span></p>
+<p>For <span class="math inline">\(\delta\)</span>, the chain rule gives</p>
+<p><span class="math display">\[
+\frac{\partial L_n}{\partial \delta}=\frac{\partial L_n}{\partial u_n}\frac{\partial u_n}{\partial \delta}=d_n.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\frac{\partial J_B}{\partial \delta}=\frac{1}{M}\sum_{n\in B} d_n.
+\]</span></p>
+<p>For <span class="math inline">\(\alpha\)</span>, the path is <span class="math inline">\(\alpha\to q_n\to r_n\to u_n\to L_n\)</span>. The chain rule gives</p>
+<p><span class="math display">\[
+\frac{\partial L_n}{\partial \alpha}=\frac{\partial L_n}{\partial u_n}\frac{\partial u_n}{\partial r_n}\frac{\partial r_n}{\partial q_n}\frac{\partial q_n}{\partial \alpha}=d_n\gamma\tanh'(q_n)z_n.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\frac{\partial J_B}{\partial \alpha}=\frac{1}{M}\sum_{n\in B} d_n\gamma\tanh'(q_n)z_n.
+\]</span></p>
+<p>For <span class="math inline">\(\beta\)</span>, the path is <span class="math inline">\(\beta\to q_n\to r_n\to u_n\to L_n\)</span>. The chain rule gives</p>
+<p><span class="math display">\[
+\frac{\partial L_n}{\partial \beta}=\frac{\partial L_n}{\partial u_n}\frac{\partial u_n}{\partial r_n}\frac{\partial r_n}{\partial q_n}\frac{\partial q_n}{\partial \beta}=d_n\gamma\tanh'(q_n).
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\frac{\partial J_B}{\partial \beta}=\frac{1}{M}\sum_{n\in B} d_n\gamma\tanh'(q_n).
+\]</span></p>
+<p>Since <span class="math inline">\(\tanh'(q_n)=1-\tanh^2(q_n)\)</span> and <span class="math inline">\(r_n=\tanh(q_n)\)</span>, the last two gradients can also be written as</p>
+<p><span class="math display">\[
+\frac{\partial J_B}{\partial \alpha}=\frac{1}{M}\sum_{n\in B} d_n\gamma(1-r_n^2)z_n,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\frac{\partial J_B}{\partial \beta}=\frac{1}{M}\sum_{n\in B} d_n\gamma(1-r_n^2).
+\]</span></p>
+</details>
+</section>
+<section id="question-13" class="level3" data-number="37.0.13">
+<h3 data-number="37.0.13" class="anchored" data-anchor-id="question-13"><span class="header-section-number">37.0.13</span> Question 13</h3>
+<p>For the mini-batch objective</p>
+<p><span class="math display">\[
+J_B=\frac{1}{M}\sum_{n\in B}L_n,\qquad L_n=\frac{1}{4}(u_n-t_n)^4,
+\]</span></p>
+<p>with</p>
+<p><span class="math display">\[
+u_n=\gamma r_n+\delta,\qquad r_n=\tanh(q_n),\qquad q_n=\alpha z_n+\beta,
+\]</span></p>
+<p>why do the gradients for the shared parameters <span class="math inline">\(\alpha,\beta,\gamma,\delta\)</span> sum contributions over the mini-batch, while quantities such as <span class="math inline">\(\partial J_B/\partial r_n\)</span> and <span class="math inline">\(\partial J_B/\partial q_n\)</span> are kept separately for each observation before continuing backward?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The parameters <span class="math inline">\(\alpha,\beta,\gamma,\delta\)</span> are shared across all observations in the mini-batch. The same value of <span class="math inline">\(\gamma\)</span>, for example, appears in every expression</p>
+<p><span class="math display">\[
+u_n=\gamma r_n+\delta.
+\]</span></p>
+<p>Therefore, the total derivative of <span class="math inline">\(J_B\)</span> with respect to <span class="math inline">\(\gamma\)</span> must add the contributions from every observation:</p>
+<p><span class="math display">\[
+\frac{\partial J_B}{\partial \gamma}=\frac{1}{M}\sum_{n\in B}\frac{\partial L_n}{\partial u_n}\frac{\partial u_n}{\partial \gamma}.
+\]</span></p>
+<p>Using <span class="math inline">\(d_n=(u_n-t_n)^3\)</span> and <span class="math inline">\(\partial u_n/\partial \gamma=r_n\)</span>, this becomes</p>
+<p><span class="math display">\[
+\frac{\partial J_B}{\partial \gamma}=\frac{1}{M}\sum_{n\in B}d_n r_n.
+\]</span></p>
+<p>The same idea applies to the other shared parameters. For example,</p>
+<p><span class="math display">\[
+\frac{\partial J_B}{\partial \delta}=\frac{1}{M}\sum_{n\in B}d_n,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\frac{\partial J_B}{\partial \alpha}=\frac{1}{M}\sum_{n\in B}d_n\gamma\tanh'(q_n)z_n,\qquad
+\frac{\partial J_B}{\partial \beta}=\frac{1}{M}\sum_{n\in B}d_n\gamma\tanh'(q_n).
+\]</span></p>
+<p>By contrast, <span class="math inline">\(r_n\)</span> and <span class="math inline">\(q_n\)</span> are not shared parameters. They are intermediate values for a specific observation <span class="math inline">\(n\)</span>. Before the backward pass can continue from <span class="math inline">\(r_n\)</span> to <span class="math inline">\(q_n\)</span>, it needs one derivative for each observation:</p>
+<p><span class="math display">\[
+\frac{\partial J_B}{\partial r_n}=\frac{1}{M}d_n\gamma.
+\]</span></p>
+<p>Then, for each observation separately,</p>
+<p><span class="math display">\[
+\frac{\partial J_B}{\partial q_n}=\frac{\partial J_B}{\partial r_n}\frac{\partial r_n}{\partial q_n}=\frac{1}{M}d_n\gamma\tanh'(q_n).
+\]</span></p>
+<p>So the rule is: gradients for shared parameters are summed over the mini-batch, while gradients for per-observation intermediate quantities remain indexed by <span class="math inline">\(n\)</span> until they are used by the next local backward rule.</p>
+</details>
+</section>
+<section id="question-14" class="level3" data-number="37.0.14">
+<h3 data-number="37.0.14" class="anchored" data-anchor-id="question-14"><span class="header-section-number">37.0.14</span> Question 14</h3>
+<p>When a graph branches, gradient contributions add. Verify this in the concrete graph</p>
+<p><span class="math display">\[
+r=z^2,\qquad t=z^3,\qquad L=r+t.
+\]</span></p>
+<p>Compute <span class="math inline">\(\partial L/\partial z\)</span> by adding path contributions, and compare with direct differentiation.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>There are two downstream paths from <span class="math inline">\(z\)</span> to <span class="math inline">\(L\)</span>. The contribution through <span class="math inline">\(r\)</span> is</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial r}\frac{\partial r}{\partial z}=1\cdot 2z=2z.
+\]</span></p>
+<p>The contribution through <span class="math inline">\(t\)</span> is</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial t}\frac{\partial t}{\partial z}=1\cdot 3z^2=3z^2.
+\]</span></p>
+<p>Adding gives</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial z}=2z+3z^2.
+\]</span></p>
+<p>Directly, <span class="math inline">\(L=z^2+z^3\)</span>, so</p>
+<p><span class="math display">\[
+\frac{dL}{dz}=2z+3z^2.
+\]</span></p>
+<p>The two calculations agree.</p>
+</details>
+</section>
+<section id="question-15" class="level3" data-number="37.0.15">
+<h3 data-number="37.0.15" class="anchored" data-anchor-id="question-15"><span class="header-section-number">37.0.15</span> Question 15</h3>
+<p>A dense layer has</p>
+<p><span class="math display">\[
+Z=XW+b,
+\]</span></p>
+<p>where <span class="math inline">\(X\in\mathbb R^{B\times d}\)</span>, <span class="math inline">\(W\in\mathbb R^{d\times m}\)</span>, <span class="math inline">\(b\in\mathbb R^m\)</span>, and the upstream gradient is</p>
+<p><span class="math display">\[
+G=\frac{\partial L}{\partial Z}\in\mathbb R^{B\times m}.
+\]</span></p>
+<p>State the shapes of</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial X},\qquad
+\frac{\partial L}{\partial W},\qquad
+\frac{\partial L}{\partial b},
+\]</span></p>
+<p>look the dense-layer backward formulas from the lecture, and check that the right-hand side of each formula has the correct shape.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>Each gradient has the same shape as the quantity it differentiates:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial X}\in\mathbb R^{B\times d},\qquad
+\frac{\partial L}{\partial W}\in\mathbb R^{d\times m},\qquad
+\frac{\partial L}{\partial b}\in\mathbb R^m.
+\]</span></p>
+<p>The dense-layer backward formulas are</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial X}=GW^T,\qquad
+\frac{\partial L}{\partial W}=X^TG,\qquad
+\frac{\partial L}{\partial b}=\sum_{i=1}^B G_i,
+\]</span></p>
+<p>where <span class="math inline">\(G_i\)</span> is row <span class="math inline">\(i\)</span> of <span class="math inline">\(G\)</span>.</p>
+<p>Now check the shapes. Since <span class="math inline">\(G\in\mathbb R^{B\times m}\)</span> and <span class="math inline">\(W^T\in\mathbb R^{m\times d}\)</span>,</p>
+<p><span class="math display">\[
+GW^T\in\mathbb R^{B\times d},
+\]</span></p>
+<p>which matches the shape of <span class="math inline">\(X\)</span>.</p>
+<p>Since <span class="math inline">\(X^T\in\mathbb R^{d\times B}\)</span> and <span class="math inline">\(G\in\mathbb R^{B\times m}\)</span>,</p>
+<p><span class="math display">\[
+X^TG\in\mathbb R^{d\times m},
+\]</span></p>
+<p>which matches the shape of <span class="math inline">\(W\)</span>.</p>
+<p>Finally, summing <span class="math inline">\(G\in\mathbb R^{B\times m}\)</span> over the <span class="math inline">\(B\)</span> batch rows gives a vector in <span class="math inline">\(\mathbb R^m\)</span>:</p>
+<p><span class="math display">\[
+\sum_{i=1}^B G_i\in\mathbb R^m,
+\]</span></p>
+<p>which matches the shape of <span class="math inline">\(b\)</span>.</p>
+</details>
+</section>
+<section id="question-16" class="level3" data-number="37.0.16">
+<h3 data-number="37.0.16" class="anchored" data-anchor-id="question-16"><span class="header-section-number">37.0.16</span> Question 16</h3>
+<p>Suppose flattening tensors gives <span class="math inline">\(X\)</span> with shape <span class="math inline">\(20\times120\)</span> and <span class="math inline">\(Y\)</span> with shape <span class="math inline">\(20\times60\)</span>. What is the shape of the Jacobian</p>
+<p><span class="math display">\[
+J=\frac{\partial \operatorname{vec}(Y)}{\partial \operatorname{vec}(X)},
+\]</span></p>
+<p>and how many entries does it contain?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The flattened input has</p>
+<p><span class="math display">\[
+n=20\cdot120=2400
+\]</span></p>
+<p>entries, and the flattened output has</p>
+<p><span class="math display">\[
+m=20\cdot60=1200
+\]</span></p>
+<p>entries. Therefore,</p>
+<p><span class="math display">\[
+J\in\mathbb R^{1200\times2400}.
+\]</span></p>
+<p>The number of entries is</p>
+<p><span class="math display">\[
+1200\cdot2400=2{,}880{,}000.
+\]</span></p>
+<p>This is why the lecture emphasizes computing VJPs directly rather than explicitly forming <span class="math inline">\(J\)</span>.</p>
+</details>
+</section>
+<section id="question-17" class="level3" data-number="37.0.17">
+<h3 data-number="37.0.17" class="anchored" data-anchor-id="question-17"><span class="header-section-number">37.0.17</span> Question 17</h3>
+<p>Consider the quadratic objective</p>
+<p><span class="math display">\[
+R(\theta)=\frac{1}{2}\theta^2.
+\]</span></p>
+<p>For this objective, the gradient is</p>
+<p><span class="math display">\[
+R'(\theta)=\theta.
+\]</span></p>
+<p>Gradient descent with learning rate <span class="math inline">\(\eta\)</span> therefore gives the update</p>
+<p><span class="math display">\[
+\theta^{(t+1)}=\theta^{(t)}-\eta \theta^{(t)}.
+\]</span></p>
+<ol type="1">
+<li>What is the formula for <span class="math inline">\(\theta^{(t)}\)</span> in terms of <span class="math inline">\(\theta^{(0)}\)</span>?</li>
+<li>For which values of <span class="math inline">\(\eta\)</span> does <span class="math inline">\(\theta^{(t)}\)</span> converge to <span class="math inline">\(0\)</span>?</li>
+</ol>
+<details>
+<summary>
+Answer
+</summary>
+<p>Starting from</p>
+<p><span class="math display">\[
+\theta^{(t+1)}=\theta^{(t)}-\eta\theta^{(t)},
+\]</span></p>
+<p>factor out <span class="math inline">\(\theta^{(t)}\)</span>:</p>
+<p><span class="math display">\[
+\theta^{(t+1)}=(1-\eta)\theta^{(t)}.
+\]</span></p>
+<p>So in the form <span class="math inline">\(\theta^{(t+1)}=a\theta^{(t)}\)</span>, we have</p>
+<p><span class="math display">\[
+a=1-\eta.
+\]</span></p>
+<p>Applying the update repeatedly gives</p>
+<p><span class="math display">\[
+\theta^{(t)}=(1-\eta)^t\theta^{(0)}.
+\]</span></p>
+<p>This converges to <span class="math inline">\(0\)</span> exactly when the multiplier <span class="math inline">\(1-\eta\)</span> has absolute value less than <span class="math inline">\(1\)</span>:</p>
+<p><span class="math display">\[
+|1-\eta|&lt;1.
+\]</span></p>
+<p>Solving this inequality gives</p>
+<p><span class="math display">\[
+-1&lt;1-\eta&lt;1.
+\]</span></p>
+<p>Subtracting <span class="math inline">\(1\)</span> from all three parts gives</p>
+<p><span class="math display">\[
+-2&lt;-\eta&lt;0.
+\]</span></p>
+<p>Multiplying by <span class="math inline">\(-1\)</span> reverses the inequalities:</p>
+<p><span class="math display">\[
+0&lt;\eta&lt;2.
+\]</span></p>
+<p>Therefore, gradient descent converges to <span class="math inline">\(0\)</span> for learning rates satisfying</p>
+<p><span class="math display">\[
+0&lt;\eta&lt;2.
+\]</span></p>
+<p>If <span class="math inline">\(\eta&gt;2\)</span>, then <span class="math inline">\(|1-\eta|&gt;1\)</span>, so the iterates grow in magnitude. This is the precise sense in which a learning rate that is too large can make gradient descent unstable.</p>
+</details>
+</section>
+<section id="question-18" class="level3" data-number="37.0.18">
+<h3 data-number="37.0.18" class="anchored" data-anchor-id="question-18"><span class="header-section-number">37.0.18</span> Question 18</h3>
+<p>Changing the mini-batch objective from an average</p>
+<p><span class="math display">\[
+\frac1{|B_t|}\sum_{n\in B_t}\ell_n(\theta)
+\]</span></p>
+<p>to a sum</p>
+<p><span class="math display">\[
+\sum_{n\in B_t}\ell_n(\theta)
+\]</span></p>
+<p>would change the gradient used in the update. What exactly changes, and why does the averaging convention make learning-rate comparisons across batch sizes cleaner?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The gradient of the sum is <span class="math inline">\(|B_t|\)</span> times the gradient of the average:</p>
+<p><span class="math display">\[
+\nabla_\theta\sum_{n\in B_t}\ell_n(\theta)
+=|B_t|\nabla_\theta\left(\frac1{|B_t|}\sum_{n\in B_t}\ell_n(\theta)\right).
+\]</span></p>
+<p>With the same learning rate, using the summed loss would therefore make the step size scale linearly with the batch size. Averaging keeps the gradient on roughly the same scale when <span class="math inline">\(|B_t|\)</span> changes, so the learning rate has a more comparable meaning across different mini-batch sizes.</p>
+</details>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../questions/130_nn_questions.html" class="pagination-link" aria-label="Feed-Forward Neural Networks - Review Questions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../questions/150_nn_arch_questions.html" class="pagination-link" aria-label="NNs: Generalization, Regularization, and Modeling - Review Questions">
+        <span class="nav-page-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

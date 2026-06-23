@@ -470,6 +470,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/140_backprop_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/150_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -503,24 +515,23 @@ window.Quarto = {
   <li><a href="#scaling-inputs" id="toc-scaling-inputs" class="nav-link" data-scroll-target="#scaling-inputs"><span class="header-section-number">16.3.5</span> Scaling Inputs</a></li>
   <li><a href="#optimizer-variants" id="toc-optimizer-variants" class="nav-link" data-scroll-target="#optimizer-variants"><span class="header-section-number">16.3.6</span> Optimizer Variants</a></li>
   </ul></li>
-  <li><a href="#example-mnist-classification-in-keras" id="toc-example-mnist-classification-in-keras" class="nav-link" data-scroll-target="#example-mnist-classification-in-keras"><span class="header-section-number">17</span> Example: MNIST Classification in Keras</a>
+  <li><a href="#example-mnist-classification-in-keras" id="toc-example-mnist-classification-in-keras" class="nav-link" data-scroll-target="#example-mnist-classification-in-keras"><span class="header-section-number">16.4</span> Example: MNIST Classification in Keras</a>
   <ul class="collapse">
-  <li><a href="#load-the-mnist-data" id="toc-load-the-mnist-data" class="nav-link" data-scroll-target="#load-the-mnist-data"><span class="header-section-number">17.1</span> Load the MNIST Data</a></li>
-  <li><a href="#preprocess-the-data" id="toc-preprocess-the-data" class="nav-link" data-scroll-target="#preprocess-the-data"><span class="header-section-number">17.2</span> Preprocess the Data</a></li>
-  <li><a href="#define-a-feed-forward-model" id="toc-define-a-feed-forward-model" class="nav-link" data-scroll-target="#define-a-feed-forward-model"><span class="header-section-number">17.3</span> Define a Feed-Forward Model</a></li>
-  <li><a href="#compile-the-model" id="toc-compile-the-model" class="nav-link" data-scroll-target="#compile-the-model"><span class="header-section-number">17.4</span> Compile the Model</a></li>
-  <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model"><span class="header-section-number">17.5</span> Fit the Model</a></li>
-  <li><a href="#plot-training-and-validation-curves" id="toc-plot-training-and-validation-curves" class="nav-link" data-scroll-target="#plot-training-and-validation-curves"><span class="header-section-number">17.6</span> Plot Training and Validation Curves</a></li>
-  <li><a href="#evaluate-on-the-test-set" id="toc-evaluate-on-the-test-set" class="nav-link" data-scroll-target="#evaluate-on-the-test-set"><span class="header-section-number">17.7</span> Evaluate on the Test Set</a></li>
-  <li><a href="#inspect-predictions" id="toc-inspect-predictions" class="nav-link" data-scroll-target="#inspect-predictions"><span class="header-section-number">17.8</span> Inspect Predictions</a></li>
+  <li><a href="#load-the-mnist-data" id="toc-load-the-mnist-data" class="nav-link" data-scroll-target="#load-the-mnist-data"><span class="header-section-number">16.4.1</span> Load the MNIST Data</a></li>
+  <li><a href="#preprocess-the-data" id="toc-preprocess-the-data" class="nav-link" data-scroll-target="#preprocess-the-data"><span class="header-section-number">16.4.2</span> Preprocess the Data</a></li>
+  <li><a href="#define-a-feed-forward-model" id="toc-define-a-feed-forward-model" class="nav-link" data-scroll-target="#define-a-feed-forward-model"><span class="header-section-number">16.4.3</span> Define a Feed-Forward Model</a></li>
+  <li><a href="#compile-the-model" id="toc-compile-the-model" class="nav-link" data-scroll-target="#compile-the-model"><span class="header-section-number">16.4.4</span> Compile the Model</a></li>
+  <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model"><span class="header-section-number">16.4.5</span> Fit the Model</a></li>
+  <li><a href="#plot-training-and-validation-curves" id="toc-plot-training-and-validation-curves" class="nav-link" data-scroll-target="#plot-training-and-validation-curves"><span class="header-section-number">16.4.6</span> Plot Training and Validation Curves</a></li>
+  <li><a href="#evaluate-on-the-test-set" id="toc-evaluate-on-the-test-set" class="nav-link" data-scroll-target="#evaluate-on-the-test-set"><span class="header-section-number">16.4.7</span> Evaluate on the Test Set</a></li>
+  <li><a href="#inspect-predictions" id="toc-inspect-predictions" class="nav-link" data-scroll-target="#inspect-predictions"><span class="header-section-number">16.4.8</span> Inspect Predictions</a></li>
   </ul></li>
-  <li><a href="#over-parameterized-models-and-generalization" id="toc-over-parameterized-models-and-generalization" class="nav-link" data-scroll-target="#over-parameterized-models-and-generalization"><span class="header-section-number">18</span> Over-Parameterized Models and Generalization</a>
+  <li><a href="#over-parameterized-models-and-generalization" id="toc-over-parameterized-models-and-generalization" class="nav-link" data-scroll-target="#over-parameterized-models-and-generalization"><span class="header-section-number">16.5</span> Over-Parameterized Models and Generalization</a></li>
+  <li><a href="#double-descent" id="toc-double-descent" class="nav-link" data-scroll-target="#double-descent"><span class="header-section-number">16.6</span> Double Descent</a>
   <ul class="collapse">
-  <li><a href="#double-descent" id="toc-double-descent" class="nav-link" data-scroll-target="#double-descent"><span class="header-section-number">18.1</span> Double Descent</a>
-  <ul class="collapse">
-  <li><a href="#a-simple-example-minimum-norm-polynomial-regression" id="toc-a-simple-example-minimum-norm-polynomial-regression" class="nav-link" data-scroll-target="#a-simple-example-minimum-norm-polynomial-regression"><span class="header-section-number">18.1.1</span> A Simple Example: Minimum-Norm Polynomial Regression</a></li>
+  <li><a href="#a-simple-example-minimum-norm-polynomial-regression" id="toc-a-simple-example-minimum-norm-polynomial-regression" class="nav-link" data-scroll-target="#a-simple-example-minimum-norm-polynomial-regression"><span class="header-section-number">16.6.1</span> A Simple Example: Minimum-Norm Polynomial Regression</a></li>
   </ul></li>
-  </ul></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">16.7</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -657,7 +668,18 @@ d_i d_{i-1} + d_i
 <li>It can improve validation performance.</li>
 <li>It connects directly to ridge regression and elastic net ideas from earlier lectures.</li>
 </ul>
-<p>In software, weight decay is often implemented either as an optimizer option or as a per-layer-level regularizer. Both potentially have their places.</p>
+<p>In software, weight decay is often implemented either as an optimizer option or as a per-layer-level regularizer. Both potentially have their places. Sometimes we only penalize the weights in the layers (not the biases), other times we penalize both weights and biases. Different NN software handles this differently. Whereas for traditional NNs we will update the parmameter with:</p>
+<p><span class="math display">\[
+\theta^{(t+1)}=
+\theta^{(t)}-
+\eta \nabla_\theta \hat{R}(\theta^{(t)}),
+\]</span></p>
+<p>if we use weight-decay then our update becomes</p>
+<p><span class="math display">\[
+\theta^{(t+1)}=
+(1-\eta\lambda)\theta^{(t)} -
+\eta \nabla_\theta \hat{R}(\theta^{(t)})
+\]</span> (or, more realistically, this is the update for whatever part of <span class="math inline">\(\theta\)</span> is weight-decayed).</p>
 </section>
 <section id="early-stopping" class="level3" data-number="16.2.2">
 <h3 data-number="16.2.2" class="anchored" data-anchor-id="early-stopping"><span class="header-section-number">16.2.2</span> Early Stopping</h3>
@@ -666,17 +688,51 @@ d_i d_{i-1} + d_i
 <ol type="1">
 <li>Train the model over many epochs.</li>
 <li>Track validation loss after each epoch.</li>
-<li>Stop training when validation loss stops improving.</li>
+<li>Stop training when validation loss has not improved for some number of epochs.</li>
 <li>Keep the parameter values from the best validation epoch.</li>
 </ol>
-<p>Early stopping is useful because overfitting often appears as continued improvement in training loss but worsening validation loss.</p>
+<p>Early stopping is useful because overfitting often appears as continued improvement in training loss but worsening validation loss. In that situation, continuing to train may make the model fit noise or idiosyncrasies in the training set rather than improving generalization.</p>
+<p>In practice, validation loss can fluctuate from epoch to epoch, so we usually use a <strong>patience</strong> rule. For example, we might stop only after validation loss fails to improve for 5 or 10 consecutive epochs. The test set should not be used to decide when to stop; it should be reserved for final evaluation after model selection is complete.</p>
 </section>
 <section id="dropout" class="level3" data-number="16.2.3">
 <h3 data-number="16.2.3" class="anchored" data-anchor-id="dropout"><span class="header-section-number">16.2.3</span> Dropout</h3>
 <p>Dropout is another common neural network regularization method.</p>
-<p>During training, dropout randomly sets some hidden-unit <strong>outputs</strong> to zero. This means the network cannot rely too heavily on any one hidden unit. It is typically turned off, or replaced by a deterministic scaling convention, at prediction time.</p>
-<p>For example, if we apply dropout with probability <span class="math inline">\(0.2\)</span>, then during each training step, each hidden-unit output has a <span class="math inline">\(20\%\)</span> chance of being set to zero. The particular units dropped out change from one training step to the next, so the network is trained under many slightly different versions of itself.</p>
-<p>This has a regularizing effect. It discourages hidden units from becoming too specialized or too dependent on one another. Instead, the network is pushed to learn representations that remain useful even when some units are temporarily removed. In some ways (will discuss later) its almost like averaging over a class of models with hidden units randomly set to zero.</p>
+<p>During training, dropout randomly sets some hidden-unit outputs to zero. If the dropout probability is <span class="math inline">\(p=0.2\)</span>, then each selected hidden-unit output has a <span class="math inline">\(20%\)</span> chance of being set to zero during a training step. Equivalently, each unit has probability <span class="math inline">\(1-p=0.8\)</span> of being kept.</p>
+<p>Mathematically, suppose <span class="math inline">\(h_i\)</span> is one hidden-unit output. Dropout samples a random mask</p>
+<p><span class="math display">\[
+m_i\sim \operatorname{Bernoulli}(1-p),
+\]</span></p>
+<p>where <span class="math inline">\(m_i=1\)</span> means the unit is kept and <span class="math inline">\(m_i=0\)</span> means the unit is dropped.</p>
+<p>In most modern implementations, dropout uses the <strong>inverted dropout</strong> convention. During training, the dropped-out activation is</p>
+<p><span class="math display">\[
+\tilde h_i=\frac{m_i h_i}{1-p}.
+\]</span></p>
+<p>The scaling factor <span class="math inline">\(1/(1-p)\)</span> is used so that the expected value of the dropped-out activation matches the original activation:</p>
+<p><span class="math display">\[
+\mathbb E[\tilde h_i]=\mathbb E\left[\frac{m_i h_i}{1-p}\right]=\frac{h_i}{1-p}\mathbb E[m_i]=\frac{h_i}{1-p}(1-p)=h_i.
+\]</span></p>
+<p>So dropout adds random noise during training while preserving the activation’s average scale. This helps make the training-time network and prediction-time network more comparable.</p>
+<p>At prediction time, dropout is turned off. Under inverted dropout, we simply use</p>
+<p><span class="math display">\[
+\tilde h_i=h_i.
+\]</span></p>
+<p>No random units are removed, and no additional scaling is needed at prediction time.</p>
+<p>Dropout has a regularizing effect because it discourages the network from relying too heavily on any one hidden unit or on fragile combinations of hidden units. Instead, the model is pushed to learn representations that remain useful even when some activations are temporarily removed.</p>
+<p>Another way to see the noise introduced by dropout is through its variance. Since <span class="math inline">\(\tilde h_i\)</span> equals <span class="math inline">\(0\)</span> with probability <span class="math inline">\(p\)</span> and <span class="math inline">\(h_i/(1-p)\)</span> with probability <span class="math inline">\(1-p\)</span>, its variance is</p>
+<p><span class="math display">\[
+\operatorname{Var}(\tilde h_i)=\frac{p}{1-p}h_i^2.
+\]</span></p>
+<p>Thus larger dropout probabilities inject more noise into the activations. This can improve regularization, but if <span class="math inline">\(p\)</span> is too large, training may become too noisy and the model may underfit.</p>
+<p>A useful intuition is that dropout trains many related “thinned” versions of the same network that share parameters. At prediction time, the deterministic network with dropout turned off acts like an approximation to combining these many randomly thinned networks. This is an intuition, not an exact equivalence in general.</p>
+<p>Important implementation details:</p>
+<ol type="1">
+<li>Dropout is active only during training mode.</li>
+<li>Dropout should be turned off during evaluation or prediction.</li>
+<li>The same dropout mask used in the forward pass is also used in the corresponding backward pass.</li>
+<li>Standard dropout is usually applied to activations, not directly to biases.</li>
+<li>Dropout is usually not applied to the final output layer unless there is a specific reason.</li>
+<li>Different layers may use different dropout probabilities.</li>
+</ol>
 </section>
 <section id="smaller-networks-as-regularization" class="level3" data-number="16.2.4">
 <h3 data-number="16.2.4" class="anchored" data-anchor-id="smaller-networks-as-regularization"><span class="header-section-number">16.2.4</span> Smaller Networks as Regularization</h3>
@@ -705,16 +761,16 @@ d_i d_{i-1} + d_i
 </ul>
 <section id="learning-rate" class="level3" data-number="16.3.1">
 <h3 data-number="16.3.1" class="anchored" data-anchor-id="learning-rate"><span class="header-section-number">16.3.1</span> Learning Rate</h3>
-<p>The learning rate controls how large each parameter update is. For mini-batch SGD,</p>
+<p>The learning rate controls the size of each parameter update. For mini-batch SGD,</p>
 <p><span class="math display">\[
-\theta^{(t+1)}=
-\theta^{(t)}-
-\eta \nabla_\theta \hat{R}_{B_t}(\theta^{(t)}),
+\theta^{(t+1)}=\theta^{(t)}-\eta \nabla_\theta \hat{R}_{B_t}(\theta^{(t)}),
 \]</span></p>
-<p>where <span class="math inline">\(\eta\)</span> is the learning rate.</p>
-<p>If <span class="math inline">\(\eta\)</span> is too small, training may be very slow.</p>
-<p>If <span class="math inline">\(\eta\)</span> is too large, training may be unstable. The loss may jump around or diverge.</p>
-<p>The learning rate is often one of the most important hyperparameters. More advaned optimizers will attempt to adaptively set this learning rate, or use some schedule of learning rates.</p>
+<p>where <span class="math inline">\(\eta\)</span> is the learning rate and <span class="math inline">\(\hat{R}_{B_t}\)</span> is the empirical risk computed on the mini-batch <span class="math inline">\(B_t\)</span>.</p>
+<p>If <span class="math inline">\(\eta\)</span> is too small, training may make progress very slowly. The loss may decrease, but only after many updates.</p>
+<p>If <span class="math inline">\(\eta\)</span> is too large, training may become unstable. The updates can overshoot good parameter values, causing the loss to fluctuate wildly, fail to decrease, or even diverge.</p>
+<p>Some fluctuation is normal in mini-batch training because each update uses only a subset of the training data. The issue is not that the loss must decrease smoothly at every step. The issue is whether the overall trend improves over time.</p>
+<p>The learning rate is often one of the most important hyperparameters. In practice, it is common to use either a fixed learning rate, a learning rate schedule, or an adaptive optimizer. A learning rate schedule changes <span class="math inline">\(\eta\)</span> during training, often making it smaller as training progresses. Adaptive optimizers, such as Adam, still use a base learning rate, but they also rescale updates using information from past gradients.</p>
+<p>Because the learning rate has such a strong effect on training, it is usually monitored together with training loss and validation loss.</p>
 </section>
 <section id="number-of-epochs" class="level3" data-number="16.3.2">
 <h3 data-number="16.3.2" class="anchored" data-anchor-id="number-of-epochs"><span class="header-section-number">16.3.2</span> Number of Epochs</h3>
@@ -727,7 +783,10 @@ d_i d_{i-1} + d_i
 </section>
 <section id="initialization" class="level3" data-number="16.3.4">
 <h3 data-number="16.3.4" class="anchored" data-anchor-id="initialization"><span class="header-section-number">16.3.4</span> Initialization</h3>
-<p>Neural networks usually initialize <span class="math inline">\(\theta\)</span> randomly. Initialization matters because neural network objectives are usually nonconvex. Different starting values can lead to different fitted networks. In practice, software usually provides reasonable default initialization schemes, although there has been some research showing that this can matter.</p>
+<p>Neural networks usually initialize their weights randomly before training begins. Initialization matters for two related reasons.</p>
+<p>First, neural network objectives are usually nonconvex. Different starting values can lead optimization toward different fitted networks, even when the architecture, data, loss function, and optimizer are the same.</p>
+<p>The scale of the initial weights also matters. If weights are initialized too small, signals and gradients may shrink as they pass through the network. If weights are initialized too large, activations or gradients may become unstable. Common initialization schemes, such as Xavier/Glorot initialization and Kaiming/He initialization, choose the initial scale based on the number of inputs and outputs of a layer.</p>
+<p>In practice, deep learning software usually provides reasonable default initialization schemes. These defaults are often good enough for standard models, but initialization can still matter, especially for deep networks, unusual architectures, or difficult optimization problems. Bias terms are often initialized more simply, such as at zero.</p>
 </section>
 <section id="scaling-inputs" class="level3" data-number="16.3.5">
 <h3 data-number="16.3.5" class="anchored" data-anchor-id="scaling-inputs"><span class="header-section-number">16.3.5</span> Scaling Inputs</h3>
@@ -742,18 +801,72 @@ x_j^{\text{scaled}}=
 </section>
 <section id="optimizer-variants" class="level3" data-number="16.3.6">
 <h3 data-number="16.3.6" class="anchored" data-anchor-id="optimizer-variants"><span class="header-section-number">16.3.6</span> Optimizer Variants</h3>
-<p>So far, we have focused on gradient descent and mini-batch SGD. Many neural networks use optimizer variants that modify the basic update rule.</p>
+<p>So far, we have focused on gradient descent and mini-batch SGD. In basic mini-batch SGD, the update is</p>
+<p><span class="math display">\[
+\theta^{(t+1)}=\theta^{(t)}-\eta g_t,
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+g_t=\nabla_\theta \hat R_{B_t}(\theta^{(t)}).
+\]</span></p>
+<p>Here <span class="math inline">\(g_t\)</span> is the mini-batch gradient and <span class="math inline">\(\eta\)</span> is the learning rate.</p>
+<p>Many neural networks use optimizer variants that modify this basic update rule. These methods still use gradients computed by backpropagation, but they change how the gradient is converted into a parameter update.</p>
 <p>Common examples include:</p>
 <ul>
 <li>SGD with momentum</li>
 <li>RMSProp</li>
 <li>Adam</li>
 </ul>
-<p>We won’t have time to go into these extensively, but they all offer potentially more advanced ways to update the learning rate and gradient. <strong>Adam</strong> is a common default choice in many applications, while <strong>SGD with momentum</strong> is also widely used. Its difficult to know, in advance, which will work better.</p>
+<section id="sgd-with-momentum" class="level4" data-number="16.3.6.1">
+<h4 data-number="16.3.6.1" class="anchored" data-anchor-id="sgd-with-momentum"><span class="header-section-number">16.3.6.1</span> SGD with Momentum</h4>
+<p>SGD with momentum keeps a running update direction. Instead of using only the current mini-batch gradient <span class="math inline">\(g_t\)</span>, it combines the current gradient with information from previous gradients.</p>
+<p>A simple version is</p>
+<p><span class="math display">\[
+v_t=\rho v_{t-1}+g_t,
+\]</span></p>
+<p>followed by</p>
+<p><span class="math display">\[
+\theta^{(t+1)}=\theta^{(t)}-\eta v_t.
+\]</span></p>
+<p>The parameter <span class="math inline">\(\rho\)</span> is the momentum coefficient, often chosen close to <span class="math inline">\(1\)</span>, such as <span class="math inline">\(0.9\)</span>.</p>
+<p>The intuition is that if gradients keep pointing in a similar direction, momentum builds up and moves faster in that direction. If gradients fluctuate from one mini-batch to the next, momentum can smooth out some of that noise.</p>
+</section>
+<section id="rmsprop" class="level4" data-number="16.3.6.2">
+<h4 data-number="16.3.6.2" class="anchored" data-anchor-id="rmsprop"><span class="header-section-number">16.3.6.2</span> RMSProp</h4>
+<p>RMSProp keeps track of a moving average of squared gradients. In elementwise notation, a simple version is</p>
+<p><span class="math display">\[
+s_t=\rho s_{t-1}+(1-\rho)g_t^2,
+\]</span></p>
+<p>where <span class="math inline">\(g_t^2\)</span> means squaring each coordinate of the gradient. The update is then</p>
+<p><span class="math display">\[
+\theta^{(t+1)}=\theta^{(t)}-\eta \frac{g_t}{\sqrt{s_t}+\epsilon}.
+\]</span></p>
+<p>Here <span class="math inline">\(\epsilon\)</span> is a small positive number added for numerical stability.</p>
+<p>The effect is that coordinates with consistently large gradients get scaled down, while coordinates with smaller gradients can receive relatively larger updates. Thus RMSProp uses a different effective step size for different parameters.</p>
+<p><strong>Note:</strong> Some implementations place <span class="math inline">\(\epsilon\)</span> outside the square root, using <span class="math inline">\(\sqrt{s_t}+\epsilon\)</span> instead of <span class="math inline">\(\sqrt{s_t+\epsilon}\)</span>. The purpose is the same: to avoid division by zero and prevent extremely large updates when the running squared-gradient average is very small.</p>
+</section>
+<section id="adam" class="level4" data-number="16.3.6.3">
+<h4 data-number="16.3.6.3" class="anchored" data-anchor-id="adam"><span class="header-section-number">16.3.6.3</span> Adam</h4>
+<p>Adam combines the two ideas above. It keeps a moving average of gradients, like momentum, and a moving average of squared gradients, like RMSProp.</p>
+<p>A simplified version is</p>
+<p><span class="math display">\[
+m_t=\beta_1 m_{t-1}+(1-\beta_1)g_t,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+s_t=\beta_2 s_{t-1}+(1-\beta_2)g_t^2.
+\]</span></p>
+<p>The update has the form</p>
+<p><span class="math display">\[
+\theta^{(t+1)}=\theta^{(t)}-\eta \frac{m_t}{\sqrt{s_t}+\epsilon}.
+\]</span></p>
+<p>In full implementations, Adam also includes bias-correction terms because the moving averages start at zero. The main idea is enough for now: Adam uses a smoothed gradient direction and rescales the update coordinate by coordinate.</p>
+<p>Adam is a common default choice in many neural network applications. SGD with momentum is also widely used, especially when practitioners want a simpler optimizer and are willing to tune the learning rate schedule carefully. It is difficult to know in advance which optimizer will work better for a given problem, so optimizer choice is usually treated as a hyperparameter.</p>
 </section>
 </section>
-<section id="example-mnist-classification-in-keras" class="level1" data-number="17">
-<h1 data-number="17"><span class="header-section-number">17</span> Example: MNIST Classification in Keras</h1>
+</section>
+<section id="example-mnist-classification-in-keras" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="example-mnist-classification-in-keras"><span class="header-section-number">16.4</span> Example: MNIST Classification in Keras</h2>
 <p>In this example, we use a simple feed-forward network. This means we flatten each image into a vector and then apply “dense” layers. This is not the best possible architecture for images, because it ignores the spatial structure of the pixels. But it is a useful example for understanding standard feed-forward networks for multiclass classification.</p>
 <p>We will use <strong>Keras</strong> because it gives a compact, high-level interface for defining and training neural networks, while still fitting naturally with the <code>fit</code> / <code>predict</code> workflow students have already seen in scikit-learn. Alternatives include <strong>PyTorch</strong>, which gives more direct control over model code and training loops, and <strong>TensorFlow</strong>, which is a broader machine-learning platform often used for both training and deployment. (Keras 3 can also run on top of TensorFlow, JAX, or PyTorch backends.)</p>
 <div id="d181d873" class="cell">
@@ -767,15 +880,15 @@ x_j^{\text{scaled}}=
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1777782821.248387 2240634 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
-I0000 00:00:1777782821.300085 2240634 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+I0000 00:00:1782252331.534804   16282 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+I0000 00:00:1782252332.013189   16282 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1777782822.346085 2240634 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.</code></pre>
+I0000 00:00:1782252333.615727   16282 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.</code></pre>
 </div>
 </div>
-<section id="load-the-mnist-data" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="load-the-mnist-data"><span class="header-section-number">17.1</span> Load the MNIST Data</h2>
+<section id="load-the-mnist-data" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="load-the-mnist-data"><span class="header-section-number">16.4.1</span> Load the MNIST Data</h3>
 <p>Keras provides a convenient MNIST loader. The data are already split into training and test sets.</p>
 <div id="94942596" class="cell">
 <details open="" class="code-fold">
@@ -818,8 +931,8 @@ I0000 00:00:1777782822.346085 2240634 cudart_stub.cc:31] Could not find cuda dri
 </div>
 </div>
 </section>
-<section id="preprocess-the-data" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="preprocess-the-data"><span class="header-section-number">17.2</span> Preprocess the Data</h2>
+<section id="preprocess-the-data" class="level3" data-number="16.4.2">
+<h3 data-number="16.4.2" class="anchored" data-anchor-id="preprocess-the-data"><span class="header-section-number">16.4.2</span> Preprocess the Data</h3>
 <p>Pixel values are integers between <span class="math inline">\(0\)</span> and <span class="math inline">\(255\)</span>. We rescale them to be between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.</p>
 <p>We also create a validation set from the original training data.</p>
 <div id="04a07d4a" class="cell">
@@ -870,8 +983,8 @@ Test: (10000, 28, 28) (10000,)</code></pre>
 </div>
 <p>We keep the labels as integers. This lets us use <strong>sparse categorical cross-entropy</strong>. (If we instead converted the labels to one-hot vectors, we would use categorical cross-entropy. They are functionally identical.)</p>
 </section>
-<section id="define-a-feed-forward-model" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="define-a-feed-forward-model"><span class="header-section-number">17.3</span> Define a Feed-Forward Model</h2>
+<section id="define-a-feed-forward-model" class="level3" data-number="16.4.3">
+<h3 data-number="16.4.3" class="anchored" data-anchor-id="define-a-feed-forward-model"><span class="header-section-number">16.4.3</span> Define a Feed-Forward Model</h3>
 <p>The model has the following structure:</p>
 <ol type="1">
 <li>Flatten the <span class="math inline">\(28 \times 28\)</span> image into a vector of length <span class="math inline">\(784\)</span>.</li>
@@ -899,23 +1012,26 @@ Test: (10000, 28, 28) (10000,)</code></pre>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>E0000 00:00:1782252494.035912   16282 cuda_platform.cc:52] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: UNKNOWN ERROR (303)</code></pre>
+</div>
 <div class="cell-output cell-output-display">
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "sequential_20"</span>
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "sequential"</span>
 </pre>
 </div>
 <div class="cell-output cell-output-display">
 <pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
 ┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
-│ flatten_20 (<span style="color: #0087ff; text-decoration-color: #0087ff">Flatten</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">784</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ flatten (<span style="color: #0087ff; text-decoration-color: #0087ff">Flatten</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">784</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_60 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │       <span style="color: #00af00; text-decoration-color: #00af00">100,480</span> │
+│ dense (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                   │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │       <span style="color: #00af00; text-decoration-color: #00af00">100,480</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dropout_20 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+│ dropout (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_61 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)             │         <span style="color: #00af00; text-decoration-color: #00af00">8,256</span> │
+│ dense_1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)             │         <span style="color: #00af00; text-decoration-color: #00af00">8,256</span> │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_62 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">10</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">650</span> │
+│ dense_2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                 │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">10</span>)             │           <span style="color: #00af00; text-decoration-color: #00af00">650</span> │
 └─────────────────────────────────┴────────────────────────┴───────────────┘
 </pre>
 </div>
@@ -933,119 +1049,119 @@ Test: (10000, 28, 28) (10000,)</code></pre>
 </div>
 </div>
 </section>
-<section id="compile-the-model" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="compile-the-model"><span class="header-section-number">17.4</span> Compile the Model</h2>
+<section id="compile-the-model" class="level3" data-number="16.4.4">
+<h3 data-number="16.4.4" class="anchored" data-anchor-id="compile-the-model"><span class="header-section-number">16.4.4</span> Compile the Model</h3>
 <p>For multiclass classification, we use cross-entropy loss.</p>
 <p>Because the labels are stored as integers, we use <code>sparse_categorical_crossentropy</code>.</p>
 <p>We track accuracy as an additional metric.</p>
 <div id="ed026850" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    optimizer<span class="op">=</span>keras.optimizers.Adam(learning_rate<span class="op">=</span><span class="fl">0.001</span>), <span class="co">#adam with specified lr</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    loss<span class="op">=</span><span class="st">"sparse_categorical_crossentropy"</span>, <span class="co"># actual loss</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    metrics<span class="op">=</span>[<span class="st">"accuracy"</span>], <span class="co"># what we're tracking</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    optimizer<span class="op">=</span>keras.optimizers.Adam(learning_rate<span class="op">=</span><span class="fl">0.001</span>), <span class="co">#adam with specified lr</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    loss<span class="op">=</span><span class="st">"sparse_categorical_crossentropy"</span>, <span class="co"># actual loss</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    metrics<span class="op">=</span>[<span class="st">"accuracy"</span>], <span class="co"># what we're tracking</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
-<section id="fit-the-model" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="fit-the-model"><span class="header-section-number">17.5</span> Fit the Model</h2>
+<section id="fit-the-model" class="level3" data-number="16.4.5">
+<h3 data-number="16.4.5" class="anchored" data-anchor-id="fit-the-model"><span class="header-section-number">16.4.5</span> Fit the Model</h3>
 <p>We use mini-batches, validation data, and early stopping.</p>
 <p>Early stopping monitors validation loss and restores the weights from the epoch with the best validation loss.</p>
 <div id="c3bba094" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>early_stopping <span class="op">=</span> keras.callbacks.EarlyStopping(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    monitor<span class="op">=</span><span class="st">"val_loss"</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    patience<span class="op">=</span><span class="dv">10</span>, <span class="co"># how long to wait without improvement</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    restore_best_weights<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    x_train,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    y_train,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    validation_data<span class="op">=</span>(x_val, y_val),</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    epochs<span class="op">=</span><span class="dv">100</span>,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span><span class="dv">128</span>,</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    callbacks<span class="op">=</span>[early_stopping],</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>early_stopping <span class="op">=</span> keras.callbacks.EarlyStopping(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    monitor<span class="op">=</span><span class="st">"val_loss"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    patience<span class="op">=</span><span class="dv">10</span>, <span class="co"># how long to wait without improvement</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    restore_best_weights<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    x_train,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    y_train,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    validation_data<span class="op">=</span>(x_val, y_val),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    epochs<span class="op">=</span><span class="dv">100</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span><span class="dv">128</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    callbacks<span class="op">=</span>[early_stopping],</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 2s 2ms/step - accuracy: 0.8871 - loss: 0.4150 - val_accuracy: 0.9490 - val_loss: 0.1910
+375/375 ━━━━━━━━━━━━━━━━━━━━ 2s 3ms/step - accuracy: 0.8856 - loss: 0.4205 - val_accuracy: 0.9488 - val_loss: 0.2017
 Epoch 2/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9496 - loss: 0.1898 - val_accuracy: 0.9651 - val_loss: 0.1418
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9501 - loss: 0.1919 - val_accuracy: 0.9646 - val_loss: 0.1451
 Epoch 3/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9641 - loss: 0.1429 - val_accuracy: 0.9689 - val_loss: 0.1269
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9634 - loss: 0.1464 - val_accuracy: 0.9691 - val_loss: 0.1256
 Epoch 4/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9715 - loss: 0.1184 - val_accuracy: 0.9704 - val_loss: 0.1201
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9701 - loss: 0.1224 - val_accuracy: 0.9722 - val_loss: 0.1136
 Epoch 5/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9755 - loss: 0.1032 - val_accuracy: 0.9758 - val_loss: 0.1058
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9745 - loss: 0.1063 - val_accuracy: 0.9729 - val_loss: 0.1074
 Epoch 6/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 3ms/step - accuracy: 0.9786 - loss: 0.0936 - val_accuracy: 0.9762 - val_loss: 0.1046
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9779 - loss: 0.0939 - val_accuracy: 0.9754 - val_loss: 0.0998
 Epoch 7/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9813 - loss: 0.0843 - val_accuracy: 0.9780 - val_loss: 0.0958
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9814 - loss: 0.0858 - val_accuracy: 0.9766 - val_loss: 0.0974
 Epoch 8/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9822 - loss: 0.0809 - val_accuracy: 0.9763 - val_loss: 0.1032
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9829 - loss: 0.0788 - val_accuracy: 0.9769 - val_loss: 0.0956
 Epoch 9/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9851 - loss: 0.0727 - val_accuracy: 0.9772 - val_loss: 0.0953
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9837 - loss: 0.0753 - val_accuracy: 0.9773 - val_loss: 0.0989
 Epoch 10/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9857 - loss: 0.0680 - val_accuracy: 0.9778 - val_loss: 0.0978
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9849 - loss: 0.0703 - val_accuracy: 0.9768 - val_loss: 0.0999
 Epoch 11/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 3ms/step - accuracy: 0.9856 - loss: 0.0674 - val_accuracy: 0.9770 - val_loss: 0.1007
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9863 - loss: 0.0683 - val_accuracy: 0.9762 - val_loss: 0.1038
 Epoch 12/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9874 - loss: 0.0641 - val_accuracy: 0.9776 - val_loss: 0.1007
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9879 - loss: 0.0640 - val_accuracy: 0.9762 - val_loss: 0.1014
 Epoch 13/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 3ms/step - accuracy: 0.9887 - loss: 0.0608 - val_accuracy: 0.9797 - val_loss: 0.0984
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9876 - loss: 0.0628 - val_accuracy: 0.9780 - val_loss: 0.1001
 Epoch 14/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9891 - loss: 0.0591 - val_accuracy: 0.9798 - val_loss: 0.0919
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9895 - loss: 0.0575 - val_accuracy: 0.9783 - val_loss: 0.0955
 Epoch 15/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9900 - loss: 0.0554 - val_accuracy: 0.9783 - val_loss: 0.0973
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9892 - loss: 0.0579 - val_accuracy: 0.9787 - val_loss: 0.0971
 Epoch 16/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9897 - loss: 0.0578 - val_accuracy: 0.9778 - val_loss: 0.1027
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9893 - loss: 0.0573 - val_accuracy: 0.9782 - val_loss: 0.0963
 Epoch 17/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9907 - loss: 0.0543 - val_accuracy: 0.9793 - val_loss: 0.0942
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9903 - loss: 0.0562 - val_accuracy: 0.9770 - val_loss: 0.1029
 Epoch 18/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9906 - loss: 0.0541 - val_accuracy: 0.9788 - val_loss: 0.0998
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9902 - loss: 0.0542 - val_accuracy: 0.9782 - val_loss: 0.1012
 Epoch 19/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9905 - loss: 0.0531 - val_accuracy: 0.9803 - val_loss: 0.0981
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9918 - loss: 0.0514 - val_accuracy: 0.9792 - val_loss: 0.1009
 Epoch 20/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9915 - loss: 0.0504 - val_accuracy: 0.9795 - val_loss: 0.0987
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9914 - loss: 0.0510 - val_accuracy: 0.9783 - val_loss: 0.1019
 Epoch 21/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9913 - loss: 0.0506 - val_accuracy: 0.9797 - val_loss: 0.1036
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9909 - loss: 0.0525 - val_accuracy: 0.9793 - val_loss: 0.0979
 Epoch 22/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 3ms/step - accuracy: 0.9921 - loss: 0.0490 - val_accuracy: 0.9792 - val_loss: 0.1048
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9920 - loss: 0.0497 - val_accuracy: 0.9782 - val_loss: 0.1021
 Epoch 23/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9924 - loss: 0.0495 - val_accuracy: 0.9789 - val_loss: 0.1017
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9918 - loss: 0.0493 - val_accuracy: 0.9783 - val_loss: 0.1009
 Epoch 24/100
-375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9920 - loss: 0.0492 - val_accuracy: 0.9795 - val_loss: 0.1005</code></pre>
+375/375 ━━━━━━━━━━━━━━━━━━━━ 1s 2ms/step - accuracy: 0.9923 - loss: 0.0490 - val_accuracy: 0.9794 - val_loss: 0.1016</code></pre>
 </div>
 </div>
 </section>
-<section id="plot-training-and-validation-curves" class="level2" data-number="17.6">
-<h2 data-number="17.6" class="anchored" data-anchor-id="plot-training-and-validation-curves"><span class="header-section-number">17.6</span> Plot Training and Validation Curves</h2>
+<section id="plot-training-and-validation-curves" class="level3" data-number="16.4.6">
+<h3 data-number="16.4.6" class="anchored" data-anchor-id="plot-training-and-validation-curves"><span class="header-section-number">16.4.6</span> Plot Training and Validation Curves</h3>
 <p>The <code>history</code> object stores the training and validation loss and accuracy values from each epoch.</p>
 <div id="e04bed36" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>history_dict <span class="op">=</span> history.history</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(history_dict[<span class="st">"loss"</span>]) <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.plot(epochs, history_dict[<span class="st">"loss"</span>], label<span class="op">=</span><span class="st">"Training loss"</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>plt.plot(epochs, history_dict[<span class="st">"val_loss"</span>], label<span class="op">=</span><span class="st">"Validation loss"</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Epoch"</span>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Loss"</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>plt.plot(epochs, history_dict[<span class="st">"accuracy"</span>], label<span class="op">=</span><span class="st">"Training accuracy"</span>)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>plt.plot(epochs, history_dict[<span class="st">"val_accuracy"</span>], label<span class="op">=</span><span class="st">"Validation accuracy"</span>)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Epoch"</span>)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Accuracy"</span>)</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>history_dict <span class="op">=</span> history.history</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="bu">len</span>(history_dict[<span class="st">"loss"</span>]) <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plt.plot(epochs, history_dict[<span class="st">"loss"</span>], label<span class="op">=</span><span class="st">"Training loss"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.plot(epochs, history_dict[<span class="st">"val_loss"</span>], label<span class="op">=</span><span class="st">"Validation loss"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Epoch"</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Loss"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plt.plot(epochs, history_dict[<span class="st">"accuracy"</span>], label<span class="op">=</span><span class="st">"Training accuracy"</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>plt.plot(epochs, history_dict[<span class="st">"val_accuracy"</span>], label<span class="op">=</span><span class="st">"Validation accuracy"</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Epoch"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Accuracy"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1063,54 +1179,54 @@ Epoch 24/100
 </div>
 </div>
 </section>
-<section id="evaluate-on-the-test-set" class="level2" data-number="17.7">
-<h2 data-number="17.7" class="anchored" data-anchor-id="evaluate-on-the-test-set"><span class="header-section-number">17.7</span> Evaluate on the Test Set</h2>
+<section id="evaluate-on-the-test-set" class="level3" data-number="16.4.7">
+<h3 data-number="16.4.7" class="anchored" data-anchor-id="evaluate-on-the-test-set"><span class="header-section-number">16.4.7</span> Evaluate on the Test Set</h3>
 <p>The test set should be used after model selection is complete. It gives a final estimate of generalization performance.</p>
 <div id="645bac8b" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>test_loss, test_accuracy <span class="op">=</span> model.evaluate(x_test, y_test, verbose<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test loss: </span><span class="sc">{</span>test_loss<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test accuracy: </span><span class="sc">{</span>test_accuracy<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>test_loss, test_accuracy <span class="op">=</span> model.evaluate(x_test, y_test, verbose<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test loss: </span><span class="sc">{</span>test_loss<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test accuracy: </span><span class="sc">{</span>test_accuracy<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Test loss: 0.0940
-Test accuracy: 0.9795</code></pre>
+<pre><code>Test loss: 0.0925
+Test accuracy: 0.9799</code></pre>
 </div>
 </div>
 </section>
-<section id="inspect-predictions" class="level2" data-number="17.8">
-<h2 data-number="17.8" class="anchored" data-anchor-id="inspect-predictions"><span class="header-section-number">17.8</span> Inspect Predictions</h2>
+<section id="inspect-predictions" class="level3" data-number="16.4.8">
+<h3 data-number="16.4.8" class="anchored" data-anchor-id="inspect-predictions"><span class="header-section-number">16.4.8</span> Inspect Predictions</h3>
 <p>The model outputs a probability vector with <span class="math inline">\(10\)</span> entries. The predicted class is the digit with the largest predicted probability.</p>
 <div id="67f3b673" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>y_prob <span class="op">=</span> model.predict(x_test[:<span class="dv">10</span>])</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> np.argmax(y_prob, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Predicted labels:"</span>, y_pred)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"True labels:     "</span>, y_test[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>y_prob <span class="op">=</span> model.predict(x_test[:<span class="dv">10</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> np.argmax(y_prob, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Predicted labels:"</span>, y_pred)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"True labels:     "</span>, y_test[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 39ms/step
-Predicted labels: [7 2 1 0 4 1 4 9 5 9]
+<pre><code>1/1 ━━━━━━━━━━━━━━━━━━━━ 0s 55ms/step
+Predicted labels: [7 2 1 0 4 1 4 9 6 9]
 True labels:      [7 2 1 0 4 1 4 9 5 9]</code></pre>
 </div>
 </div>
 <div id="62704c68" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.ravel()</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    axes[i].imshow(x_test[i], cmap<span class="op">=</span><span class="st">"gray"</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    axes[i].set_title(<span class="ss">f"pred=</span><span class="sc">{</span>y_pred[i]<span class="sc">}</span><span class="ss">, true=</span><span class="sc">{</span>y_test[i]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    axes[i].axis(<span class="st">"off"</span>)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>axes <span class="op">=</span> axes.ravel()</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    axes[i].imshow(x_test[i], cmap<span class="op">=</span><span class="st">"gray"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    axes[i].set_title(<span class="ss">f"pred=</span><span class="sc">{</span>y_pred[i]<span class="sc">}</span><span class="ss">, true=</span><span class="sc">{</span>y_test[i]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    axes[i].axis(<span class="st">"off"</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1124,16 +1240,16 @@ True labels:      [7 2 1 0 4 1 4 9 5 9]</code></pre>
 <div id="3d862fd6" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, ConfusionMatrixDisplay</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>y_prob_test <span class="op">=</span> model.predict(x_test, verbose<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>y_pred_test <span class="op">=</span> np.argmax(y_prob_test, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, y_pred_test)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm)</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>disp.plot(cmap<span class="op">=</span><span class="st">"Blues"</span>, values_format<span class="op">=</span><span class="st">"d"</span>)</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, ConfusionMatrixDisplay</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>y_prob_test <span class="op">=</span> model.predict(x_test, verbose<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>y_pred_test <span class="op">=</span> np.argmax(y_prob_test, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, y_pred_test)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>disp.plot(cmap<span class="op">=</span><span class="st">"Blues"</span>, values_format<span class="op">=</span><span class="st">"d"</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1143,12 +1259,12 @@ True labels:      [7 2 1 0 4 1 4 9 5 9]</code></pre>
 </div>
 </div>
 </div>
-<p>This model has 109,386 trainable parameters, with 32,000 training observations and 8,000 validation observations. That is a lot of parameters for a model that is still fairly simple: just flattened images, dense layers, ReLU activations, dropout, and weight decay.</p>
+<p>This model has 109,386 trainable parameters, with 48,000 training observations and 12,000 validation observations. That is a lot of parameters for a model that is still fairly simple: just flattened images, dense layers, ReLU activations, dropout, and weight decay.</p>
 <p>Neural networks are often <strong>over-parameterized</strong>, meaning they may have a very large number of parameters relative to the apparent complexity of the task, and sometimes even relative to the number of training examples.</p>
 </section>
 </section>
-<section id="over-parameterized-models-and-generalization" class="level1" data-number="18">
-<h1 data-number="18"><span class="header-section-number">18</span> Over-Parameterized Models and Generalization</h1>
+<section id="over-parameterized-models-and-generalization" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="over-parameterized-models-and-generalization"><span class="header-section-number">16.5</span> Over-Parameterized Models and Generalization</h2>
 <p>The MNIST example may feel surprising at first. The neural network has a large number of trainable parameters, but it still performs well on the validation and test data. This is different from the simplest version of the bias-variance story, where we might expect a highly flexible model to overfit badly.</p>
 <p>The key point is that <strong>over-parameterized does not automatically mean overfit</strong>. A model is over-parameterized when it has many parameters, often enough to fit the training data extremely well. But overfitting is about generalization: whether the model performs poorly on new data. Those are related ideas, but they are not the same.</p>
 <p>There are several reasons why an over-parameterized neural network can still generalize:</p>
@@ -1158,8 +1274,9 @@ True labels:      [7 2 1 0 4 1 4 9 5 9]</code></pre>
 <li>Optimization can have an implicit regularizing effect. Gradient-based methods do not necessarily find an arbitrary solution that fits the training data; they tend to prefer certain kinds of solutions.</li>
 </ul>
 <p>This last point is important. In over-parameterized problems, there may be many different parameter settings that fit the training data. The training algorithm helps determine which one we actually get.</p>
-<section id="double-descent" class="level2" data-number="18.1">
-<h2 data-number="18.1" class="anchored" data-anchor-id="double-descent"><span class="header-section-number">18.1</span> Double Descent</h2>
+</section>
+<section id="double-descent" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="double-descent"><span class="header-section-number">16.6</span> Double Descent</h2>
 <p>This connects to a modern phenomenon called <strong>double descent</strong>.</p>
 <p>In the classical bias-variance picture, test error often behaves like a U-shaped curve as model complexity increases. A very simple model underfits. A moderately flexible model performs better. A very flexible model overfits.</p>
 <p>Double descent says that this is not always the full story. In some modern machine-learning settings, test error may:</p>
@@ -1170,8 +1287,8 @@ True labels:      [7 2 1 0 4 1 4 9 5 9]</code></pre>
 </ol>
 <p>The point where the model first becomes able to fit the training data nearly perfectly is often called the <strong>interpolation threshold</strong>. Around this threshold, generalization can be poor. But beyond this point, larger models may again generalize well.</p>
 <p>This does not mean larger models are always better. It means parameter count alone is not enough to determine whether a model will overfit, and parameter count isn’t always the best measure of model complexity in practice.</p>
-<section id="a-simple-example-minimum-norm-polynomial-regression" class="level3" data-number="18.1.1">
-<h3 data-number="18.1.1" class="anchored" data-anchor-id="a-simple-example-minimum-norm-polynomial-regression"><span class="header-section-number">18.1.1</span> A Simple Example: Minimum-Norm Polynomial Regression</h3>
+<section id="a-simple-example-minimum-norm-polynomial-regression" class="level3" data-number="16.6.1">
+<h3 data-number="16.6.1" class="anchored" data-anchor-id="a-simple-example-minimum-norm-polynomial-regression"><span class="header-section-number">16.6.1</span> A Simple Example: Minimum-Norm Polynomial Regression</h3>
 <p>To build intuition for this, we will look at a simpler setting: polynomial regression.</p>
 <p>Suppose we fit a polynomial model with more features than observations. In that case, there may be infinitely many polynomials that interpolate the training data exactly. <em>If many models fit the training data perfectly, which one does the training procedure choose?</em></p>
 <p>In over-parameterized linear regression, gradient descent from a small or zero initialization has a special implicit bias: it selects the <strong>minimum-norm interpolating solution</strong> i.e.&nbsp;<strong>ridgeless regression</strong>. The optimization procedure itself favors a particular solution among the many possible interpolating solutions.</p>
@@ -1179,80 +1296,80 @@ True labels:      [7 2 1 0 4 1 4 9 5 9]</code></pre>
 <div id="8c567f3f-8e5d-42c8-bfbc-7d8d69479b76" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.polynomial.legendre <span class="im">import</span> legvander</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">565</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sin(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> x) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> x</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> min_norm_poly_fit(x_train, y_train, degree):</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> legvander(x_train, degree)  <span class="co"># shape: (n, degree + 1)</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Minimum-norm least squares solution</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Works in both underparameterized and overparameterized regimes.</span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> np.linalg.pinv(Phi) <span class="op">@</span> y_train</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> beta</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(x, beta):</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    degree <span class="op">=</span> <span class="bu">len</span>(beta) <span class="op">-</span> <span class="dv">1</span></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> legvander(x, degree)</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Phi <span class="op">@</span> beta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.polynomial.legendre <span class="im">import</span> legvander</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">565</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sin(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> x) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> x</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> min_norm_poly_fit(x_train, y_train, degree):</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> legvander(x_train, degree)  <span class="co"># shape: (n, degree + 1)</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Minimum-norm least squares solution</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Works in both underparameterized and overparameterized regimes.</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> np.linalg.pinv(Phi) <span class="op">@</span> y_train</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> beta</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> predict(x, beta):</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>    degree <span class="op">=</span> <span class="bu">len</span>(beta) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    Phi <span class="op">=</span> legvander(x, degree)</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Phi <span class="op">@</span> beta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div id="cad39419-47a4-447e-94c0-b4f1838607ad" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>n_train <span class="op">=</span> <span class="dv">40</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>n_test <span class="op">=</span> <span class="dv">5000</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>noise_sd <span class="op">=</span> <span class="fl">0.1</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>degrees <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">200</span>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>n_trials <span class="op">=</span> <span class="dv">50</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>test_errors <span class="op">=</span> []</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>x_test <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, n_test)</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>y_test_true <span class="op">=</span> f(x_test)</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> degree <span class="kw">in</span> degrees:</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    errs <span class="op">=</span> []</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_trials):</span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>        x_train <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, n_train)</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>        y_train <span class="op">=</span> f(x_train) <span class="op">+</span> rng.normal(<span class="dv">0</span>, noise_sd, n_train)</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>        beta <span class="op">=</span> min_norm_poly_fit(x_train, y_train, degree)</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>        y_pred <span class="op">=</span> predict(x_test, beta)</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>        mse <span class="op">=</span> np.mean((y_pred <span class="op">-</span> y_test_true) <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>        errs.append(mse)</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    test_errors.append(np.median(errs))</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>test_errors <span class="op">=</span> np.array(test_errors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>n_train <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>n_test <span class="op">=</span> <span class="dv">5000</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>noise_sd <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>degrees <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">200</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>n_trials <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>test_errors <span class="op">=</span> []</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>x_test <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, n_test)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>y_test_true <span class="op">=</span> f(x_test)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> degree <span class="kw">in</span> degrees:</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    errs <span class="op">=</span> []</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_trials):</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        x_train <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, n_train)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>        y_train <span class="op">=</span> f(x_train) <span class="op">+</span> rng.normal(<span class="dv">0</span>, noise_sd, n_train)</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>        beta <span class="op">=</span> min_norm_poly_fit(x_train, y_train, degree)</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>        y_pred <span class="op">=</span> predict(x_test, beta)</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>        mse <span class="op">=</span> np.mean((y_pred <span class="op">-</span> y_test_true) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>        errs.append(mse)</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>    test_errors.append(np.median(errs))</span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>test_errors <span class="op">=</span> np.array(test_errors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div id="fdca4d90-8179-478a-b3dd-eb1cce1e366a" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plt.plot(degrees <span class="op">+</span> <span class="dv">1</span>, test_errors, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>plt.axvline(</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    n_train,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    linestyle<span class="op">=</span><span class="st">"--"</span>,</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Interpolation threshold: parameters = training samples"</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>plt.yscale(<span class="st">"log"</span>)</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Number of polynomial features"</span>)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Median test MSE"</span>)</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Double Descent in Minimum-Norm Polynomial Regression"</span>)</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>plt.plot(degrees <span class="op">+</span> <span class="dv">1</span>, test_errors, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>plt.axvline(</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    n_train,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    linestyle<span class="op">=</span><span class="st">"--"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Interpolation threshold: parameters = training samples"</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>plt.yscale(<span class="st">"log"</span>)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Number of polynomial features"</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Median test MSE"</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Double Descent in Minimum-Norm Polynomial Regression"</span>)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1265,58 +1382,58 @@ True labels:      [7 2 1 0 4 1 4 9 5 9]</code></pre>
 <div id="0d662b03-1db7-4d77-b002-15e9f00d756b" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>n_train <span class="op">=</span> <span class="dv">40</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>noise_sd <span class="op">=</span> <span class="fl">0.25</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>x_train <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, n_train)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> f(x_train) <span class="op">+</span> rng.normal(<span class="dv">0</span>, noise_sd, n_train)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>x_grid <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1000</span>)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> f(x_grid)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of parameters = degree + 1.</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Interpolation threshold is roughly degree + 1 = n_train.</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>degrees_to_plot <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">10</span>, n_train <span class="op">-</span> <span class="dv">1</span>, <span class="dv">199</span>]</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------</span></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot interpolators</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>plt.plot(</span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    x_grid,</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    y_true,</span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="dv">3</span>,</span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"true function"</span></span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>plt.scatter(</span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>    x_train,</span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>    y_train,</span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span><span class="dv">35</span>,</span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>    zorder<span class="op">=</span><span class="dv">5</span>,</span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"noisy training data"</span></span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> degree <span class="kw">in</span> degrees_to_plot:</span>
-<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> min_norm_poly_fit(x_train, y_train, degree)</span>
-<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>    y_hat <span class="op">=</span> predict(x_grid, beta)</span>
-<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>    plt.plot(</span>
-<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>        x_grid,</span>
-<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>        y_hat,</span>
-<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="fl">1.8</span>,</span>
-<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="ss">f"degree </span><span class="sc">{</span>degree<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>degree <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss"> params)"</span></span>
-<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>)  <span class="co"># Keeps extreme oscillations from dominating the plot.</span></span>
-<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)</span>
-<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"y"</span>)</span>
-<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Minimum-Norm Polynomial Fits at Different Degrees"</span>)</span>
-<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>n_train <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>noise_sd <span class="op">=</span> <span class="fl">0.25</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>x_train <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, n_train)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> f(x_train) <span class="op">+</span> rng.normal(<span class="dv">0</span>, noise_sd, n_train)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>x_grid <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1000</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>y_true <span class="op">=</span> f(x_grid)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of parameters = degree + 1.</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Interpolation threshold is roughly degree + 1 = n_train.</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>degrees_to_plot <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">10</span>, n_train <span class="op">-</span> <span class="dv">1</span>, <span class="dv">199</span>]</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot interpolators</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ----------------------------</span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>plt.plot(</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    x_grid,</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>    y_true,</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"true function"</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>plt.scatter(</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>    x_train,</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>    y_train,</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span><span class="dv">35</span>,</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    zorder<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"noisy training data"</span></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> degree <span class="kw">in</span> degrees_to_plot:</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>    beta <span class="op">=</span> min_norm_poly_fit(x_train, y_train, degree)</span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>    y_hat <span class="op">=</span> predict(x_grid, beta)</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>    plt.plot(</span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>        x_grid,</span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>        y_hat,</span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>        linewidth<span class="op">=</span><span class="fl">1.8</span>,</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="ss">f"degree </span><span class="sc">{</span>degree<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>degree <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss"> params)"</span></span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>)  <span class="co"># Keeps extreme oscillations from dominating the plot.</span></span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)</span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"y"</span>)</span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Minimum-Norm Polynomial Fits at Different Degrees"</span>)</span>
+<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -1326,10 +1443,13 @@ True labels:      [7 2 1 0 4 1 4 9 5 9]</code></pre>
 </div>
 </div>
 </div>
-
-
 </section>
 </section>
+<section id="review-questions" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">16.7</span> Review Questions</h2>
+<p>See: <a href="../questions/150_nn_arch_questions.html" class="quarto-xref"><span>Chapter 38</span></a>.</p>
+
+
 </section>
 
 </main> <!-- /main -->
