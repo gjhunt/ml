@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Gregory Hunt">
 
-<title>20&nbsp; K-means – Statistical Learning</title>
+<title>19&nbsp; K-means – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,7 +152,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/160_unsupervised.html">Unsupervised Learning</a></li><li class="breadcrumb-item"><a href="../lectures/190_kmeans.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/160_unsupervised.html">Unsupervised Learning</a></li><li class="breadcrumb-item"><a href="../lectures/190_kmeans.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">K-means</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -337,20 +338,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/170_svd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../lectures/180_pca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/190_kmeans.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
       </ul>
@@ -367,19 +362,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/200_carts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/210_random_forests.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/220_boosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
       </ul>
@@ -396,91 +391,103 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/005_derivatives_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/010_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/020_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/030_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/050_evaluation_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/060_model_selection_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/070_knn_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/080_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/100_ridge_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/110_lasso_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/120_elastic_net_logistic_erm_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/130_nn_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/140_backprop_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/150_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/180_pca_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA) - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/190_kmeans_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">K-means - Review Questions</span></span></a>
   </div>
 </li>
       </ul>
@@ -495,34 +502,47 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#a-first-clustering-example" id="toc-a-first-clustering-example" class="nav-link active" data-scroll-target="#a-first-clustering-example"><span class="header-section-number">20.1</span> A first clustering example</a></li>
-  <li><a href="#the-k-means-objective" id="toc-the-k-means-objective" class="nav-link" data-scroll-target="#the-k-means-objective"><span class="header-section-number">20.2</span> The k-means objective</a></li>
-  <li><a href="#lloyds-algorithm" id="toc-lloyds-algorithm" class="nav-link" data-scroll-target="#lloyds-algorithm"><span class="header-section-number">20.3</span> Lloyd’s algorithm</a></li>
-  <li><a href="#using-a-package" id="toc-using-a-package" class="nav-link" data-scroll-target="#using-a-package"><span class="header-section-number">20.4</span> Using a package</a></li>
-  <li><a href="#choosing-the-number-of-clusters" id="toc-choosing-the-number-of-clusters" class="nav-link" data-scroll-target="#choosing-the-number-of-clusters"><span class="header-section-number">20.5</span> Choosing the number of clusters</a></li>
-  <li><a href="#scaling-matters" id="toc-scaling-matters" class="nav-link" data-scroll-target="#scaling-matters"><span class="header-section-number">20.6</span> Scaling matters</a></li>
-  <li><a href="#when-k-means-works-well-and-when-it-does-not" id="toc-when-k-means-works-well-and-when-it-does-not" class="nav-link" data-scroll-target="#when-k-means-works-well-and-when-it-does-not"><span class="header-section-number">20.7</span> When k-means works well, and when it does not</a></li>
-  <li><a href="#real-data-example-wine-chemistry-data" id="toc-real-data-example-wine-chemistry-data" class="nav-link" data-scroll-target="#real-data-example-wine-chemistry-data"><span class="header-section-number">21</span> Real data example: wine chemistry data</a>
+  <li><a href="#a-first-clustering-example" id="toc-a-first-clustering-example" class="nav-link active" data-scroll-target="#a-first-clustering-example"><span class="header-section-number">19.1</span> A first clustering example</a></li>
+  <li><a href="#the-k-means-objective" id="toc-the-k-means-objective" class="nav-link" data-scroll-target="#the-k-means-objective"><span class="header-section-number">19.2</span> The k-means objective</a></li>
+  <li><a href="#lloyds-algorithm" id="toc-lloyds-algorithm" class="nav-link" data-scroll-target="#lloyds-algorithm"><span class="header-section-number">19.3</span> Lloyd’s algorithm</a></li>
+  <li><a href="#using-a-package" id="toc-using-a-package" class="nav-link" data-scroll-target="#using-a-package"><span class="header-section-number">19.4</span> Using a package</a></li>
+  <li><a href="#choosing-the-number-of-clusters" id="toc-choosing-the-number-of-clusters" class="nav-link" data-scroll-target="#choosing-the-number-of-clusters"><span class="header-section-number">19.5</span> Choosing the number of clusters</a></li>
+  <li><a href="#scaling-matters" id="toc-scaling-matters" class="nav-link" data-scroll-target="#scaling-matters"><span class="header-section-number">19.6</span> Scaling matters</a></li>
+  <li><a href="#when-k-means-works-well-and-when-it-does-not" id="toc-when-k-means-works-well-and-when-it-does-not" class="nav-link" data-scroll-target="#when-k-means-works-well-and-when-it-does-not"><span class="header-section-number">19.7</span> When k-means works well, and when it does not</a></li>
+  <li><a href="#real-data-example-wine-chemistry-data" id="toc-real-data-example-wine-chemistry-data" class="nav-link" data-scroll-target="#real-data-example-wine-chemistry-data"><span class="header-section-number">19.8</span> Real data example: wine chemistry data</a>
   <ul class="collapse">
-  <li><a href="#visualizing-the-wine-clusters-with-pca" id="toc-visualizing-the-wine-clusters-with-pca" class="nav-link" data-scroll-target="#visualizing-the-wine-clusters-with-pca"><span class="header-section-number">21.1</span> Visualizing the wine clusters with PCA</a></li>
+  <li><a href="#visualizing-the-wine-clusters-with-pca" id="toc-visualizing-the-wine-clusters-with-pca" class="nav-link" data-scroll-target="#visualizing-the-wine-clusters-with-pca"><span class="header-section-number">19.8.1</span> Visualizing the wine clusters with PCA</a></li>
   </ul></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">19.9</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/160_unsupervised.html">Unsupervised Learning</a></li><li class="breadcrumb-item"><a href="../lectures/190_kmeans.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/160_unsupervised.html">Unsupervised Learning</a></li><li class="breadcrumb-item"><a href="../lectures/190_kmeans.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">K-means</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">K-means</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Gregory Hunt </p>
+          </div>
+  </div>
     
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 25, 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -531,6 +551,9 @@ window.Quarto = {
 </header>
 
 
+<div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
+<p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
+</div>
 <p>This lecture focuses on clustering, and in particular on one of the simplest and most widely used clustering methods: <strong>k-means</strong>.</p>
 <p>Let</p>
 <p><span class="math display">\[
@@ -567,8 +590,8 @@ X =
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">657677</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="a-first-clustering-example" class="level2" data-number="20.1">
-<h2 data-number="20.1" class="anchored" data-anchor-id="a-first-clustering-example"><span class="header-section-number">20.1</span> A first clustering example</h2>
+<section id="a-first-clustering-example" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="a-first-clustering-example"><span class="header-section-number">19.1</span> A first clustering example</h2>
 <p>To make the problem concrete, start with simulated data in two dimensions. The labels used to simulate the data will not be used by the clustering algorithm. They are only included so that we can check what happens.</p>
 <div id="cf22c7fb" class="cell">
 <details open="" class="code-fold">
@@ -604,8 +627,8 @@ X =
 </ol>
 <p>For k-means, the summary of a cluster is its <strong>centroid</strong> (typically their average location).</p>
 </section>
-<section id="the-k-means-objective" class="level2" data-number="20.2">
-<h2 data-number="20.2" class="anchored" data-anchor-id="the-k-means-objective"><span class="header-section-number">20.2</span> The k-means objective</h2>
+<section id="the-k-means-objective" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="the-k-means-objective"><span class="header-section-number">19.2</span> The k-means objective</h2>
 <p>Fix a number of clusters <span class="math inline">\(K\)</span>. K-means tries to find:</p>
 <ul>
 <li>cluster assignments</li>
@@ -618,7 +641,7 @@ c_1,\ldots,c_N \in \{1,\ldots,K\},
 </ul>
 <p><span class="math display">\[
 \mu_1,\ldots,\mu_K \in \mathbb{R}^D,
-\]</span> for each of the $K clusters.</p>
+\]</span> for each of the <span class="math inline">\(K\)</span> clusters.</p>
 <p>In particular, <span class="math inline">\(K\)</span>-means will try to find centroids that minimize the <strong>within-cluster squared distance</strong>:</p>
 <p><span class="math display">\[
 \min_{c_1,\ldots,c_N,\;\mu_1,\ldots,\mu_K}
@@ -674,8 +697,8 @@ N_k = |\{n:c_n=k\}|
 </ul>
 <p>We can alternate back and forth between these until our assignments and centroids stop changing. This is basically <strong>Lloyd’s algorithm</strong>.</p>
 </section>
-<section id="lloyds-algorithm" class="level2" data-number="20.3">
-<h2 data-number="20.3" class="anchored" data-anchor-id="lloyds-algorithm"><span class="header-section-number">20.3</span> Lloyd’s algorithm</h2>
+<section id="lloyds-algorithm" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="lloyds-algorithm"><span class="header-section-number">19.3</span> Lloyd’s algorithm</h2>
 <p>When people talk about K-means they usually mean <strong>Lloyd’s algorithm</strong>, the following alternating minimization algorithm:</p>
 <ol type="1">
 <li>Initialize <span class="math inline">\(K\)</span> centroids.</li>
@@ -1112,8 +1135,8 @@ N_k = |\{n:c_n=k\}|
 </div>
 <p>K-means can be quite sentitive to the initialization of the clusters, unfortunately. This is why algorithms often have multiple starts and then pick the best one.</p>
 </section>
-<section id="using-a-package" class="level2" data-number="20.4">
-<h2 data-number="20.4" class="anchored" data-anchor-id="using-a-package"><span class="header-section-number">20.4</span> Using a package</h2>
+<section id="using-a-package" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="using-a-package"><span class="header-section-number">19.4</span> Using a package</h2>
 <p>For real work, it is better to use a tested implementation. In <code>sklearn</code>, the main class is <code>KMeans</code>.</p>
 <p>The most important arguments are:</p>
 <ul>
@@ -1167,8 +1190,8 @@ Name: count, dtype: int64</code></pre>
 <p>Cluster labels are arbitrary. If we re-run the algorithm, cluster 0 might become cluster 2, and cluster 2 might become cluster 1. The labels are just names for groups.</p>
 <p>What matters is the partition of the observations, not the numerical values of the labels.</p>
 </section>
-<section id="choosing-the-number-of-clusters" class="level2" data-number="20.5">
-<h2 data-number="20.5" class="anchored" data-anchor-id="choosing-the-number-of-clusters"><span class="header-section-number">20.5</span> Choosing the number of clusters</h2>
+<section id="choosing-the-number-of-clusters" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="choosing-the-number-of-clusters"><span class="header-section-number">19.5</span> Choosing the number of clusters</h2>
 <p>K-means requires us to choose <span class="math inline">\(K\)</span>. This is part of the modeling decision.</p>
 <p>The objective always decreases as <span class="math inline">\(K\)</span> increases, because more centroids can only make it easier to fit the data. In the extreme case, if <span class="math inline">\(K=N\)</span>, each point can be its own centroid and the objective is zero.</p>
 <p>So we cannot simply choose the <span class="math inline">\(K\)</span> with the smallest objective. Two common diagnostics are:</p>
@@ -1305,8 +1328,8 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </section>
-<section id="scaling-matters" class="level2" data-number="20.6">
-<h2 data-number="20.6" class="anchored" data-anchor-id="scaling-matters"><span class="header-section-number">20.6</span> Scaling matters</h2>
+<section id="scaling-matters" class="level2" data-number="19.6">
+<h2 data-number="19.6" class="anchored" data-anchor-id="scaling-matters"><span class="header-section-number">19.6</span> Scaling matters</h2>
 <p>K-means is based on Euclidean distance:</p>
 <p><span class="math display">\[
 \|x_n - \mu_k\|_2^2=
@@ -1457,8 +1480,8 @@ Name: count, dtype: int64</code></pre>
 </div>
 <p>The point is not that standardization is always correct. The point is that k-means is sensitive to the scale on which variables are measured. If the units are arbitrary or incomparable, standardization is usually a sensible default.</p>
 </section>
-<section id="when-k-means-works-well-and-when-it-does-not" class="level2" data-number="20.7">
-<h2 data-number="20.7" class="anchored" data-anchor-id="when-k-means-works-well-and-when-it-does-not"><span class="header-section-number">20.7</span> When k-means works well, and when it does not</h2>
+<section id="when-k-means-works-well-and-when-it-does-not" class="level2" data-number="19.7">
+<h2 data-number="19.7" class="anchored" data-anchor-id="when-k-means-works-well-and-when-it-does-not"><span class="header-section-number">19.7</span> When k-means works well, and when it does not</h2>
 <p>K-means tends to work well when clusters are roughly:</p>
 <ul>
 <li>compact;</li>
@@ -1499,8 +1522,8 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </section>
-<section id="real-data-example-wine-chemistry-data" class="level1" data-number="21">
-<h1 data-number="21"><span class="header-section-number">21</span> Real data example: wine chemistry data</h1>
+<section id="real-data-example-wine-chemistry-data" class="level2" data-number="19.8">
+<h2 data-number="19.8" class="anchored" data-anchor-id="real-data-example-wine-chemistry-data"><span class="header-section-number">19.8</span> Real data example: wine chemistry data</h2>
 <p>Now consider a real data example. The wine data contain chemical measurements on wines from three cultivars. We will ignore the class labels when fitting k-means, then use them afterward only as a diagnostic.</p>
 <p>Because the variables are measured on different scales, we standardize the features before clustering.</p>
 <div id="ba456786" class="cell">
@@ -1728,8 +1751,8 @@ Adjusted Rand index, using the true cultivar labels only for evaluation:
 </div>
 </div>
 </div>
-<section id="visualizing-the-wine-clusters-with-pca" class="level2" data-number="21.1">
-<h2 data-number="21.1" class="anchored" data-anchor-id="visualizing-the-wine-clusters-with-pca"><span class="header-section-number">21.1</span> Visualizing the wine clusters with PCA</h2>
+<section id="visualizing-the-wine-clusters-with-pca" class="level3" data-number="19.8.1">
+<h3 data-number="19.8.1" class="anchored" data-anchor-id="visualizing-the-wine-clusters-with-pca"><span class="header-section-number">19.8.1</span> Visualizing the wine clusters with PCA</h3>
 <p>The wine data have more than two variables, so we cannot directly plot the fitted clusters in the original feature space. A common approach is to use PCA only for visualization.</p>
 <p>The workflow is:</p>
 <ol type="1">
@@ -1762,9 +1785,13 @@ Adjusted Rand index, using the true cultivar labels only for evaluation:
 </div>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="review-questions" class="level2" data-number="19.9">
+<h2 data-number="19.9" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">19.9</span> Review Questions</h2>
+<p>See: <a href="../questions/190_kmeans_questions.html" class="quarto-xref"><span>Chapter 39</span></a>.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -2386,12 +2413,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/180_pca.html" class="pagination-link" aria-label="Principal Component Analysis (PCA)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lectures/200_carts.html" class="pagination-link" aria-label="Imports">
-        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/200_carts.html" class="pagination-link" aria-label="Trees">
+        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Trees</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

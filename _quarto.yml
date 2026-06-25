@@ -58,7 +58,6 @@ book:
     - part: "Unsupervised Learning"
       chapters:
         - lectures/160_unsupervised.ipynb
-        - lectures/170_svd.ipynb
         - lectures/180_pca.ipynb
         - lectures/190_kmeans.ipynb
 
@@ -85,6 +84,8 @@ book:
         - questions/130_nn_questions.ipynb
         - questions/140_backprop_questions.ipynb
         - questions/150_nn_arch_questions.ipynb
+        - questions/180_pca_questions.ipynb
+        - questions/190_kmeans_questions.ipynb
 
 
     #- part: "Extras"
@@ -93,6 +94,7 @@ book:
     #    - questions/040_ERM_NLL_questions.ipynb
     #    - lectures/101_constr_optim.ipynb
     #    - lectures/090_curse_dim.ipynb
+    #    - lectures/170_svd.ipynb
 
 crossref:
   fig-title: "Figure"

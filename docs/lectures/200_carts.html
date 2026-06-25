@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Gregory Hunt">
 
-<title>21&nbsp; Imports – Statistical Learning</title>
+<title>20&nbsp; Trees – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,7 +152,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/200_carts.html">Tree-Based Methods</a></li><li class="breadcrumb-item"><a href="../lectures/200_carts.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/200_carts.html">Tree-Based Methods</a></li><li class="breadcrumb-item"><a href="../lectures/200_carts.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Trees</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -337,20 +338,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/170_svd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Singular Value Decomposition</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../lectures/180_pca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/190_kmeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
       </ul>
@@ -367,19 +362,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/200_carts.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/210_random_forests.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/220_boosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
       </ul>
@@ -396,91 +391,103 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/005_derivatives_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/010_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/020_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/030_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/050_evaluation_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/060_model_selection_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/070_knn_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/080_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/100_ridge_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/110_lasso_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/120_elastic_net_logistic_erm_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/130_nn_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/140_backprop_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/150_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/180_pca_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA) - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/190_kmeans_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">K-means - Review Questions</span></span></a>
   </div>
 </li>
       </ul>
@@ -495,31 +502,28 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#cart-classification-and-regression-trees" id="toc-cart-classification-and-regression-trees" class="nav-link active" data-scroll-target="#cart-classification-and-regression-trees"><span class="header-section-number">22</span> CART: Classification and Regression Trees</a>
+  <li><a href="#supervised-learning-setup" id="toc-supervised-learning-setup" class="nav-link active" data-scroll-target="#supervised-learning-setup"><span class="header-section-number">20.1</span> Supervised learning setup</a></li>
+  <li><a href="#basic-idea-of-a-tree" id="toc-basic-idea-of-a-tree" class="nav-link" data-scroll-target="#basic-idea-of-a-tree"><span class="header-section-number">20.2</span> Basic idea of a tree</a></li>
+  <li><a href="#why-is-this-called-a-tree" id="toc-why-is-this-called-a-tree" class="nav-link" data-scroll-target="#why-is-this-called-a-tree"><span class="header-section-number">20.3</span> Why is this called a tree?</a></li>
+  <li><a href="#regression-trees" id="toc-regression-trees" class="nav-link" data-scroll-target="#regression-trees"><span class="header-section-number">20.4</span> Regression trees</a>
   <ul class="collapse">
-  <li><a href="#supervised-learning-setup" id="toc-supervised-learning-setup" class="nav-link" data-scroll-target="#supervised-learning-setup"><span class="header-section-number">22.1</span> Supervised learning setup</a></li>
-  <li><a href="#basic-idea-of-a-tree" id="toc-basic-idea-of-a-tree" class="nav-link" data-scroll-target="#basic-idea-of-a-tree"><span class="header-section-number">22.2</span> Basic idea of a tree</a></li>
-  <li><a href="#why-is-this-called-a-tree" id="toc-why-is-this-called-a-tree" class="nav-link" data-scroll-target="#why-is-this-called-a-tree"><span class="header-section-number">22.3</span> Why is this called a tree?</a></li>
-  <li><a href="#regression-trees" id="toc-regression-trees" class="nav-link" data-scroll-target="#regression-trees"><span class="header-section-number">22.4</span> Regression trees</a>
-  <ul class="collapse">
-  <li><a href="#by-hand-splitting" id="toc-by-hand-splitting" class="nav-link" data-scroll-target="#by-hand-splitting"><span class="header-section-number">22.4.1</span> By-hand splitting</a></li>
-  <li><a href="#fitting-regression-trees-with-different-depths" id="toc-fitting-regression-trees-with-different-depths" class="nav-link" data-scroll-target="#fitting-regression-trees-with-different-depths"><span class="header-section-number">22.4.2</span> Fitting regression trees with different depths</a></li>
+  <li><a href="#by-hand-splitting" id="toc-by-hand-splitting" class="nav-link" data-scroll-target="#by-hand-splitting"><span class="header-section-number">20.4.1</span> By-hand splitting</a></li>
+  <li><a href="#fitting-regression-trees-with-different-depths" id="toc-fitting-regression-trees-with-different-depths" class="nav-link" data-scroll-target="#fitting-regression-trees-with-different-depths"><span class="header-section-number">20.4.2</span> Fitting regression trees with different depths</a></li>
   </ul></li>
-  <li><a href="#classification-trees" id="toc-classification-trees" class="nav-link" data-scroll-target="#classification-trees"><span class="header-section-number">22.5</span> Classification trees</a>
+  <li><a href="#classification-trees" id="toc-classification-trees" class="nav-link" data-scroll-target="#classification-trees"><span class="header-section-number">20.5</span> Classification trees</a>
   <ul class="collapse">
-  <li><a href="#impurity-measures" id="toc-impurity-measures" class="nav-link" data-scroll-target="#impurity-measures"><span class="header-section-number">22.5.1</span> Impurity measures</a></li>
-  <li><a href="#choosing-a-split-for-classification" id="toc-choosing-a-split-for-classification" class="nav-link" data-scroll-target="#choosing-a-split-for-classification"><span class="header-section-number">22.5.2</span> Choosing a split for classification</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">22.5.3</span> Example</a></li>
+  <li><a href="#impurity-measures" id="toc-impurity-measures" class="nav-link" data-scroll-target="#impurity-measures"><span class="header-section-number">20.5.1</span> Impurity measures</a></li>
+  <li><a href="#choosing-a-split-for-classification" id="toc-choosing-a-split-for-classification" class="nav-link" data-scroll-target="#choosing-a-split-for-classification"><span class="header-section-number">20.5.2</span> Choosing a split for classification</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">20.5.3</span> Example</a></li>
   </ul></li>
-  <li><a href="#example-diabetes-data" id="toc-example-diabetes-data" class="nav-link" data-scroll-target="#example-diabetes-data"><span class="header-section-number">22.6</span> Example: diabetes data</a></li>
-  <li><a href="#real-classification-example-breast-cancer-data" id="toc-real-classification-example-breast-cancer-data" class="nav-link" data-scroll-target="#real-classification-example-breast-cancer-data"><span class="header-section-number">22.7</span> Real classification example: breast cancer data</a></li>
-  <li><a href="#practical-notes" id="toc-practical-notes" class="nav-link" data-scroll-target="#practical-notes"><span class="header-section-number">22.8</span> Practical notes</a>
+  <li><a href="#example-diabetes-data" id="toc-example-diabetes-data" class="nav-link" data-scroll-target="#example-diabetes-data"><span class="header-section-number">20.6</span> Example: diabetes data</a></li>
+  <li><a href="#real-classification-example-breast-cancer-data" id="toc-real-classification-example-breast-cancer-data" class="nav-link" data-scroll-target="#real-classification-example-breast-cancer-data"><span class="header-section-number">20.7</span> Real classification example: breast cancer data</a></li>
+  <li><a href="#practical-notes" id="toc-practical-notes" class="nav-link" data-scroll-target="#practical-notes"><span class="header-section-number">20.8</span> Practical notes</a>
   <ul class="collapse">
-  <li><a href="#scaling" id="toc-scaling" class="nav-link" data-scroll-target="#scaling"><span class="header-section-number">22.8.1</span> Scaling</a></li>
-  <li><a href="#categorical-variables" id="toc-categorical-variables" class="nav-link" data-scroll-target="#categorical-variables"><span class="header-section-number">22.8.2</span> Categorical variables</a></li>
-  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"><span class="header-section-number">22.8.3</span> Missing values</a></li>
-  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">22.8.4</span> Interpretation</a></li>
-  </ul></li>
+  <li><a href="#scaling" id="toc-scaling" class="nav-link" data-scroll-target="#scaling"><span class="header-section-number">20.8.1</span> Scaling</a></li>
+  <li><a href="#categorical-variables" id="toc-categorical-variables" class="nav-link" data-scroll-target="#categorical-variables"><span class="header-section-number">20.8.2</span> Categorical variables</a></li>
+  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"><span class="header-section-number">20.8.3</span> Missing values</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">20.8.4</span> Interpretation</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -527,17 +531,29 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/200_carts.html">Tree-Based Methods</a></li><li class="breadcrumb-item"><a href="../lectures/200_carts.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/200_carts.html">Tree-Based Methods</a></li><li class="breadcrumb-item"><a href="../lectures/200_carts.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Trees</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Imports</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Trees</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Gregory Hunt </p>
+          </div>
+  </div>
     
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">June 25, 2026</p>
+    </div>
+  </div>
     
   </div>
   
@@ -546,6 +562,9 @@ window.Quarto = {
 </header>
 
 
+<div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
+<p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
+</div>
 <div id="64f67243" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -563,8 +582,6 @@ window.Quarto = {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">657677</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="cart-classification-and-regression-trees" class="level1" data-number="22">
-<h1 data-number="22"><span class="header-section-number">22</span> CART: Classification and Regression Trees</h1>
 <p>So far, our supervised methods have usually taken a parametric form. For example, in linear regression we used</p>
 <p><span class="math display">\[
 s_w(x)=w^Tx,
@@ -572,8 +589,8 @@ s_w(x)=w^Tx,
 <p>and in logistic regression we used a linear score passed through a nonlinear action or probability map.</p>
 <p>Trees use a different idea. They divide the input space into simple regions (rectangles), and then make a simple prediction inside each region.</p>
 <p>In this lecture we cover basic CARTs: <strong>Classification and Regression Trees</strong>.</p>
-<section id="supervised-learning-setup" class="level2" data-number="22.1">
-<h2 data-number="22.1" class="anchored" data-anchor-id="supervised-learning-setup"><span class="header-section-number">22.1</span> Supervised learning setup</h2>
+<section id="supervised-learning-setup" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="supervised-learning-setup"><span class="header-section-number">20.1</span> Supervised learning setup</h2>
 <p>Let’s recall our setup: we observe training data</p>
 <p><span class="math display">\[
 (x_1,y_1),\dots,(x_N,y_N),
@@ -590,8 +607,8 @@ x_n \in \mathbb{R}^D.
 <p>Common losses are the squared error for regression, or cross entropy for classification.</p>
 <p>CARTs give a way to construct <span class="math inline">\(\hat f\)</span> by recursively splitting the feature space.</p>
 </section>
-<section id="basic-idea-of-a-tree" class="level2" data-number="22.2">
-<h2 data-number="22.2" class="anchored" data-anchor-id="basic-idea-of-a-tree"><span class="header-section-number">22.2</span> Basic idea of a tree</h2>
+<section id="basic-idea-of-a-tree" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="basic-idea-of-a-tree"><span class="header-section-number">20.2</span> Basic idea of a tree</h2>
 <p>A tree recursively divides the input space into regions. Each split has the form</p>
 <p><span class="math display">\[
 x_j \leq t
@@ -903,8 +920,8 @@ k=1,\dots,K.
 <li>when do I stop?</li>
 </ul>
 </section>
-<section id="why-is-this-called-a-tree" class="level2" data-number="22.3">
-<h2 data-number="22.3" class="anchored" data-anchor-id="why-is-this-called-a-tree"><span class="header-section-number">22.3</span> Why is this called a tree?</h2>
+<section id="why-is-this-called-a-tree" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="why-is-this-called-a-tree"><span class="header-section-number">20.3</span> Why is this called a tree?</h2>
 <p>We can visualize this as a tree!</p>
 <div id="08d4cf3b-eaf1-4440-91eb-a71c9c275bbb" class="cell">
 <details open="" class="code-fold">
@@ -991,8 +1008,8 @@ k=1,\dots,K.
 </div>
 </div>
 </section>
-<section id="regression-trees" class="level2" data-number="22.4">
-<h2 data-number="22.4" class="anchored" data-anchor-id="regression-trees"><span class="header-section-number">22.4</span> Regression trees</h2>
+<section id="regression-trees" class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="regression-trees"><span class="header-section-number">20.4</span> Regression trees</h2>
 <p>Why predict the mean? It comes from assuming a squared-error loss. <strong>For squared error loss, the best constant prediction in a region is the mean of the training outcomes in that region.</strong> Recall back to our discussion about ERM.</p>
 <p>One way to measure the training error for a tree <span class="math inline">\(T\)</span> is the <strong>residual sum of squares</strong>:</p>
 <p><span class="math display">\[
@@ -1026,8 +1043,8 @@ RSS(j,t)
 t_\ell = \frac{x_{(\ell)j}+x_{(\ell+1)j}}{2}.
 \]</span></p>
 <p>For each candidate pair <span class="math inline">\((j,t_\ell)\)</span>, CART computes the loss after the split and chooses the split with the largest reduction in loss. This is done greedily at each node.</p>
-<section id="by-hand-splitting" class="level3" data-number="22.4.1">
-<h3 data-number="22.4.1" class="anchored" data-anchor-id="by-hand-splitting"><span class="header-section-number">22.4.1</span> By-hand splitting</h3>
+<section id="by-hand-splitting" class="level3" data-number="20.4.1">
+<h3 data-number="20.4.1" class="anchored" data-anchor-id="by-hand-splitting"><span class="header-section-number">20.4.1</span> By-hand splitting</h3>
 <p>For a one-dimensional example, we can search over possible thresholds and compute the RSS after each split.</p>
 <div id="0b8e7ce5-9593-4814-bed1-cba1862e0fe6" class="cell">
 <details open="" class="code-fold">
@@ -1256,8 +1273,8 @@ t_\ell = \frac{x_{(\ell)j}+x_{(\ell+1)j}}{2}.
 </div>
 </div>
 </section>
-<section id="fitting-regression-trees-with-different-depths" class="level3" data-number="22.4.2">
-<h3 data-number="22.4.2" class="anchored" data-anchor-id="fitting-regression-trees-with-different-depths"><span class="header-section-number">22.4.2</span> Fitting regression trees with different depths</h3>
+<section id="fitting-regression-trees-with-different-depths" class="level3" data-number="20.4.2">
+<h3 data-number="20.4.2" class="anchored" data-anchor-id="fitting-regression-trees-with-different-depths"><span class="header-section-number">20.4.2</span> Fitting regression trees with different depths</h3>
 <p>Often we control the maximum depth of the tree:</p>
 <ul>
 <li>too many splits: <strong>overfitting</strong></li>
@@ -1390,8 +1407,8 @@ t_\ell = \frac{x_{(\ell)j}+x_{(\ell+1)j}}{2}.
 <p>The greedy procedure is not guaranteed to find the globally best tree. But, searching over all possible trees is computationally infeasible.</p>
 </section>
 </section>
-<section id="classification-trees" class="level2" data-number="22.5">
-<h2 data-number="22.5" class="anchored" data-anchor-id="classification-trees"><span class="header-section-number">22.5</span> Classification trees</h2>
+<section id="classification-trees" class="level2" data-number="20.5">
+<h2 data-number="20.5" class="anchored" data-anchor-id="classification-trees"><span class="header-section-number">20.5</span> Classification trees</h2>
 <p>Recall how classification trees work. For a <strong>classification</strong> tree, suppose</p>
 <p><span class="math display">\[
 Y \in \{1,\dots,K\}.
@@ -1424,8 +1441,8 @@ k=1,\dots,K.
 \hat f(x)=\arg\max_{1 \le k \le K} s_k(x).
 \]</span></p>
 <p>So classification trees estimate local class proportions and then predict the most common class.</p>
-<section id="impurity-measures" class="level3" data-number="22.5.1">
-<h3 data-number="22.5.1" class="anchored" data-anchor-id="impurity-measures"><span class="header-section-number">22.5.1</span> Impurity measures</h3>
+<section id="impurity-measures" class="level3" data-number="20.5.1">
+<h3 data-number="20.5.1" class="anchored" data-anchor-id="impurity-measures"><span class="header-section-number">20.5.1</span> Impurity measures</h3>
 <p>While regression trees measured performance and made splitting decisions based on RSS, for classification, CART chooses splits that make the child nodes more <strong>pure</strong>, or, equivalently, <strong>less impure</strong>.</p>
 <p>A node is pure if most or all observations in it belong to one class.</p>
 <p>Let</p>
@@ -1475,8 +1492,8 @@ k=1,\dots,K.
 </div>
 </div>
 </section>
-<section id="choosing-a-split-for-classification" class="level3" data-number="22.5.2">
-<h3 data-number="22.5.2" class="anchored" data-anchor-id="choosing-a-split-for-classification"><span class="header-section-number">22.5.2</span> Choosing a split for classification</h3>
+<section id="choosing-a-split-for-classification" class="level3" data-number="20.5.2">
+<h3 data-number="20.5.2" class="anchored" data-anchor-id="choosing-a-split-for-classification"><span class="header-section-number">20.5.2</span> Choosing a split for classification</h3>
 <p>Suppose a node <span class="math inline">\(R\)</span> is split into two child nodes</p>
 <p><span class="math display">\[
 R_1(j,t)
@@ -1496,8 +1513,8 @@ Q(j,t)
 I(R)-Q(j,t).
 \]</span></p>
 </section>
-<section id="example" class="level3" data-number="22.5.3">
-<h3 data-number="22.5.3" class="anchored" data-anchor-id="example"><span class="header-section-number">22.5.3</span> Example</h3>
+<section id="example" class="level3" data-number="20.5.3">
+<h3 data-number="20.5.3" class="anchored" data-anchor-id="example"><span class="header-section-number">20.5.3</span> Example</h3>
 <p>The next example uses two-dimensional data. The tree creates an axis-aligned decision boundary by repeatedly splitting on <span class="math inline">\(x_1\)</span> or <span class="math inline">\(x_2\)</span>.</p>
 <div id="af22436a" class="cell">
 <details open="" class="code-fold">
@@ -1617,8 +1634,8 @@ I(R)-Q(j,t).
 </div>
 </section>
 </section>
-<section id="example-diabetes-data" class="level2" data-number="22.6">
-<h2 data-number="22.6" class="anchored" data-anchor-id="example-diabetes-data"><span class="header-section-number">22.6</span> Example: diabetes data</h2>
+<section id="example-diabetes-data" class="level2" data-number="20.6">
+<h2 data-number="20.6" class="anchored" data-anchor-id="example-diabetes-data"><span class="header-section-number">20.6</span> Example: diabetes data</h2>
 <p>We now fit a regression tree to a real dataset. The goal is to predict a quantitative disease-progression outcome from baseline measurements.</p>
 <p>For this example, we use a shallow tree so that the fitted model is easy to inspect.</p>
 <div id="194e2629-1e40-4f19-8fbc-5e58b7b0a47e" class="cell">
@@ -2838,8 +2855,8 @@ RSS_{\text{parent}} - (RSS_{\text{left}} + RSS_{\text{right}}).
 \]</span></p>
 <p>For a classification tree, the same idea applies, but RSS is replaced by an impurity measure such as Gini impurity or entropy.</p>
 </section>
-<section id="real-classification-example-breast-cancer-data" class="level2" data-number="22.7">
-<h2 data-number="22.7" class="anchored" data-anchor-id="real-classification-example-breast-cancer-data"><span class="header-section-number">22.7</span> Real classification example: breast cancer data</h2>
+<section id="real-classification-example-breast-cancer-data" class="level2" data-number="20.7">
+<h2 data-number="20.7" class="anchored" data-anchor-id="real-classification-example-breast-cancer-data"><span class="header-section-number">20.7</span> Real classification example: breast cancer data</h2>
 <p>Next we fit a classification tree. The goal is to classify tumors using measured features.</p>
 <div id="6f81ce2f-b738-4117-a3df-10ff8dab12aa" class="cell">
 <details open="" class="code-fold">
@@ -4218,32 +4235,31 @@ Number of leaves: 6</code></pre>
 </div>
 </div>
 </section>
-<section id="practical-notes" class="level2" data-number="22.8">
-<h2 data-number="22.8" class="anchored" data-anchor-id="practical-notes"><span class="header-section-number">22.8</span> Practical notes</h2>
-<section id="scaling" class="level3" data-number="22.8.1">
-<h3 data-number="22.8.1" class="anchored" data-anchor-id="scaling"><span class="header-section-number">22.8.1</span> Scaling</h3>
+<section id="practical-notes" class="level2" data-number="20.8">
+<h2 data-number="20.8" class="anchored" data-anchor-id="practical-notes"><span class="header-section-number">20.8</span> Practical notes</h2>
+<section id="scaling" class="level3" data-number="20.8.1">
+<h3 data-number="20.8.1" class="anchored" data-anchor-id="scaling"><span class="header-section-number">20.8.1</span> Scaling</h3>
 <p>Unlike k-means, ordinary CART splits are not sensitive to monotone rescaling of a feature. A split like</p>
 <p><span class="math display">\[
 x_j \leq t
 \]</span></p>
 <p>becomes an equivalent split after changing units, with a correspondingly changed threshold. For this reason, standardization is usually not required for basic trees.</p>
 </section>
-<section id="categorical-variables" class="level3" data-number="22.8.2">
-<h3 data-number="22.8.2" class="anchored" data-anchor-id="categorical-variables"><span class="header-section-number">22.8.2</span> Categorical variables</h3>
+<section id="categorical-variables" class="level3" data-number="20.8.2">
+<h3 data-number="20.8.2" class="anchored" data-anchor-id="categorical-variables"><span class="header-section-number">20.8.2</span> Categorical variables</h3>
 <p>Conceptually, trees can split categorical variables by grouping categories. In practice, implementation details vary. Some software handles categorical splits directly, while scikit-learn’s basic tree implementation expects numeric features (see: <a href="https://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-and-cart">link</a>). However, you can encode them as one-hot vectors if you want.</p>
 </section>
-<section id="missing-values" class="level3" data-number="22.8.3">
-<h3 data-number="22.8.3" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">22.8.3</span> Missing values</h3>
+<section id="missing-values" class="level3" data-number="20.8.3">
+<h3 data-number="20.8.3" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">20.8.3</span> Missing values</h3>
 <p>CART-style methods can be adapted to missing values. See: <a href="https://scikit-learn.org/stable/modules/tree.html#missing-values-support">link</a>.</p>
 <p>A classical CART implementation can handle missing values using surrogate splits. If the primary split at a node uses <span class="math inline">\(x_j\)</span> but <span class="math inline">\(x_j\)</span> is missing for a new observation, the tree uses a backup split on another variable that most closely mimics the primary split.</p>
 <p><code>sklearn</code> uses a different strategy. When fitting a split, it evaluates each threshold twice: once with missing values sent left and once with missing values sent right. It chooses the better option and stores that missing-value direction. Thus, <code>sklearn</code> handles missing values by learning which branch missing values should follow.</p>
 </section>
-<section id="interpretation" class="level3" data-number="22.8.4">
-<h3 data-number="22.8.4" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">22.8.4</span> Interpretation</h3>
+<section id="interpretation" class="level3" data-number="20.8.4">
+<h3 data-number="20.8.4" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">20.8.4</span> Interpretation</h3>
 <p>A shallow tree can be very interpretable because the prediction rule is a sequence of if-then statements. A deep tree can be much harder to interpret and can have high variance.</p>
 
 
-</section>
 </section>
 </section>
 
@@ -4866,12 +4882,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/190_kmeans.html" class="pagination-link" aria-label="K-means">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">K-means</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">K-means</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../lectures/210_random_forests.html" class="pagination-link" aria-label="Random Forests and Bagging">
-        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
