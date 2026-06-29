@@ -63,7 +63,7 @@ book:
 
     - part: "Tree-Based Methods"
       chapters:
-        - lectures/200_carts.ipynb
+        - lectures/200_trees.ipynb
         - lectures/210_random_forests.ipynb
         - lectures/220_boosting.ipynb
 
@@ -86,6 +86,8 @@ book:
         - questions/150_nn_arch_questions.ipynb
         - questions/180_pca_questions.ipynb
         - questions/190_kmeans_questions.ipynb
+        - questions/200_trees_questions.ipynb
+        - questions/210_random_forests_questions.ipynb
 
 
     #- part: "Extras"
