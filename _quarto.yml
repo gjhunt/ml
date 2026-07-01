@@ -88,6 +88,7 @@ book:
         - questions/190_kmeans_questions.ipynb
         - questions/200_trees_questions.ipynb
         - questions/210_random_forests_questions.ipynb
+        - questions/220_boosting_questions.ipynb
 
 
     #- part: "Extras"

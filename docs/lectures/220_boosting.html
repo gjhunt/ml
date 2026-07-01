@@ -501,6 +501,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Random Forests and Bagging - Review Questions</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/220_boosting_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Boosting Review Questions</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -513,45 +519,30 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#boosted-regression-trees-with-squared-error" id="toc-boosted-regression-trees-with-squared-error" class="nav-link active" data-scroll-target="#boosted-regression-trees-with-squared-error"><span class="header-section-number">23</span> Boosted regression trees with squared error</a>
+  <li><a href="#boosted-regression-trees-with-squared-error" id="toc-boosted-regression-trees-with-squared-error" class="nav-link active" data-scroll-target="#boosted-regression-trees-with-squared-error"><span class="header-section-number">22.1</span> Boosted regression trees with squared error</a>
   <ul class="collapse">
-  <li><a href="#a-small-simulated-example" id="toc-a-small-simulated-example" class="nav-link" data-scroll-target="#a-small-simulated-example"><span class="header-section-number">23.1</span> A small simulated example</a></li>
-  <li><a href="#implementing-the-boosting-part-ourselves" id="toc-implementing-the-boosting-part-ourselves" class="nav-link" data-scroll-target="#implementing-the-boosting-part-ourselves"><span class="header-section-number">23.2</span> Implementing the boosting part ourselves</a></li>
-  <li><a href="#effect-of-the-learning-rate" id="toc-effect-of-the-learning-rate" class="nav-link" data-scroll-target="#effect-of-the-learning-rate"><span class="header-section-number">23.3</span> Effect of the learning rate</a></li>
+  <li><a href="#a-small-simulated-example" id="toc-a-small-simulated-example" class="nav-link" data-scroll-target="#a-small-simulated-example"><span class="header-section-number">22.1.1</span> A small simulated example</a></li>
+  <li><a href="#implementing-the-boosting-part-ourselves" id="toc-implementing-the-boosting-part-ourselves" class="nav-link" data-scroll-target="#implementing-the-boosting-part-ourselves"><span class="header-section-number">22.1.2</span> Implementing the boosting part ourselves</a></li>
+  <li><a href="#effect-of-the-learning-rate" id="toc-effect-of-the-learning-rate" class="nav-link" data-scroll-target="#effect-of-the-learning-rate"><span class="header-section-number">22.1.3</span> Effect of the learning rate</a></li>
   </ul></li>
-  <li><a href="#general-gradient-boosting" id="toc-general-gradient-boosting" class="nav-link" data-scroll-target="#general-gradient-boosting"><span class="header-section-number">24</span> General gradient boosting</a>
+  <li><a href="#general-gradient-boosting" id="toc-general-gradient-boosting" class="nav-link" data-scroll-target="#general-gradient-boosting"><span class="header-section-number">22.2</span> General gradient boosting</a>
   <ul class="collapse">
-  <li><a href="#what-is-a-functional-gradient" id="toc-what-is-a-functional-gradient" class="nav-link" data-scroll-target="#what-is-a-functional-gradient"><span class="header-section-number">24.1</span> What is a functional gradient?</a></li>
-  <li><a href="#generic-gradient-boosting-algorithm" id="toc-generic-gradient-boosting-algorithm" class="nav-link" data-scroll-target="#generic-gradient-boosting-algorithm"><span class="header-section-number">24.2</span> Generic Gradient Boosting Algorithm</a>
+  <li><a href="#what-is-a-functional-gradient" id="toc-what-is-a-functional-gradient" class="nav-link" data-scroll-target="#what-is-a-functional-gradient"><span class="header-section-number">22.2.1</span> What is a functional gradient?</a></li>
+  <li><a href="#generic-gradient-boosting-algorithm" id="toc-generic-gradient-boosting-algorithm" class="nav-link" data-scroll-target="#generic-gradient-boosting-algorithm"><span class="header-section-number">22.2.2</span> Generic Gradient Boosting Algorithm</a></li>
+  </ul></li>
+  <li><a href="#gradient-boosting-for-binary-classification" id="toc-gradient-boosting-for-binary-classification" class="nav-link" data-scroll-target="#gradient-boosting-for-binary-classification"><span class="header-section-number">22.3</span> Gradient boosting for binary classification</a>
   <ul class="collapse">
-  <li><a href="#squared-error-as-a-special-case" id="toc-squared-error-as-a-special-case" class="nav-link" data-scroll-target="#squared-error-as-a-special-case"><span class="header-section-number">24.2.1</span> Squared error as a special case</a></li>
+  <li><a href="#an-example" id="toc-an-example" class="nav-link" data-scroll-target="#an-example"><span class="header-section-number">22.3.1</span> An Example</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#gradient-boosting-for-binary-classification" id="toc-gradient-boosting-for-binary-classification" class="nav-link" data-scroll-target="#gradient-boosting-for-binary-classification"><span class="header-section-number">25</span> Gradient boosting for binary classification</a>
+  <li><a href="#gradient-boosting-for-multiclass-classification" id="toc-gradient-boosting-for-multiclass-classification" class="nav-link" data-scroll-target="#gradient-boosting-for-multiclass-classification"><span class="header-section-number">22.4</span> Gradient boosting for multiclass classification</a></li>
+  <li><a href="#regularization-in-boosting" id="toc-regularization-in-boosting" class="nav-link" data-scroll-target="#regularization-in-boosting"><span class="header-section-number">22.5</span> Regularization in boosting</a></li>
+  <li><a href="#practical-notes" id="toc-practical-notes" class="nav-link" data-scroll-target="#practical-notes"><span class="header-section-number">22.6</span> Practical notes</a></li>
+  <li><a href="#learning-rate-and-early-stopping-on-a-real-regression-dataset" id="toc-learning-rate-and-early-stopping-on-a-real-regression-dataset" class="nav-link" data-scroll-target="#learning-rate-and-early-stopping-on-a-real-regression-dataset"><span class="header-section-number">22.7</span> Learning rate and early stopping on a real regression dataset</a></li>
+  <li><a href="#step-sizes-weak-learners-and-tree-specific-updates" id="toc-step-sizes-weak-learners-and-tree-specific-updates" class="nav-link" data-scroll-target="#step-sizes-weak-learners-and-tree-specific-updates"><span class="header-section-number">22.8</span> Step sizes, weak learners, and tree-specific updates</a>
   <ul class="collapse">
-  <li><a href="#an-example" id="toc-an-example" class="nav-link" data-scroll-target="#an-example"><span class="header-section-number">25.1</span> An Example</a></li>
+  <li><a href="#extensions-and-modern-implementations" id="toc-extensions-and-modern-implementations" class="nav-link" data-scroll-target="#extensions-and-modern-implementations"><span class="header-section-number">22.8.1</span> Extensions and modern implementations</a></li>
   </ul></li>
-  <li><a href="#gradient-boosting-for-multiclass-classification" id="toc-gradient-boosting-for-multiclass-classification" class="nav-link" data-scroll-target="#gradient-boosting-for-multiclass-classification"><span class="header-section-number">26</span> Gradient boosting for multiclass classification</a></li>
-  <li><a href="#regularization-in-boosting" id="toc-regularization-in-boosting" class="nav-link" data-scroll-target="#regularization-in-boosting"><span class="header-section-number">27</span> Regularization in boosting</a>
-  <ul class="collapse">
-  <li><a href="#number-of-trees" id="toc-number-of-trees" class="nav-link" data-scroll-target="#number-of-trees"><span class="header-section-number">27.0.1</span> Number of trees</a></li>
-  <li><a href="#learning-rate" id="toc-learning-rate" class="nav-link" data-scroll-target="#learning-rate"><span class="header-section-number">27.0.2</span> Learning rate</a></li>
-  <li><a href="#tree-depth" id="toc-tree-depth" class="nav-link" data-scroll-target="#tree-depth"><span class="header-section-number">27.0.3</span> Tree depth</a></li>
-  <li><a href="#minimum-leaf-size" id="toc-minimum-leaf-size" class="nav-link" data-scroll-target="#minimum-leaf-size"><span class="header-section-number">27.0.4</span> Minimum leaf size</a></li>
-  <li><a href="#subsampling" id="toc-subsampling" class="nav-link" data-scroll-target="#subsampling"><span class="header-section-number">27.0.5</span> Subsampling</a></li>
-  </ul></li>
-  <li><a href="#practical-notes" id="toc-practical-notes" class="nav-link" data-scroll-target="#practical-notes"><span class="header-section-number">28</span> Practical notes</a>
-  <ul class="collapse">
-  <li><a href="#scaling" id="toc-scaling" class="nav-link" data-scroll-target="#scaling"><span class="header-section-number">28.0.1</span> Scaling</a></li>
-  <li><a href="#categorical-variables" id="toc-categorical-variables" class="nav-link" data-scroll-target="#categorical-variables"><span class="header-section-number">28.0.2</span> Categorical variables</a></li>
-  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values"><span class="header-section-number">28.0.3</span> Missing values</a></li>
-  <li><a href="#extrapolation" id="toc-extrapolation" class="nav-link" data-scroll-target="#extrapolation"><span class="header-section-number">28.0.4</span> Extrapolation</a></li>
-  </ul></li>
-  <li><a href="#learning-rate-and-early-stopping-on-a-real-regression-dataset" id="toc-learning-rate-and-early-stopping-on-a-real-regression-dataset" class="nav-link" data-scroll-target="#learning-rate-and-early-stopping-on-a-real-regression-dataset"><span class="header-section-number">29</span> Learning rate and early stopping on a real regression dataset</a></li>
-  <li><a href="#step-sizes-weak-learners-and-tree-specific-updates" id="toc-step-sizes-weak-learners-and-tree-specific-updates" class="nav-link" data-scroll-target="#step-sizes-weak-learners-and-tree-specific-updates"><span class="header-section-number">30</span> Step sizes, weak learners, and tree-specific updates</a>
-  <ul class="collapse">
-  <li><a href="#extensions-and-modern-implementations" id="toc-extensions-and-modern-implementations" class="nav-link" data-scroll-target="#extensions-and-modern-implementations"><span class="header-section-number">30.1</span> Extensions and modern implementations</a></li>
-  </ul></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">22.9</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -578,7 +569,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">June 29, 2026</p>
+      <p class="date-modified">July 1, 2026</p>
     </div>
   </div>
     
@@ -592,7 +583,7 @@ window.Quarto = {
 <div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
-<p>In the previous lectures, we studied CARTs, bagging, and random forests. A single tree is flexible but unstable. Bagging and random forests reduce this instability by averaging many trees that are fit in parallel.</p>
+<p>In the previous lectures, we studied trees, bagging, and random forests. A single tree is flexible but unstable. Bagging and random forests reduce this instability by averaging many trees that are fit in parallel.</p>
 <p>Boosting takes a different approach. Instead of fitting many trees independently and averaging them, boosting fits trees <strong>sequentially</strong>.</p>
 <blockquote class="blockquote">
 <p>Each new tree is chosen to improve the current model, given where the previous model did poorly.</p>
@@ -656,8 +647,8 @@ a(\hat s_M(x))=
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">657677</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="boosted-regression-trees-with-squared-error" class="level1" data-number="23">
-<h1 data-number="23"><span class="header-section-number">23</span> Boosted regression trees with squared error</h1>
+<section id="boosted-regression-trees-with-squared-error" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="boosted-regression-trees-with-squared-error"><span class="header-section-number">22.1</span> Boosted regression trees with squared error</h2>
 <p>To make things concrete, let’s first study the simplest boosting algorithm: boosted regression trees (for squared error loss). Assume we’re solving a regression problem. Our generic boosting algorithm is:</p>
 <ol type="1">
 <li>Fit <span class="math inline">\(\hat s_0\)</span>.</li>
@@ -692,8 +683,8 @@ r_{nm}=y_n-\hat s_{m-1}(x_n).
 <li>smaller <span class="math inline">\(\nu\)</span> means slower learning</li>
 <li>larger <span class="math inline">\(M\)</span> means more additive components</li>
 </ul>
-<section id="a-small-simulated-example" class="level2" data-number="23.1">
-<h2 data-number="23.1" class="anchored" data-anchor-id="a-small-simulated-example"><span class="header-section-number">23.1</span> A small simulated example</h2>
+<section id="a-small-simulated-example" class="level3" data-number="22.1.1">
+<h3 data-number="22.1.1" class="anchored" data-anchor-id="a-small-simulated-example"><span class="header-section-number">22.1.1</span> A small simulated example</h3>
 <div id="120a568d" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -727,12 +718,12 @@ r_{nm}=y_n-\hat s_{m-1}(x_n).
 </div>
 </div>
 </section>
-<section id="implementing-the-boosting-part-ourselves" class="level2" data-number="23.2">
-<h2 data-number="23.2" class="anchored" data-anchor-id="implementing-the-boosting-part-ourselves"><span class="header-section-number">23.2</span> Implementing the boosting part ourselves</h2>
+<section id="implementing-the-boosting-part-ourselves" class="level3" data-number="22.1.2">
+<h3 data-number="22.1.2" class="anchored" data-anchor-id="implementing-the-boosting-part-ourselves"><span class="header-section-number">22.1.2</span> Implementing the boosting part ourselves</h3>
 <p>We will use <code>DecisionTreeRegressor</code> to fit each individual tree, but we will write the boosting loop directly.</p>
 <p>This helps separate two ideas:</p>
 <ol type="1">
-<li>CART tells us how to fit one tree.</li>
+<li>A tree, which tells us how to fit one tree.</li>
 <li>Boosting tells us how to combine many trees sequentially.</li>
 </ol>
 <div id="28a941c6" class="cell">
@@ -840,8 +831,8 @@ r_{nm}=y_n-\hat s_{m-1}(x_n).
 </div>
 </div>
 </section>
-<section id="effect-of-the-learning-rate" class="level2" data-number="23.3">
-<h2 data-number="23.3" class="anchored" data-anchor-id="effect-of-the-learning-rate"><span class="header-section-number">23.3</span> Effect of the learning rate</h2>
+<section id="effect-of-the-learning-rate" class="level3" data-number="22.1.3">
+<h3 data-number="22.1.3" class="anchored" data-anchor-id="effect-of-the-learning-rate"><span class="header-section-number">22.1.3</span> Effect of the learning rate</h3>
 <p>The learning rate controls how quickly the model moves. To see this, we can fit the same boosted tree procedure with different values of <span class="math inline">\(\nu\)</span>.</p>
 <div id="ff8a88c6" class="cell">
 <details open="" class="code-fold">
@@ -887,8 +878,8 @@ r_{nm}=y_n-\hat s_{m-1}(x_n).
 </ul>
 </section>
 </section>
-<section id="general-gradient-boosting" class="level1" data-number="24">
-<h1 data-number="24"><span class="header-section-number">24</span> General gradient boosting</h1>
+<section id="general-gradient-boosting" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="general-gradient-boosting"><span class="header-section-number">22.2</span> General gradient boosting</h2>
 <p>The squared error algorithm is a special case of a broader idea.</p>
 <p>For squared error, we fit residuals:</p>
 <p><span class="math display">\[
@@ -917,9 +908,8 @@ w_m = w_{m-1} - \nu \nabla_w \hat R(w_{m-1}),
 \]</span></p>
 <p>This is analogous to gradient descent, with <span class="math inline">\(\hat h_m\)</span> playing the role of a negative gradient direction. The difference is that instead of taking steps in a finite-dimensional parameter space, we take steps in a function space. This is why gradient boosting is often described as <strong>gradient descent in function space</strong>.</p>
 <p>The idea is to start with an initial guess <span class="math inline">\(\hat s_0\)</span>, then repeatedly approximate the negative functional derivative of <span class="math inline">\(\hat R(s)\)</span> with respect to <span class="math inline">\(s\)</span>, evaluated at the current function <span class="math inline">\(s=\hat s_{m-1}\)</span>. The weak learner <span class="math inline">\(\hat h_m\)</span> is fit to approximate this negative gradient direction (at the training points), and then we take a <span class="math inline">\(\nu\)</span>-sized step in that direction.</p>
-<section id="what-is-a-functional-gradient" class="level2" data-number="24.1">
-<h2 data-number="24.1" class="anchored" data-anchor-id="what-is-a-functional-gradient"><span class="header-section-number">24.1</span> What is a functional gradient?</h2>
-<p>(For a longer discussion see: <a href="https://mbernste.github.io/posts/functionals/">https://mbernste.github.io/posts/functionals/</a>).</p>
+<section id="what-is-a-functional-gradient" class="level3" data-number="22.2.1">
+<h3 data-number="22.2.1" class="anchored" data-anchor-id="what-is-a-functional-gradient"><span class="header-section-number">22.2.1</span> What is a functional gradient?</h3>
 <p>In ordinary gradient descent, we minimize a function of parameters. For example, if the score function is <span class="math inline">\(s_w(x)\)</span>, then the empirical risk can be written as a function of <span class="math inline">\(w\)</span>:</p>
 <p><span class="math display">\[
 \hat R(w)=\frac{1}{N}\sum_{n=1}^N \ell(y_n,s_w(x_n)).
@@ -930,38 +920,7 @@ w_m = w_{m-1} - \nu \nabla_w \hat R(w_{m-1}),
 \hat R(s)=\frac{1}{N}\sum_{n=1}^N \ell(y_n,s(x_n)).
 \]</span></p>
 <p>An object that takes a function as input and returns a number is called a <strong>functional</strong>. Here, <span class="math inline">\(\hat R\)</span> takes the score function <span class="math inline">\(s\)</span> as input and returns the average loss on the training data.</p>
-<p>So what does it mean to take a derivative with respect to a function?</p>
-<p>The basic idea is the same as a directional derivative. In finite-dimensional calculus, if we have a function <span class="math inline">\(R(w)\)</span> and move from <span class="math inline">\(w\)</span> in the direction <span class="math inline">\(v\)</span>, we study</p>
-<p><span class="math display">\[
-\left. \frac{d}{d\epsilon} R(w+\epsilon v) \right|_{\epsilon=0}.
-\]</span></p>
-<p>This tells us how quickly <span class="math inline">\(R\)</span> changes if we take a small step in the direction <span class="math inline">\(v\)</span>. The gradient is the object whose inner product with <span class="math inline">\(v\)</span> gives this directional derivative:</p>
-<p><span class="math display">\[
-\left. \frac{d}{d\epsilon} R(w+\epsilon v) \right|_{\epsilon=0}= \nabla_w R(w)^\top v.
-\]</span></p>
-<p>For a functional, the input is not a vector <span class="math inline">\(w\)</span>, but a function <span class="math inline">\(s\)</span>. So instead of perturbing <span class="math inline">\(w\)</span> in the direction of a vector <span class="math inline">\(v\)</span>, we perturb <span class="math inline">\(s\)</span> in the direction of another function <span class="math inline">\(g\)</span>. For a small number <span class="math inline">\(\epsilon\)</span>, define</p>
-<p><span class="math display">\[
-s_\epsilon(x)=s(x)+\epsilon g(x).
-\]</span></p>
-<p>This means that we are modifying the current score function <span class="math inline">\(s(x)\)</span> by adding a small amount of the function <span class="math inline">\(g(x)\)</span>.</p>
-<p>The directional derivative of the risk functional at <span class="math inline">\(s\)</span> in the direction <span class="math inline">\(g\)</span> is</p>
-<p><span class="math display">\[
-\left. \frac{d}{d\epsilon} \hat R(s+\epsilon g) \right|_{\epsilon=0}.
-\]</span></p>
-<p>The <strong>functional gradient</strong> is the object whose inner product with <span class="math inline">\(g\)</span> gives this directional derivative. Symbolically, it is the analogue of <span class="math inline">\(\nabla_w R(w)\)</span>, but now the input being changed is the function <span class="math inline">\(s\)</span>, not a parameter vector <span class="math inline">\(w\)</span>. In our finite-sample setting, the risk only depends on the fitted values <span class="math inline">\(s(x_1),\ldots,s(x_N)\)</span>, so the relevant inner product becomes a finite sum over the training data, like a typical inner product. If we perturb <span class="math inline">\(s\)</span> in the direction <span class="math inline">\(g\)</span>, then</p>
-<p><span class="math display">\[
-\hat R(s+\epsilon g)=\frac{1}{N}\sum_{n=1}^N \ell(y_n,s(x_n)+\epsilon g(x_n)).
-\]</span></p>
-<p>Using the chain rule,</p>
-<p><span class="math display">\[
-\left. \frac{d}{d\epsilon} \hat R(s+\epsilon g) \right|_{\epsilon=0}=
-\frac{1}{N}\sum_{n=1}^N \frac{\partial \ell(y_n,s(x_n))}{\partial s(x_n)}g(x_n).
-\]</span></p>
-<p>This has exactly the same structure as an inner product:</p>
-<p><span class="math display">\[
-\sum_n a_n b_n.
-\]</span> where the <span class="math inline">\(a_n\)</span> are <span class="math inline">\(\frac{\partial \ell(y_n,s(x_n))}{\partial s(x_n)}\)</span> and the <span class="math inline">\(b_n\)</span> are <span class="math inline">\(g(x_n)\)</span>.</p>
-<p>So the functional gradient, evaluated at the training points, is just the gradient of <span class="math inline">\(\hat R\)</span> with respect to these <span class="math inline">\(N\)</span> score values:</p>
+<p>So what does it mean to take a derivative of a functional with respect to a function? We won’t go into major details here, for those interested, they should see: <a href="https://mbernste.github.io/posts/functionals/">https://mbernste.github.io/posts/functionals/</a>. For our purposes, its enough to know that the <strong>functional gradient</strong>, evaluated at the training points, is just the gradient of <span class="math inline">\(\hat R\)</span> with respect to these <span class="math inline">\(N\)</span> score values:</p>
 <p><span class="math display">\[
 \left(\frac{\partial \ell(y_1,s(x_1))}{\partial s(x_1)},\ldots,\frac{\partial \ell(y_N,s(x_N))}{\partial s(x_N)}\right).
 \]</span></p>
@@ -993,8 +952,8 @@ s_m(x_n)=s_{m-1}(x_n)+\nu r_n^{(m)}.
 \]</span></p>
 <p>Thus, gradient boosting can be viewed as gradient descent in function space, with the weak learner <span class="math inline">\(\hat h_m\)</span> serving as a smoothed, model-based approximation to the negative functional gradient.</p>
 </section>
-<section id="generic-gradient-boosting-algorithm" class="level2" data-number="24.2">
-<h2 data-number="24.2" class="anchored" data-anchor-id="generic-gradient-boosting-algorithm"><span class="header-section-number">24.2</span> Generic Gradient Boosting Algorithm</h2>
+<section id="generic-gradient-boosting-algorithm" class="level3" data-number="22.2.2">
+<h3 data-number="22.2.2" class="anchored" data-anchor-id="generic-gradient-boosting-algorithm"><span class="header-section-number">22.2.2</span> Generic Gradient Boosting Algorithm</h3>
 <p>Notice how our previous discussion worked for any differentiable loss <span class="math inline">\(\ell\)</span>. This leads to the generic gradient boosting algorithm:</p>
 <p>Input:</p>
 <ul>
@@ -1042,8 +1001,8 @@ r_{nm}=
 \nu \hat h_m(x).
 \]</span></p>
 <p>Return <span class="math inline">\(\hat s_M\)</span>.</p>
-<section id="squared-error-as-a-special-case" class="level3" data-number="24.2.1">
-<h3 data-number="24.2.1" class="anchored" data-anchor-id="squared-error-as-a-special-case"><span class="header-section-number">24.2.1</span> Squared error as a special case</h3>
+<section id="squared-error-as-a-special-case" class="level4" data-number="22.2.2.1">
+<h4 data-number="22.2.2.1" class="anchored" data-anchor-id="squared-error-as-a-special-case"><span class="header-section-number">22.2.2.1</span> Squared error as a special case</h4>
 <p>For squared error loss,</p>
 <p><span class="math display">\[
 \ell(y,s)=
@@ -1070,8 +1029,8 @@ y_n-\hat s_{m-1}(x_n).
 </section>
 </section>
 </section>
-<section id="gradient-boosting-for-binary-classification" class="level1" data-number="25">
-<h1 data-number="25"><span class="header-section-number">25</span> Gradient boosting for binary classification</h1>
+<section id="gradient-boosting-for-binary-classification" class="level2" data-number="22.3">
+<h2 data-number="22.3" class="anchored" data-anchor-id="gradient-boosting-for-binary-classification"><span class="header-section-number">22.3</span> Gradient boosting for binary classification</h2>
 <p>Now suppose</p>
 <p><span class="math display">\[
 y_n \in \{0,1\}.
@@ -1150,8 +1109,8 @@ y_n-p_{nm}.
 \bar y=\frac{1}{N}\sum_{n=1}^N y_n.
 \]</span></p>
 <p>If the positive class is rare, this initial score is negative. If the positive class is common, it is positive.</p>
-<section id="an-example" class="level2" data-number="25.1">
-<h2 data-number="25.1" class="anchored" data-anchor-id="an-example"><span class="header-section-number">25.1</span> An Example</h2>
+<section id="an-example" class="level3" data-number="22.3.1">
+<h3 data-number="22.3.1" class="anchored" data-anchor-id="an-example"><span class="header-section-number">22.3.1</span> An Example</h3>
 <div id="53751347-63d1-4a34-a0e6-22192b456cd6" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1162,7 +1121,7 @@ y_n-p_{nm}.
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>gb_clf <span class="op">=</span> GradientBoostingClassifier(</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    n_estimators<span class="op">=</span><span class="dv">120</span>, <span class="co">#this is M</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    n_estimators<span class="op">=</span><span class="dv">120</span>, <span class="co">##this is M</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    learning_rate<span class="op">=</span><span class="fl">0.05</span>, <span class="co">#this is nu</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    max_depth<span class="op">=</span><span class="dv">2</span>,</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">3928</span></span>
@@ -1171,7 +1130,7 @@ y_n-p_{nm}.
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>gb_clf.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<style>#sk-container-id-1 {
+<style>#sk-container-id-2 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
   --sklearn-color-text-muted: #666;
@@ -1188,7 +1147,7 @@ y_n-p_{nm}.
   --sklearn-color-fitted-level-3: cornflowerblue;
 }
 
-#sk-container-id-1.light {
+#sk-container-id-2.light {
   /* Specific color for light theme */
   --sklearn-color-text-on-default-background: black;
   --sklearn-color-background: white;
@@ -1196,22 +1155,22 @@ y_n-p_{nm}.
   --sklearn-color-icon: #696969;
 }
 
-#sk-container-id-1.dark {
+#sk-container-id-2.dark {
   --sklearn-color-text-on-default-background: white;
   --sklearn-color-background: #111;
   --sklearn-color-border-box: white;
   --sklearn-color-icon: #878787;
 }
 
-#sk-container-id-1 {
+#sk-container-id-2 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-1 pre {
+#sk-container-id-2 pre {
   padding: 0;
 }
 
-#sk-container-id-1 input.sk-hidden--visually {
+#sk-container-id-2 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -1223,7 +1182,7 @@ y_n-p_{nm}.
   width: 1px;
 }
 
-#sk-container-id-1 div.sk-dashed-wrapped {
+#sk-container-id-2 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -1231,7 +1190,7 @@ y_n-p_{nm}.
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-1 div.sk-container {
+#sk-container-id-2 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -1241,7 +1200,7 @@ y_n-p_{nm}.
   position: relative;
 }
 
-#sk-container-id-1 div.sk-text-repr-fallback {
+#sk-container-id-2 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -1257,14 +1216,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-1 div.sk-parallel-item::after {
+#sk-container-id-2 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-1 div.sk-parallel {
+#sk-container-id-2 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -1272,28 +1231,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-1 div.sk-parallel-item {
+#sk-container-id-2 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-1 div.sk-parallel-item:first-child::after {
+#sk-container-id-2 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-1 div.sk-parallel-item:last-child::after {
+#sk-container-id-2 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-1 div.sk-parallel-item:only-child::after {
+#sk-container-id-2 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-1 div.sk-serial {
+#sk-container-id-2 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1311,14 +1270,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-1 div.sk-toggleable {
+#sk-container-id-2 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-1 label.sk-toggleable__label {
+#sk-container-id-2 label.sk-toggleable__label {
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -1331,13 +1290,13 @@ clickable and can be expanded/collapsed.
   gap: 0.5em;
 }
 
-#sk-container-id-1 label.sk-toggleable__label .caption {
+#sk-container-id-2 label.sk-toggleable__label .caption {
   font-size: 0.6rem;
   font-weight: lighter;
   color: var(--sklearn-color-text-muted);
 }
 
-#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+#sk-container-id-2 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -1345,25 +1304,25 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-1 div.sk-toggleable__content {
+#sk-container-id-2 div.sk-toggleable__content {
   display: none;
   text-align: left;
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content.fitted {
+#sk-container-id-2 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content pre {
+#sk-container-id-2 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -1371,78 +1330,78 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+#sk-container-id-2 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   display: block;
   width: 100%;
   overflow: visible;
 }
 
-#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-1 div.sk-label label.sk-toggleable__label,
-#sk-container-id-1 div.sk-label label {
+#sk-container-id-2 div.sk-label label.sk-toggleable__label,
+#sk-container-id-2 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-1 div.sk-label label {
+#sk-container-id-2 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   line-height: 1.2em;
 }
 
-#sk-container-id-1 div.sk-label-container {
+#sk-container-id-2 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-1 div.sk-estimator {
+#sk-container-id-2 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -1452,18 +1411,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted {
+#sk-container-id-2 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-1 div.sk-estimator:hover {
+#sk-container-id-2 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted:hover {
+#sk-container-id-2 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -1554,7 +1513,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-1 a.estimator_doc_link {
+#sk-container-id-2 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -1569,7 +1528,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-1 a.estimator_doc_link.fitted {
+#sk-container-id-2 a.estimator_doc_link.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
@@ -1577,14 +1536,14 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 }
 
 /* On hover */
-#sk-container-id-1 a.estimator_doc_link:hover {
+#sk-container-id-2 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+#sk-container-id-2 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
@@ -1721,8 +1680,8 @@ a.param-doc-link::before {
     height: 14px;
     cursor: pointer;
 }
-</a></style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GradientBoostingClassifier(learning_rate=0.05, max_depth=2, n_estimators=120,
-                           random_state=3928)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>GradientBoostingClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html">?<span>Documentation for GradientBoostingClassifier</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+</a></style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GradientBoostingClassifier(learning_rate=0.05, max_depth=2, n_estimators=120,
+                           random_state=3928)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked=""><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>GradientBoostingClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.8/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html">?<span>Documentation for GradientBoostingClassifier</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -2120,7 +2079,7 @@ function forceTheme(elementId) {
     }
 }
 
-forceTheme('sk-container-id-1');</script>
+forceTheme('sk-container-id-2');</script>
 </div>
 </div>
 <div id="1a3678e8-6934-48e1-8c91-3a91114c7922" class="cell">
@@ -2200,8 +2159,8 @@ forceTheme('sk-container-id-1');</script>
 </div>
 </section>
 </section>
-<section id="gradient-boosting-for-multiclass-classification" class="level1" data-number="26">
-<h1 data-number="26"><span class="header-section-number">26</span> Gradient boosting for multiclass classification</h1>
+<section id="gradient-boosting-for-multiclass-classification" class="level2" data-number="22.4">
+<h2 data-number="22.4" class="anchored" data-anchor-id="gradient-boosting-for-multiclass-classification"><span class="header-section-number">22.4</span> Gradient boosting for multiclass classification</h2>
 <p>Now suppose</p>
 <p><span class="math display">\[
 y_n \in \{1,\dots,K\}.
@@ -2273,26 +2232,26 @@ t_{nk}-p_{nk}^{(m-1)}.
 \hat s_{k,M}(x).
 \]</span></p>
 </section>
-<section id="regularization-in-boosting" class="level1" data-number="27">
-<h1 data-number="27"><span class="header-section-number">27</span> Regularization in boosting</h1>
+<section id="regularization-in-boosting" class="level2" data-number="22.5">
+<h2 data-number="22.5" class="anchored" data-anchor-id="regularization-in-boosting"><span class="header-section-number">22.5</span> Regularization in boosting</h2>
 <p>Boosting can overfit, but the form of overfitting differs from a single deep tree.</p>
 <p>The main regularization tools are:</p>
-<section id="number-of-trees" class="level3" data-number="27.0.1">
-<h3 data-number="27.0.1" class="anchored" data-anchor-id="number-of-trees"><span class="header-section-number">27.0.1</span> Number of trees</h3>
+<section id="number-of-trees" class="level4" data-number="22.5.0.1">
+<h4 data-number="22.5.0.1" class="anchored" data-anchor-id="number-of-trees"><span class="header-section-number">22.5.0.1</span> Number of trees</h4>
 <p><span class="math display">\[
 M.
 \]</span></p>
 <p>More trees create a more complex additive function. Early stopping chooses <span class="math inline">\(M\)</span> using a validation set.</p>
 </section>
-<section id="learning-rate" class="level3" data-number="27.0.2">
-<h3 data-number="27.0.2" class="anchored" data-anchor-id="learning-rate"><span class="header-section-number">27.0.2</span> Learning rate</h3>
+<section id="learning-rate" class="level4" data-number="22.5.0.2">
+<h4 data-number="22.5.0.2" class="anchored" data-anchor-id="learning-rate"><span class="header-section-number">22.5.0.2</span> Learning rate</h4>
 <p><span class="math display">\[
 \nu.
 \]</span></p>
 <p>Smaller learning rates slow the stagewise fitting path. They usually require larger <span class="math inline">\(M\)</span>.</p>
 </section>
-<section id="tree-depth" class="level3" data-number="27.0.3">
-<h3 data-number="27.0.3" class="anchored" data-anchor-id="tree-depth"><span class="header-section-number">27.0.3</span> Tree depth</h3>
+<section id="tree-depth" class="level4" data-number="22.5.0.3">
+<h4 data-number="22.5.0.3" class="anchored" data-anchor-id="tree-depth"><span class="header-section-number">22.5.0.3</span> Tree depth</h4>
 <p>The depth of each tree controls the complexity of each update. Shallow trees produce simpler corrections.</p>
 <p>Depth also controls interaction order in a rough sense:</p>
 <ul>
@@ -2301,40 +2260,40 @@ M.
 <li>deeper trees can capture more complex interactions</li>
 </ul>
 </section>
-<section id="minimum-leaf-size" class="level3" data-number="27.0.4">
-<h3 data-number="27.0.4" class="anchored" data-anchor-id="minimum-leaf-size"><span class="header-section-number">27.0.4</span> Minimum leaf size</h3>
+<section id="minimum-leaf-size" class="level4" data-number="22.5.0.4">
+<h4 data-number="22.5.0.4" class="anchored" data-anchor-id="minimum-leaf-size"><span class="header-section-number">22.5.0.4</span> Minimum leaf size</h4>
 <p>Larger minimum leaf sizes prevent highly local updates.</p>
 </section>
-<section id="subsampling" class="level3" data-number="27.0.5">
-<h3 data-number="27.0.5" class="anchored" data-anchor-id="subsampling"><span class="header-section-number">27.0.5</span> Subsampling</h3>
+<section id="subsampling" class="level4" data-number="22.5.0.5">
+<h4 data-number="22.5.0.5" class="anchored" data-anchor-id="subsampling"><span class="header-section-number">22.5.0.5</span> Subsampling</h4>
 <p>Some implementations fit each tree using a random subset of rows. This gives stochastic gradient boosting and can reduce variance.</p>
 </section>
 </section>
-<section id="practical-notes" class="level1" data-number="28">
-<h1 data-number="28"><span class="header-section-number">28</span> Practical notes</h1>
-<section id="scaling" class="level3" data-number="28.0.1">
-<h3 data-number="28.0.1" class="anchored" data-anchor-id="scaling"><span class="header-section-number">28.0.1</span> Scaling</h3>
+<section id="practical-notes" class="level2" data-number="22.6">
+<h2 data-number="22.6" class="anchored" data-anchor-id="practical-notes"><span class="header-section-number">22.6</span> Practical notes</h2>
+<section id="scaling" class="level4" data-number="22.6.0.1">
+<h4 data-number="22.6.0.1" class="anchored" data-anchor-id="scaling"><span class="header-section-number">22.6.0.1</span> Scaling</h4>
 <p>Boosted trees are usually not sensitive to monotone rescaling of individual features. A split such as</p>
 <p><span class="math display">\[
 x_j \le t
 \]</span></p>
 <p>has an equivalent split after changing units.</p>
 </section>
-<section id="categorical-variables" class="level3" data-number="28.0.2">
-<h3 data-number="28.0.2" class="anchored" data-anchor-id="categorical-variables"><span class="header-section-number">28.0.2</span> Categorical variables</h3>
-<p>Basic CART implementations often require categorical variables to be encoded numerically. Different boosting libraries handle categorical features differently.</p>
+<section id="categorical-variables" class="level4" data-number="22.6.0.2">
+<h4 data-number="22.6.0.2" class="anchored" data-anchor-id="categorical-variables"><span class="header-section-number">22.6.0.2</span> Categorical variables</h4>
+<p>Basic tree implementations often require categorical variables to be encoded numerically. Different boosting libraries handle categorical features differently.</p>
 </section>
-<section id="missing-values" class="level3" data-number="28.0.3">
-<h3 data-number="28.0.3" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">28.0.3</span> Missing values</h3>
+<section id="missing-values" class="level4" data-number="22.6.0.3">
+<h4 data-number="22.6.0.3" class="anchored" data-anchor-id="missing-values"><span class="header-section-number">22.6.0.3</span> Missing values</h4>
 <p>Basic sklearn trees require missing values to be handled before fitting. Some boosting implementations, including XGBoost-style methods, learn default directions for missing values.</p>
 </section>
-<section id="extrapolation" class="level3" data-number="28.0.4">
-<h3 data-number="28.0.4" class="anchored" data-anchor-id="extrapolation"><span class="header-section-number">28.0.4</span> Extrapolation</h3>
+<section id="extrapolation" class="level4" data-number="22.6.0.4">
+<h4 data-number="22.6.0.4" class="anchored" data-anchor-id="extrapolation"><span class="header-section-number">22.6.0.4</span> Extrapolation</h4>
 <p>Boosted trees inherit the extrapolation limitations of trees. They usually do not extrapolate linearly outside the observed feature range.</p>
 </section>
 </section>
-<section id="learning-rate-and-early-stopping-on-a-real-regression-dataset" class="level1" data-number="29">
-<h1 data-number="29"><span class="header-section-number">29</span> Learning rate and early stopping on a real regression dataset</h1>
+<section id="learning-rate-and-early-stopping-on-a-real-regression-dataset" class="level2" data-number="22.7">
+<h2 data-number="22.7" class="anchored" data-anchor-id="learning-rate-and-early-stopping-on-a-real-regression-dataset"><span class="header-section-number">22.7</span> Learning rate and early stopping on a real regression dataset</h2>
 <p>We now use the diabetes dataset to illustrate the interaction between learning rate and number of trees.</p>
 <div id="eaedcfb7" class="cell">
 <details open="" class="code-fold">
@@ -2481,8 +2440,8 @@ x_j \le t
 <p>The training loss decreases as more trees are added. The test loss may initially decrease and then flatten or increase.</p>
 <p>This is why <span class="math inline">\(M\)</span> should usually be selected using validation error, cross-validation, or early stopping rather than training error.</p>
 </section>
-<section id="step-sizes-weak-learners-and-tree-specific-updates" class="level1" data-number="30">
-<h1 data-number="30"><span class="header-section-number">30</span> Step sizes, weak learners, and tree-specific updates</h1>
+<section id="step-sizes-weak-learners-and-tree-specific-updates" class="level2" data-number="22.8">
+<h2 data-number="22.8" class="anchored" data-anchor-id="step-sizes-weak-learners-and-tree-specific-updates"><span class="header-section-number">22.8</span> Step sizes, weak learners, and tree-specific updates</h2>
 <p>So far, we have described gradient boosting as repeatedly fitting a weak learner to the negative gradient and adding it to the current score function:</p>
 <p><span class="math display">\[
 \hat s_m(x)=\hat s_{m-1}(x)+\nu \hat h_m(x).
@@ -2546,13 +2505,17 @@ R_{1m},\ldots,R_{J_m m}.
 </blockquote>
 <p>The tree fit to pseudo-residuals chooses the regions. The leaf updates choose how far to move in each region.</p>
 <p>For squared-error loss, these two steps collapse: the optimal leaf update is just the mean residual in the leaf. For other losses, such as logistic loss, the mean pseudo-residual gives a first-order gradient direction, but the best finite additive update in a leaf may be different. This is why practical tree boosting often uses leaf-specific updates rather than a single global step size.</p>
-<section id="extensions-and-modern-implementations" class="level2" data-number="30.1">
-<h2 data-number="30.1" class="anchored" data-anchor-id="extensions-and-modern-implementations"><span class="header-section-number">30.1</span> Extensions and modern implementations</h2>
+<section id="extensions-and-modern-implementations" class="level3" data-number="22.8.1">
+<h3 data-number="22.8.1" class="anchored" data-anchor-id="extensions-and-modern-implementations"><span class="header-section-number">22.8.1</span> Extensions and modern implementations</h3>
 <p>The core idea of gradient boosting is simple: compute pseudo-residuals, fit a weak learner to approximate them, and add the weak learner to the current score function. With trees, this is usually refined by using the fitted tree to define terminal regions and then choosing leaf-wise updates that reduce the original loss. Modern boosting methods build on this same idea but improve how the trees are fit, how the leaf values are computed, and how overfitting is controlled.</p>
 <p>For example, the original <code>gbm</code> style algorithms follow the Friedman gradient boosting framework closely, with shrinkage, subsampling, and tree-based weak learners. XGBoost extends this by using second-order information, meaning both gradients and Hessians, to choose splits and compute regularized leaf values. LightGBM is designed for speed and scale; it uses efficient histogram-based split finding and grows trees leaf-wise, which can improve accuracy but also requires regularization. CatBoost adds machinery for handling categorical variables carefully, especially to reduce target leakage from naive encoding. Despite these implementation differences, the basic structure is the same: build an additive score function by sequentially adding trees that improve the current model.</p>
-
-
 </section>
+</section>
+<section id="review-questions" class="level2" data-number="22.9">
+<h2 data-number="22.9" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">22.9</span> Review Questions</h2>
+<p>See: <a href="../questions/220_boosting_questions.html" class="quarto-xref"><span>Chapter 42</span></a>.</p>
+
+
 </section>
 
 </main> <!-- /main -->
