@@ -90,15 +90,6 @@ book:
         - questions/019_random_forests_questions.ipynb
         - questions/020_boosting_questions.ipynb
 
-
-    #- part: "Extras"
-    #  chapters:
-    #    - lectures/EXTRA_040_ERM_NLL.ipynb
-    #    - questions/EXTRA_040_ERM_NLL_questions.ipynb
-    #    - lectures/EXTRA_090_curse_dim.ipynb
-    #    - lectures/EXTRA_101_constr_optim.ipynb
-    #    - lectures/EXTRA_170_svd.ipynb
-
 crossref:
   fig-title: "Figure"
   tbl-title: "Table"
