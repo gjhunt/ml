@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Gregory Hunt">
-<meta name="dcterms.date" content="2026-07-02">
 
-<title>Statistical Learning</title>
+<title>3&nbsp; Matrix Calculus for Machine Learning – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,25 +24,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./lectures/000_intro_and_erm.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lectures/002_linear_regression.html" rel="next">
+<link href="../lectures/000_intro_and_erm.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -72,6 +72,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="assets/code_style.css">
 </head>
@@ -85,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Statistical Learning</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/000_intro_and_erm.html">Foundations and Linear Models</a></li><li class="breadcrumb-item"><a href="../lectures/001_derivatives.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -100,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Statistical Learning</a> 
+      <a href="../">Statistical Learning</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/gjhunt/ml" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -116,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Statistical Learning</span></span></a>
   </div>
 </li>
@@ -131,31 +160,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/000_intro_and_erm.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/000_intro_and_erm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/001_derivatives.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/001_derivatives.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/002_linear_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/002_linear_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/003_logistic_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/003_logistic_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/004_multiclass_logistic_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/004_multiclass_logistic_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
   </div>
 </li>
@@ -172,25 +201,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/005_evaluation.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/005_evaluation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/006_model_selection.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/006_model_selection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/007_knn.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/007_knn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/008_bias_variance.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/008_bias_variance.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
   </div>
 </li>
@@ -207,19 +236,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/009_ridge.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/009_ridge.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/010_lasso.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/010_lasso.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/011_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/011_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
   </div>
 </li>
@@ -236,19 +265,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/012_nn.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/012_nn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/013_backprop.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/013_backprop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/014_nn_arch.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/014_nn_arch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
   </div>
 </li>
@@ -265,19 +294,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/015_unsupervised.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/015_unsupervised.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/016_pca.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/016_pca.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/017_kmeans.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/017_kmeans.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
@@ -294,19 +323,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/018_trees.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/018_trees.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/019_random_forests.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/019_random_forests.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/020_boosting.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/020_boosting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
@@ -323,121 +352,121 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/001_derivatives_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/001_derivatives_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/002_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/002_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/003_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/003_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/004_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/004_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/005_evaluation_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/005_evaluation_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/006_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/006_model_selection_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/007_knn_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/007_knn_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/008_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/008_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/009_ridge_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/009_ridge_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/010_lasso_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/010_lasso_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/011_elastic_net_logistic_erm_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/011_elastic_net_logistic_erm_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/012_nn_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/012_nn_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/013_backprop_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/013_backprop_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/014_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/014_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/016_pca_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/016_pca_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA) - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/017_kmeans_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/017_kmeans_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">K-means - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/018_trees_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/018_trees_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Trees - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/019_random_forests_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/019_random_forests_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Random Forests and Bagging - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/020_boosting_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/020_boosting_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Boosting Review Questions</span></span></a>
   </div>
 </li>
@@ -453,21 +482,47 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#statistical-learning" id="toc-statistical-learning" class="nav-link active" data-scroll-target="#statistical-learning"><span class="header-section-number">1</span> Statistical Learning</a>
+  <li><a href="#taxonomy-of-derivative-objects" id="toc-taxonomy-of-derivative-objects" class="nav-link active" data-scroll-target="#taxonomy-of-derivative-objects"><span class="header-section-number">3.1</span> Taxonomy of derivative objects</a>
   <ul class="collapse">
-  <li><a href="#course-map" id="toc-course-map" class="nav-link" data-scroll-target="#course-map"><span class="header-section-number">1.1</span> Course Map</a></li>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><span class="header-section-number">1.2</span> Prerequisites</a></li>
-  <li><a href="#practice-questions" id="toc-practice-questions" class="nav-link" data-scroll-target="#practice-questions"><span class="header-section-number">1.3</span> Practice Questions</a></li>
+  <li><a href="#gradients-scalar-output" id="toc-gradients-scalar-output" class="nav-link" data-scroll-target="#gradients-scalar-output"><span class="header-section-number">3.1.1</span> Gradients: Scalar Output</a></li>
+  <li><a href="#jacobians-vector-output" id="toc-jacobians-vector-output" class="nav-link" data-scroll-target="#jacobians-vector-output"><span class="header-section-number">3.1.2</span> Jacobians: Vector Output</a></li>
+  <li><a href="#matrix-valued-output" id="toc-matrix-valued-output" class="nav-link" data-scroll-target="#matrix-valued-output"><span class="header-section-number">3.1.3</span> Matrix-valued Output</a></li>
   </ul></li>
+  <li><a href="#numerator-layout-and-denominator-layout" id="toc-numerator-layout-and-denominator-layout" class="nav-link" data-scroll-target="#numerator-layout-and-denominator-layout"><span class="header-section-number">3.2</span> Numerator layout and denominator layout</a>
+  <ul class="collapse">
+  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table"><span class="header-section-number">3.2.1</span> Summary table</a></li>
+  </ul></li>
+  <li><a href="#basic-derivative-identities" id="toc-basic-derivative-identities" class="nav-link" data-scroll-target="#basic-derivative-identities"><span class="header-section-number">3.3</span> Basic derivative identities</a></li>
+  <li><a href="#scalar-output-scalar-input" id="toc-scalar-output-scalar-input" class="nav-link" data-scroll-target="#scalar-output-scalar-input"><span class="header-section-number">3.4</span> Scalar output, scalar input</a></li>
+  <li><a href="#scalar-output-vector-input" id="toc-scalar-output-vector-input" class="nav-link" data-scroll-target="#scalar-output-vector-input"><span class="header-section-number">3.5</span> Scalar output, vector input</a>
+  <ul class="collapse">
+  <li><a href="#constant-linear-and-quadratic-terms" id="toc-constant-linear-and-quadratic-terms" class="nav-link" data-scroll-target="#constant-linear-and-quadratic-terms"><span class="header-section-number">3.5.1</span> Constant, linear, and quadratic terms</a></li>
+  <li><a href="#chain-rule-through-a-vector-intermediate" id="toc-chain-rule-through-a-vector-intermediate" class="nav-link" data-scroll-target="#chain-rule-through-a-vector-intermediate"><span class="header-section-number">3.5.2</span> Chain rule through a vector intermediate</a></li>
+  </ul></li>
+  <li><a href="#scalar-output-matrix-input" id="toc-scalar-output-matrix-input" class="nav-link" data-scroll-target="#scalar-output-matrix-input"><span class="header-section-number">3.6</span> Scalar output, matrix input</a>
+  <ul class="collapse">
+  <li><a href="#constant-and-linear-terms" id="toc-constant-and-linear-terms" class="nav-link" data-scroll-target="#constant-and-linear-terms"><span class="header-section-number">3.6.1</span> Constant and linear terms</a></li>
+  <li><a href="#frobenius-norm" id="toc-frobenius-norm" class="nav-link" data-scroll-target="#frobenius-norm"><span class="header-section-number">3.6.2</span> Frobenius norm</a></li>
+  </ul></li>
+  <li><a href="#vector-output-vector-input" id="toc-vector-output-vector-input" class="nav-link" data-scroll-target="#vector-output-vector-input"><span class="header-section-number">3.7</span> Vector output, vector input</a>
+  <ul class="collapse">
+  <li><a href="#linear-and-affine-maps" id="toc-linear-and-affine-maps" class="nav-link" data-scroll-target="#linear-and-affine-maps"><span class="header-section-number">3.7.1</span> Linear and affine maps</a></li>
+  <li><a href="#chain-rule-for-vector-output-functions" id="toc-chain-rule-for-vector-output-functions" class="nav-link" data-scroll-target="#chain-rule-for-vector-output-functions"><span class="header-section-number">3.7.2</span> Chain rule for vector-output functions</a></li>
+  </ul></li>
+  <li><a href="#matrix-output-scalar-input" id="toc-matrix-output-scalar-input" class="nav-link" data-scroll-target="#matrix-output-scalar-input"><span class="header-section-number">3.8</span> Matrix output, scalar input</a>
+  <ul class="collapse">
+  <li><a href="#constant-linear-and-elementwise-rules" id="toc-constant-linear-and-elementwise-rules" class="nav-link" data-scroll-target="#constant-linear-and-elementwise-rules"><span class="header-section-number">3.8.1</span> Constant, linear, and elementwise rules</a></li>
+  </ul></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">3.9</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/000_intro_and_erm.html">Foundations and Linear Models</a></li><li class="breadcrumb-item"><a href="../lectures/001_derivatives.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Statistical Learning</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning</span></h1>
 </div>
 
 
@@ -481,12 +536,6 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">July 2, 2026</p>
-    </div>
-  </div>
   
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
@@ -505,69 +554,624 @@ ul.task-list li input[type="checkbox"] {
 <div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
-<section id="statistical-learning" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Statistical Learning</h1>
-<p>These lecture notes introduce core ideas in statistical learning, with an emphasis on how models are formulated, fit, evaluated, and compared. The notes use empirical risk minimization as a recurring framework, then build toward model selection, regularization, neural networks, unsupervised learning, and tree-based methods.</p>
-<p>The goal is not to catalog every model or algorithm. The goal is to develop a practical way of thinking about learning from data: what objective is being optimized, what assumptions are being made, how flexible the model is, and how well its performance is likely to generalize.</p>
-<section id="course-map" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="course-map"><span class="header-section-number">1.1</span> Course Map</h2>
+<p>In single-variable calculus, the basic question is how one quantity changes as another quantity changes. If <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span>, then the <strong>derivative</strong> <span class="math inline">\(f'(x)\)</span> measures how the scalar output changes as the scalar input changes. The familiar rules describe common patterns: constants differentiate to zero, linear terms differentiate to their coefficients, and quadratic terms produce a factor of two.</p>
+<p>In multivariable calculus, the same idea is extended to functions with several inputs. For a scalar-valued function such as <span class="math inline">\(L(w_1,\ldots,w_d)\)</span>, the <strong>gradient</strong> collects the partial derivatives into one vector. For a function with several outputs, the <strong>Jacobian</strong> records how each output coordinate changes with respect to each input coordinate.</p>
+<p><strong>Matrix calculus</strong> systematizes this notation and extends it to expressions involving vectors, matrices, and tensors. The underlying calculus is not new. The main difference is that every object now has a shape, and the notation has to keep track of those shapes.</p>
+<p>A term such as <span class="math inline">\(y^\top y\)</span> may look more complicated than a constant from single-variable calculus, but it is just compact notation for a real-valued object. Similarly, terms like <span class="math inline">\(w^\top a\)</span> and <span class="math inline">\(w^\top A w\)</span> are vector and matrix versions of familiar linear and quadratic expressions. Much of what we are doing is learning to recognize familiar calculus patterns after they have been written in vector and matrix notation.</p>
+<section id="taxonomy-of-derivative-objects" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="taxonomy-of-derivative-objects"><span class="header-section-number">3.1</span> Taxonomy of derivative objects</h2>
+<p>Once functions can have scalar, vector, matrix, or <strong>tensor</strong> (basically, multi-dimensional matrices) inputs and outputs, the word “derivative” can refer to several different kinds of objects. The main task is to keep track of the input shape, the output shape, and the convention being used to arrange the derivative.</p>
+<section id="gradients-scalar-output" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="gradients-scalar-output"><span class="header-section-number">3.1.1</span> Gradients: Scalar Output</h3>
+<section id="scalar-input-scalar-output" class="level4" data-number="3.1.1.1">
+<h4 data-number="3.1.1.1" class="anchored" data-anchor-id="scalar-input-scalar-output"><span class="header-section-number">3.1.1.1</span> Scalar input → scalar output</h4>
+<p>The simplest case is a function from one real number to another:</p>
+<p><span class="math display">\[
+f: \mathbb{R} \to \mathbb{R}.
+\]</span></p>
+<p>The derivative is the ordinary single-variable derivative:</p>
+<p><span class="math display">\[
+\frac{df}{dx}.
+\]</span></p>
+</section>
+<section id="vector-input-scalar-output" class="level4" data-number="3.1.1.2">
+<h4 data-number="3.1.1.2" class="anchored" data-anchor-id="vector-input-scalar-output"><span class="header-section-number">3.1.1.2</span> Vector input → scalar output</h4>
+<p>A very common case in optimization and machine learning is a scalar-valued function of a vector:</p>
+<p><span class="math display">\[
+L: \mathbb{R}^d \to \mathbb{R}.
+\]</span></p>
+<p>Here the input is a vector and the output is a scalar. We usually write the input as:</p>
+<p><span class="math display">\[
+w =
+\begin{bmatrix}
+w_1 \\
+w_2 \\
+\vdots \\
+w_d
+\end{bmatrix}.
+\]</span></p>
+<p>The derivative is collected into the gradient:</p>
+<p><span class="math display">\[
+\nabla_w L =
+\begin{bmatrix}
+\frac{\partial L}{\partial w_1} \\
+\frac{\partial L}{\partial w_2} \\
+\vdots \\
+\frac{\partial L}{\partial w_d}
+\end{bmatrix}.
+\]</span></p>
+<p>If <span class="math inline">\(w \in \mathbb{R}^d\)</span>, then:</p>
+<p><span class="math display">\[
+\nabla_w L \in \mathbb{R}^d.
+\]</span></p>
+<p>This is one of the most important shape rules in applied matrix calculus:</p>
+<p><span class="math display">\[
+\text{If } L \text{ is scalar-valued, then } \nabla_w L \text{ has the same shape as } w.
+\]</span></p>
+<p>For example, if:</p>
+<p><span class="math display">\[
+L(w) = w^\top w,
+\]</span></p>
+<p>then:</p>
+<p><span class="math display">\[
+\nabla_w L = 2w.
+\]</span></p>
+<p><strong>Why?</strong></p>
+<p>The output <span class="math inline">\(L(w)\)</span> is a scalar, and the gradient is a vector with the same shape as <span class="math inline">\(w\)</span>.</p>
+</section>
+<section id="matrix-input-scalar-output" class="level4" data-number="3.1.1.3">
+<h4 data-number="3.1.1.3" class="anchored" data-anchor-id="matrix-input-scalar-output"><span class="header-section-number">3.1.1.3</span> Matrix input → scalar output</h4>
+<p>Another common case is a scalar-valued function of a matrix:</p>
+<p><span class="math display">\[
+L: \mathbb{R}^{m \times n} \to \mathbb{R}.
+\]</span></p>
+<p>For example, <span class="math inline">\(L(W)\)</span> might depend on a matrix <span class="math inline">\(W\)</span> of parameters. If:</p>
+<p><span class="math display">\[
+W \in \mathbb{R}^{m \times n},
+\]</span></p>
+<p>then the gradient with respect to <span class="math inline">\(W\)</span> is arranged as a matrix of the same shape:</p>
+<p><span class="math display">\[
+\nabla_W L \in \mathbb{R}^{m \times n}.
+\]</span></p>
+<p>The entries of this gradient are:</p>
+<p><span class="math display">\[
+(\nabla_W L)_{ij} = \frac{\partial L}{\partial W_{ij}}.
+\]</span></p>
+<p>So:</p>
+<p><span class="math display">\[
+\nabla_W L =
+\begin{bmatrix}
+\frac{\partial L}{\partial W_{11}} &amp; \cdots &amp; \frac{\partial L}{\partial W_{1n}} \\
+\vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial L}{\partial W_{m1}} &amp; \cdots &amp; \frac{\partial L}{\partial W_{mn}}
+\end{bmatrix}.
+\]</span></p>
+<p>Again, for scalar-valued functions, the gradient has the same shape as the variable.</p>
+<p>For example, if:</p>
+<p><span class="math display">\[
+L(W) = \|W\|_F^2 = \sum_{i=1}^m \sum_{j=1}^n W_{ij}^2,
+\]</span></p>
+<p>then:</p>
+<p><span class="math display">\[
+\nabla_W L = 2W.
+\]</span></p>
+<p>This is essentially the matrix version of:</p>
+<p><span class="math display">\[
+\frac{d}{dw} w^2 = 2w.
+\]</span></p>
+</section>
+<section id="tensor-input-scalar-output" class="level4" data-number="3.1.1.4">
+<h4 data-number="3.1.1.4" class="anchored" data-anchor-id="tensor-input-scalar-output"><span class="header-section-number">3.1.1.4</span> Tensor input → scalar output</h4>
+<p>The same idea extends to tensor inputs. One may think of a tensor as just multidimensional array of numbers. Scalars are 0-dimensional tensors, vectors are 1-dimensional tensors, matrices are 2-dimensional tensors, and arrays with three or more axes are higher-order tensors. Suppose:</p>
+<p><span class="math display">\[
+L: \mathbb{R}^{d_1 \times d_2 \times \cdots \times d_k} \to \mathbb{R}.
+\]</span></p>
+<p>If the input tensor is <span class="math inline">\(T\)</span>, then the gradient with respect to <span class="math inline">\(T\)</span> has the same shape as <span class="math inline">\(T\)</span>:</p>
+<p><span class="math display">\[
+\nabla_T L \in \mathbb{R}^{d_1 \times d_2 \times \cdots \times d_k}.
+\]</span></p>
+<p>Each entry of the gradient tells us the partial derivative of <span class="math inline">\(L\)</span> with respect to the corresponding entry of <span class="math inline">\(T\)</span>:</p>
+<p><span class="math display">\[
+(\nabla_T L)_{i_1,\ldots,i_k} = \frac{\partial L}{\partial T_{i_1,\ldots,i_k}}.
+\]</span></p>
+<p>This is how gradients are usually represented in modern array-based computation. A scalar objective depends on many arrays, and each array receives a gradient array of the same shape.</p>
+<p>For scalar-valued functions, the pattern is therefore:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 27%">
+<col style="width: 36%">
+<col style="width: 36%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Part</th>
-<th>Main Question</th>
-<th>Topics</th>
+<th>Variable</th>
+<th style="text-align: right;">Shape of variable</th>
+<th style="text-align: right;">Shape of gradient</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Foundations and Linear Models</td>
-<td>What does it mean to fit a model?</td>
-<td>Supervised learning, ERM, derivatives, linear regression, logistic regression, multiclass classification</td>
+<td><span class="math inline">\(w\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(d\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(d\)</span></td>
 </tr>
 <tr class="even">
-<td>Evaluation and Model Selection</td>
-<td>How do we know whether a model generalizes?</td>
-<td>Train/test performance, validation, cross-validation, KNN, bias-variance tradeoff</td>
+<td><span class="math inline">\(W\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(m \times n\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(m \times n\)</span></td>
 </tr>
 <tr class="odd">
-<td>Regularization and Penalized Models</td>
-<td>How do we control model complexity?</td>
-<td>Ridge, lasso, elastic net, penalized logistic regression</td>
-</tr>
-<tr class="even">
-<td>Neural Networks</td>
-<td>How do models learn representations?</td>
-<td>Feedforward networks, optimization, backpropagation, architecture choices</td>
-</tr>
-<tr class="odd">
-<td>Unsupervised Learning</td>
-<td>What structure can we find without labels?</td>
-<td>Dimensionality reduction, PCA, clustering, k-means</td>
-</tr>
-<tr class="even">
-<td>Tree-Based Methods</td>
-<td>How do adaptive rule-based models and ensembles work?</td>
-<td>Decision trees, random forests, boosting</td>
+<td><span class="math inline">\(T\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(d_1 \times \cdots \times d_k\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(d_1 \times \cdots \times d_k\)</span></td>
 </tr>
 </tbody>
 </table>
+<p>This same-shape rule is one of the main conventions used in machine learning notation and software.</p>
 </section>
-<section id="prerequisites" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">1.2</span> Prerequisites</h2>
-<p>These notes assume comfort with basic Python, plotting, and numerical computing. They also assume working familiarity with functions, derivatives, vectors, matrices, probability, and statistical estimation. The early lectures review some of the mathematical notation used later, but the notes are written for readers who are willing to move between equations, code, and visual interpretation.</p>
 </section>
-<section id="practice-questions" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="practice-questions"><span class="header-section-number">1.3</span> Practice Questions</h2>
-<p>The practice questions are paired with the lecture topics. They are meant to be attempted actively, not just read. A good first pass is to answer them without looking back at the notes, then revisit the relevant lecture sections to repair gaps in notation, interpretation, or implementation.</p>
+<section id="jacobians-vector-output" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="jacobians-vector-output"><span class="header-section-number">3.1.2</span> Jacobians: Vector Output</h3>
+<section id="vector-input-vector-output" class="level4" data-number="3.1.2.1">
+<h4 data-number="3.1.2.1" class="anchored" data-anchor-id="vector-input-vector-output"><span class="header-section-number">3.1.2.1</span> Vector input → vector output</h4>
+<p>Consider a vector-valued function of a vector:</p>
+<p><span class="math display">\[
+f: \mathbb{R}^n \to \mathbb{R}^m.
+\]</span></p>
+<p>The input is:</p>
+<p><span class="math display">\[
+x =
+\begin{bmatrix}
+x_1 \\
+\vdots \\
+x_n
+\end{bmatrix},
+\]</span></p>
+<p>and the output is:</p>
+<p><span class="math display">\[
+f(x) =
+\begin{bmatrix}
+f_1(x) \\
+\vdots \\
+f_m(x)
+\end{bmatrix}.
+\]</span></p>
+<p>The derivative is the <strong>Jacobian</strong> matrix:</p>
+<p><span class="math display">\[
+J_f(x) =
+\begin{bmatrix}
+\frac{\partial f_1}{\partial x_1} &amp; \cdots &amp; \frac{\partial f_1}{\partial x_n} \\
+\vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial f_m}{\partial x_1} &amp; \cdots &amp; \frac{\partial f_m}{\partial x_n}
+\end{bmatrix}.
+\]</span></p>
+<p>Under this convention:</p>
+<p><span class="math display">\[
+J_f(x) \in \mathbb{R}^{m \times n}.
+\]</span></p>
+<p>The rows correspond to <strong>output</strong> coordinates, and the columns correspond to <strong>input</strong> coordinates. The size of the Jacobian <span class="math inline">\(J_f\)</span> is always <strong>output</strong> <span class="math inline">\(\times\)</span> <strong>input</strong>.</p>
+<p><strong>Note:</strong> This is different from the scalar-output gradient case. If the output is scalar, the gradient has the same shape as the input. If the output is vector-valued, the derivative needs to track how every output coordinate depends on every input coordinate, so it becomes a matrix.</p>
+</section>
+<section id="scalar-input-vector-output" class="level4" data-number="3.1.2.2">
+<h4 data-number="3.1.2.2" class="anchored" data-anchor-id="scalar-input-vector-output"><span class="header-section-number">3.1.2.2</span> Scalar input → vector output</h4>
+<p>A special case of the Jacobian is a vector-valued function of one scalar:</p>
+<p><span class="math display">\[
+f: \mathbb{R} \to \mathbb{R}^m.
+\]</span></p>
+<p>The output is:</p>
+<p><span class="math display">\[
+f(t) =
+\begin{bmatrix}
+f_1(t) \\
+\vdots \\
+f_m(t)
+\end{bmatrix}.
+\]</span></p>
+<p>The Jacobian is:</p>
+<p><span class="math display">\[
+\frac{df}{dt} =
+\begin{bmatrix}
+\frac{df_1}{dt} \\
+\vdots \\
+\frac{df_m}{dt}
+\end{bmatrix}.
+\]</span></p>
+<p><strong>Note:</strong> This is a useful place to notice a mild notational tension. For scalar-valued functions, we usually write gradients as column vectors with the same shape as the input. For vector-valued functions, we usually write Jacobians with output coordinates first and input coordinates second.</p>
+<p>So if <span class="math inline">\(L:\mathbb{R}^n \to \mathbb{R}\)</span>, the Jacobian convention gives:</p>
+<p><span class="math display">\[
+J_L(x) \in \mathbb{R}^{1 \times n}.
+\]</span></p>
+<p>But the gradient convention gives:</p>
+<p><span class="math display">\[
+\nabla_x L \in \mathbb{R}^n.
+\]</span></p>
+<p>These are not different mathematical information. They are transposes of each other:</p>
+<p><span class="math display">\[
+J_L(x) = (\nabla_x L)^\top.
+\]</span></p>
+<p>This is one reason we usually say <strong>“gradient”</strong> for scalar-valued outputs and <strong>“Jacobian”</strong> for vector-valued outputs.</p>
+</section>
+</section>
+<section id="matrix-valued-output" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="matrix-valued-output"><span class="header-section-number">3.1.3</span> Matrix-valued Output</h3>
+<p>Matrix-output and tensor-output functions appear whenever an operation produces an array rather than a scalar or vector. These cases are common in applied work, but the full derivative is usually not written explicitly.</p>
+<section id="scalar-input-to-matrix-output" class="level4" data-number="3.1.3.1">
+<h4 data-number="3.1.3.1" class="anchored" data-anchor-id="scalar-input-to-matrix-output"><span class="header-section-number">3.1.3.1</span> Scalar input to matrix output</h4>
+<p>A simple example is a matrix that depends on one scalar parameter:</p>
+<p><span class="math display">\[
+F:\mathbb{R} \to \mathbb{R}^{m \times n}.
+\]</span></p>
+<p>For instance, <span class="math inline">\(F(t)\)</span> might be a time-dependent matrix, a rotation matrix depending on an angle, or a covariance matrix depending on a scalar parameter. The derivative has the same shape as the output:</p>
+<p><span class="math display">\[
+\frac{dF}{dt} \in \mathbb{R}^{m \times n}.
+\]</span></p>
+<p>Entry by entry:</p>
+<p><span class="math display">\[
+\left(\frac{dF}{dt}\right)_{ij} = \frac{dF_{ij}}{dt}.
+\]</span></p>
+<p>A common example is a 2D rotation matrix depending on an angle <span class="math inline">\(\theta\)</span>:</p>
+<p><span class="math display">\[
+R(\theta) =
+\begin{bmatrix}
+\cos \theta &amp; -\sin \theta \\
+\sin \theta &amp; \cos \theta
+\end{bmatrix}.
+\]</span></p>
+<p>Then:</p>
+<p><span class="math display">\[
+\frac{dR}{d\theta} =
+\begin{bmatrix}
+-\sin \theta &amp; -\cos \theta \\
+\cos \theta &amp; -\sin \theta
+\end{bmatrix}.
+\]</span></p>
+<p>This case is conceptually straightforward because there is only one input direction. The derivative is just the entrywise derivative of the matrix-valued function.</p>
+</section>
+</section>
+</section>
+<section id="numerator-layout-and-denominator-layout" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="numerator-layout-and-denominator-layout"><span class="header-section-number">3.2</span> Numerator layout and denominator layout</h2>
+<p>There is one important notational warning. Different books arrange derivatives of vectors in different ways.</p>
+<p>For a function:</p>
+<p><span class="math display">\[
+f: \mathbb{R}^n \to \mathbb{R}^m,
+\]</span></p>
+<p>this lecture uses the convention:</p>
+<p><span class="math display">\[
+J_f(x)_{ij} = \frac{\partial f_i}{\partial x_j}.
+\]</span></p>
+<p>So:</p>
+<p><span class="math display">\[
+J_f(x) \in \mathbb{R}^{m \times n}.
+\]</span></p>
+<p>This is often called the <strong>numerator-layout</strong> convention for Jacobians. It is common in applied mathematics, optimization, and much of machine learning because it gives the clean approximation:</p>
+<p><span class="math display">\[
+f(x + dx) \approx f(x) + J_f(x)dx.
+\]</span></p>
+<p>Some sources use the transpose convention, especially in parts of statistics or older matrix calculus references. Under that convention, the Jacobian of <span class="math inline">\(f:\mathbb{R}^n \to \mathbb{R}^m\)</span> may be written with shape <span class="math inline">\(n \times m\)</span>.</p>
+<p>This can make formulas look different across books. For example, one source may write a chain rule using <span class="math inline">\(J^\top v\)</span>, while another may write an equivalent expression using <span class="math inline">\(v^\top J\)</span> or a transposed Jacobian definition.</p>
+<p>The safest habit is to check shapes. If the formula is supposed to produce a vector in <span class="math inline">\(\mathbb{R}^n\)</span>, then the multiplication must produce a vector in <span class="math inline">\(\mathbb{R}^n\)</span>. Shape checking usually reveals which convention is being used.</p>
+<section id="summary-table" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="summary-table"><span class="header-section-number">3.2.1</span> Summary table</h3>
+<p>The following table summarizes the most common derivative objects.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function type</th>
+<th>Example notation</th>
+<th>Derivative object</th>
+<th>Typical shape</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Scalar to scalar</td>
+<td><span class="math inline">\(f:\mathbb{R}\to\mathbb{R}\)</span></td>
+<td>ordinary derivative</td>
+<td>scalar</td>
+</tr>
+<tr class="even">
+<td>Vector to scalar</td>
+<td><span class="math inline">\(L:\mathbb{R}^d\to\mathbb{R}\)</span></td>
+<td>gradient <span class="math inline">\(\nabla_w L\)</span></td>
+<td><span class="math inline">\(d\)</span></td>
+</tr>
+<tr class="odd">
+<td>Matrix to scalar</td>
+<td><span class="math inline">\(L:\mathbb{R}^{m\times n}\to\mathbb{R}\)</span></td>
+<td>matrix gradient <span class="math inline">\(\nabla_W L\)</span></td>
+<td><span class="math inline">\(m \times n\)</span></td>
+</tr>
+<tr class="even">
+<td>Vector to vector</td>
+<td><span class="math inline">\(f:\mathbb{R}^n\to\mathbb{R}^m\)</span></td>
+<td>Jacobian <span class="math inline">\(J_f\)</span></td>
+<td><span class="math inline">\(m \times n\)</span></td>
+</tr>
+<tr class="odd">
+<td>Scalar to vector</td>
+<td><span class="math inline">\(f:\mathbb{R}\to\mathbb{R}^m\)</span></td>
+<td>vector derivative <span class="math inline">\(\frac{df}{dt}\)</span></td>
+<td><span class="math inline">\(m\)</span></td>
+</tr>
+<tr class="even">
+<td>Scalar to matrix</td>
+<td><span class="math inline">\(F:\mathbb{R}\to\mathbb{R}^{m\times n}\)</span></td>
+<td>matrix derivative <span class="math inline">\(\frac{dF}{dt}\)</span></td>
+<td><span class="math inline">\(m \times n\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The most important practical distinction is between scalar-output derivatives and vector-output derivatives. For scalar-output functions, gradients are usually arranged to match the shape of the variable. For vector-output functions, the derivative needs to track how each output coordinate depends on each input coordinate, so extra axes appear.</p>
+<p><strong>Practical rule</strong></p>
+<p>When reading or deriving a matrix calculus expression, ask three questions:</p>
+<ol type="1">
+<li>What is the variable being differentiated?</li>
+<li>What is the shape of the output?</li>
+<li>What shape must the derivative object have?</li>
+</ol>
+</section>
+</section>
+<section id="basic-derivative-identities" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="basic-derivative-identities"><span class="header-section-number">3.3</span> Basic derivative identities</h2>
+</section>
+<section id="scalar-output-scalar-input" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="scalar-output-scalar-input"><span class="header-section-number">3.4</span> Scalar output, scalar input</h2>
+<p>Let:</p>
+<p><span class="math display">\[
+f:\mathbb{R}\to\mathbb{R}.
+\]</span></p>
+<p>The basic rules are the familiar single-variable rules:</p>
+<p><span class="math display">\[
+\frac{d}{dx}c = 0.
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}(ax) = a.
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}(ax^2) = 2ax.
+\]</span></p>
+<p><span class="math display">\[
+\frac{d}{dx}\frac{1}{2}ax^2 = ax.
+\]</span></p>
+<p>These patterns reappear in vector and matrix form as constant, linear, and quadratic terms.</p>
+<p>The chain rule is:</p>
+<p><span class="math display">\[
+\frac{d}{dx}f(g(x)) = f'(g(x))g'(x).
+\]</span></p>
+</section>
+<section id="scalar-output-vector-input" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="scalar-output-vector-input"><span class="header-section-number">3.5</span> Scalar output, vector input</h2>
+<p>Let:</p>
+<p><span class="math display">\[
+L:\mathbb{R}^d\to\mathbb{R}.
+\]</span></p>
+<p>If:</p>
+<p><span class="math display">\[
+w \in \mathbb{R}^d,
+\]</span></p>
+<p>then:</p>
+<p><span class="math display">\[
+\nabla_w L \in \mathbb{R}^d.
+\]</span></p>
+<p>So the gradient has the same shape as the vector being differentiated.</p>
+<section id="constant-linear-and-quadratic-terms" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="constant-linear-and-quadratic-terms"><span class="header-section-number">3.5.1</span> Constant, linear, and quadratic terms</h3>
+<p>If <span class="math inline">\(c\)</span> does not depend on <span class="math inline">\(w\)</span>, then:</p>
+<p><span class="math display">\[
+\nabla_w c = 0.
+\]</span></p>
+<p>If <span class="math inline">\(a \in \mathbb{R}^d\)</span> is constant with respect to <span class="math inline">\(w\)</span>, then:</p>
+<p><span class="math display">\[
+\nabla_w(a^\top w) = a.
+\]</span></p>
+<p><span class="math display">\[
+\nabla_w(w^\top a) = a.
+\]</span></p>
+<p>The squared norm is:</p>
+<p><span class="math display">\[
+\nabla_w(w^\top w) = 2w.
+\]</span></p>
+<p>Equivalently:</p>
+<p><span class="math display">\[
+\nabla_w \frac{1}{2}w^\top w = w.
+\]</span></p>
+<p>If <span class="math inline">\(A \in \mathbb{R}^{d \times d}\)</span> is constant with respect to <span class="math inline">\(w\)</span>, then:</p>
+<p><span class="math display">\[
+\nabla_w(w^\top A w) = (A + A^\top)w.
+\]</span></p>
+<p>If <span class="math inline">\(A\)</span> is symmetric, then:</p>
+<p><span class="math display">\[
+\nabla_w(w^\top A w) = 2Aw.
+\]</span></p>
+<p>With a factor of <span class="math inline">\(\frac{1}{2}\)</span>:</p>
+<p><span class="math display">\[
+\nabla_w \frac{1}{2}w^\top A w = Aw.
+\]</span></p>
+<p>when <span class="math inline">\(A\)</span> is symmetric.</p>
+</section>
+<section id="chain-rule-through-a-vector-intermediate" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="chain-rule-through-a-vector-intermediate"><span class="header-section-number">3.5.2</span> Chain rule through a vector intermediate</h3>
+<p>Suppose:</p>
+<p><span class="math display">\[
+z = f(w), \qquad L = g(z),
+\]</span></p>
+<p>where:</p>
+<p><span class="math display">\[
+w \in \mathbb{R}^d, \qquad z \in \mathbb{R}^m, \qquad L \in \mathbb{R}.
+\]</span></p>
+<p>If:</p>
+<p><span class="math display">\[
+J_f(w) \in \mathbb{R}^{m \times d},
+\]</span></p>
+<p>then:</p>
+<p><span class="math display">\[
+\nabla_w L = J_f(w)^\top \nabla_z L.
+\]</span></p>
+<p>This is the main chain rule for scalar-valued objectives. The gradient with respect to <span class="math inline">\(z\)</span> is pulled back to a gradient with respect to <span class="math inline">\(w\)</span> by multiplying by the transposed Jacobian.</p>
+</section>
+</section>
+<section id="scalar-output-matrix-input" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="scalar-output-matrix-input"><span class="header-section-number">3.6</span> Scalar output, matrix input</h2>
+<p>Let:</p>
+<p><span class="math display">\[
+L:\mathbb{R}^{m \times n}\to\mathbb{R}.
+\]</span></p>
+<p>If:</p>
+<p><span class="math display">\[
+W \in \mathbb{R}^{m \times n},
+\]</span></p>
+<p>then:</p>
+<p><span class="math display">\[
+\nabla_W L \in \mathbb{R}^{m \times n}.
+\]</span></p>
+<p>The gradient with respect to a matrix has the same shape as the matrix.</p>
+<section id="constant-and-linear-terms" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="constant-and-linear-terms"><span class="header-section-number">3.6.1</span> Constant and linear terms</h3>
+<p>If <span class="math inline">\(c\)</span> does not depend on <span class="math inline">\(W\)</span>, then:</p>
+<p><span class="math display">\[
+\nabla_W c = 0.
+\]</span></p>
+<p>A linear function of a matrix is often written using the trace. If <span class="math inline">\(A \in \mathbb{R}^{m \times n}\)</span> is constant with respect to <span class="math inline">\(W\)</span>, then:</p>
+<p><span class="math display">\[
+\nabla_W \operatorname{tr}(A^\top W) = A.
+\]</span></p>
+<p>Equivalently:</p>
+<p><span class="math display">\[
+\nabla_W \operatorname{tr}(W^\top A) = A.
+\]</span></p>
+<p>This is the matrix version of:</p>
+<p><span class="math display">\[
+\nabla_w(a^\top w) = a.
+\]</span></p>
+</section>
+<section id="frobenius-norm" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="frobenius-norm"><span class="header-section-number">3.6.2</span> Frobenius norm</h3>
+<p>The Frobenius norm is the matrix version of the Euclidean norm:</p>
+<p><span class="math display">\[
+\|W\|_F^2 = \sum_{i=1}^m \sum_{j=1}^n W_{ij}^2 = \operatorname{tr}(W^\top W).
+\]</span></p>
+<p>Its gradient is:</p>
+<p><span class="math display">\[
+\nabla_W \|W\|_F^2 = 2W.
+\]</span></p>
+<p>Equivalently:</p>
+<p><span class="math display">\[
+\nabla_W \frac{1}{2}\|W\|_F^2 = W.
+\]</span></p>
+</section>
+</section>
+<section id="vector-output-vector-input" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="vector-output-vector-input"><span class="header-section-number">3.7</span> Vector output, vector input</h2>
+<p>Let:</p>
+<p><span class="math display">\[
+f:\mathbb{R}^n\to\mathbb{R}^m.
+\]</span></p>
+<p>The derivative is the Jacobian:</p>
+<p><span class="math display">\[
+J_f(x) \in \mathbb{R}^{m \times n}.
+\]</span></p>
+<section id="linear-and-affine-maps" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="linear-and-affine-maps"><span class="header-section-number">3.7.1</span> Linear and affine maps</h3>
+<p>If:</p>
+<p><span class="math display">\[
+f(x) = Ax,
+\]</span></p>
+<p>where:</p>
+<p><span class="math display">\[
+A \in \mathbb{R}^{m \times n},
+\]</span></p>
+<p>then:</p>
+<p><span class="math display">\[
+J_f(x) = A.
+\]</span></p>
+<p>If:</p>
+<p><span class="math display">\[
+f(x) = Ax + b,
+\]</span></p>
+<p>then:</p>
+<p><span class="math display">\[
+J_f(x) = A.
+\]</span></p>
+<p>The constant shift <span class="math inline">\(b\)</span> does not affect the Jacobian.</p>
+</section>
+<section id="chain-rule-for-vector-output-functions" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="chain-rule-for-vector-output-functions"><span class="header-section-number">3.7.2</span> Chain rule for vector-output functions</h3>
+<p>If:</p>
+<p><span class="math display">\[
+x \in \mathbb{R}^n, \qquad z = f(x) \in \mathbb{R}^m, \qquad y = g(z) \in \mathbb{R}^p,
+\]</span></p>
+<p>then:</p>
+<p><span class="math display">\[
+J_y(x) = J_{g\circ f}(x) = J_g(z)J_f(x).
+\]</span></p>
+<p>The shapes are:</p>
+<p><span class="math display">\[
+J_g(z) \in \mathbb{R}^{p \times m}, \qquad J_f(x) \in \mathbb{R}^{m \times n}.
+\]</span></p>
+<p>So:</p>
+<p><span class="math display">\[
+J_{g\circ f}(x) \in \mathbb{R}^{p \times n}.
+\]</span></p>
+<p>For scalar output, this becomes the gradient chain rule we saw earlier:</p>
+<p><span class="math display">\[
+\nabla_x L = J_f(x)^\top \nabla_z L.
+\]</span></p>
+</section>
+</section>
+<section id="matrix-output-scalar-input" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="matrix-output-scalar-input"><span class="header-section-number">3.8</span> Matrix output, scalar input</h2>
+<p>Let:</p>
+<p><span class="math display">\[
+F:\mathbb{R}\to\mathbb{R}^{m \times n}.
+\]</span></p>
+<p>This means a matrix depends on one scalar variable. The derivative has the same shape as the matrix output:</p>
+<p><span class="math display">\[
+\frac{dF}{dt} \in \mathbb{R}^{m \times n}.
+\]</span></p>
+<p>Entry by entry:</p>
+<p><span class="math display">\[
+\left(\frac{dF}{dt}\right)_{ij} = \frac{dF_{ij}}{dt}.
+\]</span></p>
+<section id="constant-linear-and-elementwise-rules" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="constant-linear-and-elementwise-rules"><span class="header-section-number">3.8.1</span> Constant, linear, and elementwise rules</h3>
+<p>If <span class="math inline">\(A\)</span> is constant with respect to <span class="math inline">\(t\)</span>, then:</p>
+<p><span class="math display">\[
+\frac{d}{dt}A = 0.
+\]</span></p>
+<p>If:</p>
+<p><span class="math display">\[
+F(t) = tA,
+\]</span></p>
+<p>then:</p>
+<p><span class="math display">\[
+\frac{dF}{dt} = A.
+\]</span></p>
+<p>If:</p>
+<p><span class="math display">\[
+F(t) = t^2A,
+\]</span></p>
+<p>then:</p>
+<p><span class="math display">\[
+\frac{dF}{dt} = 2tA.
+\]</span></p>
+<p>If <span class="math inline">\(\phi\)</span> is applied entrywise to a matrix <span class="math inline">\(F(t)\)</span>, then:</p>
+<p><span class="math display">\[
+\frac{d}{dt}\phi(F(t)) = \phi'(F(t)) \odot \frac{dF}{dt}.
+\]</span> where <span class="math inline">\(\odot\)</span> is element-wise (Hadamard) multiplication.</p>
+</section>
+</section>
+<section id="review-questions" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">3.9</span> Review Questions</h2>
+<p>See: <a href="../questions/001_derivatives_questions.html" class="quarto-xref"><span>Chapter 24</span></a>.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1188,10 +1792,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../lectures/000_intro_and_erm.html" class="pagination-link" aria-label="Introduction to Statistical Machine Learning">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lectures/000_intro_and_erm.html" class="pagination-link" aria-label="Introduction to Statistical Machine Learning">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/002_linear_regression.html" class="pagination-link" aria-label="Linear Regression">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Regression</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

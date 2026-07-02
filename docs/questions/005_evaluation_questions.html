@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Gregory Hunt">
-<meta name="dcterms.date" content="2026-07-02">
 
-<title>Statistical Learning</title>
+<title>28&nbsp; Model Evaluation - Review Questions – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,25 +24,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./lectures/000_intro_and_erm.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../questions/006_model_selection_questions.html" rel="next">
+<link href="../questions/004_multiclass_logistic_regression_questions.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -72,6 +72,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="assets/code_style.css">
 </head>
@@ -85,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Statistical Learning</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/005_evaluation_questions.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -100,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Statistical Learning</a> 
+      <a href="../">Statistical Learning</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/gjhunt/ml" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -116,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Statistical Learning</span></span></a>
   </div>
 </li>
@@ -131,31 +160,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/000_intro_and_erm.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/000_intro_and_erm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/001_derivatives.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/001_derivatives.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/002_linear_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/002_linear_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/003_logistic_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/003_logistic_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/004_multiclass_logistic_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/004_multiclass_logistic_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
   </div>
 </li>
@@ -172,25 +201,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/005_evaluation.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/005_evaluation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/006_model_selection.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/006_model_selection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/007_knn.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/007_knn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/008_bias_variance.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/008_bias_variance.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
   </div>
 </li>
@@ -207,19 +236,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/009_ridge.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/009_ridge.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/010_lasso.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/010_lasso.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/011_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/011_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
   </div>
 </li>
@@ -236,19 +265,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/012_nn.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/012_nn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/013_backprop.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/013_backprop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/014_nn_arch.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/014_nn_arch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
   </div>
 </li>
@@ -265,19 +294,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/015_unsupervised.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/015_unsupervised.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/016_pca.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/016_pca.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/017_kmeans.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/017_kmeans.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
@@ -294,19 +323,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/018_trees.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/018_trees.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/019_random_forests.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/019_random_forests.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/020_boosting.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/020_boosting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
@@ -323,121 +352,121 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/001_derivatives_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/001_derivatives_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/002_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/002_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/003_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/003_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/004_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/004_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/005_evaluation_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/005_evaluation_questions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/006_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/006_model_selection_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/007_knn_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/007_knn_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/008_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/008_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/009_ridge_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/009_ridge_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/010_lasso_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/010_lasso_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/011_elastic_net_logistic_erm_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/011_elastic_net_logistic_erm_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/012_nn_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/012_nn_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/013_backprop_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/013_backprop_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/014_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/014_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/016_pca_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/016_pca_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA) - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/017_kmeans_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/017_kmeans_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">K-means - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/018_trees_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/018_trees_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Trees - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/019_random_forests_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/019_random_forests_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Random Forests and Bagging - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/020_boosting_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/020_boosting_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Boosting Review Questions</span></span></a>
   </div>
 </li>
@@ -453,21 +482,35 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#statistical-learning" id="toc-statistical-learning" class="nav-link active" data-scroll-target="#statistical-learning"><span class="header-section-number">1</span> Statistical Learning</a>
-  <ul class="collapse">
-  <li><a href="#course-map" id="toc-course-map" class="nav-link" data-scroll-target="#course-map"><span class="header-section-number">1.1</span> Course Map</a></li>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><span class="header-section-number">1.2</span> Prerequisites</a></li>
-  <li><a href="#practice-questions" id="toc-practice-questions" class="nav-link" data-scroll-target="#practice-questions"><span class="header-section-number">1.3</span> Practice Questions</a></li>
-  </ul></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1"><span class="header-section-number">28.0.1</span> Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">28.0.2</span> Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">28.0.3</span> Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">28.0.4</span> Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5"><span class="header-section-number">28.0.5</span> Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6"><span class="header-section-number">28.0.6</span> Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7"><span class="header-section-number">28.0.7</span> Question 7</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8"><span class="header-section-number">28.0.8</span> Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9"><span class="header-section-number">28.0.9</span> Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10"><span class="header-section-number">28.0.10</span> Question 10</a></li>
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11"><span class="header-section-number">28.0.11</span> Question 11</a></li>
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12"><span class="header-section-number">28.0.12</span> Question 12</a></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13"><span class="header-section-number">28.0.13</span> Question 13</a></li>
+  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14"><span class="header-section-number">28.0.14</span> Question 14</a></li>
+  <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15"><span class="header-section-number">28.0.15</span> Question 15</a></li>
+  <li><a href="#question-16" id="toc-question-16" class="nav-link" data-scroll-target="#question-16"><span class="header-section-number">28.0.16</span> Question 16</a></li>
+  <li><a href="#question-17" id="toc-question-17" class="nav-link" data-scroll-target="#question-17"><span class="header-section-number">28.0.17</span> Question 17</a></li>
+  <li><a href="#question-18" id="toc-question-18" class="nav-link" data-scroll-target="#question-18"><span class="header-section-number">28.0.18</span> Question 18</a></li>
+  <li><a href="#question-20" id="toc-question-20" class="nav-link" data-scroll-target="#question-20"><span class="header-section-number">28.0.19</span> Question 20</a></li>
+  <li><a href="#question-21" id="toc-question-21" class="nav-link" data-scroll-target="#question-21"><span class="header-section-number">28.0.20</span> Question 21</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/005_evaluation_questions.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Statistical Learning</h1>
+<h1 class="title"><span id="sec-model-eval-questions" class="quarto-section-identifier"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></h1>
 </div>
 
 
@@ -481,12 +524,6 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">July 2, 2026</p>
-    </div>
-  </div>
   
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
@@ -505,69 +542,394 @@ ul.task-list li input[type="checkbox"] {
 <div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
-<section id="statistical-learning" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Statistical Learning</h1>
-<p>These lecture notes introduce core ideas in statistical learning, with an emphasis on how models are formulated, fit, evaluated, and compared. The notes use empirical risk minimization as a recurring framework, then build toward model selection, regularization, neural networks, unsupervised learning, and tree-based methods.</p>
-<p>The goal is not to catalog every model or algorithm. The goal is to develop a practical way of thinking about learning from data: what objective is being optimized, what assumptions are being made, how flexible the model is, and how well its performance is likely to generalize.</p>
-<section id="course-map" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="course-map"><span class="header-section-number">1.1</span> Course Map</h2>
+<section id="question-1" class="level3" data-number="28.0.1">
+<h3 data-number="28.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">28.0.1</span> Question 1</h3>
+<p>For a fixed regression function <span class="math inline">\(f\)</span> and fresh data <span class="math inline">\(D=\{(X_n,Y_n)\}_{n=1}^M\sim P^M\)</span>, the lecture defines <span class="math display">\[
+\hat{\mathrm{Perf}}(D,f)=\frac1M\sum_{n=1}^M (Y_n-f(X_n))^2.
+\]</span> Show that <span class="math display">\[\mathrm{Perf}(f)=\mathbb E_D[\hat{\mathrm{Perf}}(D,f)\mid f] = E_{(X,Y)\sim P}[(Y-f(X))^2]
+\]</span> for a new generic draw <span class="math inline">\((X,Y)\sim P\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>Since <span class="math inline">\(f\)</span> is fixed under the conditional expectation, <span class="math display">\[
+\mathrm{Perf}(f)=\mathbb E\left[\frac1M\sum_{n=1}^M (Y_n-f(X_n))^2\right]
+=\frac1M\sum_{n=1}^M \mathbb E[(Y_n-f(X_n))^2].
+\]</span> The i.i.d. assumption gives each summand the same distribution as <span class="math inline">\((Y-f(X))^2\)</span>, so <span class="math display">\[
+\mathrm{Perf}(f)=\mathbb E_{(X,Y)\sim P}[(Y-f(X))^2].
+\]</span></p>
+</details>
+</section>
+<section id="question-2" class="level3" data-number="28.0.2">
+<h3 data-number="28.0.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">28.0.2</span> Question 2</h3>
+<p>For a fixed classifier <span class="math inline">\(f\)</span>, let</p>
+<p><span class="math display">\[
+\hat{\mathrm{Perf}}(D,f)=\frac{1}{M}\sum_{n=1}^M \mathbf{1}\{f(X_n)\ne Y_n\}.
+\]</span></p>
+<p>Express <span class="math inline">\(\mathrm{Perf}(f)\)</span> as a probability.</p>
+<p>Hint: <span class="math inline">\(\mathbb{P}(A)=\mathbb{E}[\mathbf{1}\{A\}]\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The quantity <span class="math inline">\(\hat{\mathrm{Perf}}(D,f)\)</span> is the average classification error on the evaluation dataset <span class="math inline">\(D\)</span>. Each indicator <span class="math inline">\(\mathbf{1}\{f(X_n)\ne Y_n\}\)</span> equals 1 if the classifier makes a mistake on observation <span class="math inline">\(n\)</span>, and equals 0 otherwise.</p>
+<p>Since <span class="math inline">\(f\)</span> is fixed, the only randomness comes from the evaluation data. The true performance is the expected value of this evaluation error on fresh data:</p>
+<p><span class="math display">\[
+\mathrm{Perf}(f)=\mathbb{E}_D[\hat{\mathrm{Perf}}(D,f)].
+\]</span></p>
+<p>Substituting the definition of <span class="math inline">\(\hat{\mathrm{Perf}}(D,f)\)</span> gives</p>
+<p><span class="math display">\[
+\mathrm{Perf}(f)=\mathbb{E}_D\left[\frac{1}{M}\sum_{n=1}^M \mathbf{1}\{f(X_n)\ne Y_n\}\right].
+\]</span></p>
+<p>By linearity of expectation,</p>
+<p><span class="math display">\[
+\mathrm{Perf}(f)=\frac{1}{M}\sum_{n=1}^M \mathbb{E}\left[\mathbf{1}\{f(X_n)\ne Y_n\}\right].
+\]</span></p>
+<p>Because the observations are drawn from the same distribution, each term in the average is the probability that <span class="math inline">\(f\)</span> makes a mistake on a fresh observation. Therefore,</p>
+<p><span class="math display">\[
+\mathrm{Perf}(f)=\mathbb{E}_{(X,Y)\sim P}[\mathbf{1}\{f(X)\ne Y\}].
+\]</span></p>
+<p>Using the identity <span class="math inline">\(\mathbb{P}(A)=\mathbb{E}[\mathbf{1}\{A\}]\)</span>, we can write this as</p>
+<p><span class="math display">\[
+\mathrm{Perf}(f)=\mathbb{P}_{(X,Y)\sim P}(f(X)\ne Y).
+\]</span></p>
+<p>So the true performance of a fixed classifier is the probability that it misclassifies a fresh draw from the data-generating distribution.</p>
+</details>
+</section>
+<section id="question-3" class="level3" data-number="28.0.3">
+<h3 data-number="28.0.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">28.0.3</span> Question 3</h3>
+<p>The lecture says <span class="math inline">\(D_{eval}\perp D_{train}\)</span> is sufficient for <span class="math inline">\(D_{eval}\perp\hat f\)</span> when <span class="math inline">\(\hat f=A(D_{train})\)</span>. Why?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>A standard property of independence says that if <span class="math inline">\(U\perp V\)</span>, then <span class="math inline">\(U\perp g(V)\)</span> for every function <span class="math inline">\(g\)</span>. Taking <span class="math inline">\(U=D_{eval}\)</span>, <span class="math inline">\(V=D_{train}\)</span>, and <span class="math inline">\(g=A\)</span> gives <span class="math inline">\(D_{eval}\perp A(D_{train})=\hat f\)</span>.</p>
+</details>
+</section>
+<section id="question-4" class="level3" data-number="28.0.4">
+<h3 data-number="28.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">28.0.4</span> Question 4</h3>
+<p>Construct a concrete edge case, matching the lecture’s discussion, where <span class="math inline">\(D_{eval}=D_{train}\)</span> but nevertheless <span class="math inline">\(D_{eval}\perp\hat f\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>Let <span class="math inline">\(A(D)\)</span> ignore its input and always return the constant model <span class="math inline">\(\hat f(x)=0\)</span>. Then <span class="math inline">\(\hat f\)</span> is deterministic, so it is independent of every random variable, including <span class="math inline">\(D_{eval}=D_{train}\)</span>. Hence <span class="math inline">\(D_{eval}\perp\hat f\)</span> even though <span class="math inline">\(D_{eval}\)</span> and <span class="math inline">\(D_{train}\)</span> are identical. This illustrates that independence from the fitted model is the key condition, not literal separation from the training set by itself.</p>
+</details>
+</section>
+<section id="question-5" class="level3" data-number="28.0.5">
+<h3 data-number="28.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">28.0.5</span> Question 5</h3>
+<p>For least squares regression with noise variance <span class="math inline">\(\sigma^2\)</span>, the lecture states the optimism formula <span class="math display">\[
+\mathbb E[\mathrm{Perf}(\hat f)-\hat{\mathrm{Perf}}(D_{train},\hat f)]
+=\frac{2\sigma^2}{N}d.
+\]</span> Compute the optimism when <span class="math inline">\(N=100\)</span>, <span class="math inline">\(d=8\)</span>, and <span class="math inline">\(\sigma^2=4\)</span>. Interpret the units of the answer.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>Substitution gives <span class="math display">\[
+\frac{2\sigma^2}{N}d=\frac{2\cdot 4}{100}\cdot 8=\frac{64}{100}=0.64.
+\]</span> Since the metric is mean squared error, the optimism is measured in squared-response units. It says the expected training MSE is lower than the corresponding fresh-data MSE by <span class="math inline">\(0.64\)</span>.</p>
+</details>
+</section>
+<section id="question-6" class="level3" data-number="28.0.6">
+<h3 data-number="28.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">28.0.6</span> Question 6</h3>
+<p>Use the covariance version of Efron’s optimism theorem to explain precisely why no optimism appears when every fitted prediction <span class="math inline">\(\hat y_i\)</span> is independent of its observed response <span class="math inline">\(y_i\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>If <span class="math inline">\(\hat y_i\perp y_i\)</span> and both variables have finite second moments, then <span class="math display">\[
+\mathrm{Cov}(\hat y_i,y_i)=\mathbb E[\hat y_i y_i]-\mathbb E[\hat y_i]\mathbb E[y_i]=0.
+\]</span> Therefore <span class="math display">\[
+\frac{2}{N}\sum_{i=1}^N\mathrm{Cov}(\hat y_i,y_i)=0.
+\]</span> Under the theorem’s assumptions, the expected gap between true performance and training performance is then <span class="math inline">\(0\)</span>.</p>
+</details>
+</section>
+<section id="question-7" class="level3" data-number="28.0.7">
+<h3 data-number="28.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">28.0.7</span> Question 7</h3>
+<p>Assume that <span class="math inline">\(y\)</span> and <span class="math inline">\(\hat y\)</span> are vectors in <span class="math inline">\(\mathbb{R}^N\)</span>, with</p>
+<p><span class="math display">\[
+\hat y = Sy,
+\]</span></p>
+<p>where <span class="math inline">\(S\)</span> is a fixed <span class="math inline">\(N\times N\)</span> matrix. Also assume</p>
+<p><span class="math display">\[
+y_i=\mu_i+\varepsilon_i,
+\]</span></p>
+<p>where the errors <span class="math inline">\(\varepsilon_i\)</span> are independent, have mean 0, and have variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>Show that</p>
+<p><span class="math display">\[
+\sum_{i=1}^N \mathrm{Cov}(\hat y_i,y_i)=\sigma^2\mathrm{tr}(S).
+\]</span></p>
+<details>
+<summary>
+Answer
+</summary>
+<p>Since <span class="math inline">\(\hat y=Sy\)</span>, the <span class="math inline">\(i\)</span>th fitted value is</p>
+<p><span class="math display">\[
+\hat y_i=\sum_{j=1}^N S_{ij}y_j.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\mathrm{Cov}(\hat y_i,y_i)=\mathrm{Cov}\left(\sum_{j=1}^N S_{ij}y_j,y_i\right).
+\]</span></p>
+<p>Because covariance is linear in its first argument and the entries of <span class="math inline">\(S\)</span> are fixed constants,</p>
+<p><span class="math display">\[
+\mathrm{Cov}(\hat y_i,y_i)=\sum_{j=1}^N S_{ij}\mathrm{Cov}(y_j,y_i).
+\]</span></p>
+<p>Now use the model <span class="math inline">\(y_i=\mu_i+\varepsilon_i\)</span>. The mean terms <span class="math inline">\(\mu_i\)</span> are fixed, so they do not affect covariance. Thus,</p>
+<p><span class="math display">\[
+\mathrm{Cov}(y_j,y_i)=\mathrm{Cov}(\varepsilon_j,\varepsilon_i).
+\]</span></p>
+<p>Because the errors are independent and each has variance <span class="math inline">\(\sigma^2\)</span>,</p>
+<p><span class="math display">\[
+\mathrm{Cov}(y_j,y_i)=
+\begin{cases}
+\sigma^2, &amp; j=i,\\
+0, &amp; j\ne i.
+\end{cases}
+\]</span></p>
+<p>So in the sum</p>
+<p><span class="math display">\[
+\sum_{j=1}^N S_{ij}\mathrm{Cov}(y_j,y_i),
+\]</span></p>
+<p>all terms are zero except the term with <span class="math inline">\(j=i\)</span>. Therefore,</p>
+<p><span class="math display">\[
+\mathrm{Cov}(\hat y_i,y_i)=S_{ii}\sigma^2.
+\]</span></p>
+<p>Finally, summing over <span class="math inline">\(i\)</span> gives</p>
+<p><span class="math display">\[
+\sum_{i=1}^N \mathrm{Cov}(\hat y_i,y_i)=\sum_{i=1}^N S_{ii}\sigma^2.
+\]</span></p>
+<p>Since <span class="math inline">\(\sigma^2\)</span> is constant,</p>
+<p><span class="math display">\[
+\sum_{i=1}^N \mathrm{Cov}(\hat y_i,y_i)=\sigma^2\sum_{i=1}^N S_{ii}.
+\]</span></p>
+<p>By definition, the trace of <span class="math inline">\(S\)</span> is the sum of its diagonal entries:</p>
+<p><span class="math display">\[
+\mathrm{tr}(S)=\sum_{i=1}^N S_{ii}.
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+\sum_{i=1}^N \mathrm{Cov}(\hat y_i,y_i)=\sigma^2\mathrm{tr}(S).
+\]</span></p>
+</details>
+</section>
+<section id="question-8" class="level3" data-number="28.0.8">
+<h3 data-number="28.0.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">28.0.8</span> Question 8</h3>
+<p>A model-selection procedure chooses polynomial the degree <span class="math inline">\(\hat r\)</span> with the smallest evaluation MSE on a fixed evaluation set, then reports that same minimum as the performance estimate. Identify the independence condition from the lecture that is broken, and describe the expected direction of the bias.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>After selecting <span class="math inline">\(\hat r\)</span> using the evaluation set, the final chosen model or procedure depends on <span class="math inline">\(D_{eval}\)</span>. Therefore <span class="math inline">\(D_{eval}\perp\hat f\)</span> no longer holds for the selected model. The reported minimum evaluation error is typically optimistic: among several noisy estimates, selecting the smallest tends to underestimate the fresh-data error of the selected degree.</p>
+</details>
+</section>
+<section id="question-9" class="level3" data-number="28.0.9">
+<h3 data-number="28.0.9" class="anchored" data-anchor-id="question-9"><span class="header-section-number">28.0.9</span> Question 9</h3>
+<p>Cross-validation estimates algorithm-level performance rather than the performance of one fixed model. Write the target quantity for an algorithm <span class="math inline">\(A\)</span> trained on <span class="math inline">\(n\)</span> observations, and explain why <span class="math inline">\(k\)</span>-fold CV more directly targets <span class="math inline">\(n=N(k-1)/k\)</span> than <span class="math inline">\(n=N\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The algorithm-level target for training size <span class="math inline">\(n\)</span> is <span class="math display">\[
+\mathbb E_{D_{train}\sim P^n}[\mathrm{Perf}(A(D_{train}))].
+\]</span> In each <span class="math inline">\(k\)</span>-fold CV fit, the algorithm is trained on <span class="math inline">\(N(k-1)/k\)</span> observations, not all <span class="math inline">\(N\)</span>. Therefore the models being evaluated are draws from the distribution of <span class="math inline">\(A(D_{train})\)</span> with training size <span class="math inline">\(N(k-1)/k\)</span>. The final model trained on all <span class="math inline">\(N\)</span> observations may perform slightly better, which is why the lecture describes CV as somewhat pessimistic.</p>
+</details>
+</section>
+<section id="question-10" class="level3" data-number="28.0.10">
+<h3 data-number="28.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">28.0.10</span> Question 10</h3>
+<p>A collaborator asks which of the <span class="math inline">\(k\)</span> fitted models from cross-validation should be deployed. What’s the answer?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>None of the fold-specific models <span class="math inline">\(\hat f^{(j)}=A(D\setminus D_j)\)</span> is the deployed model. They are auxiliary models used to estimate the performance of the training procedure. After choosing the procedure <span class="math inline">\(A\)</span> and estimating its performance, one trains <span class="math display">\[
+\hat f_{final}=A(D_{all})
+\]</span> on all available data and deploys that model. The CV score is interpreted as evidence about the procedure’s expected fresh-data performance, not as the fresh-data performance of one particular fold model.</p>
+</details>
+</section>
+<section id="question-11" class="level3" data-number="28.0.11">
+<h3 data-number="28.0.11" class="anchored" data-anchor-id="question-11"><span class="header-section-number">28.0.11</span> Question 11</h3>
+<p>Resampling by repeated random splits produces <span class="math display">\[
+R_B=\frac1B\sum_{b=1}^B \hat{\mathrm{Perf}}(D_{eval}^{(b)},\hat f^{(b)}).
+\]</span> Assuming the random splits are independent, compute <span class="math inline">\(\mathrm{Var}(R_B)\)</span> in terms of the variance of one split score <span class="math inline">\(S_b = \hat{\mathrm{Perf}}(D_{eval}^{(b)},\hat f^{(b)})\)</span> assuming that the <span class="math inline">\(S_b\)</span> are independent with common variance <span class="math inline">\(\mathrm{Var}(S_b) = \tau^2\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>If the split scores <span class="math inline">\(S_b=\hat{\mathrm{Perf}}(D_{eval}^{(b)},\hat f^{(b)})\)</span> are independent conditional on the dataset and each has variance <span class="math inline">\(\tau^2\)</span>, then <span class="math display">\[
+\mathrm{Var}(R_B)=\mathrm{Var}\left(\frac1B\sum_{b=1}^B S_b\right)
+=\frac1{B^2}\sum_{b=1}^B\mathrm{Var}(S_b)
+=\frac{\tau^2}{B}.
+\]</span> (Note that real split scores are often dependent because they reuse observations.)</p>
+</details>
+</section>
+<section id="question-12" class="level3" data-number="28.0.12">
+<h3 data-number="28.0.12" class="anchored" data-anchor-id="question-12"><span class="header-section-number">28.0.12</span> Question 12</h3>
+<p>For a binary classifier, suppose the evaluation set gives <span class="math inline">\(TP=40\)</span>, <span class="math inline">\(FP=10\)</span>, <span class="math inline">\(FN=20\)</span>, and <span class="math inline">\(TN=30\)</span>. Compute classification error and F1 score. Which one uses <span class="math inline">\(TN\)</span> directly?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The evaluation size is <span class="math inline">\(M=40+10+20+30=100\)</span>. Classification error is <span class="math display">\[
+\frac{FP+FN}{M}=\frac{10+20}{100}=0.30.
+\]</span> The F1 score is <span class="math display">\[
+\frac{2TP}{2TP+FP+FN}=\frac{80}{80+10+20}=\frac{80}{110}=\frac{8}{11}\approx 0.727.
+\]</span></p>
+</details>
+</section>
+<section id="question-13" class="level3" data-number="28.0.13">
+<h3 data-number="28.0.13" class="anchored" data-anchor-id="question-13"><span class="header-section-number">28.0.13</span> Question 13</h3>
+<p>Suppose we evaluate two classifiers, A and B, on the same dataset of 100 observations. The dataset has 10 positive cases and 90 negative cases.</p>
+<p>The confusion matrices are:</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Part</th>
-<th>Main Question</th>
-<th>Topics</th>
+<th>Classifier</th>
+<th style="text-align: right;">TP</th>
+<th style="text-align: right;">FP</th>
+<th style="text-align: right;">FN</th>
+<th style="text-align: right;">TN</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Foundations and Linear Models</td>
-<td>What does it mean to fit a model?</td>
-<td>Supervised learning, ERM, derivatives, linear regression, logistic regression, multiclass classification</td>
+<td>A</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">90</td>
 </tr>
 <tr class="even">
-<td>Evaluation and Model Selection</td>
-<td>How do we know whether a model generalizes?</td>
-<td>Train/test performance, validation, cross-validation, KNN, bias-variance tradeoff</td>
-</tr>
-<tr class="odd">
-<td>Regularization and Penalized Models</td>
-<td>How do we control model complexity?</td>
-<td>Ridge, lasso, elastic net, penalized logistic regression</td>
-</tr>
-<tr class="even">
-<td>Neural Networks</td>
-<td>How do models learn representations?</td>
-<td>Feedforward networks, optimization, backpropagation, architecture choices</td>
-</tr>
-<tr class="odd">
-<td>Unsupervised Learning</td>
-<td>What structure can we find without labels?</td>
-<td>Dimensionality reduction, PCA, clustering, k-means</td>
-</tr>
-<tr class="even">
-<td>Tree-Based Methods</td>
-<td>How do adaptive rule-based models and ensembles work?</td>
-<td>Decision trees, random forests, boosting</td>
+<td>B</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">70</td>
 </tr>
 </tbody>
 </table>
+<p>For each classifier, calculate:</p>
+<ol type="1">
+<li>The classification error.</li>
+<li>The F1 score.</li>
+</ol>
+<p>Then answer the following:</p>
+<ul>
+<li>Which classifier is better according to classification error?</li>
+<li>Which classifier is better according to F1 score?</li>
+<li>Briefly explain what this example shows about metric choice.</li>
+</ul>
+<details>
+<summary>
+Answer
+</summary>
+<p>For classifier A,</p>
+<p><span class="math display">\[
+\text{Error}_A = \frac{0 + 10}{100} = 0.10
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+F1_A = \frac{2(0)}{2(0) + 0 + 10} = 0.
+\]</span></p>
+<p>For classifier B,</p>
+<p><span class="math display">\[
+\text{Error}_B = \frac{20 + 2}{100} = 0.22
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+F1_B = \frac{2(8)}{2(8) + 20 + 2}
+= \frac{16}{38}
+\approx 0.421.
+\]</span></p>
+<p>Classifier A is better by classification error because (0.10 &lt; 0.22).</p>
+<p>Classifier B is better by F1 score because (0.421 &gt; 0).</p>
+<p>So the two metrics rank the classifiers in opposite orders. This shows that the choice of evaluation metric can change which model appears better.</p>
+</details>
 </section>
-<section id="prerequisites" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">1.2</span> Prerequisites</h2>
-<p>These notes assume comfort with basic Python, plotting, and numerical computing. They also assume working familiarity with functions, derivatives, vectors, matrices, probability, and statistical estimation. The early lectures review some of the mathematical notation used later, but the notes are written for readers who are willing to move between equations, code, and visual interpretation.</p>
+<section id="question-14" class="level3" data-number="28.0.14">
+<h3 data-number="28.0.14" class="anchored" data-anchor-id="question-14"><span class="header-section-number">28.0.14</span> Question 14</h3>
+<p>A dataset is randomly split into <span class="math inline">\(D_{train}\)</span> and <span class="math inline">\(D_{eval}\)</span>, but preprocessing parameters such as centering and scaling are fit using all observations before the split. Does the lecture’s independence requirement automatically hold? Give a precise answer.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>No.&nbsp;If preprocessing parameters are estimated from all observations and then used by the training algorithm, the fitted model can depend on information from <span class="math inline">\(D_{eval}\)</span>. Then <span class="math inline">\(D_{eval}\perp\hat f\)</span> need not hold, even if the raw rows were randomly split. To preserve the fresh-data interpretation, preprocessing parameters that affect the model must be fit using only <span class="math inline">\(D_{train}\)</span> within each split or fold, then applied to the corresponding evaluation data.</p>
+</details>
 </section>
-<section id="practice-questions" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="practice-questions"><span class="header-section-number">1.3</span> Practice Questions</h2>
-<p>The practice questions are paired with the lecture topics. They are meant to be attempted actively, not just read. A good first pass is to answer them without looking back at the notes, then revisit the relevant lecture sections to repair gaps in notation, interpretation, or implementation.</p>
+<section id="question-15" class="level3" data-number="28.0.15">
+<h3 data-number="28.0.15" class="anchored" data-anchor-id="question-15"><span class="header-section-number">28.0.15</span> Question 15</h3>
+<p>A false proof claims: “Because each cross-validation evaluation fold <span class="math inline">\(D_j\)</span> was not used to train <span class="math inline">\(\hat f^{(j)}\)</span>, the <span class="math inline">\(k\)</span> fold scores are independent random variables.” Identify the false step and give the correct dependence issue.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The false step is confusing independence of a fold from its own fitted model with independence among the fold scores. The training sets <span class="math inline">\(D\setminus D_j\)</span> overlap heavily across folds, and the fold scores are all functions of the same original dataset <span class="math inline">\(D\)</span>. Therefore the scores are generally dependent. Cross-validation can still be useful, but the simple variance formula for an average of independent fold scores is not automatically valid.</p>
+</details>
+</section>
+<section id="question-16" class="level3" data-number="28.0.16">
+<h3 data-number="28.0.16" class="anchored" data-anchor-id="question-16"><span class="header-section-number">28.0.16</span> Question 16</h3>
+<p>The following statement is missing an important assumption:</p>
+<p>“If <span class="math inline">\(D_{eval}\)</span> is independent of <span class="math inline">\(\hat f\)</span>, then <span class="math inline">\(\hat{\mathrm{Perf}}(D_{eval},\hat f)\)</span> estimates <span class="math inline">\(\mathrm{Perf}(\hat f)\)</span>.”</p>
+<p>What assumption is missing?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The missing assumption is that the evaluation data must come from the same distribution used to define fresh-data performance. In other words, we need</p>
+<p><span class="math display">\[
+D_{eval}\sim P^M.
+\]</span></p>
+<p>Independence alone only says that the evaluation data were not used to train the model. That helps prevent data reuse or overfitting to the evaluation set. But it does not guarantee that the evaluation set represents the target population we care about.</p>
+<p>An important idea is <strong>training/testing dataset drift</strong>. A test set can be independent of the fitted model and still give the wrong answer if it comes from a different distribution than the fresh data we care about. In that case, the evaluation error estimates performance on the test distribution, not performance on the target distribution <span class="math inline">\(P\)</span></p>
+</details>
+</section>
+<section id="question-17" class="level3" data-number="28.0.17">
+<h3 data-number="28.0.17" class="anchored" data-anchor-id="question-17"><span class="header-section-number">28.0.17</span> Question 17</h3>
+<p>In the lecture’s cartoon plot of training error and testing error versus model complexity, divide the horizontal axis into three qualitative regions: low complexity, intermediate complexity, and high complexity. For each region, state whether the main problem is underfitting, reasonable generalization, or overfitting, and describe the typical relationship between training error and testing error.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>At low complexity, the model class is too restricted to capture the signal, so both training error and testing error are relatively high. This is underfitting: the model is not fitting either the observed data or new data very well.</p>
+<p>At intermediate complexity, the model has enough flexibility to capture much of the real signal without adapting too strongly to sample-specific noise. Training error is lower than in the low-complexity region, and testing error is typically near its minimum. The train-test gap may exist, but it is not yet large.</p>
+<p>At high complexity, training error keeps decreasing, sometimes nearly to zero, but testing error increases. This is overfitting: the model is fitting noise or accidental patterns in <span class="math inline">\(D_{train}\)</span> that do not repeat in fresh data.</p>
+</details>
+</section>
+<section id="question-18" class="level3" data-number="28.0.18">
+<h3 data-number="28.0.18" class="anchored" data-anchor-id="question-18"><span class="header-section-number">28.0.18</span> Question 18</h3>
+<p>A student looks at the complexity plot and says: “If increasing model complexity always lowers training error, then the most complex model must be the best model.” Diagnose the mistake using the lecture’s distinction between performance on <span class="math inline">\(D_{train}\)</span> and performance on new independent data.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The mistake is treating training error as the target quantity. Training error measures how well <span class="math inline">\(\hat f\)</span> fits the same data used to construct it, so it is affected by the dependence between <span class="math inline">\(D_{train}\)</span> and <span class="math inline">\(\hat f\)</span>. It can keep improving as complexity increases because the model has more ways to adapt to this particular dataset.</p>
+<p>The lecture’s target is performance on new independent data, represented by <span class="math inline">\(\mathrm{Perf}(\hat f)\)</span> or by evaluation error on <span class="math inline">\(D_{eval}\)</span> satisfying <span class="math inline">\(D_{eval}\sim P^M\)</span> and <span class="math inline">\(D_{eval}\perp \hat f\)</span>. A highly complex model may lower training error by fitting sample-specific quirks, but those quirks do not generalize. Therefore the most complex model can have worse testing error even though it has better training error.</p>
+</details>
+</section>
+<section id="question-20" class="level3" data-number="28.0.19">
+<h3 data-number="28.0.19" class="anchored" data-anchor-id="question-20"><span class="header-section-number">28.0.19</span> Question 20</h3>
+<p>Two polynomial degrees have nearly the same evaluation error on an independent evaluation set. Degree 4 has noticeably higher training error, while degree 14 has much lower training error. Based on the lecture’s discussion of complexity and overfitting, what would be a reasonable reason to prefer degree 4?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>If the independent evaluation errors are essentially tied, then the observed advantage of degree 14 is only on the training data. That advantage is less trustworthy because training error is optimistic: the degree-14 model has more capacity to adapt to noise and sample-specific quirks in <span class="math inline">\(D_{train}\)</span>.</p>
+<p>A reasonable reason to prefer degree 4 is that it achieves comparable estimated fresh-data performance with less dependence on the particular training sample. The argument is not that lower complexity is automatically better; it is that, when independent evaluation performance is similar, the extra training-fit improvement from the more complex model is weak evidence of better generalization and stronger evidence of possible overfitting.</p>
+</details>
+</section>
+<section id="question-21" class="level3" data-number="28.0.20">
+<h3 data-number="28.0.20" class="anchored" data-anchor-id="question-21"><span class="header-section-number">28.0.20</span> Question 21</h3>
+<p>The lecture says complex models are more sensitive to the data. Translate this sensitivity statement into the language of Efron’s optimism discussion: what tends to happen to the covariance terms <span class="math inline">\(\mathrm{Cov}(\hat y_i,y_i)\)</span> as the fitted model adapts more strongly to <span class="math inline">\(D_{train}\)</span>? How does that relate to the widening gap between training and testing error in the complexity diagram?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>When a fitted model adapts strongly to <span class="math inline">\(D_{train}\)</span>, each fitted value <span class="math inline">\(\hat y_i\)</span> tends to depend more strongly on the observed response <span class="math inline">\(y_i\)</span>. In Efron’s optimism formula, that stronger dependence appears as larger positive covariance terms <span class="math inline">\(\mathrm{Cov}(\hat y_i,y_i)\)</span>.</p>
+<p>Larger covariance terms imply larger optimism: the training error is expected to be farther below the fresh-data error. This is the same phenomenon shown in the high-complexity part of the cartoon diagram, where the training curve continues downward while the testing curve turns upward and the train-test gap widens.</p>
+</details>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1188,10 +1550,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../questions/004_multiclass_logistic_regression_questions.html" class="pagination-link" aria-label="Multiclass Logistic Regression - Review Questions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lectures/000_intro_and_erm.html" class="pagination-link" aria-label="Introduction to Statistical Machine Learning">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../questions/006_model_selection_questions.html" class="pagination-link" aria-label="Model Selection - Review Questions">
+        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Gregory Hunt">
-<meta name="dcterms.date" content="2026-07-02">
 
-<title>Statistical Learning</title>
+<title>31&nbsp; Bias-Variance Tradeoff - Review Questions – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,25 +24,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./lectures/000_intro_and_erm.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../questions/009_ridge_questions.html" rel="next">
+<link href="../questions/007_knn_questions.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -72,6 +72,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="assets/code_style.css">
 </head>
@@ -85,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Statistical Learning</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/008_bias_variance_questions.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -100,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Statistical Learning</a> 
+      <a href="../">Statistical Learning</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/gjhunt/ml" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -116,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Statistical Learning</span></span></a>
   </div>
 </li>
@@ -131,31 +160,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/000_intro_and_erm.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/000_intro_and_erm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/001_derivatives.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/001_derivatives.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/002_linear_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/002_linear_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/003_logistic_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/003_logistic_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/004_multiclass_logistic_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/004_multiclass_logistic_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
   </div>
 </li>
@@ -172,25 +201,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/005_evaluation.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/005_evaluation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/006_model_selection.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/006_model_selection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/007_knn.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/007_knn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/008_bias_variance.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/008_bias_variance.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
   </div>
 </li>
@@ -207,19 +236,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/009_ridge.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/009_ridge.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/010_lasso.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/010_lasso.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/011_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/011_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
   </div>
 </li>
@@ -236,19 +265,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/012_nn.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/012_nn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/013_backprop.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/013_backprop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/014_nn_arch.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/014_nn_arch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
   </div>
 </li>
@@ -265,19 +294,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/015_unsupervised.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/015_unsupervised.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/016_pca.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/016_pca.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/017_kmeans.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/017_kmeans.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
@@ -294,19 +323,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/018_trees.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/018_trees.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/019_random_forests.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/019_random_forests.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/020_boosting.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/020_boosting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
@@ -323,121 +352,121 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/001_derivatives_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/001_derivatives_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/002_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/002_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/003_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/003_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/004_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/004_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/005_evaluation_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/005_evaluation_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/006_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/006_model_selection_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/007_knn_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/007_knn_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/008_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/008_bias_variance_questions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/009_ridge_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/009_ridge_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/010_lasso_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/010_lasso_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/011_elastic_net_logistic_erm_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/011_elastic_net_logistic_erm_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/012_nn_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/012_nn_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/013_backprop_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/013_backprop_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/014_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/014_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/016_pca_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/016_pca_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA) - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/017_kmeans_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/017_kmeans_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">K-means - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/018_trees_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/018_trees_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Trees - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/019_random_forests_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/019_random_forests_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Random Forests and Bagging - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/020_boosting_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/020_boosting_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Boosting Review Questions</span></span></a>
   </div>
 </li>
@@ -453,21 +482,32 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#statistical-learning" id="toc-statistical-learning" class="nav-link active" data-scroll-target="#statistical-learning"><span class="header-section-number">1</span> Statistical Learning</a>
-  <ul class="collapse">
-  <li><a href="#course-map" id="toc-course-map" class="nav-link" data-scroll-target="#course-map"><span class="header-section-number">1.1</span> Course Map</a></li>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><span class="header-section-number">1.2</span> Prerequisites</a></li>
-  <li><a href="#practice-questions" id="toc-practice-questions" class="nav-link" data-scroll-target="#practice-questions"><span class="header-section-number">1.3</span> Practice Questions</a></li>
-  </ul></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1"><span class="header-section-number">31.0.1</span> Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">31.0.2</span> Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">31.0.3</span> Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">31.0.4</span> Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5"><span class="header-section-number">31.0.5</span> Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6"><span class="header-section-number">31.0.6</span> Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7"><span class="header-section-number">31.0.7</span> Question 7</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8"><span class="header-section-number">31.0.8</span> Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9"><span class="header-section-number">31.0.9</span> Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10"><span class="header-section-number">31.0.10</span> Question 10</a></li>
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11"><span class="header-section-number">31.0.11</span> Question 11</a></li>
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12"><span class="header-section-number">31.0.12</span> Question 12</a></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13"><span class="header-section-number">31.0.13</span> Question 13</a></li>
+  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14"><span class="header-section-number">31.0.14</span> Question 14</a></li>
+  <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15"><span class="header-section-number">31.0.15</span> Question 15</a></li>
+  <li><a href="#question-16" id="toc-question-16" class="nav-link" data-scroll-target="#question-16"><span class="header-section-number">31.0.16</span> Question 16</a></li>
+  <li><a href="#question-17" id="toc-question-17" class="nav-link" data-scroll-target="#question-17"><span class="header-section-number">31.0.17</span> Question 17</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/008_bias_variance_questions.html"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Statistical Learning</h1>
+<h1 class="title"><span id="sec-bias-var-questions" class="quarto-section-identifier"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></h1>
 </div>
 
 
@@ -481,12 +521,6 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">July 2, 2026</p>
-    </div>
-  </div>
   
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
@@ -505,69 +539,314 @@ ul.task-list li input[type="checkbox"] {
 <div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
-<section id="statistical-learning" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Statistical Learning</h1>
-<p>These lecture notes introduce core ideas in statistical learning, with an emphasis on how models are formulated, fit, evaluated, and compared. The notes use empirical risk minimization as a recurring framework, then build toward model selection, regularization, neural networks, unsupervised learning, and tree-based methods.</p>
-<p>The goal is not to catalog every model or algorithm. The goal is to develop a practical way of thinking about learning from data: what objective is being optimized, what assumptions are being made, how flexible the model is, and how well its performance is likely to generalize.</p>
-<section id="course-map" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="course-map"><span class="header-section-number">1.1</span> Course Map</h2>
+<section id="question-1" class="level3" data-number="31.0.1">
+<h3 data-number="31.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">31.0.1</span> Question 1</h3>
+<p>In the lecture’s setup, <span class="math inline">\(\hat f\)</span> is random. Identify the source of this randomness and explain why <span class="math inline">\(f^*(x)\)</span> is not random.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The fitted predictor <span class="math inline">\(\hat f= \hat f_{\mathcal D}\)</span> is random because it is a function of the random training dataset <span class="math display">\[
+\mathcal D=\{(X_i,Y_i)\}_{i=1}^n.
+\]</span> Different draws of <span class="math inline">\(\mathcal D\)</span> can produce different fitted functions and therefore different values <span class="math inline">\(\hat f_{\mathcal D}(x)\)</span>.</p>
+<p>At a fixed input <span class="math inline">\(x\)</span>, <span class="math inline">\(f^*(x)\)</span> is the value of the true regression function at that input. The function <span class="math inline">\(f^*\)</span> is treated as part of the data-generating distribution, not as something re-estimated from each sample. Thus <span class="math inline">\(f^*(x)\)</span> is fixed in the pointwise decomposition.</p>
+</details>
+</section>
+<section id="question-2" class="level3" data-number="31.0.2">
+<h3 data-number="31.0.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">31.0.2</span> Question 2</h3>
+<p>Starting from the model <span class="math inline">\(Y=f^*(X)+\varepsilon\)</span>, show that <span class="math display">\[
+(Y-\hat f(x))^2 = (f^*(x)-\hat f(x))^2+2\varepsilon(f^*(x)-\hat f(x))+\varepsilon^2.
+\]</span></p>
+<details>
+<summary>
+Answer
+</summary>
+<p>At a fixed test input <span class="math inline">\(X=x\)</span>, the model gives <span class="math display">\[
+Y=f^*(x)+\varepsilon.
+\]</span> Therefore <span class="math display">\[
+(Y-\hat f(x))^2=(f^*(x)+\varepsilon-\hat f(x))^2.
+\]</span> Rearranging inside the square, <span class="math display">\[
+(f^*(x)-\hat f(x)+\varepsilon)^2
+=(f^*(x)-\hat f(x))^2+2\varepsilon(f^*(x)-\hat f(x))+\varepsilon^2.
+\]</span> These are the prediction-error term, the cross term, and the noise-squared term.</p>
+</details>
+</section>
+<section id="question-3" class="level3" data-number="31.0.3">
+<h3 data-number="31.0.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">31.0.3</span> Question 3</h3>
+<p>Justify the step <span class="math display">\[
+\mathbb E[\varepsilon(f^*(x)-\hat f(x))]=0.
+\]</span></p>
+<details>
+<summary>
+Answer
+</summary>
+<p>At test time, <span class="math inline">\(\varepsilon\)</span> is the noise in the new response at <span class="math inline">\(X=x\)</span>, while <span class="math inline">\(\hat f(x)\)</span> is determined by the training dataset <span class="math inline">\(\mathcal D\)</span>. The needed assumptions are that <span class="math display">\[
+\mathbb E[\varepsilon\mid X=x]=0
+\]</span> and that the test noise is independent of the training data, hence independent of <span class="math inline">\(\hat f(x)\)</span>.</p>
+<p>Since <span class="math inline">\(f^*(x)\)</span> is fixed and <span class="math inline">\(\hat f(x)\)</span> is independent of <span class="math inline">\(\varepsilon\)</span>, <span class="math display">\[
+\mathbb E[\varepsilon(f^*(x)-\hat f(x))]
+=\mathbb E[\varepsilon]\mathbb E[f^*(x)-\hat f(x)]=0.
+\]</span></p>
+</details>
+</section>
+<section id="question-4" class="level3" data-number="31.0.4">
+<h3 data-number="31.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">31.0.4</span> Question 4</h3>
+<p>Distinguish the variance term <span class="math inline">\(\mathrm{Var}_{\mathcal D}(\hat f(x))\)</span> from the noise variance <span class="math inline">\(\sigma^2\)</span>. What random quantity varies in each case?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The variance term <span class="math display">\[
+\mathrm{Var}_{\mathcal D}(\hat f(x))
+\]</span> measures how the fitted prediction at <span class="math inline">\(x\)</span> changes across different random training datasets <span class="math inline">\(\mathcal D\)</span>.</p>
+<p>The noise variance <span class="math display">\[
+\sigma^2=\mathrm{Var}(\varepsilon\mid X=x)
+\]</span> measures the randomness in the new response <span class="math inline">\(Y\)</span> around the true signal <span class="math inline">\(f^*(x)\)</span>, even if the signal were known perfectly. The first is model instability; the second is irreducible output noise.</p>
+</details>
+</section>
+<section id="question-5" class="level3" data-number="31.0.5">
+<h3 data-number="31.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">31.0.5</span> Question 5</h3>
+<p>Why is the noise term called irreducible error? Show that even if <span class="math inline">\(\hat f(x)=f^*(x)\)</span> then <span class="math display">\[
+E[(Y-\hat f(x))^2 \mid X = x] = \sigma^2.
+\]</span></p>
+<details>
+<summary>
+Answer
+</summary>
+<p>If <span class="math inline">\(\hat f(x)=f^*(x)\)</span> exactly, then squared prediction error at <span class="math inline">\(x\)</span> is <span class="math display">\[
+(Y-\hat f(x))^2=(f^*(x)+\varepsilon-f^*(x))^2=\varepsilon^2.
+\]</span> Taking expectation gives <span class="math display">\[
+\mathbb E[\varepsilon^2\mid X=x]=\sigma^2.
+\]</span> Thus even a perfect predictor of the true signal cannot remove the randomness in <span class="math inline">\(Y\)</span> due to <span class="math inline">\(\varepsilon\)</span>. That is why <span class="math inline">\(\sigma^2\)</span> is irreducible.</p>
+</details>
+</section>
+<section id="question-6" class="level3" data-number="31.0.6">
+<h3 data-number="31.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">31.0.6</span> Question 6</h3>
+<p>A learning procedure has high bias but low variance at a point <span class="math inline">\(x\)</span>. Describe what repeated fitted models would look like at <span class="math inline">\(x\)</span> relative to <span class="math inline">\(f^*(x)\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>Across repeated datasets, the fitted values <span class="math inline">\(\hat f_{\mathcal D}(x)\)</span> would be tightly clustered, because variance is low. However, the cluster would be centered far from <span class="math inline">\(f^*(x)\)</span>, because bias is high.</p>
+<p>So the procedure is stable but systematically wrong at that point.</p>
+</details>
+</section>
+<section id="question-7" class="level3" data-number="31.0.7">
+<h3 data-number="31.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">31.0.7</span> Question 7</h3>
+<p>At a fixed <span class="math inline">\(x\)</span>, suppose <span class="math display">\[
+\mathbb E_{\mathcal D}[\hat f(x)]=2.5,
+\qquad
+f^*(x)=3.0,
+\qquad
+\mathrm{Var}_{\mathcal D}(\hat f(x))=0.16,
+\qquad
+\sigma^2=0.09.
+\]</span> Compute the squared bias and <span class="math inline">\(R_f(x)\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The bias is <span class="math display">\[
+2.5-3.0=-0.5,
+\]</span> so the squared bias is <span class="math display">\[
+(-0.5)^2=0.25.
+\]</span> The risk is <span class="math display">\[
+R_f(x)=0.25+0.16+0.09=0.50.
+\]</span></p>
+</details>
+</section>
+<section id="question-8" class="level3" data-number="31.0.8">
+<h3 data-number="31.0.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">31.0.8</span> Question 8</h3>
+<p>The lecture says flexible models are often low-bias and high-variance. State this claim in the context of KNN by comparing small <span class="math inline">\(k\)</span> and large <span class="math inline">\(k\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>In KNN regression, small <span class="math inline">\(k\)</span> uses very local averages. This makes the fitted function flexible, so it can adapt to local structure in <span class="math inline">\(f^*\)</span> and often has lower bias. But it also depends strongly on a small number of training points, so it has higher variance across datasets.</p>
+<p>Large <span class="math inline">\(k\)</span> averages many points. This stabilizes predictions and lowers variance, but it can smooth over local structure and increase bias.</p>
+</details>
+</section>
+<section id="question-9" class="level3" data-number="31.0.9">
+<h3 data-number="31.0.9" class="anchored" data-anchor-id="question-9"><span class="header-section-number">31.0.9</span> Question 9</h3>
+<p>Increasing sample size usually decreases variance while bias typically stays about the same. Explain why this statement assumes the model class or fitting rule is not fundamentally changed as <span class="math inline">\(n\)</span> increases.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>Variance measures sensitivity to the random training dataset. With more data, a fixed fitting rule usually becomes less sensitive to any particular sample, so variance tends to decrease.</p>
+<p>Bias is determined largely by the systematic limitations of the model class or procedure. If the same kind of model is used as <span class="math inline">\(n\)</span> grows, those approximation limitations may remain similar. But if the model class or tuning rule changes with <span class="math inline">\(n\)</span>, bias can change too. Thus the classical statement assumes the modeling procedure is held mostly fixed.</p>
+</details>
+</section>
+<section id="question-10" class="level3" data-number="31.0.10">
+<h3 data-number="31.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">31.0.10</span> Question 10</h3>
+<p>Suppose <span class="math inline">\(\mathrm{Bias}_f(x)^2=0.36\)</span>, <span class="math inline">\(\mathrm{Var}_f(x)=0.04\)</span>, and <span class="math inline">\(\sigma^2=0.09\)</span>. If a richer model reduces squared bias to <span class="math inline">\(0.09\)</span> but increases variance to <span class="math inline">\(0.20\)</span>, which model has lower pointwise risk at <span class="math inline">\(x\)</span>?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The original model has risk <span class="math display">\[
+0.36+0.04+0.09=0.49.
+\]</span> The richer model has risk <span class="math display">\[
+0.09+0.20+0.09=0.38.
+\]</span> The richer model has lower pointwise risk at <span class="math inline">\(x\)</span>, despite its higher variance, because the reduction in squared bias is larger than the increase in variance.</p>
+</details>
+</section>
+<section id="question-11" class="level3" data-number="31.0.11">
+<h3 data-number="31.0.11" class="anchored" data-anchor-id="question-11"><span class="header-section-number">31.0.11</span> Question 11</h3>
+<p>A student says: “Because variance is bad, we should always choose the lowest-variance model.” Diagnose the mistake using the decomposition from the lecture.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The mistake is ignoring squared bias. The pointwise risk is <span class="math display">\[
+R_f(x)=\mathrm{Bias}_f(x)^2+\mathrm{Var}_f(x)+\sigma^2.
+\]</span> A very low-variance model can still have high risk if its average prediction is far from <span class="math inline">\(f^*(x)\)</span>. The goal is not to minimize variance alone, but to balance squared bias and variance, since the noise term is not controlled by the model.</p>
+</details>
+</section>
+<section id="question-12" class="level3" data-number="31.0.12">
+<h3 data-number="31.0.12" class="anchored" data-anchor-id="question-12"><span class="header-section-number">31.0.12</span> Question 12</h3>
+<p>Suppose the learning procedure always predicts <span class="math display">\[
+\hat f(x)=0
+\]</span> for every training dataset, while <span class="math display">\[
+f^*(x)=2.
+\]</span> Show that this procedure has zero variance but nonzero bias.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>We then have: <span class="math display">\[
+\mathrm{Var}_{\mathcal D}(\hat f(x))=0
+\]</span> because the prediction never changes across datasets. But <span class="math display">\[
+\mathrm{Bias}_f(x)=\mathbb E[\hat f(x)]-f^*(x)=0-2=-2,
+\]</span> so the squared bias is <span class="math inline">\(4\)</span>.</p>
+</details>
+</section>
+<section id="question-13" class="level3" data-number="31.0.13">
+<h3 data-number="31.0.13" class="anchored" data-anchor-id="question-13"><span class="header-section-number">31.0.13</span> Question 13</h3>
+<p>Does the bias-variance decomposition work exactly for the 0-1 loss? What about absolute error loss?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>No.&nbsp;The derivation relies on expanding a square: <span class="math display">\[
+(Y-\hat f(x))^2.
+\]</span> This expansion produces terms that can be identified as squared bias, variance, and noise, with cross terms that vanish under the stated assumptions.</p>
+<p>For other losses, such as absolute error or 0-1 loss, there is no analogous simple quadratic expansion into these exact three terms. The bias-variance idea may still be useful qualitatively, but the displayed formula is specific to squared-error regression.</p>
+</details>
+</section>
+<section id="question-14" class="level3" data-number="31.0.14">
+<h3 data-number="31.0.14" class="anchored" data-anchor-id="question-14"><span class="header-section-number">31.0.14</span> Question 14</h3>
+<p>A model has pointwise risk <span class="math inline">\(R_f(x)=1.7\)</span>, squared bias <span class="math inline">\(0.8\)</span>, and variance <span class="math inline">\(0.6\)</span>. Under the lecture’s decomposition, what is <span class="math inline">\(\sigma^2\)</span>?</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>Using <span class="math display">\[
+R_f(x)=\mathrm{Bias}_f(x)^2+\mathrm{Var}_f(x)+\sigma^2,
+\]</span> we get <span class="math display">\[
+\sigma^2=1.7-0.8-0.6=0.3.
+\]</span></p>
+</details>
+</section>
+<section id="question-15" class="level3" data-number="31.0.15">
+<h3 data-number="31.0.15" class="anchored" data-anchor-id="question-15"><span class="header-section-number">31.0.15</span> Question 15</h3>
+<p>At a point <span class="math inline">\(x\)</span>, three procedures have the following squared bias and variance, with common <span class="math inline">\(\sigma^2=0.1\)</span>:</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Part</th>
-<th>Main Question</th>
-<th>Topics</th>
+<th>procedure</th>
+<th style="text-align: right;">squared bias</th>
+<th style="text-align: right;">variance</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Foundations and Linear Models</td>
-<td>What does it mean to fit a model?</td>
-<td>Supervised learning, ERM, derivatives, linear regression, logistic regression, multiclass classification</td>
+<td>A</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">0.05</td>
 </tr>
 <tr class="even">
-<td>Evaluation and Model Selection</td>
-<td>How do we know whether a model generalizes?</td>
-<td>Train/test performance, validation, cross-validation, KNN, bias-variance tradeoff</td>
+<td>B</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.20</td>
 </tr>
 <tr class="odd">
-<td>Regularization and Penalized Models</td>
-<td>How do we control model complexity?</td>
-<td>Ridge, lasso, elastic net, penalized logistic regression</td>
-</tr>
-<tr class="even">
-<td>Neural Networks</td>
-<td>How do models learn representations?</td>
-<td>Feedforward networks, optimization, backpropagation, architecture choices</td>
-</tr>
-<tr class="odd">
-<td>Unsupervised Learning</td>
-<td>What structure can we find without labels?</td>
-<td>Dimensionality reduction, PCA, clustering, k-means</td>
-</tr>
-<tr class="even">
-<td>Tree-Based Methods</td>
-<td>How do adaptive rule-based models and ensembles work?</td>
-<td>Decision trees, random forests, boosting</td>
+<td>C</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.60</td>
 </tr>
 </tbody>
 </table>
+<p>Compute the risk for each procedure and identify the best one at this <span class="math inline">\(x\)</span>.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>Procedure A has risk <span class="math display">\[
+0.50+0.05+0.10=0.65.
+\]</span> Procedure B has risk <span class="math display">\[
+0.20+0.20+0.10=0.50.
+\]</span> Procedure C has risk <span class="math display">\[
+0.05+0.60+0.10=0.75.
+\]</span> Procedure B is best at this <span class="math inline">\(x\)</span> because it has the smallest total risk.</p>
+</details>
 </section>
-<section id="prerequisites" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">1.2</span> Prerequisites</h2>
-<p>These notes assume comfort with basic Python, plotting, and numerical computing. They also assume working familiarity with functions, derivatives, vectors, matrices, probability, and statistical estimation. The early lectures review some of the mathematical notation used later, but the notes are written for readers who are willing to move between equations, code, and visual interpretation.</p>
+<section id="question-16" class="level3" data-number="31.0.16">
+<h3 data-number="31.0.16" class="anchored" data-anchor-id="question-16"><span class="header-section-number">31.0.16</span> Question 16</h3>
+<p>A false proof says: “The cross term vanishes because <span class="math inline">\(\mathbb E[\hat f(x)-f^*(x)]=0\)</span>.” Identify why this proof is wrong in general.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>The statement <span class="math display">\[
+\mathbb E[\hat f(x)-f^*(x)]=0
+\]</span> means the estimator is unbiased at <span class="math inline">\(x\)</span>. The lecture does not assume unbiasedness; in fact, bias may be nonzero and is one of the terms being measured.</p>
+<p>The first cross term involving <span class="math inline">\(\varepsilon\)</span> vanishes because the test noise has mean zero and is independent of <span class="math inline">\(\hat f(x)\)</span>. The second cross term in the bias-variance decomposition vanishes because <span class="math inline">\(\hat f(x)-\mathbb E[\hat f(x)]\)</span> is centered, not because <span class="math inline">\(\hat f(x)-f^*(x)\)</span> is centered.</p>
+</details>
 </section>
-<section id="practice-questions" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="practice-questions"><span class="header-section-number">1.3</span> Practice Questions</h2>
-<p>The practice questions are paired with the lecture topics. They are meant to be attempted actively, not just read. A good first pass is to answer them without looking back at the notes, then revisit the relevant lecture sections to repair gaps in notation, interpretation, or implementation.</p>
+<section id="question-17" class="level3" data-number="31.0.17">
+<h3 data-number="31.0.17" class="anchored" data-anchor-id="question-17"><span class="header-section-number">31.0.17</span> Question 17</h3>
+<p>Suppose the irreducible noise variance is <span class="math inline">\(\sigma^2=1\)</span>. At a fixed test point <span class="math inline">\(x_0\)</span>, two prediction procedures have the following bias and variance:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Procedure</th>
+<th style="text-align: right;">Bias<span class="math inline">\(^2\)</span></th>
+<th style="text-align: right;">Variance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td style="text-align: right;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(4\)</span></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td style="text-align: right;"><span class="math inline">\(3\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Using the bias-variance decomposition, show that the two procedures have the same overall risk at <span class="math inline">\(x_0\)</span>, but different bias-variance behavior.</p>
+<details>
+<summary>
+Answer
+</summary>
+<p>For Procedure A, the risk is</p>
+<p><span class="math display">\[
+0+4+1=5.
+\]</span></p>
+<p>So Procedure A has total risk <span class="math inline">\(5\)</span>.</p>
+<p>For Procedure B, the risk is</p>
+<p><span class="math display">\[
+3+1+1=5.
+\]</span></p>
+<p>So Procedure B also has total risk <span class="math inline">\(5\)</span>.</p>
+<p>Therefore, the two procedures have the same overall risk at <span class="math inline">\(x_0\)</span>, even though the source of the error is different.</p>
+</details>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1188,10 +1467,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../questions/007_knn_questions.html" class="pagination-link" aria-label="K-Nearest Neighbors - Review Questions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lectures/000_intro_and_erm.html" class="pagination-link" aria-label="Introduction to Statistical Machine Learning">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../questions/009_ridge_questions.html" class="pagination-link" aria-label="Ridge Regression - Review Questions">
+        <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

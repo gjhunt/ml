@@ -8,7 +8,7 @@
 
 <meta name="author" content="Gregory Hunt">
 
-<title>23&nbsp; Introduction to Statistical Machine Learning - Review Questions – Statistical Learning</title>
+<title>14&nbsp; Feed-Forward Neural Networks – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../questions/001_derivatives_questions.html" rel="next">
-<link href="../lectures/020_boosting.html" rel="prev">
+<link href="../lectures/013_backprop.html" rel="next">
+<link href="../lectures/011_elastic_net_logistic_erm.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -114,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/012_nn.html">Neural Networks</a></li><li class="breadcrumb-item"><a href="../lectures/012_nn.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -265,7 +299,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/012_nn.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/012_nn.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
   </div>
 </li>
@@ -352,7 +386,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link active">
+  <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
@@ -482,30 +516,30 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1"><span class="header-section-number">23.0.1</span> Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">23.0.2</span> Question 2</a></li>
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">23.0.3</span> Question 3</a></li>
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">23.0.4</span> Question 4</a></li>
-  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5"><span class="header-section-number">23.0.5</span> Question 5</a></li>
-  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6"><span class="header-section-number">23.0.6</span> Question 6</a></li>
-  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7"><span class="header-section-number">23.0.7</span> Question 7</a></li>
-  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8"><span class="header-section-number">23.0.8</span> Question 8</a></li>
-  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9"><span class="header-section-number">23.0.9</span> Question 9</a></li>
-  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10"><span class="header-section-number">23.0.10</span> Question 10</a></li>
-  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11"><span class="header-section-number">23.0.11</span> Question 11</a></li>
-  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12"><span class="header-section-number">23.0.12</span> Question 12</a></li>
-  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13"><span class="header-section-number">23.0.13</span> Question 13</a></li>
-  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14"><span class="header-section-number">23.0.14</span> Question 14</a></li>
-  <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15"><span class="header-section-number">23.0.15</span> Question 15</a></li>
+  <li><a href="#feature-learning" id="toc-feature-learning" class="nav-link active" data-scroll-target="#feature-learning"><span class="header-section-number">14.1</span> Feature Learning</a></li>
+  <li><a href="#what-is-the-form-of-each-layer" id="toc-what-is-the-form-of-each-layer" class="nav-link" data-scroll-target="#what-is-the-form-of-each-layer"><span class="header-section-number">14.2</span> What Is the Form of Each Layer?</a></li>
+  <li><a href="#why-are-they-called-networks" id="toc-why-are-they-called-networks" class="nav-link" data-scroll-target="#why-are-they-called-networks"><span class="header-section-number">14.3</span> Why Are They Called “Networks”?</a></li>
+  <li><a href="#one-hidden-layer-network" id="toc-one-hidden-layer-network" class="nav-link" data-scroll-target="#one-hidden-layer-network"><span class="header-section-number">14.4</span> One-hidden-layer Network</a>
+  <ul class="collapse">
+  <li><a href="#regression-output" id="toc-regression-output" class="nav-link" data-scroll-target="#regression-output"><span class="header-section-number">14.4.1</span> Regression Output</a></li>
+  <li><a href="#classification-output" id="toc-classification-output" class="nav-link" data-scroll-target="#classification-output"><span class="header-section-number">14.4.2</span> Classification Output</a></li>
+  </ul></li>
+  <li><a href="#loss-functions-and-erm" id="toc-loss-functions-and-erm" class="nav-link" data-scroll-target="#loss-functions-and-erm"><span class="header-section-number">14.5</span> Loss Functions and ERM</a>
+  <ul class="collapse">
+  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression"><span class="header-section-number">14.5.1</span> Regression</a></li>
+  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification"><span class="header-section-number">14.5.2</span> Classification</a></li>
+  <li><a href="#erm-problem" id="toc-erm-problem" class="nav-link" data-scroll-target="#erm-problem"><span class="header-section-number">14.5.3</span> ERM Problem</a></li>
+  </ul></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">14.6</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/012_nn.html">Neural Networks</a></li><li class="breadcrumb-item"><a href="../lectures/012_nn.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-intro-questions" class="quarto-section-identifier"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -537,240 +571,534 @@ window.Quarto = {
 <div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
-<section id="question-1" class="level3" data-number="23.0.1">
-<h3 data-number="23.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">23.0.1</span> Question 1</h3>
-<p>Let <span class="math inline">\(X\)</span> be continuously distributed on <span class="math inline">\([0,1]\)</span>, and let <span class="math inline">\(Y\sim\operatorname{Bernoulli}(1/2)\)</span> be independent of <span class="math inline">\(X\)</span>. Suppose the training data are</p>
+<p>Let’s now consider another class of models within the ERM framework: <strong>feed-forward neural networks</strong>.</p>
+<p>As a point of reference, consider two of our basic models:</p>
+<ol type="1">
+<li><p><strong>Linear regression</strong>, where the goal was to predict a continuous outcome</p>
 <p><span class="math display">\[
-D={(X_1,Y_1),\ldots,(X_n,Y_n)},
+y \in \mathbb{R}
 \]</span></p>
-<p>where the <span class="math inline">\(X_i\)</span>’s are distinct. Consider the memorizing classifier</p>
+<p>from an input</p>
 <p><span class="math display">\[
-\hat f(x)=
-\begin{cases}
-Y_i, &amp; \text{if } x=X_i \text{ for some training input } X_i,\\
-0, &amp; \text{otherwise.}
-\end{cases}
+x \in \mathbb{R}^D.
 \]</span></p>
-<p>Using 0-1 loss,</p>
+<p>We chose the class of linear score functions</p>
 <p><span class="math display">\[
-\ell(\hat f(x),y)=\mathbf 1\{\hat f(x)\neq y\},
+\mathcal{S} = \{s_w(x) = w^\top x : w \in \mathbb{R}^D\},
 \]</span></p>
-<p>argue that <span class="math inline">\(\hat f\)</span> has zero training error but population risk <span class="math inline">\(1/2\)</span>.</p>
-<details>
-<summary>
-Answer
-</summary>
-<p>The classifier has zero training error because it memorizes the observed labels:</p>
+<p>and, using squared error loss, arrived at the least squares problem.</p></li>
+<li><p><strong>Logistic regression</strong>, where the goal was to predict a categorical outcome</p>
 <p><span class="math display">\[
-\hat f(X_i)=Y_i
+y \in \{1,\ldots,K\}.
 \]</span></p>
-<p>for every training example <span class="math inline">\(i=1,\ldots,n\)</span>. Therefore,</p>
+<p>We again used a linear score function</p>
 <p><span class="math display">\[
-\frac{1}{n}\sum_{i=1}^n \mathbf 1\{\hat f(X_i)\neq Y_i\}=0.
+s_W(x) = W^\top x,
 \]</span></p>
-<p>For a new draw <span class="math inline">\((X,Y)\)</span>, the input <span class="math inline">\(X\)</span> is almost surely not equal to any of the finitely many training inputs <span class="math inline">\(X_1,\ldots,X_n\)</span>, since <span class="math inline">\(X\)</span> has a continuous distribution. Thus <span class="math inline">\(\hat f(X)=0\)</span> almost surely on a new test point. Because <span class="math inline">\(Y\sim\operatorname{Bernoulli}(1/2)\)</span> and is independent of <span class="math inline">\(X\)</span>,</p>
+<p>but then mapped the score to probabilities</p>
 <p><span class="math display">\[
-R(\hat f)=
-\mathbb E[\mathbf 1\{\hat f(X)\neq Y\}]=
-P(Y=1)=
-\frac{1}{2}.
+p_W(x) = \mathrm{softmax}(W^\top x).
 \]</span></p>
-<p>So the classifier fits the training data perfectly but performs no better than predicting the constant label <span class="math inline">\(0\)</span> on new data. This illustrates that zero empirical risk does not necessarily imply low population risk.</p>
-</details>
+<p>and optimized <span class="math inline">\(W\)</span> using the categorical cross-entropy loss.</p></li>
+</ol>
+<p>While these models seem relatively basic, remember that we can do any sort of feature engineering on <span class="math inline">\(x\)</span> beforehand to make complex models that are non-linear in <span class="math inline">\(x\)</span>.</p>
+<p>Neural networks fit into this same setup. The main difference is that we will replace the linear score function in <span class="math inline">\(x\)</span> with a more flexible function <span class="math inline">\(s_\theta\)</span> made of a series of function compositions. At a high level, the neural network score function is built by composing several simpler functions. For example, we might write</p>
+<p><span class="math display">\[
+s_\theta(x)=
+s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
+\]</span></p>
+<p>Here each function <span class="math inline">\(s_i\)</span> represents one <strong>layer</strong> of the network. Each layer has its own parameters. The full parameter vector for the network is then the collection of all layer-specific parameters:</p>
+<p><span class="math display">\[
+\theta = (\theta_1, \theta_2, \dots, \theta_L).
+\]</span></p>
+<p>This composition structure is the key difference from linear and logistic regression. In linear and logistic regression, the score function was a single linear function of the input. In a neural network, the score function is built by passing the input through a sequence of learned transformations. <strong>Now, the model will no longer be linear in the parameters <span class="math inline">\(\theta\)</span> like it was linear in <span class="math inline">\(w\)</span> for linear and logistic regression.</strong> In fact, in general, it may no longer be convex in <span class="math inline">\(\theta\)</span>.</p>
+<p>In the simplest feed-forward networks, each layer applies an affine transformation followed by a nonlinear activation function. We will make this precise shortly. For now, the important point is that <span class="math inline">\(s_\theta(x)\)</span> is not just a single weighted sum of the features. It is a layered function whose intermediate representations are learned from the data.</p>
+<p>So the ERM setup becomes</p>
+<p><span class="math display">\[
+\hat{\theta} = \arg\min_\theta \hat{R}(\theta),
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\hat{R}(\theta) = \frac{1}{N}\sum_{n=1}^N \ell(y_n, s_\theta(x_n)).
+\]</span></p>
+<p>For some loss function <span class="math inline">\(\ell\)</span>. Typically we’ll use squared-error for regression and categorical cross entropy for classification tasks.</p>
+<section id="feature-learning" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="feature-learning"><span class="header-section-number">14.1</span> Feature Learning</h2>
+<p>Linear and logistic regression are often quite useful. They are simple, interpretable, and relatively easy to fit. But they also have a major limitation: the score function is linear in the input representation. There are two broad ways to address this.</p>
+<p>The first approach is <strong>feature engineering</strong>. We can manually construct new features and put them into the design matrix <span class="math inline">\(X\)</span>. For example, if the raw input has two components,</p>
+<p><span class="math display">\[
+x = (x_1, x_2),
+\]</span></p>
+<p>we might construct additional features like</p>
+<p><span class="math display">\[
+x_1^2, \quad x_2^2, \quad x_1x_2.
+\]</span></p>
+<p>Then a linear model in this expanded feature representation can represent nonlinear relationships in the original raw inputs.</p>
+<p>The second approach is to let the model <strong>learn the representation itself</strong>. This is the basic idea behind neural networks.</p>
+<p>Instead of manually specifying all of the transformed features, we define a model that learns intermediate features from the data. These learned features are then combined to make predictions. In a neural network, the model learns new features internally and then uses those learned features for prediction.</p>
+<p>Recall that we wrote the neural network score as</p>
+<p><span class="math display">\[
+s_\theta(x)=
+s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
+\]</span></p>
+<p>We can think of each intermediate layer as producing a new representation of the input. The first layer takes the original features <span class="math inline">\(x\)</span> and transforms them into a new set of (so-called <em>hidden</em>) features,</p>
+<p><span class="math display">\[
+h^{(1)} = s_1(x).
+\]</span></p>
+<p>The second layer takes this learned representation and transforms it again,</p>
+<p><span class="math display">\[
+h^{(2)} = s_2(h^{(1)}).
+\]</span></p>
+<p>Continuing this way,</p>
+<p><span class="math display">\[
+h^{(i)} = s_i(h^{(i-1)}).
+\]</span></p>
+<p>The final layer then uses the last learned representation to produce the score,</p>
+<p><span class="math display">\[
+s_\theta(x) = s_L(h^{(L-1)}).
+\]</span></p>
+<p>So the network is not just applying one model directly to the original inputs. It is constructing a sequence of representations,</p>
+<p><span class="math display">\[
+x \mapsto h^{(1)} \mapsto h^{(2)} \mapsto \cdots \mapsto h^{(L-1)} \mapsto s_\theta(x).
+\]</span></p>
+<p>This is the sense in which the network learns features internally. Each hidden layer produces features that are learned from the data, and the final layer combines those learned features to make a prediction.</p>
 </section>
-<section id="question-2" class="level3" data-number="23.0.2">
-<h3 data-number="23.0.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">23.0.2</span> Question 2</h3>
-<p>Classify each target as regression or classification in the lecture’s sense, and state the range of <span class="math inline">\(\hat f\)</span>:</p>
+<section id="what-is-the-form-of-each-layer" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="what-is-the-form-of-each-layer"><span class="header-section-number">14.2</span> What Is the Form of Each Layer?</h2>
+<p>The next question is: what is the form of each layer <span class="math inline">\(s_i\)</span>?</p>
+<p>In a standard feed-forward neural network, each hidden layer usually has two parts:</p>
+<ol type="1">
+<li>an affine transformation, followed by</li>
+<li>a nonlinear <strong>activation function</strong></li>
+</ol>
+<p>That is, a typical hidden layer has the form</p>
+<p><span class="math display">\[
+s_i(h) = \phi_i(W^{(i)}h + b^{(i)}).
+\]</span></p>
+<p>Here:</p>
 <ul>
-<li><ol type="a">
-<li>income in dollars,</li>
-</ol></li>
-<li><ol start="2" type="a">
-<li>subscription renewal or not,</li>
-</ol></li>
-<li><ol start="3" type="a">
-<li>dog breeds among <span class="math inline">\(K\)</span> named breeds.</li>
-</ol></li>
+<li><span class="math inline">\(h\)</span> is the input to the layer</li>
+<li><span class="math inline">\(W^{(i)}\)</span> is a matrix of weights</li>
+<li><span class="math inline">\(b^{(i)}\)</span> is a vector of bias/intercept terms</li>
+<li><span class="math inline">\(\phi_i\)</span> is the activation function used at layer <span class="math inline">\(i\)</span></li>
 </ul>
-<details>
-<summary>
-Answer
-</summary>
-<ul>
-<li><ol type="a">
-<li>Income regression, with <span class="math inline">\(\hat f\)</span> mapping inputs to <span class="math inline">\(\mathbb R\)</span>.</li>
-</ol></li>
-<li><ol start="2" type="a">
-<li>Subscribe/not is binary classification, with <span class="math inline">\(\hat f\)</span> mapping inputs to a two-element class set <code>yes/no</code>.</li>
-</ol></li>
-<li><ol start="3" type="a">
-<li>Dog breed is multi-class classification, with <span class="math inline">\(\hat f\)</span> mapping inputs to <span class="math inline">\(\mathcal C=\{c_1,\ldots,c_K\}\)</span>.</li>
-</ol></li>
-</ul>
-</details>
-</section>
-<section id="question-3" class="level3" data-number="23.0.3">
-<h3 data-number="23.0.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">23.0.3</span> Question 3</h3>
-<p>Consider a three-class classification problem. Scores and actions are separated by <span class="math inline">\(\hat f(x)=a(\hat s(x))\)</span>. For three class-scores <span class="math inline">\(t=(2,5,1)\)</span> and associated classes <span class="math inline">\(\mathcal C=\{1,2,3\}\)</span>, compute the classification action <span class="math inline">\(a(t)=\arg\max_k t_k\)</span>. Then give a score vector with the same action but different score values.</p>
-<!-- Source: score/action separation; argmax action for classification -->
-<details>
-<summary>
-Answer
-</summary>
-<p>The largest component of <span class="math inline">\((2,5,1)\)</span> is the second, so <span class="math inline">\(a(t)=2\)</span>. A different score vector such as <span class="math inline">\((0,10,-7)\)</span> has the same classification because its second component is also largest. This shows that the action can discard numerical information in the score.</p>
-</details>
-</section>
-<section id="question-4" class="level3" data-number="23.0.4">
-<h3 data-number="23.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">23.0.4</span> Question 4</h3>
-<p>Cross-entropy is defined from class scores using <span class="math inline">\(p_y(x)=\exp(\hat s_y(x))/\sum_{k=1}^K\exp(\hat s_k(x))\)</span>. Verify that <span class="math inline">\(\sum_{j=1}^K p_j(x)=1\)</span> and compute the loss when all <span class="math inline">\(K\)</span> scores are equal.</p>
-<!-- Source: loss functions; softmax probabilities and cross-entropy -->
-<details>
-<summary>
-Answer
-</summary>
-<p>Since <span class="math inline">\(p_j=e^{s_j}/\sum_k e^{s_k}\)</span>, summing over <span class="math inline">\(j\)</span> gives <span class="math inline">\(\sum_j p_j=(\sum_j e^{s_j})/(\sum_k e^{s_k})=1\)</span>. If all scores are equal to <span class="math inline">\(c\)</span>, then for any <span class="math inline">\(y\)</span>, <span class="math inline">\(p_y=e^c/(Ke^c)=1/K\)</span>, so the cross-entropy loss is <span class="math inline">\(-\log(1/K)=\log K\)</span>.</p>
-</details>
-</section>
-<section id="question-5" class="level3" data-number="23.0.5">
-<h3 data-number="23.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">23.0.5</span> Question 5</h3>
-<p>For zero-one loss <span class="math inline">\(\ell(y,s(x))=\mathbf 1\{y\ne a(s(x))\}\)</span>, rewrite the population risk <span class="math inline">\(R(s)\)</span> as a probability of an event.</p>
-<!-- Source: loss functions; zero-one loss and population risk -->
-<details>
-<summary>
-Answer
-</summary>
-<p>The population risk is <span class="math inline">\(R(s)=\mathbb E[\mathbf 1\{Y\ne a(s(X))\}]\)</span>. The expectation of an indicator is the probability of its event, so <span class="math inline">\(R(s)=P(Y\ne a(s(X)))\)</span>. Thus zero-one risk is the misclassification probability.</p>
-</details>
-</section>
-<section id="question-6" class="level3" data-number="23.0.6">
-<h3 data-number="23.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">23.0.6</span> Question 6</h3>
-<p>Assume <span class="math inline">\((x_1,y_1),\ldots,(x_N,y_N)\overset{\mathrm{i.i.d.}}\sim P\)</span>. For a fixed score <span class="math inline">\(s\)</span>, prove that <span class="math inline">\(\hat R_N(s)\)</span> has expectation <span class="math inline">\(R(s)\)</span>.</p>
-<details>
-<summary>
-Answer
-</summary>
-<p>Let <span class="math inline">\(Z_n=\ell(y_n,s(x_n))\)</span>. The i.i.d. assumption makes the <span class="math inline">\(Z_n\)</span> identically distributed with <span class="math inline">\(\mathbb E Z_n=R(s)\)</span>. Therefore <span class="math inline">\(\mathbb E\hat R_N(s)=\mathbb E[N^{-1}\sum_n Z_n]=N^{-1}\sum_n R(s)=R(s)\)</span>.</p>
-</details>
-</section>
-<section id="question-7" class="level3" data-number="23.0.7">
-<h3 data-number="23.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">23.0.7</span> Question 7</h3>
-<p>Consider the training data</p>
+<p>The subscript on <span class="math inline">\(\phi_i\)</span> allows different layers to use different activation functions.</p>
+<p>So each layer first forms weighted combinations of the previous layer’s features, then applies a nonlinear transformation.</p>
+<p>Suppose the input to layer <span class="math inline">\(i\)</span> has dimension <span class="math inline">\(d_{i-1}\)</span>, and the output of layer <span class="math inline">\(i\)</span> has dimension <span class="math inline">\(d_i\)</span>. That is,</p>
 <p><span class="math display">\[
-D=\{(0,0),(1,0)\}.
-\]</span></p>
-<p>Let the loss be squared loss, <span class="math inline">\(\ell(s(x),y)=(s(x)-y)^2\)</span>. Construct two score functions <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span> that agree on the training inputs <span class="math inline">\(x=0\)</span> and <span class="math inline">\(x=1\)</span>, but have different population risks under the distribution where <span class="math inline">\(X\)</span> is uniform on <span class="math inline">\({0,1,2}\)</span> and <span class="math inline">\(Y=0\)</span> always.</p>
-<p>Use this example to explain why empirical risk alone may not identify out-of-sample behavior.</p>
-<details>
-<summary>
-Answer
-</summary>
-<p>Define</p>
-<p><span class="math display">\[
-s_1(x)=0 \quad \text{for all } x\in\{0,1,2\},
+h \in \mathbb{R}^{d_{i-1}}
 \]</span></p>
 <p>and</p>
 <p><span class="math display">\[
-s_2(0)=0,\qquad s_2(1)=0,\qquad s_2(2)=1.
+s_i(h) \in \mathbb{R}^{d_i}.
 \]</span></p>
-<p>The two score functions agree on the training inputs <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>. Therefore, they have the same empirical risk on <span class="math inline">\(D\)</span>. In fact, both have empirical risk <span class="math inline">\(0\)</span>, since both predict <span class="math inline">\(0\)</span> on the two training examples and <span class="math inline">\(Y=0\)</span>.</p>
-<p>However, their population risks differ. Since <span class="math inline">\(Y=0\)</span> always,</p>
+<p>Then the weight matrix and bias vector have sizes</p>
 <p><span class="math display">\[
-R(s_1)=\mathbb{E}[(s_1(X)-Y)^2]=0,
+W^{(i)} \in \mathbb{R}^{d_i \times d_{i-1}},
 \]</span></p>
-<p>while</p>
+<p>and</p>
 <p><span class="math display">\[
-R(s_2)=\mathbb{E}[(s_2(X)-Y)^2]
-= \frac{1}{3}(0^2+0^2+1^2)
-= \frac{1}{3}.
+b^{(i)} \in \mathbb{R}^{d_i}.
 \]</span></p>
-<p>Thus, the two functions are indistinguishable from the training data but behave differently at the unseen input <span class="math inline">\(x=2\)</span>. This shows that empirical risk alone only constrains predictions on observed training inputs. It does not, by itself, determine how a model behaves out of sample.</p>
-</details>
+<p>Therefore,</p>
+<p><span class="math display">\[
+W^{(i)}h + b^{(i)} \in \mathbb{R}^{d_i}.
+\]</span></p>
+<p>The activation function <span class="math inline">\(\phi_i\)</span> is usually applied componentwise, so it maps</p>
+<p><span class="math display">\[
+\phi_i : \mathbb{R}^{d_i} \to \mathbb{R}^{d_i}.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+s_i(h)=
+\phi_i(W^{(i)}h + b^{(i)})
+\in \mathbb{R}^{d_i}.
+\]</span></p>
+<p>For the first layer, the input is the original feature vector <span class="math inline">\(x\)</span>:</p>
+<p><span class="math display">\[
+h^{(1)}=
+\phi_1(W^{(1)}x + b^{(1)}).
+\]</span></p>
+<p>For the next layer, the input is the learned representation from the previous layer:</p>
+<p><span class="math display">\[
+h^{(2)}=
+\phi_2(W^{(2)}h^{(1)} + b^{(2)}).
+\]</span></p>
+<p>Continuing this way,</p>
+<p><span class="math display">\[
+h^{(i)}=
+\phi_i(W^{(i)}h^{(i-1)} + b^{(i)}).
+\]</span></p>
+<p>So the network builds a sequence of learned representations:</p>
+<p><span class="math display">\[
+x \mapsto h^{(1)} \mapsto h^{(2)} \mapsto \cdots.
+\]</span></p>
+<p>The layer-specific parameter vector <span class="math inline">\(\theta_i\)</span> consists of all entries of the weight matrix <span class="math inline">\(W^{(i)}\)</span> and the bias vector <span class="math inline">\(b^{(i)}\)</span>.</p>
+<p>Typically, the activation function <span class="math inline">\(\phi_i\)</span> does not have parameters associated with it. In that case,</p>
+<p><span class="math display">\[
+\theta_i = (W^{(i)}, b^{(i)}).
+\]</span></p>
+<p>The full network parameter vector <span class="math inline">\(\theta\)</span> is the collection of the parameters from all layers:</p>
+<p><span class="math display">\[
+\theta = (\theta_1, \theta_2, \dots, \theta_L).
+\]</span></p>
+<p>Common choices for the activation function include:</p>
+<ul>
+<li><strong>ReLU</strong>:</li>
+</ul>
+<p><span class="math display">\[
+\phi_i(t) = \max\{0,t\}
+\]</span></p>
+<ul>
+<li><strong>Sigmoid</strong>:</li>
+</ul>
+<p><span class="math display">\[
+\phi_i(t) = \frac{1}{1 + e^{-t}}
+\]</span></p>
+<ul>
+<li><strong>Hyperbolic tangent</strong>:</li>
+</ul>
+<p><span class="math display">\[
+\phi_i(t) = \tanh(t)
+\]</span></p>
+<ul>
+<li><strong>Identity activation</strong>:</li>
+</ul>
+<p><span class="math display">\[
+\phi_i(t) = t
+\]</span></p>
+<p>The identity activation is often used in the output layer for regression. Nonlinear activations such as ReLU, sigmoid, or tanh are used in hidden layers to make the network more flexible than a purely linear model. If we don’t include any activation functions then the network will essentially reduce to a very complicated representation of a linear score.</p>
 </section>
-<section id="question-8" class="level3" data-number="23.0.8">
-<h3 data-number="23.0.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">23.0.8</span> Question 8</h3>
-<p>Compare population risk minimization and empirical risk minimization using the same loss <span class="math inline">\(\ell\)</span> and class <span class="math inline">\(\mathcal S\)</span>. State precisely which object is unknown in one problem and random in the other.</p>
-<!-- Source: population risk versus empirical risk; ERM definition -->
-<details>
-<summary>
-Answer
-</summary>
-<p>Population risk minimization chooses <span class="math inline">\(s^*\in\arg\min_{s\in\mathcal S}\mathbb E_P\ell(Y,s(X))\)</span>, but <span class="math inline">\(P\)</span> is unknown. ERM chooses <span class="math inline">\(\hat s\in\arg\min_{s\in\mathcal S}N^{-1}\sum_n\ell(y_n,s(x_n))\)</span>. The empirical objective is computable but random because it depends on the random sample.</p>
+<section id="why-are-they-called-networks" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="why-are-they-called-networks"><span class="header-section-number">14.3</span> Why Are They Called “Networks”?</h2>
+<p>They are called <strong>neural networks</strong> because the model is organized as a network of connected units.</p>
+<p>Each unit, or node, takes inputs from the previous layer, forms a weighted combination of those inputs, applies an activation function, and passes the result forward to the next layer. The connections between units are the weights. The values at the hidden units are intermediate learned features.</p>
+<p>For example, in a feed-forward network, information flows through the model as</p>
+<p><span class="math display">\[
+x \mapsto h^{(1)} \mapsto h^{(2)} \mapsto \cdots \mapsto s_\theta(x).
+\]</span></p>
+<p>This looks like a network because each layer contains several units, and each unit is connected to units in the next layer. The network is called <strong>feed-forward</strong> because the information moves in one direction: from the input layer, through the hidden layers, to the output layer.</p>
+<p>The word “neural” comes from a loose analogy with biological neurons, but in this course we should think of these as mathematical models: compositions of weighted sums and nonlinear activation functions.</p>
+<p>An example:</p>
+<div id="fd34d9c4-5d36-442e-b91f-47b3211c3958" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Network architecture:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 input features, 4 units in hidden layer 1,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 units in hidden layer 2, 1 output</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>layer_sizes <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>layer_labels <span class="op">=</span> [</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Input layer</span><span class="ch">\n</span><span class="st">$x$"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Hidden layer 1</span><span class="ch">\n</span><span class="st">$h^{(1)}$"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Hidden layer 2</span><span class="ch">\n</span><span class="st">$h^{(2)}$"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Output</span><span class="ch">\n</span><span class="st">$s_</span><span class="ch">\\</span><span class="st">theta(x)$"</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">4.8</span>))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Horizontal position of each layer</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>x_positions <span class="op">=</span> np.arange(<span class="bu">len</span>(layer_sizes))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Store node coordinates</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>node_positions <span class="op">=</span> []</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, size <span class="kw">in</span> <span class="bu">enumerate</span>(layer_sizes):</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Vertically center the nodes in each layer</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    y_positions <span class="op">=</span> np.linspace(<span class="op">-</span>(size <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span>, (size <span class="op">-</span> <span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span>, size)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    layer_nodes <span class="op">=</span> [(x_positions[i], y) <span class="cf">for</span> y <span class="kw">in</span> y_positions]</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    node_positions.append(layer_nodes)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw connections between adjacent layers</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(layer_sizes) <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x1, y1 <span class="kw">in</span> node_positions[i]:</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> x2, y2 <span class="kw">in</span> node_positions[i <span class="op">+</span> <span class="dv">1</span>]:</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            ax.plot([x1, x2], [y1, y2], linewidth<span class="op">=</span><span class="fl">0.8</span>, alpha<span class="op">=</span><span class="fl">0.45</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw nodes and labels</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, layer_nodes <span class="kw">in</span> <span class="bu">enumerate</span>(node_positions):</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    xs <span class="op">=</span> [p[<span class="dv">0</span>] <span class="cf">for</span> p <span class="kw">in</span> layer_nodes]</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    ys <span class="op">=</span> [p[<span class="dv">1</span>] <span class="cf">for</span> p <span class="kw">in</span> layer_nodes]</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    ax.scatter(xs, ys, s<span class="op">=</span><span class="dv">650</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j, (x, y) <span class="kw">in</span> <span class="bu">enumerate</span>(layer_nodes, start<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>            label <span class="op">=</span> <span class="ss">f"$x_</span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">$"</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> i <span class="op">==</span> <span class="bu">len</span>(layer_sizes) <span class="op">-</span> <span class="dv">1</span>:</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>            label <span class="op">=</span> <span class="st">"$s_</span><span class="ch">\\</span><span class="st">theta(x)$"</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>            label <span class="op">=</span> <span class="ss">f"$h^</span><span class="ch">{{</span><span class="ss">(</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">)</span><span class="ch">}}</span><span class="ss">_</span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">$"</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>        ax.text(x, y, label, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>, fontsize<span class="op">=</span><span class="dv">10</span>, zorder<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Add layer labels underneath</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, label <span class="kw">in</span> <span class="bu">enumerate</span>(layer_labels):</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    ax.text(x_positions[i], <span class="op">-</span><span class="fl">2.55</span>, label, ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"top"</span>, fontsize<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Add feed-forward direction arrow</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>ax.annotate(</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="st">"feed-forward direction"</span>,</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    xy<span class="op">=</span>(<span class="fl">2.75</span>, <span class="fl">2.1</span>),</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    xytext<span class="op">=</span>(<span class="fl">0.25</span>, <span class="fl">2.1</span>),</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    arrowprops<span class="op">=</span><span class="bu">dict</span>(arrowstyle<span class="op">=</span><span class="st">"-&gt;"</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>),</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    ha<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>    va<span class="op">=</span><span class="st">"center"</span>,</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    fontsize<span class="op">=</span><span class="dv">11</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="op">-</span><span class="fl">0.5</span>, <span class="bu">len</span>(layer_sizes) <span class="op">-</span> <span class="fl">0.5</span>)</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="fl">3.0</span>, <span class="fl">2.7</span>)</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+</div>
+<p>Two common ways to describe the size of a neural network are its <strong>depth</strong> and its <strong>width</strong>.</p>
+<p>The <strong>depth</strong> of the network refers to the number of layers in the composition. For example, if</p>
+<p><span class="math display">\[
+s_\theta(x)=
+s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)),
+\]</span></p>
+<p>then the network has depth <span class="math inline">\(L\)</span>, depending on whether we are counting all layers in the composition. Sometimes people count only the hidden layers, so it is useful to be explicit about the convention.</p>
+<p>The <strong>width</strong> of layer <span class="math inline">\(i\)</span> refers to the number of units in that layer. In our notation, if</p>
+<p><span class="math display">\[
+s_i : \mathbb{R}^{d_{i-1}} \to \mathbb{R}^{d_i},
+\]</span></p>
+<p>then layer <span class="math inline">\(i\)</span> has width <span class="math inline">\(d_i\)</span>.</p>
+<p>The quantity <span class="math inline">\(d_{i-1}\)</span> is the width of the previous layer, and <span class="math inline">\(d_i\)</span> is the width of the current layer. Since</p>
+<p><span class="math display">\[
+W^{(i)} \in \mathbb{R}^{d_i \times d_{i-1}},
+\]</span></p>
+<p>the number of weights in layer <span class="math inline">\(i\)</span> is</p>
+<p><span class="math display">\[
+d_i d_{i-1}.
+\]</span></p>
+<p>There are also <span class="math inline">\(d_i\)</span> bias terms, since</p>
+<p><span class="math display">\[
+b^{(i)} \in \mathbb{R}^{d_i}.
+\]</span></p>
+<p>So the total number of parameters in layer <span class="math inline">\(i\)</span> is</p>
+<p><span class="math display">\[
+d_i d_{i-1} + d_i.
+\]</span></p>
+<p>Thus, wider layers usually mean more parameters, and deeper networks mean more layers of learned transformations.</p>
 </section>
-<section id="question-9" class="level3" data-number="23.0.9">
-<h3 data-number="23.0.9" class="anchored" data-anchor-id="question-9"><span class="header-section-number">23.0.9</span> Question 9</h3>
-<p>Let <span class="math inline">\(\mathcal S_1\subseteq\mathcal S_2\)</span>. Prove that the minimum empirical risk over <span class="math inline">\(\mathcal S_2\)</span> is no larger than the minimum empirical risk over <span class="math inline">\(\mathcal S_1\)</span>.</p>
-<details>
-<summary>
-Answer
-</summary>
-<p>Because every candidate in <span class="math inline">\(\mathcal S_1\)</span> is also in <span class="math inline">\(\mathcal S_2\)</span>, minimizing over <span class="math inline">\(\mathcal S_2\)</span> has at least all candidates available to <span class="math inline">\(\mathcal S_1\)</span>. Therefore <span class="math inline">\(\min_{s\in\mathcal S_2}\hat R(s)\le \min_{s\in\mathcal S_1}\hat R(s)\)</span>.</p>
-</details>
+<section id="one-hidden-layer-network" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="one-hidden-layer-network"><span class="header-section-number">14.4</span> One-hidden-layer Network</h2>
+<p>Consider a simple one-hidden-layer network. Suppose the input is</p>
+<p><span class="math display">\[
+x \in \mathbb{R}^D.
+\]</span></p>
+<p>The network has <span class="math inline">\(H\)</span> hidden units. The hidden layer is defined by</p>
+<p><span class="math display">\[
+h = \phi(Wx + b),
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+W \in \mathbb{R}^{H \times D},
+\]</span></p>
+<p><span class="math display">\[
+b \in \mathbb{R}^H,
+\]</span></p>
+<p>and therefore</p>
+<p><span class="math display">\[
+h \in \mathbb{R}^H.
+\]</span></p>
+<p>The first hidden <strong>unit</strong> computes</p>
+<p><span class="math display">\[
+h_1 = \phi(w_1^\top x + b_1),
+\]</span></p>
+<p>the second hidden unit computes</p>
+<p><span class="math display">\[
+h_2 = \phi(w_2^\top x + b_2),
+\]</span></p>
+<p>and so on, up to</p>
+<p><span class="math display">\[
+h_H = \phi(w_H^\top x + b_H).
+\]</span></p>
+<p>Here <span class="math inline">\(w_j^\top\)</span> is the <span class="math inline">\(j\)</span>th row of <span class="math inline">\(W\)</span>. Each hidden unit takes a linear combination of the input features and then applies the activation function.</p>
+<p>Stacking the hidden units together gives</p>
+<p><span class="math display">\[
+h =
+\begin{pmatrix}
+h_1 \\
+h_2 \\
+\vdots \\
+h_H
+\end{pmatrix}
+\in \mathbb{R}^H.
+\]</span></p>
+<p>So the hidden layer transforms the original input vector <span class="math inline">\(x \in \mathbb{R}^D\)</span> into a learned feature vector <span class="math inline">\(h \in \mathbb{R}^H\)</span>.</p>
+<p>The output layer then depends on the prediction task.</p>
+<section id="regression-output" class="level3" data-number="14.4.1">
+<h3 data-number="14.4.1" class="anchored" data-anchor-id="regression-output"><span class="header-section-number">14.4.1</span> Regression Output</h3>
+<p>For regression, we usually want a single real-valued prediction. So the output layer (the last layer) maps</p>
+<p><span class="math display">\[
+\mathbb{R}^H \to \mathbb{R}.
+\]</span></p>
+<p>A common choice is a linear output layer:</p>
+<p><span class="math display">\[
+s_\theta(x) = v^\top h + c,
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+v \in \mathbb{R}^H
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+c \in \mathbb{R}.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+s_\theta(x) \in \mathbb{R}.
+\]</span></p>
+<p>This is equivalent to choosing a <em>linear</em> activation for this last layer.</p>
+<p>All together, then:</p>
+<p><span class="math display">\[
+s_\theta(x) = v^\top \phi(Wx + b) + c.
+\]</span></p>
+<p>So for regression, a one-hidden-layer network first transforms <span class="math inline">\(x\)</span> into learned features,</p>
+<p><span class="math display">\[
+h = \phi(Wx + b),
+\]</span></p>
+<p>and then applies a linear regression-style output layer to those learned features.</p>
 </section>
-<section id="question-10" class="level3" data-number="23.0.10">
-<h3 data-number="23.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">23.0.10</span> Question 10</h3>
-<p>Give a classification score vector <span class="math inline">\(t\in\mathbb R^K\)</span> for which the action <span class="math inline">\(\arg\max_k t_k\)</span> is not uniquely defined.</p>
-<!-- Source: score/action separation; argmax tie convention -->
-<details>
-<summary>
-Answer
-</summary>
-<p>For <span class="math inline">\(K=3\)</span>, take <span class="math inline">\(t=(1,1,0)\)</span>. Both classes 1 and 2 maximize the score, so <span class="math inline">\(\arg\max\)</span> is a set unless a tie-breaking rule is specified. A convention such as ‘choose the smallest maximizing index’ makes <span class="math inline">\(a(t)\)</span> a well-defined function.</p>
-</details>
+<section id="classification-output" class="level3" data-number="14.4.2">
+<h3 data-number="14.4.2" class="anchored" data-anchor-id="classification-output"><span class="header-section-number">14.4.2</span> Classification Output</h3>
+<p>For classification with <span class="math inline">\(K\)</span> classes, we usually want the network to produce one score for each class. These scores are called <strong>logits</strong>.</p>
+<p>To do this, we choose the final layer to have width <span class="math inline">\(K\)</span>. If the hidden representation is</p>
+<p><span class="math display">\[
+h \in \mathbb{R}^H,
+\]</span></p>
+<p>then the final affine transformation has the form</p>
+<p><span class="math display">\[
+Vh + c,
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+V \in \mathbb{R}^{K \times H}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+c \in \mathbb{R}^K.
+\]</span></p>
+<p>Thus,</p>
+<p><span class="math display">\[
+Vh+c \in \mathbb{R}^K.
+\]</span></p>
+<p>These <span class="math inline">\(K\)</span> values are the class logits, or class scores. By default, we will treat the network output as these logits:</p>
+<p><span class="math display">\[
+s_\theta(x) = Vh+c.
+\]</span></p>
+<p>Since the hidden representation is given by</p>
+<p><span class="math display">\[
+h = \phi(Wx+b),
+\]</span></p>
+<p>the full network output is</p>
+<p><span class="math display">\[
+s_\theta(x) = V\phi(Wx+b)+c.
+\]</span></p>
+<p>The vector <span class="math inline">\(s_\theta(x)\)</span> is in <span class="math inline">\(\mathbb{R}^K\)</span>, but its entries are not probabilities. They can be positive, negative, or zero, and they do not have to sum to one.</p>
+<p>To convert the logits into predicted class probabilities, we apply the <strong>softmax function</strong>:</p>
+<p><span class="math display">\[
+p_\theta(x) = \operatorname{softmax}(s_\theta(x)).
+\]</span></p>
+<p>Equivalently,</p>
+<p><span class="math display">\[
+p_\theta(x) = \operatorname{softmax}(V\phi(Wx+b)+c).
+\]</span></p>
+<p>The vector <span class="math inline">\(p_\theta(x)\)</span> is in <span class="math inline">\(\mathbb{R}^K\)</span>. Each entry is nonnegative, and the entries sum to one. Therefore, <span class="math inline">\(p_\theta(x)\)</span> can be interpreted as a vector of predicted class probabilities.</p>
+<p>This distinction is useful because many software libraries expect the model itself to output logits. The softmax step is then applied inside the loss function, such as cross-entropy loss, or later when we want to report predicted probabilities. Later, when we define the loss function for classification, we will use the logits as the default network output and make sure the loss function matches this convention.</p>
+<p>Sometimes, an alternative convention is to describe the classification network as having a <strong>softmax output layer</strong>. This usually means that the final affine layer produces logits and softmax is applied afterward to convert those logits into probabilities: <span class="math display">\[
+s_\theta(x) = \operatorname{softmax}(V\phi(Wx+b)+c).
+\]</span> Both conventions are common, but in software it is often cleaner to treat the model output as logits and let the loss function handle the softmax step.</p>
+<p>The main point is that the final output layer usually depends on the task:</p>
+<ul>
+<li>For regression, the standard choice is a <strong>linear output layer</strong> that produces real-valued predictions.</li>
+<li>For classification, the standard choice is a <strong>linear output layer</strong> that produces <span class="math inline">\(K\)</span> logits. Softmax is applied afterward when probabilities are needed.</li>
+</ul>
 </section>
-<section id="question-11" class="level3" data-number="23.0.11">
-<h3 data-number="23.0.11" class="anchored" data-anchor-id="question-11"><span class="header-section-number">23.0.11</span> Question 11</h3>
-<p>Higher loss is worse, and losses are typically nonnegative. Construct a loss <span class="math inline">\(\tilde\ell(y,s)=\ell(y,s)+5\)</span> from any nonnegative loss <span class="math inline">\(\ell\)</span>. Does ERM over a fixed class change? Prove your answer.</p>
-<!-- Source: loss functions; transformations that preserve ERM minimizers -->
-<details>
-<summary>
-Answer
-</summary>
-<p>The empirical risk for <span class="math inline">\(\tilde\ell\)</span> is <span class="math inline">\(\hat R_{\tilde\ell}(s)=N^{-1}\sum_n(\ell_n(s)+5)=\hat R_\ell(s)+5\)</span>. Adding the same constant to every candidate’s objective preserves all orderings, so the ERM minimizers over a fixed class are unchanged.</p>
-</details>
 </section>
-<section id="question-12" class="level3" data-number="23.0.12">
-<h3 data-number="23.0.12" class="anchored" data-anchor-id="question-12"><span class="header-section-number">23.0.12</span> Question 12</h3>
-<p>A transformation squares the average empirical risk: <span class="math inline">\(Q(s)=\hat R(s)^2\)</span>. If <span class="math inline">\(\hat R(s)\ge0\)</span> for every <span class="math inline">\(s\)</span>, does minimizing <span class="math inline">\(Q\)</span> give the same minimizers as minimizing <span class="math inline">\(\hat R\)</span>?</p>
-<details>
-<summary>
-Answer
-</summary>
-<p>Yes. On <span class="math inline">\([0,\infty)\)</span>, the map <span class="math inline">\(u\mapsto u^2\)</span> is strictly increasing, so <span class="math inline">\(\hat R(s_1)\le\hat R(s_2)\)</span> if and only if <span class="math inline">\(Q(s_1)\le Q(s_2)\)</span>.</p>
-</details>
+<section id="loss-functions-and-erm" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="loss-functions-and-erm"><span class="header-section-number">14.5</span> Loss Functions and ERM</h2>
+<p>Once we have defined the network architecture defining <span class="math inline">\(s_\theta(x)\)</span>, we still need to choose a loss function. The loss function should match the prediction task.</p>
+<section id="regression" class="level3" data-number="14.5.1">
+<h3 data-number="14.5.1" class="anchored" data-anchor-id="regression"><span class="header-section-number">14.5.1</span> Regression</h3>
+<p>For regression, the target is continuous:</p>
+<p><span class="math display">\[
+y \in \mathbb{R}.
+\]</span></p>
+<p>The network output is also a real number:</p>
+<p><span class="math display">\[
+s_\theta(x) \in \mathbb{R}.
+\]</span></p>
+<p>A common choice is squared loss:</p>
+<p><span class="math display">\[
+\ell(y, s_\theta(x))=
+(y - s_\theta(x))^2.
+\]</span></p>
+<p>Then the empirical risk is</p>
+<p><span class="math display">\[
+\hat{R}(\theta)=
+\frac{1}{N}
+\sum_{n=1}^N
+(y_n - s_\theta(x_n))^2.
+\]</span></p>
 </section>
-<section id="question-13" class="level3" data-number="23.0.13">
-<h3 data-number="23.0.13" class="anchored" data-anchor-id="question-13"><span class="header-section-number">23.0.13</span> Question 13</h3>
-<p>For a binary classification problem with score <span class="math inline">\(s(x)\in\mathbb R\)</span> and action <span class="math inline">\(a_c(s)=\mathbf 1\{s\ge c\}\)</span>, show how changing <span class="math inline">\(c\)</span> can change zero-one loss. Give a numerical example with one observation.</p>
-<!-- Source: score/action separation; action threshold affects loss -->
-<details>
-<summary>
-Answer
-</summary>
-<p>Take one observation with <span class="math inline">\(y=1\)</span> and score <span class="math inline">\(s(x)=0.7\)</span>. If <span class="math inline">\(c=0.5\)</span>, then <span class="math inline">\(a_c(s)=1\)</span> and zero-one loss is <span class="math inline">\(0\)</span>. If <span class="math inline">\(c=0.8\)</span>, then <span class="math inline">\(a_c(s)=0\)</span> and zero-one loss is <span class="math inline">\(1\)</span>. The score is unchanged; only the action rule changed.</p>
-</details>
+<section id="classification" class="level3" data-number="14.5.2">
+<h3 data-number="14.5.2" class="anchored" data-anchor-id="classification"><span class="header-section-number">14.5.2</span> Classification</h3>
+<p>For classification with <span class="math inline">\(K\)</span> classes, the network output is a vector of logits:</p>
+<p><span class="math display">\[
+s_\theta(x)\in \mathbb{R}^K.
+\]</span></p>
+<p>Like multi-class logistic regression, a common loss function for multiclass classification is <strong>categorical cross-entropy</strong>.</p>
+<p>If the true class label is <span class="math inline">\(y \in \{1,\dots,K\}\)</span>, then the loss is</p>
+<p><span class="math display">\[
+\ell(y, s_\theta(x))=
+-\log(p_{\theta,y}(x)).
+\]</span></p>
+<p>where <span class="math inline">\(p_\theta(x) = \operatorname{softmax}(s_\theta(x)).\)</span></p>
+<p>Equivalently, if the outcome is represented as a one-hot vector</p>
+<p><span class="math display">\[
+t =
+\begin{pmatrix}
+t_1 \\
+t_2 \\
+\vdots \\
+t_K
+\end{pmatrix},
+\]</span></p>
+<p>where <span class="math inline">\(t_k = 1\)</span> for the correct class and <span class="math inline">\(t_k = 0\)</span> otherwise, then categorical cross-entropy can be written as</p>
+<p><span class="math display">\[
+\ell(y, s_\theta(x))=
+-\sum_{k=1}^K t_k \log(p_{\theta,k}(x)).
+\]</span></p>
 </section>
-<section id="question-14" class="level3" data-number="23.0.14">
-<h3 data-number="23.0.14" class="anchored" data-anchor-id="question-14"><span class="header-section-number">23.0.14</span> Question 14</h3>
-<p>In the statistical setup, <span class="math inline">\(x_n=(X_{n1},\ldots,X_{nD})\in\mathbb R^D\)</span>. For a score <span class="math inline">\(s:\mathbb R^D\to\mathbb R^K\)</span>, state the dimensions of <span class="math inline">\(s(x_n)\)</span> and the dimension of the action output in <span class="math inline">\(K\)</span>-class classification.</p>
-<!-- Source: statistical setup; feature dimension and score dimension -->
-<details>
-<summary>
-Answer
-</summary>
-<p>For each input <span class="math inline">\(x_n\in\mathbb R^D\)</span>, the score <span class="math inline">\(s(x_n)\)</span> is a vector in <span class="math inline">\(\mathbb R^K\)</span>, with one component per class. The action <span class="math inline">\(a(s(x_n))\)</span> is a class label in <span class="math inline">\(\mathcal C=\{c_1,\ldots,c_K\}\)</span>, not a vector in <span class="math inline">\(\mathbb R^K\)</span>.</p>
-</details>
+<section id="erm-problem" class="level3" data-number="14.5.3">
+<h3 data-number="14.5.3" class="anchored" data-anchor-id="erm-problem"><span class="header-section-number">14.5.3</span> ERM Problem</h3>
+<p>In either case, the overall framework is unchanged. We choose parameters by minimizing empirical risk:</p>
+<p><span class="math display">\[
+\hat{\theta}=
+\arg\min_\theta
+\hat{R}(\theta),
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\hat{R}(\theta)=
+\frac{1}{N}
+\sum_{n=1}^N
+\ell(y_n, s_\theta(x_n)).
+\]</span></p>
+<p>The model class has changed from a linear score function to a neural network, but the learning problem is still an ERM problem.</p>
 </section>
-<section id="question-15" class="level3" data-number="23.0.15">
-<h3 data-number="23.0.15" class="anchored" data-anchor-id="question-15"><span class="header-section-number">23.0.15</span> Question 15</h3>
-<p>For multi-class scores <span class="math inline">\(s:\mathbb R^D\to\mathbb R^K\)</span>, add the same constant <span class="math inline">\(c\)</span> to every component: <span class="math inline">\(s'_k(x)=s_k(x)+c\)</span>. Does the argmax action change? Does the cross-entropy loss from the lecture change? Prove both answers.</p>
-<!-- Source: classification scores; argmax and cross-entropy invariance to common shifts -->
-<details>
-<summary>
-Answer
-</summary>
-<p>The argmax does not change because adding the same constant preserves the ordering of components. For cross-entropy, <span class="math inline">\(p'_y=e^{s_y+c}/\sum_k e^{s_k+c}=e^c e^{s_y}/(e^c\sum_k e^{s_k})=p_y\)</span>, so <span class="math inline">\(-\log p'_y=-\log p_y\)</span>. Both the action and this loss are invariant to common score shifts.</p>
-</details>
+</section>
+<section id="review-questions" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">14.6</span> Review Questions</h2>
+<p>See: <a href="../questions/012_nn_questions.html" class="quarto-xref"><span>Chapter 35</span></a>.</p>
 
 
 </section>
@@ -1393,13 +1721,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/020_boosting.html" class="pagination-link" aria-label="Boosting">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Boosting</span></span>
+      <a href="../lectures/011_elastic_net_logistic_erm.html" class="pagination-link" aria-label="Elastic Net and Penalized Logistic Regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../questions/001_derivatives_questions.html" class="pagination-link" aria-label="Matrix Calculus for Machine Learning - Review Questions">
-        <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/013_backprop.html" class="pagination-link" aria-label="Training Neural Networks with Backpropagation">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

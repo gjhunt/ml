@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Gregory Hunt">
-<meta name="dcterms.date" content="2026-07-02">
 
-<title>Statistical Learning</title>
+<title>26&nbsp; Logistic Regression - Review Questions – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,25 +24,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./lectures/000_intro_and_erm.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../questions/004_multiclass_logistic_regression_questions.html" rel="next">
+<link href="../questions/002_linear_regression_questions.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -72,6 +72,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="assets/code_style.css">
 </head>
@@ -85,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Statistical Learning</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/003_logistic_regression_questions.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -100,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Statistical Learning</a> 
+      <a href="../">Statistical Learning</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/gjhunt/ml" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -116,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Statistical Learning</span></span></a>
   </div>
 </li>
@@ -131,31 +160,31 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/000_intro_and_erm.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/000_intro_and_erm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/001_derivatives.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/001_derivatives.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/002_linear_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/002_linear_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/003_logistic_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/003_logistic_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/004_multiclass_logistic_regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/004_multiclass_logistic_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
   </div>
 </li>
@@ -172,25 +201,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/005_evaluation.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/005_evaluation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/006_model_selection.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/006_model_selection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/007_knn.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/007_knn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/008_bias_variance.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/008_bias_variance.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
   </div>
 </li>
@@ -207,19 +236,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/009_ridge.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/009_ridge.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/010_lasso.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/010_lasso.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/011_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/011_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
   </div>
 </li>
@@ -236,19 +265,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/012_nn.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/012_nn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/013_backprop.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/013_backprop.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/014_nn_arch.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/014_nn_arch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
   </div>
 </li>
@@ -265,19 +294,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/015_unsupervised.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/015_unsupervised.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/016_pca.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/016_pca.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/017_kmeans.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/017_kmeans.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
@@ -294,19 +323,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/018_trees.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/018_trees.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/019_random_forests.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/019_random_forests.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/020_boosting.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/020_boosting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
@@ -323,121 +352,121 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/001_derivatives_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/001_derivatives_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/002_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/002_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/003_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/003_logistic_regression_questions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/004_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/004_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/005_evaluation_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/005_evaluation_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/006_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/006_model_selection_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/007_knn_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/007_knn_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/008_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/008_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/009_ridge_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/009_ridge_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/010_lasso_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/010_lasso_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/011_elastic_net_logistic_erm_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/011_elastic_net_logistic_erm_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/012_nn_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/012_nn_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/013_backprop_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/013_backprop_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/014_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/014_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/016_pca_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/016_pca_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA) - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/017_kmeans_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/017_kmeans_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">K-means - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/018_trees_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/018_trees_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Trees - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/019_random_forests_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/019_random_forests_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Random Forests and Bagging - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./questions/020_boosting_questions.html" class="sidebar-item-text sidebar-link">
+  <a href="../questions/020_boosting_questions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Boosting Review Questions</span></span></a>
   </div>
 </li>
@@ -453,21 +482,31 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#statistical-learning" id="toc-statistical-learning" class="nav-link active" data-scroll-target="#statistical-learning"><span class="header-section-number">1</span> Statistical Learning</a>
-  <ul class="collapse">
-  <li><a href="#course-map" id="toc-course-map" class="nav-link" data-scroll-target="#course-map"><span class="header-section-number">1.1</span> Course Map</a></li>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites"><span class="header-section-number">1.2</span> Prerequisites</a></li>
-  <li><a href="#practice-questions" id="toc-practice-questions" class="nav-link" data-scroll-target="#practice-questions"><span class="header-section-number">1.3</span> Practice Questions</a></li>
-  </ul></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1"><span class="header-section-number">26.0.1</span> Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">26.0.2</span> Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">26.0.3</span> Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">26.0.4</span> Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5"><span class="header-section-number">26.0.5</span> Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6"><span class="header-section-number">26.0.6</span> Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7"><span class="header-section-number">26.0.7</span> Question 7</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8"><span class="header-section-number">26.0.8</span> Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9"><span class="header-section-number">26.0.9</span> Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10"><span class="header-section-number">26.0.10</span> Question 10</a></li>
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11"><span class="header-section-number">26.0.11</span> Question 11</a></li>
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12"><span class="header-section-number">26.0.12</span> Question 12</a></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13"><span class="header-section-number">26.0.13</span> Question 13</a></li>
+  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14"><span class="header-section-number">26.0.14</span> Question 14</a></li>
+  <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15"><span class="header-section-number">26.0.15</span> Question 15</a></li>
+  <li><a href="#question-16" id="toc-question-16" class="nav-link" data-scroll-target="#question-16"><span class="header-section-number">26.0.16</span> Question 16</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/003_logistic_regression_questions.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Statistical Learning</h1>
+<h1 class="title"><span id="sec-logistic-questions" class="quarto-section-identifier"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></h1>
 </div>
 
 
@@ -481,12 +520,6 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">July 2, 2026</p>
-    </div>
-  </div>
   
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
@@ -505,69 +538,433 @@ ul.task-list li input[type="checkbox"] {
 <div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
-<section id="statistical-learning" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Statistical Learning</h1>
-<p>These lecture notes introduce core ideas in statistical learning, with an emphasis on how models are formulated, fit, evaluated, and compared. The notes use empirical risk minimization as a recurring framework, then build toward model selection, regularization, neural networks, unsupervised learning, and tree-based methods.</p>
-<p>The goal is not to catalog every model or algorithm. The goal is to develop a practical way of thinking about learning from data: what objective is being optimized, what assumptions are being made, how flexible the model is, and how well its performance is likely to generalize.</p>
-<section id="course-map" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="course-map"><span class="header-section-number">1.1</span> Course Map</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Part</th>
-<th>Main Question</th>
-<th>Topics</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Foundations and Linear Models</td>
-<td>What does it mean to fit a model?</td>
-<td>Supervised learning, ERM, derivatives, linear regression, logistic regression, multiclass classification</td>
-</tr>
-<tr class="even">
-<td>Evaluation and Model Selection</td>
-<td>How do we know whether a model generalizes?</td>
-<td>Train/test performance, validation, cross-validation, KNN, bias-variance tradeoff</td>
-</tr>
-<tr class="odd">
-<td>Regularization and Penalized Models</td>
-<td>How do we control model complexity?</td>
-<td>Ridge, lasso, elastic net, penalized logistic regression</td>
-</tr>
-<tr class="even">
-<td>Neural Networks</td>
-<td>How do models learn representations?</td>
-<td>Feedforward networks, optimization, backpropagation, architecture choices</td>
-</tr>
-<tr class="odd">
-<td>Unsupervised Learning</td>
-<td>What structure can we find without labels?</td>
-<td>Dimensionality reduction, PCA, clustering, k-means</td>
-</tr>
-<tr class="even">
-<td>Tree-Based Methods</td>
-<td>How do adaptive rule-based models and ensembles work?</td>
-<td>Decision trees, random forests, boosting</td>
-</tr>
-</tbody>
-</table>
+<section id="question-1" class="level3" data-number="26.0.1">
+<h3 data-number="26.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">26.0.1</span> Question 1</h3>
+<p>Starting from <span class="math display">\[
+\sigma(t)=\frac{1}{1+e^{-t}},
+\]</span> compute <span class="math inline">\(\sigma'(t)\)</span> and express the answer only in terms of <span class="math inline">\(\sigma(t)\)</span>.</p>
+<!-- Source: Sigmoid definition and the lecture claim $\sigma'(t)=\sigma(t)(1-\sigma(t))$. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>Differentiate directly: <span class="math display">\[
+\sigma'(t)=\frac{e^{-t}}{(1+e^{-t})^2}.
+\]</span> Since <span class="math inline">\(\sigma(t)=1/(1+e^{-t})\)</span> and <span class="math inline">\(1-\sigma(t)=e^{-t}/(1+e^{-t})\)</span>, <span class="math display">\[
+\sigma'(t)=\sigma(t)(1-\sigma(t)).
+\]</span></p>
+</details>
 </section>
-<section id="prerequisites" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="prerequisites"><span class="header-section-number">1.2</span> Prerequisites</h2>
-<p>These notes assume comfort with basic Python, plotting, and numerical computing. They also assume working familiarity with functions, derivatives, vectors, matrices, probability, and statistical estimation. The early lectures review some of the mathematical notation used later, but the notes are written for readers who are willing to move between equations, code, and visual interpretation.</p>
+<section id="question-2" class="level3" data-number="26.0.2">
+<h3 data-number="26.0.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">26.0.2</span> Question 2</h3>
+<p>Verify the algebraic simplification of the binary cross-entropy loss. For <span class="math inline">\(y\in\{0,1\}\)</span>, <span class="math inline">\(s\in\mathbb{R}\)</span>, and <span class="math inline">\(p=\sigma(s)\)</span>, derive <span class="math display">\[
+-\{y\log p+(1-y)\log(1-p)\}=\log(1+e^s)-ys.
+\]</span></p>
+<!-- Source: Cross-entropy loss and the compressed simplification to $\log(1+e^s)-ys$. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>Use <span class="math inline">\(p=e^s/(1+e^s)\)</span> and <span class="math inline">\(1-p=1/(1+e^s)\)</span>. Then <span class="math display">\[
+\log p=s-\log(1+e^s),\qquad \log(1-p)=-\log(1+e^s).
+\]</span> Substitution gives <span class="math display">\[
+-\{y(s-\log(1+e^s))+(1-y)(-\log(1+e^s))\}
+=\log(1+e^s)-ys.
+\]</span></p>
+</details>
 </section>
-<section id="practice-questions" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="practice-questions"><span class="header-section-number">1.3</span> Practice Questions</h2>
-<p>The practice questions are paired with the lecture topics. They are meant to be attempted actively, not just read. A good first pass is to answer them without looking back at the notes, then revisit the relevant lecture sections to repair gaps in notation, interpretation, or implementation.</p>
+<section id="question-3" class="level3" data-number="26.0.3">
+<h3 data-number="26.0.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">26.0.3</span> Question 3</h3>
+<p>For the two labels separately, compute <span class="math inline">\(\ell(1,s)\)</span> and <span class="math inline">\(\ell(0,s)\)</span> from <span class="math display">\[
+\ell(y,s)=\log(1+e^s)-ys.
+\]</span> State the limits of each loss as <span class="math inline">\(s\to\infty\)</span> and <span class="math inline">\(s\to -\infty\)</span>, and identify which limits correspond to confident mistakes.</p>
+<!-- Source: Understanding the loss through the cases $y=1$ and $y=0$. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>For <span class="math inline">\(y=1\)</span>, <span class="math display">\[
+\ell(1,s)=\log(1+e^s)-s=\log(1+e^{-s}).
+\]</span> Thus <span class="math inline">\(\ell(1,s)\to0\)</span> as <span class="math inline">\(s\to\infty\)</span>, and <span class="math inline">\(\ell(1,s)\to\infty\)</span> as <span class="math inline">\(s\to-\infty\)</span>. The second limit is a confident mistake.</p>
+<p>For <span class="math inline">\(y=0\)</span>, <span class="math display">\[
+\ell(0,s)=\log(1+e^s).
+\]</span> Thus <span class="math inline">\(\ell(0,s)\to\infty\)</span> as <span class="math inline">\(s\to\infty\)</span>, and <span class="math inline">\(\ell(0,s)\to0\)</span> as <span class="math inline">\(s\to-\infty\)</span>. The first limit is a confident mistake.</p>
+</details>
+</section>
+<section id="question-4" class="level3" data-number="26.0.4">
+<h3 data-number="26.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">26.0.4</span> Question 4</h3>
+<p>Differentiate the single-observation loss <span class="math display">\[
+\ell_n(w)=-\{y_n\log p_n+(1-y_n)\log(1-p_n)\},
+\qquad p_n=\sigma(x_n^\top w),
+\]</span> with respect to <span class="math inline">\(w\)</span>. Give the chain-rule calculation leading to <span class="math inline">\(\nabla_w\ell_n=(p_n-y_n)x_n\)</span>.</p>
+<!-- Source: Gradient derivation for one summand, where the lecture says the algebra simplifies nicely. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>First, <span class="math display">\[
+\frac{\partial \ell_n}{\partial p_n}
+=-\frac{y_n}{p_n}+\frac{1-y_n}{1-p_n}
+=\frac{p_n-y_n}{p_n(1-p_n)}.
+\]</span> Also, <span class="math display">\[
+\nabla_w p_n=\sigma'(x_n^\top w)x_n=p_n(1-p_n)x_n.
+\]</span> Therefore <span class="math display">\[
+\nabla_w\ell_n
+=\frac{p_n-y_n}{p_n(1-p_n)}p_n(1-p_n)x_n
+=(p_n-y_n)x_n.
+\]</span></p>
+</details>
+</section>
+<section id="question-5" class="level3" data-number="26.0.5">
+<h3 data-number="26.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">26.0.5</span> Question 5</h3>
+<p>Translate the componentwise gradient into matrix form. Given <span class="math inline">\(X\in\mathbb{R}^{N\times D}\)</span>, <span class="math inline">\(p=\sigma(Xw)\)</span>, and <span class="math inline">\(y\in\mathbb{R}^N\)</span>, verify the dimensions and derive <span class="math display">\[
+\nabla \hat R(w)=\frac{1}{N}X^\top(p-y).
+\]</span></p>
+<!-- Source: Vector-form empirical risk and the matrix gradient $X^\top(p-y)/N$. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>The componentwise gradient is <span class="math display">\[
+\frac1N\sum_{n=1}^N(p_n-y_n)x_n.
+\]</span> Here <span class="math inline">\(p-y\in\mathbb{R}^N\)</span> and <span class="math inline">\(X^\top\in\mathbb{R}^{D\times N}\)</span>, so <span class="math inline">\(X^\top(p-y)\in\mathbb{R}^D\)</span>. Its <span class="math inline">\(j\)</span>-th coordinate is <span class="math display">\[
+\sum_{n=1}^N X_{nj}(p_n-y_n),
+\]</span> which is exactly the <span class="math inline">\(j\)</span>-th coordinate of the summation.</p>
+</details>
+</section>
+<section id="question-6" class="level3" data-number="26.0.6">
+<h3 data-number="26.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">26.0.6</span> Question 6</h3>
+<p>Compare the logistic-regression gradient with the least-squares gradient. For least squares with objective <span class="math inline">\(N^{-1}\|Xw-y\|_2^2/2\)</span>, the gradient is <span class="math inline">\(N^{-1}X^\top(Xw-y)\)</span>. State exactly what changes in logistic regression.</p>
+<!-- Source: Comparison between residuals $Xw-y$ and logistic residuals $p-y$. -->
+<details>
+<summary>
+Answer
+</summary>
+In logistic regression, <span class="math display">\[
+\nabla \hat R(w)=\frac1N X^\top(p-y),\qquad p=\sigma(Xw).
+\]</span> The linear fitted values <span class="math inline">\(Xw\)</span> are replaced by fitted probabilities <span class="math inline">\(p\)</span>.
+</details>
+</section>
+<section id="question-7" class="level3" data-number="26.0.7">
+<h3 data-number="26.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">26.0.7</span> Question 7</h3>
+<p>Diagnose the false claim: “Since logistic regression has gradient <span class="math inline">\(X^\top(p-y)/N\)</span>, the minimizer is obtained by setting <span class="math inline">\(p=y\)</span>.”</p>
+<!-- Source: No-closed-form discussion and comparison with least-squares normal equations. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>The claim confuses the condition for a zero gradient with the stronger condition <span class="math inline">\(p=y\)</span>.</p>
+<p>For logistic regression, the gradient of the empirical risk is</p>
+<p><span class="math display">\[
+\nabla_w \widehat{R}(w)=\frac{1}{N}X^\top(p-y),
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+p=\sigma(Xw).
+\]</span></p>
+<p>At a minimizer, a first-order condition is</p>
+<p><span class="math display">\[
+X^\top(p-y)=0.
+\]</span></p>
+<p>However, this does <strong>not</strong> generally imply</p>
+<p><span class="math display">\[
+p-y=0.
+\]</span></p>
+<p>It only says that the residual vector <span class="math inline">\(p-y\)</span> is orthogonal to every column of <span class="math inline">\(X\)</span>. Equivalently, <span class="math inline">\(p-y\)</span> lies in the orthogonal complement of the column space of <span class="math inline">\(X\)</span>.</p>
+<p>This is similar to least squares. In linear regression, setting the gradient to zero gives</p>
+<p><span class="math display">\[
+X^\top(Xw-y)=0,
+\]</span></p>
+<p>not necessarily</p>
+<p><span class="math display">\[
+Xw-y=0.
+\]</span></p>
+<p>The model only needs the residual to be orthogonal to the feature directions, not exactly zero for every observation.</p>
+<p>There is another issue in logistic regression: each entry of <span class="math inline">\(p\)</span> has the form</p>
+<p><span class="math display">\[
+p_n=\sigma(x_n^\top w),
+\]</span></p>
+<p>so <span class="math inline">\(p_n\)</span> always lies strictly between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> for finite <span class="math inline">\(w\)</span>. If the labels satisfy <span class="math inline">\(y_n\in\{0,1\}\)</span>, then setting <span class="math inline">\(p=y\)</span> would require probabilities to be exactly <span class="math inline">\(0\)</span> or exactly <span class="math inline">\(1\)</span>, which cannot happen for finite parameter values.</p>
+<p>Thus the correct stationarity condition is</p>
+<p><span class="math display">\[
+X^\top(p-y)=0,
+\]</span></p>
+<p>not</p>
+<p><span class="math display">\[
+p=y.
+\]</span></p>
+<p>This is one reason logistic regression does not lead to a simple closed-form normal equation like ordinary least squares</p>
+</details>
+</section>
+<section id="question-8" class="level3" data-number="26.0.8">
+<h3 data-number="26.0.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">26.0.8</span> Question 8</h3>
+<p>For a single observation with <span class="math inline">\(x=(1,2)^\top\)</span>, <span class="math inline">\(y=1\)</span>, and <span class="math inline">\(w=(0,-1)^\top\)</span>, compute <span class="math inline">\(s=w^\top x\)</span>, <span class="math inline">\(p=\sigma(s)\)</span>, the loss <span class="math inline">\(\ell(y,s)\)</span>, and the gradient contribution <span class="math inline">\((p-y)x\)</span>. Give exact expressions using <span class="math inline">\(e\)</span>, not decimal approximations.</p>
+<!-- Source: Concrete score, probability, loss, and gradient contribution for one data point. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>The score is <span class="math inline">\(s=-2\)</span>. Hence <span class="math display">\[
+p=\sigma(-2)=\frac{1}{1+e^2}.
+\]</span> For <span class="math inline">\(y=1\)</span>, <span class="math display">\[
+\ell(1,-2)=\log(1+e^{-2}).
+\]</span> The gradient contribution is <span class="math display">\[
+(p-y)x=\left(\frac{1}{1+e^2}-1\right)(1,2)^\top
+=\left(-\frac{e^2}{1+e^2},-\frac{2e^2}{1+e^2}\right)^\top.
+\]</span></p>
+</details>
+</section>
+<section id="question-9" class="level3" data-number="26.0.9">
+<h3 data-number="26.0.9" class="anchored" data-anchor-id="question-9"><span class="header-section-number">26.0.9</span> Question 9</h3>
+<p>Carry out one gradient-descent update. Let <span class="math display">\[
+X=\begin{pmatrix}1&amp;0\\1&amp;1\end{pmatrix},\quad y=\begin{pmatrix}0\\1\end{pmatrix},\quad w^{(0)}=\begin{pmatrix}0\\0\end{pmatrix}.
+\]</span> With learning rate <span class="math inline">\(\eta=1\)</span>, compute <span class="math inline">\(w^{(1)}\)</span> using <span class="math inline">\(w^{(1)}=w^{(0)}-\eta X^\top(p-y)/N\)</span>.</p>
+<!-- Source: Gradient descent iteration formula for logistic regression. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>At <span class="math inline">\(w^{(0)}=0\)</span>, the logits are <span class="math inline">\((0,0)^\top\)</span>, so <span class="math inline">\(p=(1/2,1/2)^\top\)</span>. Then <span class="math display">\[
+p-y=(1/2,-1/2)^\top,
+\]</span> and <span class="math display">\[
+X^\top(p-y)=
+\begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix}
+\begin{pmatrix}1/2\\-1/2\end{pmatrix}
+=\begin{pmatrix}0\\-1/2\end{pmatrix}.
+\]</span> Since <span class="math inline">\(N=2\)</span>, the gradient is <span class="math inline">\((0,-1/4)^\top\)</span>, so <span class="math display">\[
+w^{(1)}=(0,1/4)^\top.
+\]</span></p>
+</details>
+</section>
+<section id="question-10" class="level3" data-number="26.0.10">
+<h3 data-number="26.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">26.0.10</span> Question 10</h3>
+<p>Connect the one-score and two-score forms of a binary linear classifier. Suppose</p>
+<p><span class="math display">\[
+s_1(x)=w_1^\top x,
+\qquad
+s_2(x)=w_2^\top x,
+\]</span></p>
+<p>and the classifier predicts the class with the larger score:</p>
+<p><span class="math display">\[
+\hat{y}(x)=\arg\max_{k\in\{1,2\}} s_k(x).
+\]</span></p>
+<p>Show that this decision rule can be written using a single vector <span class="math inline">\(w\)</span>.</p>
+<!-- Source: Over-complete two-score parameterization and reduction to $w=w_1-w_2$. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>The classifier predicts class <span class="math inline">\(1\)</span> exactly when the score for class <span class="math inline">\(1\)</span> is at least as large as the score for class <span class="math inline">\(2\)</span>:</p>
+<p><span class="math display">\[
+s_1(x)\ge s_2(x).
+\]</span></p>
+<p>Substituting the definitions of the two scores gives</p>
+<p><span class="math display">\[
+w_1^\top x\ge w_2^\top x.
+\]</span></p>
+<p>Moving all terms to one side,</p>
+<p><span class="math display">\[
+w_1^\top x-w_2^\top x\ge 0.
+\]</span></p>
+<p>Factoring out <span class="math inline">\(x\)</span> gives</p>
+<p><span class="math display">\[
+(w_1-w_2)^\top x\ge 0.
+\]</span></p>
+<p>Therefore, if we define</p>
+<p><span class="math display">\[
+w=w_1-w_2,
+\]</span></p>
+<p>then the same decision rule is</p>
+<p><span class="math display">\[
+\text{predict class }1 \text{ if } w^\top x\ge 0,
+\]</span></p>
+<p>and predict class <span class="math inline">\(2\)</span> otherwise.</p>
+<p>Thus the two-score classifier depends only on the difference between the two weight vectors, <span class="math inline">\(w_1-w_2\)</span>. The separate vectors <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> are an over-parameterization for binary classification, since the decision boundary is determined by the single vector</p>
+<p><span class="math display">\[
+w=w_1-w_2.
+\]</span></p>
+</details>
+</section>
+<section id="question-11" class="level3" data-number="26.0.11">
+<h3 data-number="26.0.11" class="anchored" data-anchor-id="question-11"><span class="header-section-number">26.0.11</span> Question 11</h3>
+<p>Use monotonicity of the sigmoid to prove the equivalence between predicting class 1 based on (1) the probability-threshold rule and (2) the score-threshold rule, i.e., that the two are equivalent: <span class="math display">\[
+p_w(x)\ge \frac12 \quad\Longleftrightarrow\quad w^\top x\ge0.
+\]</span></p>
+<!-- Source: Prediction rule $p_w(x)\ge1/2$ and boundary $w^\top x=0$. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>Since <span class="math inline">\(p_w(x)=\sigma(w^\top x)\)</span>, solve <span class="math inline">\(\sigma(t)\ge1/2\)</span>: <span class="math display">\[
+\frac{1}{1+e^{-t}}\ge\frac12
+\iff 2\ge1+e^{-t}
+\iff 1\ge e^{-t}
+\iff t\ge0.
+\]</span> Taking <span class="math inline">\(t=w^\top x\)</span> proves the equivalence.</p>
+</details>
+</section>
+<section id="question-12" class="level3" data-number="26.0.12">
+<h3 data-number="26.0.12" class="anchored" data-anchor-id="question-12"><span class="header-section-number">26.0.12</span> Question 12</h3>
+<p>Describe the decision boundary in <span class="math inline">\(\mathbb{R}^2\)</span> when an intercept is included. If <span class="math inline">\(\tilde x=(1,x_1,x_2)^\top\)</span> and <span class="math inline">\(w=(b,w_1,w_2)^\top\)</span>, write the decision boundary equation and solve it for <span class="math inline">\(x_2\)</span> when <span class="math inline">\(w_2\ne0\)</span>.</p>
+<!-- Source: Linear decision boundary $\hat w^\top x=0$, including the intercept column used in examples. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>The boundary is <span class="math display">\[
+b+w_1x_1+w_2x_2=0.
+\]</span> If <span class="math inline">\(w_2\ne0\)</span>, then <span class="math display">\[
+x_2=-\frac{b+w_1x_1}{w_2}
+=-\frac{w_1}{w_2}x_1-\frac{b}{w_2}.
+\]</span> This is a line in the original two-dimensional input space.</p>
+</details>
+</section>
+<section id="question-13" class="level3" data-number="26.0.13">
+<h3 data-number="26.0.13" class="anchored" data-anchor-id="question-13"><span class="header-section-number">26.0.13</span> Question 13</h3>
+<p>Classify each statement as true or false, with a one-sentence mathematical justification for each.</p>
+<ol type="1">
+<li>The logistic-regression decision boundary is always linear in the original raw variables.</li>
+<li>The logistic-regression decision boundary is linear in the columns of the chosen design matrix.</li>
+<li>Adding polynomial feature columns can produce a nonlinear boundary in the original raw variables.</li>
+</ol>
+<!-- Source: Design-matrix discussion and polynomial-feature example. -->
+<details>
+<summary>
+Answer
+</summary>
+<ol type="1">
+<li>False. If the design matrix contains nonlinear features such as <span class="math inline">\(u^2\)</span>, the boundary can be nonlinear in <span class="math inline">\(u\)</span>.</li>
+<li>True. The boundary is always <span class="math inline">\(w^\top x=0\)</span> in the chosen feature vector <span class="math inline">\(x\)</span>.</li>
+<li>True. Polynomial features can make <span class="math inline">\(w^\top x(u)=0\)</span> a polynomial equation in raw variables.</li>
+</ol>
+</details>
+</section>
+<section id="question-14" class="level3" data-number="26.0.14">
+<h3 data-number="26.0.14" class="anchored" data-anchor-id="question-14"><span class="header-section-number">26.0.14</span> Question 14</h3>
+<p>Compute classification metrics from a confusion matrix. Suppose rows are true labels <span class="math inline">\((0,1)\)</span>, columns are predicted labels <span class="math inline">\((0,1)\)</span>, and <span class="math display">\[
+\begin{pmatrix}
+40&amp;10\\
+5&amp;45
+\end{pmatrix}
+\]</span> is the confusion matrix. Compute precision and recall for class <span class="math inline">\(1\)</span>.</p>
+<!-- Source: Confusion matrix, precision, recall, and F1 definitions from the penguins example. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>Here <span class="math inline">\(\mathrm{FP}=10\)</span>, <span class="math inline">\(\mathrm{FN}=5\)</span>, and <span class="math inline">\(\mathrm{TP}=45\)</span>. Thus <span class="math display">\[
+\text{Precision}=\frac{45}{45+10}=\frac{9}{11},
+\qquad
+\text{Recall}=\frac{45}{45+5}=\frac{9}{10}.
+\]</span></p>
+</details>
+</section>
+<section id="question-15" class="level3" data-number="26.0.15">
+<h3 data-number="26.0.15" class="anchored" data-anchor-id="question-15"><span class="header-section-number">26.0.15</span> Question 15</h3>
+<p>Determine how the decision rule changes when the probability threshold is not <span class="math inline">\(1/2\)</span>. For fixed <span class="math inline">\(\tau\in(0,1)\)</span>, derive an equivalent condition on the score <span class="math inline">\(w^\top x\)</span> for predicting class <span class="math inline">\(1\)</span> under the rule <span class="math inline">\(p_w(x)\ge \tau\)</span>.</p>
+<!-- Source: Thresholding probabilities and the special $1/2$ threshold used in the lecture. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>The logistic regression probability is</p>
+<p><span class="math display">\[
+p_w(x)=\sigma(w^\top x).
+\]</span></p>
+<p>We predict class <span class="math inline">\(1\)</span> when</p>
+<p><span class="math display">\[
+p_w(x)\ge \tau.
+\]</span></p>
+<p>Substituting <span class="math inline">\(p_w(x)=\sigma(w^\top x)\)</span> gives</p>
+<p><span class="math display">\[
+\sigma(w^\top x)\ge \tau.
+\]</span></p>
+<p>Since the sigmoid function is increasing, we can apply <span class="math inline">\(\sigma^{-1}\)</span> to both sides without changing the direction of the inequality:</p>
+<p><span class="math display">\[
+w^\top x\ge \sigma^{-1}(\tau).
+\]</span></p>
+<p>Now solve for the inverse sigmoid. Let</p>
+<p><span class="math display">\[
+\tau=\sigma(t)=\frac{1}{1+e^{-t}}.
+\]</span></p>
+<p>Then</p>
+<p><span class="math display">\[
+\tau(1+e^{-t})=1.
+\]</span></p>
+<p>So</p>
+<p><span class="math display">\[
+\tau e^{-t}=1-\tau.
+\]</span></p>
+<p>Dividing by <span class="math inline">\(\tau\)</span> gives</p>
+<p><span class="math display">\[
+e^{-t}=\frac{1-\tau}{\tau}.
+\]</span></p>
+<p>Taking logs,</p>
+<p><span class="math display">\[
+-t=\log\left(\frac{1-\tau}{\tau}\right).
+\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[
+t=\log\left(\frac{\tau}{1-\tau}\right).
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+\sigma^{-1}(\tau)=\log\left(\frac{\tau}{1-\tau}\right).
+\]</span></p>
+<p>So the decision rule is:</p>
+<p><span class="math display">\[
+\text{predict class }1 \text{ if } w^\top x\ge \log\left(\frac{\tau}{1-\tau}\right).
+\]</span></p>
+<p>When <span class="math inline">\(\tau=1/2\)</span>, this threshold is</p>
+<p><span class="math display">\[
+\log\left(\frac{1/2}{1-1/2}\right)=\log(1)=0.
+\]</span></p>
+<p>So the usual threshold <span class="math inline">\(\tau=1/2\)</span> gives the familiar rule: predict class <span class="math inline">\(1\)</span> when <span class="math inline">\(w^\top x\ge 0\)</span>.</p>
+</details>
+</section>
+<section id="question-16" class="level3" data-number="26.0.16">
+<h3 data-number="26.0.16" class="anchored" data-anchor-id="question-16"><span class="header-section-number">26.0.16</span> Question 16</h3>
+<p>Connect logistic regression to a probabilistic model. Suppose that, for each observation,</p>
+<p><span class="math display">\[
+Y_n\mid x_n\sim \operatorname{Bernoulli}(p_n),
+\qquad p_n=\sigma(x_n^\top w),
+\]</span></p>
+<p>independently across <span class="math inline">\(n\)</span>. This means the model assigns probability <span class="math inline">\(p_n\)</span> to the event <span class="math inline">\(Y_n=1\)</span> and probability <span class="math inline">\(1-p_n\)</span> to the event <span class="math inline">\(Y_n=0\)</span>.</p>
+<p>Write down the joint probability mass function for this model. Then take the negative log of this probability and compare the result to the empirical cross-entropy objective.</p>
+<!-- Source: The lecture's cautious probabilistic interpretation of $p_w(x)$ and cross-entropy loss. -->
+<details>
+<summary>
+Answer
+</summary>
+<p>For one observation, the Bernoulli model assigns probability</p>
+<p><span class="math display">\[
+p_n^{y_n}(1-p_n)^{1-y_n}
+\]</span></p>
+<p>to the observed label <span class="math inline">\(y_n\)</span>.</p>
+<p>Since the observations are assumed independent, the probability assigned to the full observed label vector is the product</p>
+<p><span class="math display">\[
+\prod_{n=1}^N p_n^{y_n}(1-p_n)^{1-y_n}.
+\]</span></p>
+<p>A common way to turn this probability into a loss is to take the negative log. This gives</p>
+<p><span class="math display">\[
+-\log\left(\prod_{n=1}^N p_n^{y_n}(1-p_n)^{1-y_n}\right).
+\]</span></p>
+<p>Using the fact that the log of a product is the sum of the logs, we get</p>
+<p><span class="math display">\[
+-\sum_{n=1}^N \log\left(p_n^{y_n}(1-p_n)^{1-y_n}\right).
+\]</span></p>
+<p>Using the fact that <span class="math inline">\(\log(a^b)=b\log(a)\)</span>, this becomes</p>
+<p><span class="math display">\[
+-\sum_{n=1}^N \left[y_n\log p_n+(1-y_n)\log(1-p_n)\right].
+\]</span></p>
+<p>The empirical cross-entropy risk is this same quantity divided by <span class="math inline">\(N\)</span>:</p>
+<p><span class="math display">\[
+\widehat{R}(w)=-\frac{1}{N}\sum_{n=1}^N \left[y_n\log p_n+(1-y_n)\log(1-p_n)\right].
+\]</span></p>
+<p>Thus, minimizing empirical cross-entropy is the same as choosing the parameters that make the observed labels as probable as possible under the Bernoulli model. The factor <span class="math inline">\(1/N\)</span> changes the scale of the objective but not the minimizer.</p>
+</details>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1188,10 +1585,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../questions/002_linear_regression_questions.html" class="pagination-link" aria-label="Linear Regression - Review Questions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lectures/000_intro_and_erm.html" class="pagination-link" aria-label="Introduction to Statistical Machine Learning">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../questions/004_multiclass_logistic_regression_questions.html" class="pagination-link" aria-label="Multiclass Logistic Regression - Review Questions">
+        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
