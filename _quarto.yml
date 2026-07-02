@@ -31,73 +31,73 @@ book:
     - part: "Foundations and Linear Models"
       chapters:
         - lectures/000_intro_and_erm.ipynb
-        - lectures/005_derivatives.ipynb
-        - lectures/010_linear_regression.ipynb
-        - lectures/020_logistic_regression.ipynb
-        - lectures/030_multiclass_logistic_regression.ipynb
+        - lectures/001_derivatives.ipynb
+        - lectures/002_linear_regression.ipynb
+        - lectures/003_logistic_regression.ipynb
+        - lectures/004_multiclass_logistic_regression.ipynb
 
     - part: "Evaluation and Model Selection"
       chapters:
-        - lectures/050_evaluation.ipynb
-        - lectures/060_model_selection.ipynb
-        - lectures/070_knn.ipynb
-        - lectures/080_bias_variance.ipynb
+        - lectures/005_evaluation.ipynb
+        - lectures/006_model_selection.ipynb
+        - lectures/007_knn.ipynb
+        - lectures/008_bias_variance.ipynb
 
     - part: "Regularization and Penalized Models"
       chapters:
-        - lectures/100_ridge.ipynb
-        - lectures/110_lasso.ipynb
-        - lectures/120_elastic_net_logistic_erm.ipynb
+        - lectures/009_ridge.ipynb
+        - lectures/010_lasso.ipynb
+        - lectures/011_elastic_net_logistic_erm.ipynb
 
     - part: "Neural Networks"
       chapters:
-        - lectures/130_nn.ipynb
-        - lectures/140_backprop.ipynb
-        - lectures/150_nn_arch.ipynb
+        - lectures/012_nn.ipynb
+        - lectures/013_backprop.ipynb
+        - lectures/014_nn_arch.ipynb
 
     - part: "Unsupervised Learning"
       chapters:
-        - lectures/160_unsupervised.ipynb
-        - lectures/180_pca.ipynb
-        - lectures/190_kmeans.ipynb
+        - lectures/015_unsupervised.ipynb
+        - lectures/016_pca.ipynb
+        - lectures/017_kmeans.ipynb
 
     - part: "Tree-Based Methods"
       chapters:
-        - lectures/200_trees.ipynb
-        - lectures/210_random_forests.ipynb
-        - lectures/220_boosting.ipynb
+        - lectures/018_trees.ipynb
+        - lectures/019_random_forests.ipynb
+        - lectures/020_boosting.ipynb
 
     - part: "Practice Questions"
       chapters:
         - questions/000_intro_and_erm_questions.ipynb
-        - questions/005_derivatives_questions.ipynb
-        - questions/010_linear_regression_questions.ipynb
-        - questions/020_logistic_regression_questions.ipynb
-        - questions/030_multiclass_logistic_regression_questions.ipynb
-        - questions/050_evaluation_questions.ipynb
-        - questions/060_model_selection_questions.ipynb
-        - questions/070_knn_questions.ipynb
-        - questions/080_bias_variance_questions.ipynb
-        - questions/100_ridge_questions.ipynb
-        - questions/110_lasso_questions.ipynb
-        - questions/120_elastic_net_logistic_erm_questions.ipynb
-        - questions/130_nn_questions.ipynb
-        - questions/140_backprop_questions.ipynb
-        - questions/150_nn_arch_questions.ipynb
-        - questions/180_pca_questions.ipynb
-        - questions/190_kmeans_questions.ipynb
-        - questions/200_trees_questions.ipynb
-        - questions/210_random_forests_questions.ipynb
-        - questions/220_boosting_questions.ipynb
+        - questions/001_derivatives_questions.ipynb
+        - questions/002_linear_regression_questions.ipynb
+        - questions/003_logistic_regression_questions.ipynb
+        - questions/004_multiclass_logistic_regression_questions.ipynb
+        - questions/005_evaluation_questions.ipynb
+        - questions/006_model_selection_questions.ipynb
+        - questions/007_knn_questions.ipynb
+        - questions/008_bias_variance_questions.ipynb
+        - questions/009_ridge_questions.ipynb
+        - questions/010_lasso_questions.ipynb
+        - questions/011_elastic_net_logistic_erm_questions.ipynb
+        - questions/012_nn_questions.ipynb
+        - questions/013_backprop_questions.ipynb
+        - questions/014_nn_arch_questions.ipynb
+        - questions/016_pca_questions.ipynb
+        - questions/017_kmeans_questions.ipynb
+        - questions/018_trees_questions.ipynb
+        - questions/019_random_forests_questions.ipynb
+        - questions/020_boosting_questions.ipynb
 
 
     #- part: "Extras"
     #  chapters:
-    #    - lectures/040_ERM_NLL.ipynb
-    #    - questions/040_ERM_NLL_questions.ipynb
-    #    - lectures/101_constr_optim.ipynb
-    #    - lectures/090_curse_dim.ipynb
-    #    - lectures/170_svd.ipynb
+    #    - lectures/EXTRA_040_ERM_NLL.ipynb
+    #    - questions/EXTRA_040_ERM_NLL_questions.ipynb
+    #    - lectures/EXTRA_090_curse_dim.ipynb
+    #    - lectures/EXTRA_101_constr_optim.ipynb
+    #    - lectures/EXTRA_170_svd.ipynb
 
 crossref:
   fig-title: "Figure"
