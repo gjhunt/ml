@@ -558,7 +558,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 2, 2026</p>
+      <p class="date-modified">August 28, 2026</p>
     </div>
   </div>
     
@@ -701,7 +701,13 @@ w_k \mapsto w_k + a \qquad \text{for all } k.
 <li>stochastic gradient methods</li>
 </ul>
 <p>The good news is that the gradient still has a very clean form.</p>
-<p>We first compute the gradient of the empirical risk with respect to the whole matrix <span class="math inline">\(W\)</span>. One may then show that the gradient of the empirical risk is <span class="math display">\[
+<p>We can derive the gradient one class at a time. For observation <span class="math inline">\(n\)</span>, let <span class="math inline">\(z_{nk}=w_k^\top x_n\)</span>. The softmax cross-entropy calculation gives <span class="math display">\[
+\frac{\partial \ell_n}{\partial z_{nk}}=p_{nk}-t_{nk}.
+\]</span> Since <span class="math inline">\(\nabla_{w_k}z_{nk}=x_n\)</span>, the scalar chain rule gives <span class="math display">\[
+\nabla_{w_k}\ell_n=(p_{nk}-t_{nk})x_n.
+\]</span> Averaging over observations produces one gradient vector for each class: <span class="math display">\[
+\nabla_{w_k}\hat R(W)=\frac{1}{N}X^\top(p_k-t_k),
+\]</span> where <span class="math inline">\(p_k\)</span> and <span class="math inline">\(t_k\)</span> are column <span class="math inline">\(k\)</span> of <span class="math inline">\(P\)</span> and <span class="math inline">\(T\)</span>. Stacking these class gradients as the columns of <span class="math inline">\(\nabla_W\hat R(W)\)</span> gives <span class="math display">\[
 \nabla_W \hat R(W) =
 \frac{1}{N} X^\top (P - T).
 \]</span></p>

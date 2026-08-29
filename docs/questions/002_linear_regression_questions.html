@@ -498,7 +498,6 @@ window.Quarto = {
   <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14"><span class="header-section-number">25.0.14</span> Question 14</a></li>
   <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15"><span class="header-section-number">25.0.15</span> Question 15</a></li>
   <li><a href="#question-16" id="toc-question-16" class="nav-link" data-scroll-target="#question-16"><span class="header-section-number">25.0.16</span> Question 16</a></li>
-  <li><a href="#question-17" id="toc-question-17" class="nav-link" data-scroll-target="#question-17"><span class="header-section-number">25.0.17</span> Question 17</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -525,7 +524,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 2, 2026</p>
+      <p class="date-modified">August 28, 2026</p>
     </div>
   </div>
     
@@ -790,7 +789,7 @@ Take <span class="math inline">\(\phi(x)=(1,x,x^2,x^3)^\top\)</span> and <span c
 </section>
 <section id="question-14" class="level3" data-number="25.0.14">
 <h3 data-number="25.0.14" class="anchored" data-anchor-id="question-14"><span class="header-section-number">25.0.14</span> Question 14</h3>
-<p>The lecture says squared loss penalizes large residuals heavily. Compare residual vectors <span class="math inline">\(r_1=(10,0,\ldots,0)\)</span> (with nine zeros) and <span class="math inline">\(r_1=(1,1,\ldots,1)\)</span> (with ten ones). Which has larger squared loss?</p>
+<p>The lecture says squared loss penalizes large residuals heavily. Compare residual vectors <span class="math inline">\(r_1=(10,0,\ldots,0)\)</span> (with nine zeros) and <span class="math inline">\(r_2=(1,1,\ldots,1)\)</span> (with ten ones). Which has larger squared loss?</p>
 <!-- Source: sensitivity to outliers; squared error loss -->
 <details>
 <summary>
@@ -801,64 +800,6 @@ Answer
 </section>
 <section id="question-15" class="level3" data-number="25.0.15">
 <h3 data-number="25.0.15" class="anchored" data-anchor-id="question-15"><span class="header-section-number">25.0.15</span> Question 15</h3>
-<p>Assume <span class="math inline">\(X\)</span> has full column rank. Find the Hessian of</p>
-<p><span class="math display">\[
-\hat{R}(w)=\|y-Xw\|^2.
-\]</span></p>
-<!-- Source: least-squares Hessian; convexity and uniqueness -->
-<details>
-<summary>
-Answer
-</summary>
-<p>First expand the empirical risk:</p>
-<p><span class="math display">\[
-\hat{R}(w)=\|y-Xw\|^2=(y-Xw)^\top(y-Xw).
-\]</span></p>
-<p>Multiplying this out gives</p>
-<p><span class="math display">\[
-\hat{R}(w)=y^\top y-y^\top Xw-w^\top X^\top y+w^\top X^\top Xw.
-\]</span></p>
-<p>The two middle terms are both scalars, and</p>
-<p><span class="math display">\[
-y^\top Xw=w^\top X^\top y.
-\]</span></p>
-<p>Therefore,</p>
-<p><span class="math display">\[
-\hat{R}(w)=y^\top y-2w^\top X^\top y+w^\top X^\top Xw.
-\]</span></p>
-<p>Now differentiate with respect to <span class="math inline">\(w\)</span>. The first term, <span class="math inline">\(y^\top y\)</span>, is constant in <span class="math inline">\(w\)</span>, so its gradient is zero. The second term is linear in <span class="math inline">\(w\)</span>, so</p>
-<p><span class="math display">\[
-\nabla_w(-2w^\top X^\top y)=-2X^\top y.
-\]</span></p>
-<p>For the quadratic term, use the identity</p>
-<p><span class="math display">\[
-\nabla_w(w^\top A w)=(A+A^\top)w.
-\]</span></p>
-<p>Here <span class="math inline">\(A=X^\top X\)</span>, which is symmetric because</p>
-<p><span class="math display">\[
-(X^\top X)^\top=X^\top X.
-\]</span></p>
-<p>Thus,</p>
-<p><span class="math display">\[
-\nabla_w(w^\top X^\top Xw)=2X^\top Xw.
-\]</span></p>
-<p>Putting these pieces together,</p>
-<p><span class="math display">\[
-\nabla_w \hat{R}(w)=-2X^\top y+2X^\top Xw.
-\]</span></p>
-<p>The Hessian is the derivative of the gradient with respect to <span class="math inline">\(w\)</span>. Since <span class="math inline">\(-2X^\top y\)</span> is constant in <span class="math inline">\(w\)</span> and <span class="math inline">\(2X^\top Xw\)</span> is linear in <span class="math inline">\(w\)</span>, we get</p>
-<p><span class="math display">\[
-\nabla_w^2 \hat{R}(w)=2X^\top X.
-\]</span></p>
-<p>So the Hessian is</p>
-<p><span class="math display">\[
-\boxed{\nabla_w^2 \hat{R}(w)=2X^\top X.}
-\]</span></p>
-<p>So <span class="math inline">\(X^\top X\)</span> is <strong>positive definite</strong>, which basically means the empirical risk is strictly convex, so it has a unique minimizer.</p>
-</details>
-</section>
-<section id="question-16" class="level3" data-number="25.0.16">
-<h3 data-number="25.0.16" class="anchored" data-anchor-id="question-16"><span class="header-section-number">25.0.16</span> Question 16</h3>
 <p>In a model with an intercept column, prove that the mean of the fitted values equals the mean of the observed responses: <span class="math inline">\(\frac{1}{N}\sum_n\hat y_n=\frac{1}{N}\sum_n y_n\)</span>.</p>
 <!-- Source: intercept term; fitted means and residual sum zero -->
 <details>
@@ -868,8 +809,8 @@ Answer
 <p>With an intercept, residuals sum to zero: <span class="math inline">\(\sum_n(y_n-\hat y_n)=0\)</span>. Rearranging gives <span class="math inline">\(\sum_n y_n=\sum_n\hat y_n\)</span>. Dividing by <span class="math inline">\(N\)</span> shows that the fitted and observed means are equal.</p>
 </details>
 </section>
-<section id="question-17" class="level3" data-number="25.0.17">
-<h3 data-number="25.0.17" class="anchored" data-anchor-id="question-17"><span class="header-section-number">25.0.17</span> Question 17</h3>
+<section id="question-16" class="level3" data-number="25.0.16">
+<h3 data-number="25.0.16" class="anchored" data-anchor-id="question-16"><span class="header-section-number">25.0.16</span> Question 16</h3>
 <p>The lecture warns that linear regression cannot capture nonlinear patterns unless nonlinear features are introduced. Give a three-point dataset in one raw predictor for which no affine function <span class="math inline">\(w_0+w_1x\)</span> fits perfectly, but a quadratic feature model can fit perfectly.</p>
 <!-- Source: linearity limitation; polynomial feature engineering -->
 <details>

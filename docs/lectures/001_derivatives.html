@@ -482,38 +482,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#taxonomy-of-derivative-objects" id="toc-taxonomy-of-derivative-objects" class="nav-link active" data-scroll-target="#taxonomy-of-derivative-objects"><span class="header-section-number">3.1</span> Taxonomy of derivative objects</a>
+  <li><a href="#scalar-objectives-and-gradients" id="toc-scalar-objectives-and-gradients" class="nav-link active" data-scroll-target="#scalar-objectives-and-gradients"><span class="header-section-number">3.1</span> Scalar Objectives and Gradients</a></li>
+  <li><a href="#shape-checking" id="toc-shape-checking" class="nav-link" data-scroll-target="#shape-checking"><span class="header-section-number">3.2</span> Shape Checking</a></li>
+  <li><a href="#linear-expressions" id="toc-linear-expressions" class="nav-link" data-scroll-target="#linear-expressions"><span class="header-section-number">3.3</span> Linear Expressions</a></li>
+  <li><a href="#squared-norms-and-quadratic-forms" id="toc-squared-norms-and-quadratic-forms" class="nav-link" data-scroll-target="#squared-norms-and-quadratic-forms"><span class="header-section-number">3.4</span> Squared Norms and Quadratic Forms</a></li>
+  <li><a href="#the-chain-rule-for-a-scalar-intermediate" id="toc-the-chain-rule-for-a-scalar-intermediate" class="nav-link" data-scroll-target="#the-chain-rule-for-a-scalar-intermediate"><span class="header-section-number">3.5</span> The Chain Rule for a Scalar Intermediate</a>
   <ul class="collapse">
-  <li><a href="#gradients-scalar-output" id="toc-gradients-scalar-output" class="nav-link" data-scroll-target="#gradients-scalar-output"><span class="header-section-number">3.1.1</span> Gradients: Scalar Output</a></li>
-  <li><a href="#jacobians-vector-output" id="toc-jacobians-vector-output" class="nav-link" data-scroll-target="#jacobians-vector-output"><span class="header-section-number">3.1.2</span> Jacobians: Vector Output</a></li>
-  <li><a href="#matrix-valued-output" id="toc-matrix-valued-output" class="nav-link" data-scroll-target="#matrix-valued-output"><span class="header-section-number">3.1.3</span> Matrix-valued Output</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">3.5.1</span> Example:</a></li>
   </ul></li>
-  <li><a href="#numerator-layout-and-denominator-layout" id="toc-numerator-layout-and-denominator-layout" class="nav-link" data-scroll-target="#numerator-layout-and-denominator-layout"><span class="header-section-number">3.2</span> Numerator layout and denominator layout</a>
+  <li><a href="#the-chain-rule-through-several-intermediates" id="toc-the-chain-rule-through-several-intermediates" class="nav-link" data-scroll-target="#the-chain-rule-through-several-intermediates"><span class="header-section-number">3.6</span> The Chain Rule Through Several Intermediates</a></li>
+  <li><a href="#matrix-parameters-are-bookkeeping" id="toc-matrix-parameters-are-bookkeeping" class="nav-link" data-scroll-target="#matrix-parameters-are-bookkeeping"><span class="header-section-number">3.7</span> Matrix Parameters Are Bookkeeping</a>
   <ul class="collapse">
-  <li><a href="#summary-table" id="toc-summary-table" class="nav-link" data-scroll-target="#summary-table"><span class="header-section-number">3.2.1</span> Summary table</a></li>
+  <li><a href="#example-matching-a-target-matrix" id="toc-example-matching-a-target-matrix" class="nav-link" data-scroll-target="#example-matching-a-target-matrix"><span class="header-section-number">3.7.1</span> Example: Matching a Target Matrix</a></li>
   </ul></li>
-  <li><a href="#basic-derivative-identities" id="toc-basic-derivative-identities" class="nav-link" data-scroll-target="#basic-derivative-identities"><span class="header-section-number">3.3</span> Basic derivative identities</a></li>
-  <li><a href="#scalar-output-scalar-input" id="toc-scalar-output-scalar-input" class="nav-link" data-scroll-target="#scalar-output-scalar-input"><span class="header-section-number">3.4</span> Scalar output, scalar input</a></li>
-  <li><a href="#scalar-output-vector-input" id="toc-scalar-output-vector-input" class="nav-link" data-scroll-target="#scalar-output-vector-input"><span class="header-section-number">3.5</span> Scalar output, vector input</a>
-  <ul class="collapse">
-  <li><a href="#constant-linear-and-quadratic-terms" id="toc-constant-linear-and-quadratic-terms" class="nav-link" data-scroll-target="#constant-linear-and-quadratic-terms"><span class="header-section-number">3.5.1</span> Constant, linear, and quadratic terms</a></li>
-  <li><a href="#chain-rule-through-a-vector-intermediate" id="toc-chain-rule-through-a-vector-intermediate" class="nav-link" data-scroll-target="#chain-rule-through-a-vector-intermediate"><span class="header-section-number">3.5.2</span> Chain rule through a vector intermediate</a></li>
-  </ul></li>
-  <li><a href="#scalar-output-matrix-input" id="toc-scalar-output-matrix-input" class="nav-link" data-scroll-target="#scalar-output-matrix-input"><span class="header-section-number">3.6</span> Scalar output, matrix input</a>
-  <ul class="collapse">
-  <li><a href="#constant-and-linear-terms" id="toc-constant-and-linear-terms" class="nav-link" data-scroll-target="#constant-and-linear-terms"><span class="header-section-number">3.6.1</span> Constant and linear terms</a></li>
-  <li><a href="#frobenius-norm" id="toc-frobenius-norm" class="nav-link" data-scroll-target="#frobenius-norm"><span class="header-section-number">3.6.2</span> Frobenius norm</a></li>
-  </ul></li>
-  <li><a href="#vector-output-vector-input" id="toc-vector-output-vector-input" class="nav-link" data-scroll-target="#vector-output-vector-input"><span class="header-section-number">3.7</span> Vector output, vector input</a>
-  <ul class="collapse">
-  <li><a href="#linear-and-affine-maps" id="toc-linear-and-affine-maps" class="nav-link" data-scroll-target="#linear-and-affine-maps"><span class="header-section-number">3.7.1</span> Linear and affine maps</a></li>
-  <li><a href="#chain-rule-for-vector-output-functions" id="toc-chain-rule-for-vector-output-functions" class="nav-link" data-scroll-target="#chain-rule-for-vector-output-functions"><span class="header-section-number">3.7.2</span> Chain rule for vector-output functions</a></li>
-  </ul></li>
-  <li><a href="#matrix-output-scalar-input" id="toc-matrix-output-scalar-input" class="nav-link" data-scroll-target="#matrix-output-scalar-input"><span class="header-section-number">3.8</span> Matrix output, scalar input</a>
-  <ul class="collapse">
-  <li><a href="#constant-linear-and-elementwise-rules" id="toc-constant-linear-and-elementwise-rules" class="nav-link" data-scroll-target="#constant-linear-and-elementwise-rules"><span class="header-section-number">3.8.1</span> Constant, linear, and elementwise rules</a></li>
-  </ul></li>
-  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">3.9</span> Review Questions</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">3.8</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -540,7 +522,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 2, 2026</p>
+      <p class="date-modified">August 28, 2026</p>
     </div>
   </div>
     
@@ -555,620 +537,275 @@ window.Quarto = {
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
 <p>In single-variable calculus, the basic question is how one quantity changes as another quantity changes. If <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span>, then the <strong>derivative</strong> <span class="math inline">\(f'(x)\)</span> measures how the scalar output changes as the scalar input changes. The familiar rules describe common patterns: constants differentiate to zero, linear terms differentiate to their coefficients, and quadratic terms produce a factor of two.</p>
-<p>In multivariable calculus, the same idea is extended to functions with several inputs. For a scalar-valued function such as <span class="math inline">\(L(w_1,\ldots,w_d)\)</span>, the <strong>gradient</strong> collects the partial derivatives into one vector. For a function with several outputs, the <strong>Jacobian</strong> records how each output coordinate changes with respect to each input coordinate.</p>
-<p><strong>Matrix calculus</strong> systematizes this notation and extends it to expressions involving vectors, matrices, and tensors. The underlying calculus is not new. The main difference is that every object now has a shape, and the notation has to keep track of those shapes.</p>
-<p>A term such as <span class="math inline">\(y^\top y\)</span> may look more complicated than a constant from single-variable calculus, but it is just compact notation for a real-valued object. Similarly, terms like <span class="math inline">\(w^\top a\)</span> and <span class="math inline">\(w^\top A w\)</span> are vector and matrix versions of familiar linear and quadratic expressions. Much of what we are doing is learning to recognize familiar calculus patterns after they have been written in vector and matrix notation.</p>
-<section id="taxonomy-of-derivative-objects" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="taxonomy-of-derivative-objects"><span class="header-section-number">3.1</span> Taxonomy of derivative objects</h2>
-<p>Once functions can have scalar, vector, matrix, or <strong>tensor</strong> (basically, multi-dimensional matrices) inputs and outputs, the word “derivative” can refer to several different kinds of objects. The main task is to keep track of the input shape, the output shape, and the convention being used to arrange the derivative.</p>
-<section id="gradients-scalar-output" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="gradients-scalar-output"><span class="header-section-number">3.1.1</span> Gradients: Scalar Output</h3>
-<section id="scalar-input-scalar-output" class="level4" data-number="3.1.1.1">
-<h4 data-number="3.1.1.1" class="anchored" data-anchor-id="scalar-input-scalar-output"><span class="header-section-number">3.1.1.1</span> Scalar input → scalar output</h4>
-<p>The simplest case is a function from one real number to another:</p>
-<p><span class="math display">\[
-f: \mathbb{R} \to \mathbb{R}.
+<p>In multivariable calculus, the same idea is extended to functions with several inputs. For a scalar-valued function such as <span class="math inline">\(L(w_1,\ldots,w_d)\)</span>, the <strong>gradient</strong> collects the partial derivatives into one vector. <strong>Matrix calculus</strong> systematizes this notation and extends it to expressions involving vectors and matrices. The underlying calculus is not new. The main difference is that every object now has a shape, and the notation has to keep track of those shapes.</p>
+<section id="scalar-objectives-and-gradients" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="scalar-objectives-and-gradients"><span class="header-section-number">3.1</span> Scalar Objectives and Gradients</h2>
+<p>Most fitting problems in this course minimize a <strong>scalar</strong> loss. If <span class="math display">\[
+L:\mathbb{R}^D\to\mathbb{R},\qquad
+w=(w_1,\ldots,w_D)^\top,
+\]</span> then its gradient is the column vector <span class="math display">\[
+\nabla_w L=
+\begin{pmatrix}
+\frac{\partial L}{\partial w_1}\\
+\vdots\\
+\frac{\partial L}{\partial w_D}
+\end{pmatrix}
+\in\mathbb{R}^D.
 \]</span></p>
-<p>The derivative is the ordinary single-variable derivative:</p>
-<p><span class="math display">\[
-\frac{df}{dx}.
-\]</span></p>
+<p><strong>The rule:</strong> the gradient has the same shape as the input vector. Its <span class="math inline">\(j\)</span>th entry measures how the loss changes when <span class="math inline">\(w_j\)</span> changes while the other coordinates are held fixed.</p>
+<p><strong>Example.</strong> If <span class="math display">\[
+L(w) = L(w_1,w_2)=w_1^2+3w_1w_2-2w_2,
+\]</span> then <span class="math display">\[
+\nabla_wL=
+\begin{pmatrix}
+2w_1+3w_2\\
+3w_1-2
+\end{pmatrix}.
+\]</span> Nothing fundamentally new has happened: we computed ordinary partial derivatives and stacked them into a vector.</p>
 </section>
-<section id="vector-input-scalar-output" class="level4" data-number="3.1.1.2">
-<h4 data-number="3.1.1.2" class="anchored" data-anchor-id="vector-input-scalar-output"><span class="header-section-number">3.1.1.2</span> Vector input → scalar output</h4>
-<p>A very common case in optimization and machine learning is a scalar-valued function of a vector:</p>
-<p><span class="math display">\[
-L: \mathbb{R}^d \to \mathbb{R}.
-\]</span></p>
-<p>Here the input is a vector and the output is a scalar. We usually write the input as:</p>
-<p><span class="math display">\[
-w =
-\begin{bmatrix}
-w_1 \\
-w_2 \\
-\vdots \\
-w_d
-\end{bmatrix}.
-\]</span></p>
-<p>The derivative is collected into the gradient:</p>
-<p><span class="math display">\[
-\nabla_w L =
-\begin{bmatrix}
-\frac{\partial L}{\partial w_1} \\
-\frac{\partial L}{\partial w_2} \\
-\vdots \\
-\frac{\partial L}{\partial w_d}
-\end{bmatrix}.
-\]</span></p>
-<p>If <span class="math inline">\(w \in \mathbb{R}^d\)</span>, then:</p>
-<p><span class="math display">\[
-\nabla_w L \in \mathbb{R}^d.
-\]</span></p>
-<p>This is one of the most important shape rules in applied matrix calculus:</p>
-<p><span class="math display">\[
-\text{If } L \text{ is scalar-valued, then } \nabla_w L \text{ has the same shape as } w.
-\]</span></p>
-<p>For example, if:</p>
-<p><span class="math display">\[
-L(w) = w^\top w,
-\]</span></p>
-<p>then:</p>
-<p><span class="math display">\[
-\nabla_w L = 2w.
-\]</span></p>
-<p><strong>Why?</strong></p>
-<p>The output <span class="math inline">\(L(w)\)</span> is a scalar, and the gradient is a vector with the same shape as <span class="math inline">\(w\)</span>.</p>
-</section>
-<section id="matrix-input-scalar-output" class="level4" data-number="3.1.1.3">
-<h4 data-number="3.1.1.3" class="anchored" data-anchor-id="matrix-input-scalar-output"><span class="header-section-number">3.1.1.3</span> Matrix input → scalar output</h4>
-<p>Another common case is a scalar-valued function of a matrix:</p>
-<p><span class="math display">\[
-L: \mathbb{R}^{m \times n} \to \mathbb{R}.
-\]</span></p>
-<p>For example, <span class="math inline">\(L(W)\)</span> might depend on a matrix <span class="math inline">\(W\)</span> of parameters. If:</p>
-<p><span class="math display">\[
-W \in \mathbb{R}^{m \times n},
-\]</span></p>
-<p>then the gradient with respect to <span class="math inline">\(W\)</span> is arranged as a matrix of the same shape:</p>
-<p><span class="math display">\[
-\nabla_W L \in \mathbb{R}^{m \times n}.
-\]</span></p>
-<p>The entries of this gradient are:</p>
-<p><span class="math display">\[
-(\nabla_W L)_{ij} = \frac{\partial L}{\partial W_{ij}}.
-\]</span></p>
-<p>So:</p>
-<p><span class="math display">\[
-\nabla_W L =
-\begin{bmatrix}
-\frac{\partial L}{\partial W_{11}} &amp; \cdots &amp; \frac{\partial L}{\partial W_{1n}} \\
-\vdots &amp; \ddots &amp; \vdots \\
-\frac{\partial L}{\partial W_{m1}} &amp; \cdots &amp; \frac{\partial L}{\partial W_{mn}}
-\end{bmatrix}.
-\]</span></p>
-<p>Again, for scalar-valued functions, the gradient has the same shape as the variable.</p>
-<p>For example, if:</p>
-<p><span class="math display">\[
-L(W) = \|W\|_F^2 = \sum_{i=1}^m \sum_{j=1}^n W_{ij}^2,
-\]</span></p>
-<p>then:</p>
-<p><span class="math display">\[
-\nabla_W L = 2W.
-\]</span></p>
-<p>This is essentially the matrix version of:</p>
-<p><span class="math display">\[
-\frac{d}{dw} w^2 = 2w.
-\]</span></p>
-</section>
-<section id="tensor-input-scalar-output" class="level4" data-number="3.1.1.4">
-<h4 data-number="3.1.1.4" class="anchored" data-anchor-id="tensor-input-scalar-output"><span class="header-section-number">3.1.1.4</span> Tensor input → scalar output</h4>
-<p>The same idea extends to tensor inputs. One may think of a tensor as just multidimensional array of numbers. Scalars are 0-dimensional tensors, vectors are 1-dimensional tensors, matrices are 2-dimensional tensors, and arrays with three or more axes are higher-order tensors. Suppose:</p>
-<p><span class="math display">\[
-L: \mathbb{R}^{d_1 \times d_2 \times \cdots \times d_k} \to \mathbb{R}.
-\]</span></p>
-<p>If the input tensor is <span class="math inline">\(T\)</span>, then the gradient with respect to <span class="math inline">\(T\)</span> has the same shape as <span class="math inline">\(T\)</span>:</p>
-<p><span class="math display">\[
-\nabla_T L \in \mathbb{R}^{d_1 \times d_2 \times \cdots \times d_k}.
-\]</span></p>
-<p>Each entry of the gradient tells us the partial derivative of <span class="math inline">\(L\)</span> with respect to the corresponding entry of <span class="math inline">\(T\)</span>:</p>
-<p><span class="math display">\[
-(\nabla_T L)_{i_1,\ldots,i_k} = \frac{\partial L}{\partial T_{i_1,\ldots,i_k}}.
-\]</span></p>
-<p>This is how gradients are usually represented in modern array-based computation. A scalar objective depends on many arrays, and each array receives a gradient array of the same shape.</p>
-<p>For scalar-valued functions, the pattern is therefore:</p>
+<section id="shape-checking" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="shape-checking"><span class="header-section-number">3.2</span> Shape Checking</h2>
+<p>Shapes provide a quick way to catch mistakes. If <span class="math inline">\(w,a\in\mathbb{R}^D\)</span>, <span class="math inline">\(X\in\mathbb{R}^{N\times D}\)</span>, and <span class="math inline">\(y\in\mathbb{R}^N\)</span>, then</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 27%">
-<col style="width: 36%">
-<col style="width: 36%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Variable</th>
-<th style="text-align: right;">Shape of variable</th>
-<th style="text-align: right;">Shape of gradient</th>
+<th>Expression</th>
+<th style="text-align: right;">Shape</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(w\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(d\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(d\)</span></td>
+<td><span class="math inline">\(a^\top w\)</span></td>
+<td style="text-align: right;">scalar</td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(W\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(m \times n\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(m \times n\)</span></td>
+<td><span class="math inline">\(Xw\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(N\)</span>-vector</td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(T\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(d_1 \times \cdots \times d_k\)</span></td>
-<td style="text-align: right;"><span class="math inline">\(d_1 \times \cdots \times d_k\)</span></td>
+<td><span class="math inline">\(y-Xw\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(N\)</span>-vector</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\|y-Xw\|^2\)</span></td>
+<td style="text-align: right;">scalar</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(X^\top(y-Xw)\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(D\)</span>-vector</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\nabla_w L\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(D\)</span>-vector</td>
 </tr>
 </tbody>
 </table>
-<p>This same-shape rule is one of the main conventions used in machine learning notation and software.</p>
+<p>Consequently, <span class="math inline">\(X^\top(y-Xw)\)</span> has the correct shape to be a gradient with respect to <span class="math inline">\(w\)</span>, while <span class="math inline">\(X(y-Xw)\)</span> usually is not even a valid matrix product.</p>
+<p>Shape checking cannot prove that a derivative is correct, but it can quickly prove that many incorrect formulas are impossible.</p>
 </section>
-</section>
-<section id="jacobians-vector-output" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="jacobians-vector-output"><span class="header-section-number">3.1.2</span> Jacobians: Vector Output</h3>
-<section id="vector-input-vector-output" class="level4" data-number="3.1.2.1">
-<h4 data-number="3.1.2.1" class="anchored" data-anchor-id="vector-input-vector-output"><span class="header-section-number">3.1.2.1</span> Vector input → vector output</h4>
-<p>Consider a vector-valued function of a vector:</p>
-<p><span class="math display">\[
-f: \mathbb{R}^n \to \mathbb{R}^m.
+<section id="linear-expressions" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="linear-expressions"><span class="header-section-number">3.3</span> Linear Expressions</h2>
+<p>For a constant <span class="math inline">\(c\)</span> and a fixed vector <span class="math inline">\(a\in\mathbb{R}^D\)</span>, <span class="math display">\[
+\nabla_wc=0,
+\qquad
+\nabla_w(a^\top w)=a.
 \]</span></p>
-<p>The input is:</p>
-<p><span class="math display">\[
-x =
-\begin{bmatrix}
-x_1 \\
-\vdots \\
-x_n
-\end{bmatrix},
-\]</span></p>
-<p>and the output is:</p>
-<p><span class="math display">\[
-f(x) =
-\begin{bmatrix}
-f_1(x) \\
-\vdots \\
-f_m(x)
-\end{bmatrix}.
-\]</span></p>
-<p>The derivative is the <strong>Jacobian</strong> matrix:</p>
-<p><span class="math display">\[
-J_f(x) =
-\begin{bmatrix}
-\frac{\partial f_1}{\partial x_1} &amp; \cdots &amp; \frac{\partial f_1}{\partial x_n} \\
-\vdots &amp; \ddots &amp; \vdots \\
-\frac{\partial f_m}{\partial x_1} &amp; \cdots &amp; \frac{\partial f_m}{\partial x_n}
-\end{bmatrix}.
-\]</span></p>
-<p>Under this convention:</p>
-<p><span class="math display">\[
-J_f(x) \in \mathbb{R}^{m \times n}.
-\]</span></p>
-<p>The rows correspond to <strong>output</strong> coordinates, and the columns correspond to <strong>input</strong> coordinates. The size of the Jacobian <span class="math inline">\(J_f\)</span> is always <strong>output</strong> <span class="math inline">\(\times\)</span> <strong>input</strong>.</p>
-<p><strong>Note:</strong> This is different from the scalar-output gradient case. If the output is scalar, the gradient has the same shape as the input. If the output is vector-valued, the derivative needs to track how every output coordinate depends on every input coordinate, so it becomes a matrix.</p>
-</section>
-<section id="scalar-input-vector-output" class="level4" data-number="3.1.2.2">
-<h4 data-number="3.1.2.2" class="anchored" data-anchor-id="scalar-input-vector-output"><span class="header-section-number">3.1.2.2</span> Scalar input → vector output</h4>
-<p>A special case of the Jacobian is a vector-valued function of one scalar:</p>
-<p><span class="math display">\[
-f: \mathbb{R} \to \mathbb{R}^m.
-\]</span></p>
-<p>The output is:</p>
-<p><span class="math display">\[
-f(t) =
-\begin{bmatrix}
-f_1(t) \\
-\vdots \\
-f_m(t)
-\end{bmatrix}.
-\]</span></p>
-<p>The Jacobian is:</p>
-<p><span class="math display">\[
-\frac{df}{dt} =
-\begin{bmatrix}
-\frac{df_1}{dt} \\
-\vdots \\
-\frac{df_m}{dt}
-\end{bmatrix}.
-\]</span></p>
-<p><strong>Note:</strong> This is a useful place to notice a mild notational tension. For scalar-valued functions, we usually write gradients as column vectors with the same shape as the input. For vector-valued functions, we usually write Jacobians with output coordinates first and input coordinates second.</p>
-<p>So if <span class="math inline">\(L:\mathbb{R}^n \to \mathbb{R}\)</span>, the Jacobian convention gives:</p>
-<p><span class="math display">\[
-J_L(x) \in \mathbb{R}^{1 \times n}.
-\]</span></p>
-<p>But the gradient convention gives:</p>
-<p><span class="math display">\[
-\nabla_x L \in \mathbb{R}^n.
-\]</span></p>
-<p>These are not different mathematical information. They are transposes of each other:</p>
-<p><span class="math display">\[
-J_L(x) = (\nabla_x L)^\top.
-\]</span></p>
-<p>This is one reason we usually say <strong>“gradient”</strong> for scalar-valued outputs and <strong>“Jacobian”</strong> for vector-valued outputs.</p>
-</section>
-</section>
-<section id="matrix-valued-output" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="matrix-valued-output"><span class="header-section-number">3.1.3</span> Matrix-valued Output</h3>
-<p>Matrix-output and tensor-output functions appear whenever an operation produces an array rather than a scalar or vector. These cases are common in applied work, but the full derivative is usually not written explicitly.</p>
-<section id="scalar-input-to-matrix-output" class="level4" data-number="3.1.3.1">
-<h4 data-number="3.1.3.1" class="anchored" data-anchor-id="scalar-input-to-matrix-output"><span class="header-section-number">3.1.3.1</span> Scalar input to matrix output</h4>
-<p>A simple example is a matrix that depends on one scalar parameter:</p>
-<p><span class="math display">\[
-F:\mathbb{R} \to \mathbb{R}^{m \times n}.
-\]</span></p>
-<p>For instance, <span class="math inline">\(F(t)\)</span> might be a time-dependent matrix, a rotation matrix depending on an angle, or a covariance matrix depending on a scalar parameter. The derivative has the same shape as the output:</p>
-<p><span class="math display">\[
-\frac{dF}{dt} \in \mathbb{R}^{m \times n}.
-\]</span></p>
-<p>Entry by entry:</p>
-<p><span class="math display">\[
-\left(\frac{dF}{dt}\right)_{ij} = \frac{dF_{ij}}{dt}.
-\]</span></p>
-<p>A common example is a 2D rotation matrix depending on an angle <span class="math inline">\(\theta\)</span>:</p>
-<p><span class="math display">\[
-R(\theta) =
-\begin{bmatrix}
-\cos \theta &amp; -\sin \theta \\
-\sin \theta &amp; \cos \theta
-\end{bmatrix}.
-\]</span></p>
-<p>Then:</p>
-<p><span class="math display">\[
-\frac{dR}{d\theta} =
-\begin{bmatrix}
--\sin \theta &amp; -\cos \theta \\
-\cos \theta &amp; -\sin \theta
-\end{bmatrix}.
-\]</span></p>
-<p>This case is conceptually straightforward because there is only one input direction. The derivative is just the entrywise derivative of the matrix-valued function.</p>
-</section>
-</section>
-</section>
-<section id="numerator-layout-and-denominator-layout" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="numerator-layout-and-denominator-layout"><span class="header-section-number">3.2</span> Numerator layout and denominator layout</h2>
-<p>There is one important notational warning. Different books arrange derivatives of vectors in different ways.</p>
-<p>For a function:</p>
-<p><span class="math display">\[
-f: \mathbb{R}^n \to \mathbb{R}^m,
-\]</span></p>
-<p>this lecture uses the convention:</p>
-<p><span class="math display">\[
-J_f(x)_{ij} = \frac{\partial f_i}{\partial x_j}.
-\]</span></p>
-<p>So:</p>
-<p><span class="math display">\[
-J_f(x) \in \mathbb{R}^{m \times n}.
-\]</span></p>
-<p>This is often called the <strong>numerator-layout</strong> convention for Jacobians. It is common in applied mathematics, optimization, and much of machine learning because it gives the clean approximation:</p>
-<p><span class="math display">\[
-f(x + dx) \approx f(x) + J_f(x)dx.
-\]</span></p>
-<p>Some sources use the transpose convention, especially in parts of statistics or older matrix calculus references. Under that convention, the Jacobian of <span class="math inline">\(f:\mathbb{R}^n \to \mathbb{R}^m\)</span> may be written with shape <span class="math inline">\(n \times m\)</span>.</p>
-<p>This can make formulas look different across books. For example, one source may write a chain rule using <span class="math inline">\(J^\top v\)</span>, while another may write an equivalent expression using <span class="math inline">\(v^\top J\)</span> or a transposed Jacobian definition.</p>
-<p>The safest habit is to check shapes. If the formula is supposed to produce a vector in <span class="math inline">\(\mathbb{R}^n\)</span>, then the multiplication must produce a vector in <span class="math inline">\(\mathbb{R}^n\)</span>. Shape checking usually reveals which convention is being used.</p>
-<section id="summary-table" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="summary-table"><span class="header-section-number">3.2.1</span> Summary table</h3>
-<p>The following table summarizes the most common derivative objects.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Function type</th>
-<th>Example notation</th>
-<th>Derivative object</th>
-<th>Typical shape</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Scalar to scalar</td>
-<td><span class="math inline">\(f:\mathbb{R}\to\mathbb{R}\)</span></td>
-<td>ordinary derivative</td>
-<td>scalar</td>
-</tr>
-<tr class="even">
-<td>Vector to scalar</td>
-<td><span class="math inline">\(L:\mathbb{R}^d\to\mathbb{R}\)</span></td>
-<td>gradient <span class="math inline">\(\nabla_w L\)</span></td>
-<td><span class="math inline">\(d\)</span></td>
-</tr>
-<tr class="odd">
-<td>Matrix to scalar</td>
-<td><span class="math inline">\(L:\mathbb{R}^{m\times n}\to\mathbb{R}\)</span></td>
-<td>matrix gradient <span class="math inline">\(\nabla_W L\)</span></td>
-<td><span class="math inline">\(m \times n\)</span></td>
-</tr>
-<tr class="even">
-<td>Vector to vector</td>
-<td><span class="math inline">\(f:\mathbb{R}^n\to\mathbb{R}^m\)</span></td>
-<td>Jacobian <span class="math inline">\(J_f\)</span></td>
-<td><span class="math inline">\(m \times n\)</span></td>
-</tr>
-<tr class="odd">
-<td>Scalar to vector</td>
-<td><span class="math inline">\(f:\mathbb{R}\to\mathbb{R}^m\)</span></td>
-<td>vector derivative <span class="math inline">\(\frac{df}{dt}\)</span></td>
-<td><span class="math inline">\(m\)</span></td>
-</tr>
-<tr class="even">
-<td>Scalar to matrix</td>
-<td><span class="math inline">\(F:\mathbb{R}\to\mathbb{R}^{m\times n}\)</span></td>
-<td>matrix derivative <span class="math inline">\(\frac{dF}{dt}\)</span></td>
-<td><span class="math inline">\(m \times n\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>The most important practical distinction is between scalar-output derivatives and vector-output derivatives. For scalar-output functions, gradients are usually arranged to match the shape of the variable. For vector-output functions, the derivative needs to track how each output coordinate depends on each input coordinate, so extra axes appear.</p>
-<p><strong>Practical rule</strong></p>
-<p>When reading or deriving a matrix calculus expression, ask three questions:</p>
-<ol type="1">
-<li>What is the variable being differentiated?</li>
-<li>What is the shape of the output?</li>
-<li>What shape must the derivative object have?</li>
-</ol>
-</section>
-</section>
-<section id="basic-derivative-identities" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="basic-derivative-identities"><span class="header-section-number">3.3</span> Basic derivative identities</h2>
-</section>
-<section id="scalar-output-scalar-input" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="scalar-output-scalar-input"><span class="header-section-number">3.4</span> Scalar output, scalar input</h2>
-<p>Let:</p>
-<p><span class="math display">\[
-f:\mathbb{R}\to\mathbb{R}.
-\]</span></p>
-<p>The basic rules are the familiar single-variable rules:</p>
-<p><span class="math display">\[
-\frac{d}{dx}c = 0.
-\]</span></p>
-<p><span class="math display">\[
-\frac{d}{dx}(ax) = a.
-\]</span></p>
-<p><span class="math display">\[
-\frac{d}{dx}(ax^2) = 2ax.
-\]</span></p>
-<p><span class="math display">\[
-\frac{d}{dx}\frac{1}{2}ax^2 = ax.
-\]</span></p>
-<p>These patterns reappear in vector and matrix form as constant, linear, and quadratic terms.</p>
-<p>The chain rule is:</p>
-<p><span class="math display">\[
-\frac{d}{dx}f(g(x)) = f'(g(x))g'(x).
+<p>To verify the second identity, expand <span class="math display">\[
+a^\top w=\sum_{j=1}^D a_jw_j.
+\]</span> The partial derivative with respect to <span class="math inline">\(w_k\)</span> is <span class="math inline">\(a_k\)</span>, so the gradient is <span class="math inline">\(a\)</span>.</p>
+<p><strong>Statistical-learning example.</strong> For a linear score <span class="math display">\[
+s_w(x)=w^\top x,
+\]</span> the input <span class="math inline">\(x\)</span> is fixed when we differentiate with respect to the model parameters. Therefore <span class="math display">\[
+\nabla_ws_w(x)=x.
 \]</span></p>
 </section>
-<section id="scalar-output-vector-input" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="scalar-output-vector-input"><span class="header-section-number">3.5</span> Scalar output, vector input</h2>
-<p>Let:</p>
-<p><span class="math display">\[
-L:\mathbb{R}^d\to\mathbb{R}.
+<section id="squared-norms-and-quadratic-forms" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="squared-norms-and-quadratic-forms"><span class="header-section-number">3.4</span> Squared Norms and Quadratic Forms</h2>
+<p>Since <span class="math display">\[
+w^\top w=\sum_{j=1}^D w_j^2,
+\]</span> we have <span class="math display">\[
+\nabla_w(w^\top w)=2w,
+\qquad
+\nabla_w\left(\frac12w^\top w\right)=w.
 \]</span></p>
-<p>If:</p>
-<p><span class="math display">\[
-w \in \mathbb{R}^d,
+<p>More generally, for a fixed <span class="math inline">\(D\times D\)</span> matrix <span class="math inline">\(A\)</span>, <span class="math display">\[
+\nabla_w(w^\top Aw)=(A+A^\top)w.
+\]</span> If <span class="math inline">\(A\)</span> is symmetric, this becomes <span class="math display">\[
+\nabla_w(w^\top Aw)=2Aw,
+\qquad
+\nabla_w\left(\frac12w^\top Aw\right)=Aw.
 \]</span></p>
-<p>then:</p>
-<p><span class="math display">\[
-\nabla_w L \in \mathbb{R}^d.
-\]</span></p>
-<p>So the gradient has the same shape as the vector being differentiated.</p>
-<section id="constant-linear-and-quadratic-terms" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="constant-linear-and-quadratic-terms"><span class="header-section-number">3.5.1</span> Constant, linear, and quadratic terms</h3>
-<p>If <span class="math inline">\(c\)</span> does not depend on <span class="math inline">\(w\)</span>, then:</p>
-<p><span class="math display">\[
-\nabla_w c = 0.
-\]</span></p>
-<p>If <span class="math inline">\(a \in \mathbb{R}^d\)</span> is constant with respect to <span class="math inline">\(w\)</span>, then:</p>
-<p><span class="math display">\[
-\nabla_w(a^\top w) = a.
-\]</span></p>
-<p><span class="math display">\[
-\nabla_w(w^\top a) = a.
-\]</span></p>
-<p>The squared norm is:</p>
-<p><span class="math display">\[
-\nabla_w(w^\top w) = 2w.
-\]</span></p>
-<p>Equivalently:</p>
-<p><span class="math display">\[
-\nabla_w \frac{1}{2}w^\top w = w.
-\]</span></p>
-<p>If <span class="math inline">\(A \in \mathbb{R}^{d \times d}\)</span> is constant with respect to <span class="math inline">\(w\)</span>, then:</p>
-<p><span class="math display">\[
-\nabla_w(w^\top A w) = (A + A^\top)w.
-\]</span></p>
-<p>If <span class="math inline">\(A\)</span> is symmetric, then:</p>
-<p><span class="math display">\[
-\nabla_w(w^\top A w) = 2Aw.
-\]</span></p>
-<p>With a factor of <span class="math inline">\(\frac{1}{2}\)</span>:</p>
-<p><span class="math display">\[
-\nabla_w \frac{1}{2}w^\top A w = Aw.
-\]</span></p>
-<p>when <span class="math inline">\(A\)</span> is symmetric.</p>
-</section>
-<section id="chain-rule-through-a-vector-intermediate" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="chain-rule-through-a-vector-intermediate"><span class="header-section-number">3.5.2</span> Chain rule through a vector intermediate</h3>
-<p>Suppose:</p>
-<p><span class="math display">\[
-z = f(w), \qquad L = g(z),
-\]</span></p>
-<p>where:</p>
-<p><span class="math display">\[
-w \in \mathbb{R}^d, \qquad z \in \mathbb{R}^m, \qquad L \in \mathbb{R}.
-\]</span></p>
-<p>If:</p>
-<p><span class="math display">\[
-J_f(w) \in \mathbb{R}^{m \times d},
-\]</span></p>
-<p>then:</p>
-<p><span class="math display">\[
-\nabla_w L = J_f(w)^\top \nabla_z L.
-\]</span></p>
-<p>This is the main chain rule for scalar-valued objectives. The gradient with respect to <span class="math inline">\(z\)</span> is pulled back to a gradient with respect to <span class="math inline">\(w\)</span> by multiplying by the transposed Jacobian.</p>
-</section>
-</section>
-<section id="scalar-output-matrix-input" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="scalar-output-matrix-input"><span class="header-section-number">3.6</span> Scalar output, matrix input</h2>
-<p>Let:</p>
-<p><span class="math display">\[
-L:\mathbb{R}^{m \times n}\to\mathbb{R}.
-\]</span></p>
-<p>If:</p>
-<p><span class="math display">\[
-W \in \mathbb{R}^{m \times n},
-\]</span></p>
-<p>then:</p>
-<p><span class="math display">\[
-\nabla_W L \in \mathbb{R}^{m \times n}.
-\]</span></p>
-<p>The gradient with respect to a matrix has the same shape as the matrix.</p>
-<section id="constant-and-linear-terms" class="level3" data-number="3.6.1">
-<h3 data-number="3.6.1" class="anchored" data-anchor-id="constant-and-linear-terms"><span class="header-section-number">3.6.1</span> Constant and linear terms</h3>
-<p>If <span class="math inline">\(c\)</span> does not depend on <span class="math inline">\(W\)</span>, then:</p>
-<p><span class="math display">\[
-\nabla_W c = 0.
-\]</span></p>
-<p>A linear function of a matrix is often written using the trace. If <span class="math inline">\(A \in \mathbb{R}^{m \times n}\)</span> is constant with respect to <span class="math inline">\(W\)</span>, then:</p>
-<p><span class="math display">\[
-\nabla_W \operatorname{tr}(A^\top W) = A.
-\]</span></p>
-<p>Equivalently:</p>
-<p><span class="math display">\[
-\nabla_W \operatorname{tr}(W^\top A) = A.
-\]</span></p>
-<p>This is the matrix version of:</p>
-<p><span class="math display">\[
-\nabla_w(a^\top w) = a.
+<p>The symmetry condition matters. Only the symmetric part <span class="math inline">\((A+A^\top)/2\)</span> contributes to the scalar quadratic form.</p>
+<p><strong>Example.</strong> If <span class="math inline">\(X\in\mathbb{R}^{N\times D}\)</span>, then <span class="math inline">\(X^\top X\)</span> is symmetric because <span class="math display">\[
+(X^\top X)^\top=X^\top X.
+\]</span> Hence <span class="math display">\[
+\nabla_w\left(\frac12w^\top X^\top Xw\right)=X^\top Xw.
 \]</span></p>
 </section>
-<section id="frobenius-norm" class="level3" data-number="3.6.2">
-<h3 data-number="3.6.2" class="anchored" data-anchor-id="frobenius-norm"><span class="header-section-number">3.6.2</span> Frobenius norm</h3>
-<p>The Frobenius norm is the matrix version of the Euclidean norm:</p>
-<p><span class="math display">\[
-\|W\|_F^2 = \sum_{i=1}^m \sum_{j=1}^n W_{ij}^2 = \operatorname{tr}(W^\top W).
+<section id="the-chain-rule-for-a-scalar-intermediate" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="the-chain-rule-for-a-scalar-intermediate"><span class="header-section-number">3.5</span> The Chain Rule for a Scalar Intermediate</h2>
+<p>Suppose a scalar loss depends on <span class="math inline">\(w\)</span> through a scalar score: <span class="math display">\[
+w\longmapsto s(w)\longmapsto L(s(w)).
+\]</span> The ordinary chain rule becomes <span class="math display">\[
+\nabla_wL=\frac{dL}{ds}\,\nabla_ws.
 \]</span></p>
-<p>Its gradient is:</p>
-<p><span class="math display">\[
-\nabla_W \|W\|_F^2 = 2W.
+<p><strong>Example.</strong> For <span class="math display">\[
+L(w)=\frac12(a^\top w-b)^2,
+\]</span> define <span class="math inline">\(s=a^\top w-b\)</span>. Then <span class="math inline">\(L=s^2/2\)</span>, so <span class="math display">\[
+\frac{dL}{ds}=s,
+\qquad
+\nabla_ws=a.
+\]</span> Consequently, <span class="math display">\[
+\nabla_wL=(a^\top w-b)a.
 \]</span></p>
-<p>Equivalently:</p>
-<p><span class="math display">\[
-\nabla_W \frac{1}{2}\|W\|_F^2 = W.
+<section id="example" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="example"><span class="header-section-number">3.5.1</span> Example:</h3>
+<p>Let <span class="math display">\[
+s=x^\top w,\qquad p=\sigma(s)=\frac{1}{1+e^{-s}},
+\]</span> and define <span class="math display">\[
+\ell=-\left[y\log p+(1-y)\log(1-p)\right].
+\]</span></p>
+<p>The needed scalar derivatives are <span class="math display">\[
+\frac{\partial\ell}{\partial p}
+=-\frac{y}{p}+\frac{1-y}{1-p}
+=\frac{p-y}{p(1-p)},
+\]</span> <span class="math display">\[
+\frac{dp}{ds}=p(1-p),
+\qquad
+\nabla_ws=x.
+\]</span> Applying the chain rule through the two scalar intermediates gives <span class="math display">\[
+\nabla_w\ell
+=\frac{\partial\ell}{\partial p}
+\frac{dp}{ds}\nabla_ws
+=(p-y)x.
 \]</span></p>
 </section>
 </section>
-<section id="vector-output-vector-input" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="vector-output-vector-input"><span class="header-section-number">3.7</span> Vector output, vector input</h2>
-<p>Let:</p>
-<p><span class="math display">\[
-f:\mathbb{R}^n\to\mathbb{R}^m.
+<section id="the-chain-rule-through-several-intermediates" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="the-chain-rule-through-several-intermediates"><span class="header-section-number">3.6</span> The Chain Rule Through Several Intermediates</h2>
+<p>Now suppose <span class="math inline">\(L\)</span> depends on a vector <span class="math inline">\(z=(z_1,\ldots,z_m)^\top\)</span>, and every <span class="math inline">\(z_k\)</span> may depend on <span class="math inline">\(w\)</span>. For each parameter coordinate <span class="math inline">\(w_j\)</span>, <span class="math display">\[
+\frac{\partial L}{\partial w_j}
+=\sum_{k=1}^m
+\frac{\partial L}{\partial z_k}
+\frac{\partial z_k}{\partial w_j}.
 \]</span></p>
-<p>The derivative is the Jacobian:</p>
+<p><strong>Example.</strong> Let</p>
 <p><span class="math display">\[
-J_f(x) \in \mathbb{R}^{m \times n}.
+z_1=w_1+w_2,\qquad
+z_2=w_1w_2,
 \]</span></p>
-<section id="linear-and-affine-maps" class="level3" data-number="3.7.1">
-<h3 data-number="3.7.1" class="anchored" data-anchor-id="linear-and-affine-maps"><span class="header-section-number">3.7.1</span> Linear and affine maps</h3>
-<p>If:</p>
+<p>and define</p>
 <p><span class="math display">\[
-f(x) = Ax,
+L=\frac12(z_1^2+z_2^2).
 \]</span></p>
-<p>where:</p>
+<p>Both <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> influence the loss through both <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span>.</p>
+<p>First differentiate the loss with respect to the intermediate variables:</p>
 <p><span class="math display">\[
-A \in \mathbb{R}^{m \times n},
+\frac{\partial L}{\partial z_1}=z_1,
+\qquad
+\frac{\partial L}{\partial z_2}=z_2.
 \]</span></p>
-<p>then:</p>
+<p>Next differentiate the intermediate variables with respect to the parameters:</p>
 <p><span class="math display">\[
-J_f(x) = A.
+\frac{\partial z_1}{\partial w_1}=1,
+\qquad
+\frac{\partial z_1}{\partial w_2}=1,
 \]</span></p>
-<p>If:</p>
+<p>and</p>
 <p><span class="math display">\[
-f(x) = Ax + b,
+\frac{\partial z_2}{\partial w_1}=w_2,
+\qquad
+\frac{\partial z_2}{\partial w_2}=w_1.
 \]</span></p>
-<p>then:</p>
+<p>At</p>
 <p><span class="math display">\[
-J_f(x) = A.
+w=(1,2)^\top,
 \]</span></p>
-<p>The constant shift <span class="math inline">\(b\)</span> does not affect the Jacobian.</p>
+<p>the intermediate values are</p>
+<p><span class="math display">\[
+z_1=1+2=3,
+\qquad
+z_2=(1)(2)=2.
+\]</span></p>
+<p>For <span class="math inline">\(w_1\)</span>, the chain rule gives two contributions, one through <span class="math inline">\(z_1\)</span> and one through <span class="math inline">\(z_2\)</span>:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w_1}=
+\frac{\partial L}{\partial z_1}
+\frac{\partial z_1}{\partial w_1}
++
+\frac{\partial L}{\partial z_2}
+\frac{\partial z_2}{\partial w_1}.
+\]</span></p>
+<p>Substituting the derivatives and evaluating at the point,</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w_1}=
+z_1(1)+z_2(w_2)=
+3(1)+2(2)=
+7.
+\]</span></p>
+<p>Similarly, for <span class="math inline">\(w_2\)</span>,</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w_2}=
+\frac{\partial L}{\partial z_1}
+\frac{\partial z_1}{\partial w_2}+
+\frac{\partial L}{\partial z_2}
+\frac{\partial z_2}{\partial w_2},
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w_2}=
+z_1(1)+z_2(w_1)=
+3(1)+2(1)=
+5.
+\]</span></p>
+<p>Thus the gradient with respect to <span class="math inline">\(w\)</span> is</p>
+<p><span class="math display">\[
+\nabla_w L=
+\begin{pmatrix}
+7\\
+5
+\end{pmatrix}.
+\]</span></p>
 </section>
-<section id="chain-rule-for-vector-output-functions" class="level3" data-number="3.7.2">
-<h3 data-number="3.7.2" class="anchored" data-anchor-id="chain-rule-for-vector-output-functions"><span class="header-section-number">3.7.2</span> Chain rule for vector-output functions</h3>
-<p>If:</p>
-<p><span class="math display">\[
-x \in \mathbb{R}^n, \qquad z = f(x) \in \mathbb{R}^m, \qquad y = g(z) \in \mathbb{R}^p,
+<section id="matrix-parameters-are-bookkeeping" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="matrix-parameters-are-bookkeeping"><span class="header-section-number">3.7</span> Matrix Parameters Are Bookkeeping</h2>
+<p>Consider instead an entire matrix <span class="math inline">\(W\)</span> with columns <span class="math inline">\(w_i\in\mathbb{R}^D\)</span>: <span class="math display">\[
+W=(w_1,\ldots,w_K)\in\mathbb{R}^{D\times K}.
+\]</span> When a scalar loss depends on a matrix, define its gradient entry by entry: <span class="math display">\[
+(\nabla_WL)_{dk}=\frac{\partial L}{\partial W_{dk}}.
+\]</span> Thus <span class="math inline">\(\nabla_WL\)</span> has the same <span class="math inline">\(D\times K\)</span> shape as <span class="math inline">\(W\)</span>. This introduces no new calculus; it simply arranges the ordinary partial derivatives in the same layout as the parameters.</p>
+<section id="example-matching-a-target-matrix" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="example-matching-a-target-matrix"><span class="header-section-number">3.7.1</span> Example: Matching a Target Matrix</h3>
+<p>Suppose <span class="math inline">\(W\in\mathbb{R}^{2\times2}\)</span> is variable and <span class="math inline">\(B\in\mathbb{R}^{2\times2}\)</span> is fixed. Define <span class="math display">\[
+L(W)=\frac12\sum_{d=1}^2\sum_{k=1}^2(W_{dk}-B_{dk})^2.
+\]</span> Only one term in the sum depends on a given entry <span class="math inline">\(W_{dk}\)</span>, so <span class="math display">\[
+\frac{\partial L}{\partial W_{dk}}=W_{dk}-B_{dk}.
+\]</span> Arranging these four partial derivatives in the same positions as the entries of <span class="math inline">\(W\)</span> gives <span class="math display">\[
+\nabla_WL=W-B.
 \]</span></p>
-<p>then:</p>
-<p><span class="math display">\[
-J_y(x) = J_{g\circ f}(x) = J_g(z)J_f(x).
-\]</span></p>
-<p>The shapes are:</p>
-<p><span class="math display">\[
-J_g(z) \in \mathbb{R}^{p \times m}, \qquad J_f(x) \in \mathbb{R}^{m \times n}.
-\]</span></p>
-<p>So:</p>
-<p><span class="math display">\[
-J_{g\circ f}(x) \in \mathbb{R}^{p \times n}.
-\]</span></p>
-<p>For scalar output, this becomes the gradient chain rule we saw earlier:</p>
-<p><span class="math display">\[
-\nabla_x L = J_f(x)^\top \nabla_z L.
+<p>For example, if <span class="math display">\[
+W=
+\begin{pmatrix}
+2&amp;-1\\
+0&amp;4
+\end{pmatrix},
+\qquad
+B=
+\begin{pmatrix}
+1&amp;1\\
+2&amp;3
+\end{pmatrix},
+\]</span> then <span class="math display">\[
+\nabla_WL=
+\begin{pmatrix}
+1&amp;-2\\
+-2&amp;1
+\end{pmatrix}.
 \]</span></p>
 </section>
 </section>
-<section id="matrix-output-scalar-input" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="matrix-output-scalar-input"><span class="header-section-number">3.8</span> Matrix output, scalar input</h2>
-<p>Let:</p>
-<p><span class="math display">\[
-F:\mathbb{R}\to\mathbb{R}^{m \times n}.
-\]</span></p>
-<p>This means a matrix depends on one scalar variable. The derivative has the same shape as the matrix output:</p>
-<p><span class="math display">\[
-\frac{dF}{dt} \in \mathbb{R}^{m \times n}.
-\]</span></p>
-<p>Entry by entry:</p>
-<p><span class="math display">\[
-\left(\frac{dF}{dt}\right)_{ij} = \frac{dF_{ij}}{dt}.
-\]</span></p>
-<section id="constant-linear-and-elementwise-rules" class="level3" data-number="3.8.1">
-<h3 data-number="3.8.1" class="anchored" data-anchor-id="constant-linear-and-elementwise-rules"><span class="header-section-number">3.8.1</span> Constant, linear, and elementwise rules</h3>
-<p>If <span class="math inline">\(A\)</span> is constant with respect to <span class="math inline">\(t\)</span>, then:</p>
-<p><span class="math display">\[
-\frac{d}{dt}A = 0.
-\]</span></p>
-<p>If:</p>
-<p><span class="math display">\[
-F(t) = tA,
-\]</span></p>
-<p>then:</p>
-<p><span class="math display">\[
-\frac{dF}{dt} = A.
-\]</span></p>
-<p>If:</p>
-<p><span class="math display">\[
-F(t) = t^2A,
-\]</span></p>
-<p>then:</p>
-<p><span class="math display">\[
-\frac{dF}{dt} = 2tA.
-\]</span></p>
-<p>If <span class="math inline">\(\phi\)</span> is applied entrywise to a matrix <span class="math inline">\(F(t)\)</span>, then:</p>
-<p><span class="math display">\[
-\frac{d}{dt}\phi(F(t)) = \phi'(F(t)) \odot \frac{dF}{dt}.
-\]</span> where <span class="math inline">\(\odot\)</span> is element-wise (Hadamard) multiplication.</p>
-</section>
-</section>
-<section id="review-questions" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">3.9</span> Review Questions</h2>
+<section id="review-questions" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">3.8</span> Review Questions</h2>
 <p>See: <a href="../questions/001_derivatives_questions.html" class="quarto-xref"><span>Chapter 24</span></a>.</p>
 
 

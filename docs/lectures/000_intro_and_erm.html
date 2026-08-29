@@ -524,7 +524,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 2, 2026</p>
+      <p class="date-modified">August 27, 2026</p>
     </div>
   </div>
     
@@ -569,7 +569,7 @@ y \approx \hat{f}(x)
 <li>Predicting stock market performance from economic indicators</li>
 <li>Predicting adult height from childhood measurements</li>
 </ul></li>
-<li>In this case <span class="math inline">\(\hat{f}: \mathbb{R} \to \mathbb{R}\)</span></li>
+<li>In this case <span class="math inline">\(\hat{f}: \mathbb{R}^D \to \mathbb{R}\)</span></li>
 </ul>
 <p><strong>Classification</strong></p>
 <ul>
@@ -579,7 +579,8 @@ y \approx \hat{f}(x)
 <li>Predicting whether a borrower will default (yes/no)</li>
 <li>Classifying an image into categories such as plant species (so-called <strong>multi-class classification</strong>)</li>
 </ul></li>
-<li>In this case <span class="math inline">\(\hat{f}: \mathbb{R} \to \mathcal{C}\)</span></li>
+<li>In this case <span class="math inline">\(\hat{f}: \mathbb{R}^D \to \mathcal{C}\)</span></li>
+<li>If <span class="math inline">\(K=2\)</span> we call this <strong>binary</strong> classificaiton.</li>
 </ul>
 </section>
 <section id="unsupervised-learning" class="level3" data-number="2.2.2">
@@ -635,7 +636,7 @@ y \approx \hat{y} = \hat{f}(x).
 <li><span class="math inline">\(a\)</span> is an <strong>action function</strong></li>
 </ul>
 <p>The score function <span class="math inline">\(\hat{s}(x)\)</span> assigns a numerical score (or a vector of scores) to each input <span class="math inline">\(x\)</span>. The action function <span class="math inline">\(a\)</span> then maps this score to a final prediction <span class="math inline">\(\hat{y}\)</span>. The <strong>score function</strong> encodes what the model “believes” about the input. The <strong>action function</strong> determines how that belief is converted into a concrete decision. In some ways the score is the <em>raw</em> output of the prediction function, before it has been massaged into the right human-readable form.</p>
-<p>Typically, the action function <span class="math inline">\(a\)</span> is fixed in advance, and so most of the interesting and difficult parts of machine learning happen in figuring out <span class="math inline">\(\hat{s}\)</span>. Consequently, this separation is useful because evaluating prediction function is often more naturally defined in terms of the score, rather than the final prediction. In any case, we lose nothing by doing this.</p>
+<p>Typically, the action function <span class="math inline">\(a\)</span> is fixed in advance, and so most of the interesting and difficult parts of machine learning happen in figuring out <span class="math inline">\(\hat{s}\)</span>. Consequently, this separation is useful because evaluating a prediction function is often more naturally defined in terms of the score, rather than the final prediction. In any case, we lose nothing by doing this.</p>
 <p>In <strong>regression</strong>, this score/action distinction is typically not important. The score itself is the prediction, so we typically will take: <span class="math display">\[
 a = \text{identity}, \quad a(x) = x,
 \]</span> in which case <span class="math inline">\(\hat{f}(x) = \hat{s}(x)\)</span> and so the distinction collapses.</p>

@@ -523,7 +523,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 2, 2026</p>
+      <p class="date-modified">August 28, 2026</p>
     </div>
   </div>
     
@@ -590,12 +590,12 @@ Answer
 </section>
 <section id="question-6" class="level3" data-number="27.0.6">
 <h3 data-number="27.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">27.0.6</span> Question 6</h3>
-<p>For one data point with scores <span class="math inline">\(z=W^\top x\in\mathbb{R}^K\)</span> and one-hot label <span class="math inline">\(t\)</span>, define <span class="math display">\[L(z)=-\sum_{a=1}^K t_a\log p_a,\qquad p_a=\frac{e^{z_a}}{\sum_j e^{z_j}}.\]</span> Using the softmax derivative identity <span class="math inline">\(\partial p_a/\partial z_b=p_a(\mathbf 1\{a=b\}-p_b)\)</span>, compute <span class="math inline">\(\partial L/\partial z_b\)</span> and simplify it to a compact expression.</p>
+<p>For one data point with scores <span class="math inline">\(z=W^\top x\in\mathbb{R}^K\)</span> and one-hot label <span class="math inline">\(t\)</span>, define <span class="math display">\[L(z)=-\sum_{a=1}^K t_a\log p_a,\qquad p_a=\frac{e^{z_a}}{\sum_j e^{z_j}}.\]</span> Using the softmax derivative identity <span class="math inline">\(\partial p_a/\partial z_b=p_a(\mathbf 1\{a=b\}-p_b)\)</span>, compute <span class="math inline">\(\partial L/\partial z_b\)</span> and simplify it to a compact expression. Then use <span class="math inline">\(z_b=w_b^\top x\)</span> to find <span class="math inline">\(\nabla_{w_b}L\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>By the chain rule, <span class="math display">\[\frac{\partial L}{\partial z_b}=-\sum_a t_a\frac1{p_a}\frac{\partial p_a}{\partial z_b}.\]</span> Using <span class="math inline">\(\partial p_a/\partial z_b=p_a(\mathbf 1\{a=b\}-p_b)\)</span> gives <span class="math display">\[\frac{\partial L}{\partial z_b}=-\sum_a t_a(\mathbf 1\{a=b\}-p_b)=-t_b+p_b\sum_a t_a.\]</span> Since <span class="math inline">\(t\)</span> is one-hot, <span class="math inline">\(\sum_a t_a=1\)</span>, so <span class="math display">\[\frac{\partial L}{\partial z_b}=p_b-t_b.\]</span></p>
+<p>By the chain rule, <span class="math display">\[\frac{\partial L}{\partial z_b}=-\sum_a t_a\frac1{p_a}\frac{\partial p_a}{\partial z_b}.\]</span> Using <span class="math inline">\(\partial p_a/\partial z_b=p_a(\mathbf 1\{a=b\}-p_b)\)</span> gives <span class="math display">\[\frac{\partial L}{\partial z_b}=-\sum_a t_a(\mathbf 1\{a=b\}-p_b)=-t_b+p_b\sum_a t_a.\]</span> Since <span class="math inline">\(t\)</span> is one-hot, <span class="math inline">\(\sum_a t_a=1\)</span>, so <span class="math display">\[\frac{\partial L}{\partial z_b}=p_b-t_b.\]</span> Finally, <span class="math inline">\(\nabla_{w_b}z_b=x\)</span>, and the scalar chain rule gives <span class="math display">\[\nabla_{w_b}L=(p_b-t_b)x.\]</span></p>
 </details>
 </section>
 <section id="question-7" class="level3" data-number="27.0.7">
@@ -716,7 +716,7 @@ Answer
 <summary>
 Answer
 </summary>
-<p>Take true class <span class="math inline">\(1\)</span>. Let <span class="math display">\[p=(0.51,0.49,0),\qquad q=(0.99,0.005,0.005).\]</span> Both predict class <span class="math inline">\(1\)</span>, but their losses are <span class="math display">\[-\log(0.51)\quad\text{and}\quad -\log(0.99),\]</span> which are different, with <span class="math inline">\(q\)</span> much smaller. Cross-entropy depends on the probability assigned to the true class, not only on the predicted label.</p>
+<p>Take true class <span class="math inline">\(1\)</span>. Let <span class="math display">\[p=(0.51,0.48,0.01),\qquad q=(0.99,0.005,0.005).\]</span> Both predict class <span class="math inline">\(1\)</span>, but their losses are <span class="math display">\[-\log(0.51)\quad\text{and}\quad -\log(0.99),\]</span> which are different, with <span class="math inline">\(q\)</span> much smaller. Cross-entropy depends on the probability assigned to the true class, not only on the predicted label.</p>
 </details>
 </section>
 <section id="question-13" class="level3" data-number="27.0.13">

@@ -494,12 +494,6 @@ window.Quarto = {
   <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10"><span class="header-section-number">24.0.10</span> Question 10</a></li>
   <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11"><span class="header-section-number">24.0.11</span> Question 11</a></li>
   <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12"><span class="header-section-number">24.0.12</span> Question 12</a></li>
-  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13"><span class="header-section-number">24.0.13</span> Question 13</a></li>
-  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14"><span class="header-section-number">24.0.14</span> Question 14</a></li>
-  <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15"><span class="header-section-number">24.0.15</span> Question 15</a></li>
-  <li><a href="#question-16" id="toc-question-16" class="nav-link" data-scroll-target="#question-16"><span class="header-section-number">24.0.16</span> Question 16</a></li>
-  <li><a href="#question-17" id="toc-question-17" class="nav-link" data-scroll-target="#question-17"><span class="header-section-number">24.0.17</span> Question 17</a></li>
-  <li><a href="#question-18" id="toc-question-18" class="nav-link" data-scroll-target="#question-18"><span class="header-section-number">24.0.18</span> Question 18</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -526,7 +520,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">July 2, 2026</p>
+      <p class="date-modified">August 28, 2026</p>
     </div>
   </div>
     
@@ -540,317 +534,277 @@ window.Quarto = {
 <div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
+<p>These questions practice gradients, shape checking, linear and quadratic expressions, the chain rule, and derivatives with respect to matrix parameters. Answers are hidden in collapsible sections.</p>
 <section id="question-1" class="level3" data-number="24.0.1">
 <h3 data-number="24.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">24.0.1</span> Question 1</h3>
-<p>For <span class="math inline">\(w\in\mathbb{R}^d\)</span> and a constant matrix <span class="math inline">\(A\in\mathbb{R}^{d\times d}\)</span>, show that <span class="math inline">\(\nabla_w(w^\top A w) = (A+A^\top)w\)</span>.</p>
-<!-- Source: quadratic vector identity $\nabla_w(w^\top A w)=(A+A^\top)w$ and Hessian discussion -->
+<p>Let <span class="math inline">\(L:\mathbb{R}^2\to\mathbb{R}\)</span> be <span class="math display">\[
+L(w_1,w_2)=3w_1^2+2w_1w_2-w_2.
+\]</span> Compute <span class="math inline">\(\nabla_wL\)</span> and state its shape.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>We want to compute the gradient of the scalar-valued function</p>
-<p><span class="math display">\[
-f(w) = w^\top A w,
-\]</span></p>
-<p>where <span class="math inline">\(w \in \mathbb{R}^d\)</span> and <span class="math inline">\(A \in \mathbb{R}^{d \times d}\)</span> is constant.</p>
-<p>First, write the quadratic form in coordinates. Since</p>
-<p><span class="math display">\[
-w^\top A w=
-\sum_{i=1}^d \sum_{j=1}^d w_i A_{ij} w_j,
-\]</span></p>
-<p>we can compute the <span class="math inline">\(k\)</span>th component of the gradient by differentiating with respect to <span class="math inline">\(w_k\)</span>:</p>
-<p><span class="math display">\[
-\frac{\partial}{\partial w_k}(w^\top A w)=
-\frac{\partial}{\partial w_k}
-\left(
-\sum_{i=1}^d \sum_{j=1}^d w_i A_{ij} w_j
-\right).
-\]</span></p>
-<p>The variable <span class="math inline">\(w_k\)</span> can appear in two places: as the left factor <span class="math inline">\(w_i\)</span> when <span class="math inline">\(i=k\)</span>, and as the right factor <span class="math inline">\(w_j\)</span> when <span class="math inline">\(j=k\)</span>. Therefore,</p>
-<p><span class="math display">\[
-\frac{\partial}{\partial w_k}(w^\top A w)=
-\sum_{j=1}^d A_{kj} w_j
-+
-\sum_{i=1}^d w_i A_{ik}.
-\]</span></p>
-<p>The first term is the <span class="math inline">\(k\)</span>th entry of <span class="math inline">\(Aw\)</span>:</p>
-<p><span class="math display">\[
-\sum_{j=1}^d A_{kj} w_j = (Aw)_k.
-\]</span></p>
-<p>The second term can be rewritten as the <span class="math inline">\(k\)</span>th entry of <span class="math inline">\(A^\top w\)</span>, since</p>
-<p><span class="math display">\[
-(A^\top w)_k=
-\sum_{i=1}^d (A^\top)_{ki} w_i=
-\sum_{i=1}^d A_{ik} w_i.
-\]</span></p>
-<p>Thus,</p>
-<p><span class="math display">\[
-\frac{\partial}{\partial w_k}(w^\top A w)=
-(Aw)_k + (A^\top w)_k=
-((A + A^\top)w)_k.
-\]</span></p>
-<p>Since this holds for each coordinate <span class="math inline">\(k=1,\ldots,d\)</span>, we conclude that</p>
-<p><span class="math display">\[
-\nabla_w(w^\top A w) = (A + A^\top)w.
-\]</span></p>
+<p>The partial derivatives are <span class="math display">\[
+\frac{\partial L}{\partial w_1}=6w_1+2w_2,
+\qquad
+\frac{\partial L}{\partial w_2}=2w_1-1.
+\]</span> Therefore <span class="math display">\[
+\nabla_wL=
+\begin{pmatrix}
+6w_1+2w_2\\
+2w_1-1
+\end{pmatrix}
+\in\mathbb{R}^2,
+\]</span> which has the same shape as <span class="math inline">\(w\)</span>.</p>
 </details>
 </section>
 <section id="question-2" class="level3" data-number="24.0.2">
 <h3 data-number="24.0.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">24.0.2</span> Question 2</h3>
-<p>The lecture writes <span class="math inline">\(\nabla_w\,\frac12 w^\top A w=Aw\)</span> when <span class="math inline">\(A\)</span> is symmetric. Give a concrete <span class="math inline">\(2\times2\)</span> counterexample showing the formula can fail when <span class="math inline">\(A\)</span> is not symmetric.</p>
-<!-- Source: symmetric-matrix assumption in the half-quadratic formula -->
+<p>For fixed <span class="math inline">\(a,x\in\mathbb{R}^D\)</span> and variable <span class="math inline">\(w\in\mathbb{R}^D\)</span>, compute the gradients of <span class="math inline">\(a^\top w\)</span> and <span class="math inline">\(w^\top x\)</span>. Justify one identity by expanding it in coordinates.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>The needed assumption is <span class="math inline">\(A=A^\top\)</span>. In general, <span class="math display">\[\nabla_w\frac12 w^\top A w=\frac12(A+A^\top)w.\]</span> Take <span class="math display">\[A=\begin{bmatrix}0&amp;1\\0&amp;0\end{bmatrix},\qquad w=\begin{bmatrix}u\\v\end{bmatrix}.\]</span> Then <span class="math inline">\(\frac12w^\top Aw=\frac12uv\)</span>, so the gradient is <span class="math inline">\(\frac12(v,u)^\top\)</span>. But <span class="math inline">\(Aw=(v,0)^\top\)</span>, which is not equal in general.</p>
+<p>The identities are <span class="math display">\[
+\nabla_w(a^\top w)=a,
+\qquad
+\nabla_w(w^\top x)=x.
+\]</span> For example, <span class="math display">\[
+a^\top w=\sum_{j=1}^D a_jw_j,
+\]</span> whose <span class="math inline">\(k\)</span>th partial derivative is <span class="math inline">\(a_k\)</span>. Stacking the partial derivatives gives <span class="math inline">\(a\)</span>.</p>
 </details>
 </section>
 <section id="question-3" class="level3" data-number="24.0.3">
 <h3 data-number="24.0.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">24.0.3</span> Question 3</h3>
-<p>Fill in the coordinate argument behind <span class="math inline">\(\nabla_w(a^\top w)=a\)</span>. Use <span class="math inline">\(a,w\in\mathbb{R}^d\)</span> and explicitly compute the <span class="math inline">\(k\)</span>th partial derivative.</p>
-<!-- Source: linear vector derivative identity $\nabla_w(a^\top w)=a$ -->
+<p>For fixed <span class="math inline">\(A\in\mathbb{R}^{D\times D}\)</span>, use coordinates to derive <span class="math display">\[
+\nabla_w(w^\top Aw)=(A+A^\top)w.
+\]</span> Then state the simplified formula when <span class="math inline">\(A\)</span> is symmetric.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>Since <span class="math display">\[a^\top w=\sum_{i=1}^d a_iw_i,\]</span> the <span class="math inline">\(k\)</span>th partial derivative is <span class="math display">\[\frac{\partial}{\partial w_k}(a^\top w)=\sum_{i=1}^d a_i\frac{\partial w_i}{\partial w_k}=a_k.\]</span> Therefore the gradient vector is <span class="math inline">\((a_1,\ldots,a_d)^\top=a\)</span>.</p>
+<p>Expanding gives <span class="math display">\[
+w^\top Aw=\sum_i\sum_jw_iA_{ij}w_j.
+\]</span> Differentiating with respect to <span class="math inline">\(w_k\)</span> picks up terms with <span class="math inline">\(i=k\)</span> and terms with <span class="math inline">\(j=k\)</span>: <span class="math display">\[
+\frac{\partial}{\partial w_k}(w^\top Aw)
+=\sum_jA_{kj}w_j+\sum_iA_{ik}w_i
+=(Aw)_k+(A^\top w)_k.
+\]</span> Hence the gradient is <span class="math inline">\((A+A^\top)w\)</span>. If <span class="math inline">\(A=A^\top\)</span>, it simplifies to <span class="math inline">\(2Aw\)</span>.</p>
 </details>
 </section>
 <section id="question-4" class="level3" data-number="24.0.4">
 <h3 data-number="24.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">24.0.4</span> Question 4</h3>
-<p>Determine the shape of the derivative object for each function: (i) <span class="math inline">\(L:\mathbb{R}^{4\times 3}\to\mathbb{R}\)</span>, (ii) <span class="math inline">\(f:\mathbb{R}^5\to\mathbb{R}^2\)</span>, (iii) <span class="math inline">\(F:\mathbb{R}\to\mathbb{R}^{2\times 2}\)</span>, and (iv) <span class="math inline">\(q:\mathbb{R}^6\to\mathbb{R}\)</span>. Use the lecture’s conventions.</p>
-<!-- Source: taxonomy and summary table of derivative objects -->
+<p>Diagnose the missing assumption in <span class="math display">\[
+\nabla_w\left(\frac12w^\top Aw\right)=Aw.
+\]</span> Give a concrete <span class="math inline">\(2\times2\)</span> counterexample showing why the assumption is needed.</p>
 <details>
 <summary>
 Answer
 </summary>
-<ol type="i">
-<li><p><span class="math inline">\(L\)</span> has scalar output and matrix input, so <span class="math inline">\(\nabla_WL\in\mathbb{R}^{4\times3}\)</span>.</p></li>
-<li><p><span class="math inline">\(f\)</span> has vector output and vector input, so its Jacobian has shape <span class="math inline">\(2\times5\)</span>.</p></li>
-<li><p><span class="math inline">\(F\)</span> has scalar input and matrix output, so <span class="math inline">\(dF/dt\in\mathbb{R}^{2\times2}\)</span>, computed entrywise.</p></li>
-<li><p><span class="math inline">\(q\)</span> has scalar output and vector input, so <span class="math inline">\(\nabla_x q\in\mathbb{R}^6\)</span>.</p></li>
-</ol>
+<p>The identity requires <span class="math inline">\(A\)</span> to be symmetric. In general, <span class="math display">\[
+\nabla_w\left(\frac12w^\top Aw\right)
+=\frac12(A+A^\top)w.
+\]</span> Take <span class="math display">\[
+A=\begin{pmatrix}0&amp;1\\0&amp;0\end{pmatrix},
+\qquad
+w=\begin{pmatrix}u\\v\end{pmatrix}.
+\]</span> Then <span class="math inline">\(\frac12w^\top Aw=uv/2\)</span>, whose gradient is <span class="math inline">\((v/2,u/2)^\top\)</span>, while <span class="math inline">\(Aw=(v,0)^\top\)</span>. These are not generally equal.</p>
 </details>
 </section>
 <section id="question-5" class="level3" data-number="24.0.5">
 <h3 data-number="24.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">24.0.5</span> Question 5</h3>
-<p>A scalar-valued function <span class="math inline">\(L:\mathbb{R}^n\to\mathbb{R}\)</span> may be differentiated either as a Jacobian or as a gradient. State the shapes of <span class="math inline">\(J_L(x)\)</span> and <span class="math inline">\(\nabla_xL\)</span>, then give the precise relationship between them under the lecture’s numerator-layout convention.</p>
-<!-- Source: notational tension between scalar-output Jacobians and gradients -->
+<p>Let <span class="math inline">\(w,a\in\mathbb{R}^D\)</span>, <span class="math inline">\(X\in\mathbb{R}^{N\times D}\)</span>, and <span class="math inline">\(y\in\mathbb{R}^N\)</span>. State the shape of each expression:</p>
+<ol type="1">
+<li><span class="math inline">\(Xw\)</span></li>
+<li><span class="math inline">\(y-Xw\)</span></li>
+<li><span class="math inline">\(\|y-Xw\|^2\)</span></li>
+<li><span class="math inline">\(X^\top(y-Xw)\)</span></li>
+</ol>
+<p>Then explain why <span class="math inline">\(X(y-Xw)\)</span> is not generally a valid matrix product.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>Under numerator layout, the Jacobian has output coordinates as rows and input coordinates as columns. Since <span class="math inline">\(L\)</span> has one output coordinate, <span class="math display">\[J_L(x)\in\mathbb{R}^{1\times n}.\]</span> The gradient is arranged to match the vector input, so <span class="math inline">\(\nabla_xL\in\mathbb{R}^n\)</span>, viewed as a column vector. The relationship is <span class="math display">\[J_L(x)=(\nabla_xL)^\top.\]</span></p>
+<p>The shapes are:</p>
+<ol type="1">
+<li><span class="math inline">\(Xw\in\mathbb{R}^N\)</span>.</li>
+<li><span class="math inline">\(y-Xw\in\mathbb{R}^N\)</span>.</li>
+<li><span class="math inline">\(\|y-Xw\|^2\)</span> is a scalar.</li>
+<li><span class="math inline">\(X^\top(y-Xw)\in\mathbb{R}^D\)</span> because <span class="math inline">\(X^\top\)</span> is <span class="math inline">\(D\times N\)</span>.</li>
+</ol>
+<p>The product <span class="math inline">\(X(y-Xw)\)</span> attempts to multiply an <span class="math inline">\(N\times D\)</span> matrix by an <span class="math inline">\(N\)</span>-vector. Its inner dimensions are <span class="math inline">\(D\)</span> and <span class="math inline">\(N\)</span>, which need not agree.</p>
 </details>
 </section>
 <section id="question-6" class="level3" data-number="24.0.6">
 <h3 data-number="24.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">24.0.6</span> Question 6</h3>
-<p>Diagnose the shape error in the claim: if <span class="math inline">\(z=f(w)\in\mathbb{R}^m\)</span>, <span class="math inline">\(w\in\mathbb{R}^d\)</span>, and <span class="math inline">\(L=g(z)\)</span> is scalar-valued, then <span class="math inline">\(\nabla_wL=J_f(w)\nabla_zL\)</span>. State the corrected formula and verify its shape.</p>
-<!-- Source: scalar-output chain rule through a vector intermediate -->
+<p>Let <span class="math inline">\(X\in\mathbb{R}^{N\times D}\)</span> and <span class="math inline">\(y\in\mathbb{R}^N\)</span> be fixed, and define <span class="math display">\[
+L(w)=\frac12w^\top X^\top Xw-w^\top X^\top y.
+\]</span> Verify that <span class="math inline">\(X^\top X\)</span> is symmetric and compute <span class="math inline">\(\nabla_wL\)</span>. Check the shape of your answer.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>The product <span class="math inline">\(J_f(w)\nabla_zL\)</span> is not generally defined with the lecture’s shapes: <span class="math inline">\(J_f(w)\in\mathbb{R}^{m\times d}\)</span> and <span class="math inline">\(\nabla_zL\in\mathbb{R}^m\)</span>. The inner dimensions <span class="math inline">\(d\)</span> and <span class="math inline">\(m\)</span> do not match unless <span class="math inline">\(d=m\)</span>.</p>
-<p>The correct formula is <span class="math display">\[\nabla_wL=J_f(w)^\top\nabla_zL.\]</span> Here <span class="math inline">\(J_f(w)^\top\in\mathbb{R}^{d\times m}\)</span> and <span class="math inline">\(\nabla_zL\in\mathbb{R}^m\)</span>, so the result lies in <span class="math inline">\(\mathbb{R}^d\)</span>, matching the shape of <span class="math inline">\(w\)</span>.</p>
+<p>Since <span class="math display">\[
+(X^\top X)^\top=X^\top X,
+\]</span> the matrix <span class="math inline">\(X^\top X\)</span> is symmetric. Therefore <span class="math display">\[
+\nabla_w\left(\frac12w^\top X^\top Xw\right)=X^\top Xw.
+\]</span> The second term is linear in <span class="math inline">\(w\)</span>, with gradient <span class="math inline">\(-X^\top y\)</span>. Hence <span class="math display">\[
+\nabla_wL=X^\top Xw-X^\top y=X^\top(Xw-y).
+\]</span> This is a <span class="math inline">\(D\)</span>-vector, matching the shape of <span class="math inline">\(w\)</span>.</p>
 </details>
 </section>
 <section id="question-7" class="level3" data-number="24.0.7">
 <h3 data-number="24.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">24.0.7</span> Question 7</h3>
-<p>For <span class="math inline">\(f:\mathbb{R}^2\to\mathbb{R}^3\)</span> defined by <span class="math display">\[f(x_1,x_2)=\begin{bmatrix}x_1+2x_2\\ x_1x_2\\ x_2^2\end{bmatrix},\]</span> compute <span class="math inline">\(J_f(x)\)</span> using the lecture’s row-output, column-input convention.</p>
-<!-- Source: definition of the Jacobian for vector-output functions -->
+<p>Apply the scalar-intermediate chain rule to <span class="math display">\[
+L(w)=\frac12(a^\top w-b)^2,
+\]</span> where <span class="math inline">\(a,w\in\mathbb{R}^D\)</span> and <span class="math inline">\(b\in\mathbb{R}\)</span>. Identify the intermediate scalar and derive <span class="math inline">\(\nabla_wL\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>The rows correspond to output coordinates and the columns to input coordinates: <span class="math display">\[J_f(x)=\begin{bmatrix}
-\partial f_1/\partial x_1 &amp; \partial f_1/\partial x_2\\
-\partial f_2/\partial x_1 &amp; \partial f_2/\partial x_2\\
-\partial f_3/\partial x_1 &amp; \partial f_3/\partial x_2
-\end{bmatrix}
-=\begin{bmatrix}
-1&amp;2\\
-x_2&amp;x_1\\
-0&amp;2x_2
-\end{bmatrix}.\]</span> Its shape is <span class="math inline">\(3\times2\)</span>, equal to output dimension times input dimension.</p>
+<p>Let <span class="math inline">\(s=a^\top w-b\)</span>. Then <span class="math inline">\(L=s^2/2\)</span>, so <span class="math display">\[
+\frac{dL}{ds}=s,
+\qquad
+\nabla_ws=a.
+\]</span> Thus <span class="math display">\[
+\nabla_wL=\frac{dL}{ds}\nabla_ws
+=(a^\top w-b)a.
+\]</span></p>
 </details>
 </section>
 <section id="question-8" class="level3" data-number="24.0.8">
 <h3 data-number="24.0.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">24.0.8</span> Question 8</h3>
-<p>For the rotation matrix <span class="math display">\[R(\theta)=\begin{bmatrix}\cos\theta&amp;-\sin\theta\\ \sin\theta&amp;\cos\theta\end{bmatrix},\]</span> compute <span class="math inline">\(dR/d\theta\)</span>.</p>
-<!-- Source: scalar-input matrix-output rotation example -->
+<p>Starting from <span class="math display">\[
+\sigma(s)=\frac{1}{1+e^{-s}},
+\]</span> compute <span class="math inline">\(\sigma'(s)\)</span> and express the result only in terms of <span class="math inline">\(p=\sigma(s)\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>Entrywise differentiation gives <span class="math display">\[\frac{dR}{d\theta}=\begin{bmatrix}-\sin\theta&amp;-\cos\theta\\ \cos\theta&amp;-\sin\theta\end{bmatrix}.\]</span></p>
+<p>Direct differentiation gives <span class="math display">\[
+\sigma'(s)=\frac{e^{-s}}{(1+e^{-s})^2}.
+\]</span> Since <span class="math display">\[
+p=\frac1{1+e^{-s}},
+\qquad
+1-p=\frac{e^{-s}}{1+e^{-s}},
+\]</span> we obtain <span class="math display">\[
+\sigma'(s)=p(1-p).
+\]</span></p>
 </details>
 </section>
 <section id="question-9" class="level3" data-number="24.0.9">
 <h3 data-number="24.0.9" class="anchored" data-anchor-id="question-9"><span class="header-section-number">24.0.9</span> Question 9</h3>
-<p>Verify <span class="math inline">\(\nabla_W\operatorname{tr}(A^\top W)=A\)</span> by expanding the trace in entries. Assume <span class="math inline">\(A,W\in\mathbb{R}^{m\times n}\)</span> and <span class="math inline">\(A\)</span> is constant with respect to <span class="math inline">\(W\)</span>.</p>
-<!-- Source: matrix linear trace derivative identity -->
+<p>Let <span class="math inline">\(y\in\{0,1\}\)</span> and define <span class="math display">\[
+s=x^\top w,\qquad
+p=\sigma(s),\qquad
+\ell=-\left[y\log p+(1-y)\log(1-p)\right].
+\]</span> Use the chain rule through <span class="math inline">\(p\)</span> and <span class="math inline">\(s\)</span> to derive <span class="math inline">\(\nabla_w\ell=(p-y)x\)</span>. Display the three derivative factors before simplifying.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>The trace expands as <span class="math display">\[\operatorname{tr}(A^\top W)=\sum_{i=1}^m\sum_{j=1}^n A_{ij}W_{ij}.\]</span> Therefore <span class="math display">\[\frac{\partial}{\partial W_{kl}}\operatorname{tr}(A^\top W)=A_{kl}.\]</span> Since this holds for every entry, the matrix gradient has entries <span class="math inline">\((\nabla_WL)_{kl}=A_{kl}\)</span>, so <span class="math inline">\(\nabla_W\operatorname{tr}(A^\top W)=A\)</span>.</p>
+<p>The three factors are <span class="math display">\[
+\frac{\partial\ell}{\partial p}
+=-\frac{y}{p}+\frac{1-y}{1-p}
+=\frac{p-y}{p(1-p)},
+\]</span> <span class="math display">\[
+\frac{dp}{ds}=p(1-p),
+\qquad
+\nabla_ws=x.
+\]</span> Therefore <span class="math display">\[
+\nabla_w\ell
+=\frac{\partial\ell}{\partial p}
+\frac{dp}{ds}\nabla_ws
+=(p-y)x.
+\]</span></p>
 </details>
 </section>
 <section id="question-10" class="level3" data-number="24.0.10">
 <h3 data-number="24.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">24.0.10</span> Question 10</h3>
-<p>Connect the Frobenius norm identity to the trace identity by proving <span class="math display">\[\|W\|_F^2=\operatorname{tr}(W^\top W)\]</span> for <span class="math inline">\(W\in\mathbb{R}^{m\times n}\)</span>, then use entries to compute <span class="math inline">\(\nabla_W\|W\|_F^2\)</span>.</p>
-<!-- Source: Frobenius norm formula and its gradient -->
+<p>Let <span class="math display">\[
+z_1=w_1+w_2,\qquad
+z_2=w_1w_2,\qquad
+L=\frac12(z_1^2+z_2^2).
+\]</span> Use <span class="math display">\[
+\frac{\partial L}{\partial w_j}
+=\sum_{k=1}^2
+\frac{\partial L}{\partial z_k}
+\frac{\partial z_k}{\partial w_j}
+\]</span> to compute <span class="math inline">\(\nabla_wL\)</span> at <span class="math inline">\(w=(1,2)^\top\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>Recall that the Frobenius norm of a matrix <span class="math inline">\(W \in \mathbb{R}^{m \times n}\)</span> is defined by</p>
-<p><span class="math display">\[
-\|W\|_F^2=
-\sum_{i=1}^m \sum_{j=1}^n W_{ij}^2.
-\]</span></p>
-<p>We want to connect this to the trace expression <span class="math inline">\(\operatorname{tr}(W^\top W)\)</span>.</p>
-<p>First, note that <span class="math inline">\(W^\top W \in \mathbb{R}^{n \times n}\)</span>. Its <span class="math inline">\((j,j)\)</span> diagonal entry is</p>
-<p><span class="math display">\[
-(W^\top W)_{jj}=
-\sum_{i=1}^m (W^\top)_{ji} W_{ij}.
-\]</span></p>
-<p>Since <span class="math inline">\((W^\top)_{ji} = W_{ij}\)</span>, this becomes</p>
-<p><span class="math display">\[
-(W^\top W)_{jj}=
-\sum_{i=1}^m W_{ij}^2.
-\]</span></p>
-<p>The trace of a matrix is the sum of its diagonal entries, so</p>
-<p><span class="math display">\[
-\operatorname{tr}(W^\top W)=
-\sum_{j=1}^n (W^\top W)_{jj}.
-\]</span></p>
-<p>Substituting the expression for the diagonal entries gives</p>
-<p><span class="math display">\[
-\operatorname{tr}(W^\top W)=
-\sum_{j=1}^n \sum_{i=1}^m W_{ij}^2.
-\]</span></p>
-<p>This is just the sum of the squares of all entries of <span class="math inline">\(W\)</span>, so</p>
-<p><span class="math display">\[
-\operatorname{tr}(W^\top W)=
-\|W\|_F^2.
-\]</span></p>
-<p>Now compute the gradient entry by entry. Since</p>
-<p><span class="math display">\[
-\|W\|_F^2=
-\sum_{i=1}^m \sum_{j=1}^n W_{ij}^2,
-\]</span></p>
-<p>the partial derivative with respect to a single entry <span class="math inline">\(W_{ij}\)</span> is</p>
-<p><span class="math display">\[
-\frac{\partial}{\partial W_{ij}} \|W\|_F^2=
-2W_{ij}.
-\]</span></p>
-<p>Thus the matrix of partial derivatives has <span class="math inline">\((i,j)\)</span> entry equal to <span class="math inline">\(2W_{ij}\)</span>. Therefore,</p>
-<p><span class="math display">\[
-\nabla_W \|W\|_F^2 = 2W.
-\]</span></p>
-<p>Equivalently, using the trace form,</p>
-<p><span class="math display">\[
-\nabla_W \operatorname{tr}(W^\top W) = 2W.
+<p>At <span class="math inline">\(w=(1,2)^\top\)</span>, <span class="math inline">\((z_1,z_2)=(3,2)\)</span>. Thus <span class="math display">\[
+\frac{\partial L}{\partial w_1}
+=z_1(1)+z_2(w_2)=3+4=7,
+\]</span> and <span class="math display">\[
+\frac{\partial L}{\partial w_2}
+=z_1(1)+z_2(w_1)=3+2=5.
+\]</span> Therefore <span class="math display">\[
+\nabla_wL=
+\begin{pmatrix}7\\5\end{pmatrix}.
 \]</span></p>
 </details>
 </section>
 <section id="question-11" class="level3" data-number="24.0.11">
 <h3 data-number="24.0.11" class="anchored" data-anchor-id="question-11"><span class="header-section-number">24.0.11</span> Question 11</h3>
-<p>For <span class="math inline">\(W\in\mathbb{R}^{m\times n}\)</span> and fixed <span class="math inline">\(B\in\mathbb{R}^{m\times n}\)</span>, compute <span class="math display">\[\nabla_W\left(\frac12\|W-B\|_F^2\right).\]</span> Give the entrywise reasoning.</p>
-<!-- Source: Frobenius norm derivative as matrix version of $\frac12\|w\|^2$ -->
+<p>Let <span class="math inline">\(W\in\mathbb{R}^{2\times2}\)</span> be variable, let <span class="math display">\[
+B=\begin{pmatrix}1&amp;1\\2&amp;3\end{pmatrix},
+\]</span> and define <span class="math display">\[
+L(W)=\frac12\sum_{d=1}^2\sum_{k=1}^2(W_{dk}-B_{dk})^2.
+\]</span> Derive <span class="math inline">\(\nabla_WL\)</span>. Then evaluate both <span class="math inline">\(L(W)\)</span> and <span class="math inline">\(\nabla_WL\)</span> at <span class="math display">\[
+W=\begin{pmatrix}2&amp;-1\\0&amp;4\end{pmatrix}.
+\]</span></p>
 <details>
 <summary>
 Answer
 </summary>
-<p>Expand the objective as <span class="math display">\[L(W)=\frac12\sum_{i=1}^m\sum_{j=1}^n (W_{ij}-B_{ij})^2.\]</span> For each entry, <span class="math display">\[\frac{\partial L}{\partial W_{ij}}=W_{ij}-B_{ij}.\]</span> Thus <span class="math display">\[\nabla_W\left(\frac12\|W-B\|_F^2\right)=W-B.\]</span></p>
+<p>For each entry, <span class="math display">\[
+\frac{\partial L}{\partial W_{dk}}=W_{dk}-B_{dk},
+\]</span> so <span class="math inline">\(\nabla_WL=W-B\)</span>. At the specified matrix, <span class="math display">\[
+W-B=
+\begin{pmatrix}
+1&amp;-2\\
+-2&amp;1
+\end{pmatrix}.
+\]</span> Therefore <span class="math display">\[
+L(W)=\frac12(1^2+(-2)^2+(-2)^2+1^2)=5
+\]</span> and <span class="math display">\[
+\nabla_WL=
+\begin{pmatrix}
+1&amp;-2\\
+-2&amp;1
+\end{pmatrix}.
+\]</span></p>
 </details>
 </section>
 <section id="question-12" class="level3" data-number="24.0.12">
 <h3 data-number="24.0.12" class="anchored" data-anchor-id="question-12"><span class="header-section-number">24.0.12</span> Question 12</h3>
-<p>Use the linear approximation <span class="math display">\[f(x+dx)\approx f(x)+J_f(x)dx\]</span> to justify the lecture’s choice that <span class="math inline">\(J_f(x)\)</span> should have shape <span class="math inline">\(m\times n\)</span> for <span class="math inline">\(f:\mathbb{R}^n\to\mathbb{R}^m\)</span>.</p>
-<!-- Source: numerator-layout convention and the clean approximation formula -->
+<p>Write <span class="math display">\[
+W=\begin{pmatrix}u&amp;v\\r&amp;s\end{pmatrix}
+\]</span> and define <span class="math display">\[
+L(W)=uv+(r-s)^2.
+\]</span> Compute the four partial derivatives and arrange them in the <span class="math inline">\(2\times2\)</span> matrix <span class="math inline">\(\nabla_WL\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>The increment <span class="math inline">\(dx\)</span> has shape <span class="math inline">\(n\times1\)</span>, and <span class="math inline">\(f(x+dx)-f(x)\)</span> has shape <span class="math inline">\(m\times1\)</span>. For the product <span class="math inline">\(J_f(x)dx\)</span> to have shape <span class="math inline">\(m\times1\)</span>, the Jacobian must have shape <span class="math inline">\(m\times n\)</span>. This is exactly output dimension times input dimension, matching numerator layout.</p>
-</details>
-</section>
-<section id="question-13" class="level3" data-number="24.0.13">
-<h3 data-number="24.0.13" class="anchored" data-anchor-id="question-13"><span class="header-section-number">24.0.13</span> Question 13</h3>
-<p>For <span class="math inline">\(f(x)=Ax+b\)</span> with <span class="math inline">\(A\in\mathbb{R}^{m\times n}\)</span> and <span class="math inline">\(b\in\mathbb{R}^m\)</span>, verify from coordinates that <span class="math inline">\(J_f(x)=A\)</span>.</p>
-<!-- Source: Jacobian of linear and affine maps -->
-<details>
-<summary>
-Answer
-</summary>
-<p>The <span class="math inline">\(i\)</span>th coordinate is <span class="math display">\[f_i(x)=\sum_{j=1}^n A_{ij}x_j+b_i.\]</span> Thus <span class="math display">\[\frac{\partial f_i}{\partial x_k}=A_{ik}+\frac{\partial b_i}{\partial x_k}=A_{ik},\]</span> because <span class="math inline">\(b_i\)</span> is constant with respect to every input coordinate. Therefore the <span class="math inline">\((i,k)\)</span> entry of <span class="math inline">\(J_f(x)\)</span> is <span class="math inline">\(A_{ik}\)</span>, so <span class="math inline">\(J_f(x)=A\)</span>.</p>
-</details>
-</section>
-<section id="question-14" class="level3" data-number="24.0.14">
-<h3 data-number="24.0.14" class="anchored" data-anchor-id="question-14"><span class="header-section-number">24.0.14</span> Question 14</h3>
-<p>For the elementwise rule in the lecture, let <span class="math display">\[F(t)=\begin{bmatrix}t&amp;t^2\\-t&amp;1\end{bmatrix},\qquad \phi(u)=u^3.\]</span> Compute <span class="math inline">\(\frac{d}{dt}\phi(F(t))\)</span> using <span class="math inline">\(\phi'(F(t))\odot F'(t)\)</span>.</p>
-<!-- Source: entrywise matrix-output chain rule with Hadamard product -->
-<details>
-<summary>
-Answer
-</summary>
-<p>We have <span class="math display">\[F'(t)=\begin{bmatrix}1&amp;2t\\-1&amp;0\end{bmatrix},\qquad \phi'(F(t))=3F(t)\odot F(t)=\begin{bmatrix}3t^2&amp;3t^4\\3t^2&amp;3\end{bmatrix}.\]</span> Thus <span class="math display">\[\frac{d}{dt}\phi(F(t))=\phi'(F(t))\odot F'(t)=\begin{bmatrix}3t^2&amp;6t^5\\-3t^2&amp;0\end{bmatrix}.\]</span> For example, the <span class="math inline">\((1,2)\)</span> entry is <span class="math inline">\((t^2)^3=t^6\)</span>, whose derivative is <span class="math inline">\(6t^5\)</span>, matching the formula.</p>
-</details>
-</section>
-<section id="question-15" class="level3" data-number="24.0.15">
-<h3 data-number="24.0.15" class="anchored" data-anchor-id="question-15"><span class="header-section-number">24.0.15</span> Question 15</h3>
-<p>Evaluate the chain rule for a concrete scalar objective. Let <span class="math inline">\(f(w)=Bw\)</span> with <span class="math inline">\(B\in\mathbb{R}^{m\times d}\)</span> and let <span class="math inline">\(L=\frac12\|z\|^2\)</span> where <span class="math inline">\(z=f(w)\)</span>. Compute <span class="math inline">\(\nabla_wL\)</span> using the lecture’s formula.</p>
-<!-- Source: chain rule through vector intermediate and squared norm gradient -->
-<details>
-<summary>
-Answer
-</summary>
-<p>For <span class="math inline">\(z=Bw\)</span>, the Jacobian is <span class="math inline">\(J_f(w)=B\)</span>. Since <span class="math inline">\(L=\frac12z^\top z\)</span>, we have <span class="math inline">\(\nabla_zL=z\)</span>. The chain rule gives <span class="math display">\[\nabla_wL=J_f(w)^\top\nabla_zL=B^\top z=B^\top Bw.\]</span> The result lies in <span class="math inline">\(\mathbb{R}^d\)</span>, matching <span class="math inline">\(w\)</span>.</p>
-</details>
-</section>
-<section id="question-16" class="level3" data-number="24.0.16">
-<h3 data-number="24.0.16" class="anchored" data-anchor-id="question-16"><span class="header-section-number">24.0.16</span> Question 16</h3>
-<p>For <span class="math inline">\(T\in\mathbb{R}^{2\times2\times2}\)</span>, define <span class="math display">\[L(T)=\sum_{i=1}^2\sum_{j=1}^2\sum_{k=1}^2 T_{ijk}^2.\]</span> Compute the entry <span class="math inline">\((\nabla_TL)_{ijk}\)</span> and state the shape of <span class="math inline">\(\nabla_TL\)</span>.</p>
-<!-- Source: tensor-input scalar-output same-shape gradient rule -->
-<details>
-<summary>
-Answer
-</summary>
-<p>Each entry differentiates independently: <span class="math display">\[\frac{\partial L}{\partial T_{ijk}}=2T_{ijk}.\]</span> Therefore <span class="math display">\[(\nabla_TL)_{ijk}=2T_{ijk},\qquad \nabla_TL=2T.\]</span> The gradient has the same shape as <span class="math inline">\(T\)</span>, namely <span class="math inline">\(2\times2\times2\)</span>.</p>
-</details>
-</section>
-<section id="question-17" class="level3" data-number="24.0.17">
-<h3 data-number="24.0.17" class="anchored" data-anchor-id="question-17"><span class="header-section-number">24.0.17</span> Question 17</h3>
-<p>Which of the following expressions are well-shaped under the lecture’s conventions? (i) <span class="math inline">\(J_fdx\)</span> for <span class="math inline">\(f:\mathbb{R}^n\to\mathbb{R}^m\)</span>, (ii) <span class="math inline">\(J_f^\top dx\)</span>, (iii) <span class="math inline">\(J_f^\top v\)</span> for <span class="math inline">\(v\in\mathbb{R}^m\)</span>, (iv) <span class="math inline">\(v^\top J_f\)</span> for <span class="math inline">\(v\in\mathbb{R}^m\)</span>.</p>
-<!-- Source: shape-checking practical rule for Jacobian conventions -->
-<details>
-<summary>
-Answer
-</summary>
-<p>Here <span class="math inline">\(J_f\in\mathbb{R}^{m\times n}\)</span> and <span class="math inline">\(dx\in\mathbb{R}^n\)</span>.</p>
-<ol type="i">
-<li><p><span class="math inline">\(J_fdx\)</span> is valid and has shape <span class="math inline">\(m\)</span>.</p></li>
-<li><p><span class="math inline">\(J_f^\top dx\)</span> is invalid in general because <span class="math inline">\(J_f^\top\in\mathbb{R}^{n\times m}\)</span> expects an <span class="math inline">\(m\)</span>-vector, not an <span class="math inline">\(n\)</span>-vector.</p></li>
-<li><p><span class="math inline">\(J_f^\top v\)</span> is valid and has shape <span class="math inline">\(n\)</span>.</p></li>
-<li><p><span class="math inline">\(v^\top J_f\)</span> is valid as a row vector of shape <span class="math inline">\(1\times n\)</span>.</p></li>
-</ol>
-</details>
-</section>
-<section id="question-18" class="level3" data-number="24.0.18">
-<h3 data-number="24.0.18" class="anchored" data-anchor-id="question-18"><span class="header-section-number">24.0.18</span> Question 18</h3>
-<p>Sort the following derivative rules into scalar-output gradient rules, vector-output Jacobian rules, and scalar-input matrix-output rules: <span class="math inline">\(\nabla_W\|W\|_F^2=2W\)</span>, <span class="math inline">\(J_{Ax+b}=A\)</span>, <span class="math inline">\(\frac{d}{dt}(t^2A)=2tA\)</span>, <span class="math inline">\(\nabla_w(w^\top Aw)=(A+A^\top)w\)</span>, and <span class="math inline">\(J_{g\circ f}=J_gJ_f\)</span>.</p>
-<!-- Source: summary distinction among derivative objects and basic identities -->
-<details>
-<summary>
-Answer
-</summary>
-<p>Scalar-output gradient rules: <span class="math inline">\(\nabla_W\|W\|_F^2=2W\)</span> and <span class="math inline">\(\nabla_w(w^\top Aw)=(A+A^\top)w\)</span>.</p>
-<p>Vector-output Jacobian rules: <span class="math inline">\(J_{Ax+b}=A\)</span> and <span class="math inline">\(J_{g\circ f}=J_gJ_f\)</span>.</p>
-<p>Scalar-input matrix-output rule: <span class="math inline">\(\frac{d}{dt}(t^2A)=2tA\)</span>.</p>
+<p>The partial derivatives are <span class="math display">\[
+\frac{\partial L}{\partial u}=v,
+\qquad
+\frac{\partial L}{\partial v}=u,
+\]</span> <span class="math display">\[
+\frac{\partial L}{\partial r}=2(r-s),
+\qquad
+\frac{\partial L}{\partial s}=-2(r-s).
+\]</span> Placing each derivative in the position of its corresponding entry gives <span class="math display">\[
+\nabla_WL=
+\begin{pmatrix}
+v&amp;u\\
+2(r-s)&amp;-2(r-s)
+\end{pmatrix}.
+\]</span></p>
 </details>
 
 
