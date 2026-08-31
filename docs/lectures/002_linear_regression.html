@@ -522,46 +522,44 @@ window.Quarto = {
   <ul>
   <li><a href="#squared-error-loss" id="toc-squared-error-loss" class="nav-link active" data-scroll-target="#squared-error-loss"><span class="header-section-number">4.1</span> Squared Error Loss</a></li>
   <li><a href="#empirical-risk" id="toc-empirical-risk" class="nav-link" data-scroll-target="#empirical-risk"><span class="header-section-number">4.2</span> Empirical Risk</a></li>
-  <li><a href="#min-argmin-and-monotone-transformations" id="toc-min-argmin-and-monotone-transformations" class="nav-link" data-scroll-target="#min-argmin-and-monotone-transformations"><span class="header-section-number">5</span> Min, Argmin, and Monotone Transformations</a>
+  <li><a href="#min-argmin-and-monotone-transformations" id="toc-min-argmin-and-monotone-transformations" class="nav-link" data-scroll-target="#min-argmin-and-monotone-transformations"><span class="header-section-number">4.3</span> Min, Argmin, and Monotone Transformations</a></li>
+  <li><a href="#solving-the-least-squares-problem" id="toc-solving-the-least-squares-problem" class="nav-link" data-scroll-target="#solving-the-least-squares-problem"><span class="header-section-number">4.4</span> Solving the Least Squares Problem</a></li>
+  <li><a href="#forming-predictions" id="toc-forming-predictions" class="nav-link" data-scroll-target="#forming-predictions"><span class="header-section-number">4.5</span> Forming Predictions</a>
   <ul class="collapse">
-  <li><a href="#solving-the-least-squares-problem" id="toc-solving-the-least-squares-problem" class="nav-link" data-scroll-target="#solving-the-least-squares-problem"><span class="header-section-number">5.1</span> Solving the Least Squares Problem</a></li>
-  <li><a href="#forming-predictions" id="toc-forming-predictions" class="nav-link" data-scroll-target="#forming-predictions"><span class="header-section-number">5.2</span> Forming Predictions</a>
+  <li><a href="#a-forming-the-estimated-score-function" id="toc-a-forming-the-estimated-score-function" class="nav-link" data-scroll-target="#a-forming-the-estimated-score-function"><span class="header-section-number">4.5.1</span> (a) Forming the Estimated Score Function</a></li>
+  <li><a href="#b-predictions-on-the-training-data" id="toc-b-predictions-on-the-training-data" class="nav-link" data-scroll-target="#b-predictions-on-the-training-data"><span class="header-section-number">4.5.2</span> (b) Predictions on the Training Data</a></li>
+  </ul></li>
+  <li><a href="#geometric-interpretation-of-least-squares" id="toc-geometric-interpretation-of-least-squares" class="nav-link" data-scroll-target="#geometric-interpretation-of-least-squares"><span class="header-section-number">4.6</span> Geometric Interpretation of Least Squares</a></li>
+  <li><a href="#what-is-allowed-in-the-design-matrix" id="toc-what-is-allowed-in-the-design-matrix" class="nav-link" data-scroll-target="#what-is-allowed-in-the-design-matrix"><span class="header-section-number">4.7</span> What is Allowed in the Design Matrix?</a>
   <ul class="collapse">
-  <li><a href="#a-forming-the-estimated-score-function" id="toc-a-forming-the-estimated-score-function" class="nav-link" data-scroll-target="#a-forming-the-estimated-score-function"><span class="header-section-number">5.2.1</span> (a) Forming the Estimated Score Function</a></li>
-  <li><a href="#b-predictions-on-the-training-data" id="toc-b-predictions-on-the-training-data" class="nav-link" data-scroll-target="#b-predictions-on-the-training-data"><span class="header-section-number">5.2.2</span> (b) Predictions on the Training Data</a></li>
+  <li><a href="#intercept-term" id="toc-intercept-term" class="nav-link" data-scroll-target="#intercept-term"><span class="header-section-number">4.7.1</span> Intercept Term</a></li>
+  <li><a href="#categorical-variables" id="toc-categorical-variables" class="nav-link" data-scroll-target="#categorical-variables"><span class="header-section-number">4.7.2</span> Categorical Variables</a></li>
+  <li><a href="#one-hot-encoding" id="toc-one-hot-encoding" class="nav-link" data-scroll-target="#one-hot-encoding"><span class="header-section-number">4.7.3</span> One-Hot Encoding</a></li>
+  <li><a href="#example-hogwarts-house-k-4" id="toc-example-hogwarts-house-k-4" class="nav-link" data-scroll-target="#example-hogwarts-house-k-4"><span class="header-section-number">4.7.4</span> Example (Hogwarts House, <span class="math inline">\(K = 4\)</span>)</a></li>
+  <li><a href="#how-this-enters-the-model" id="toc-how-this-enters-the-model" class="nav-link" data-scroll-target="#how-this-enters-the-model"><span class="header-section-number">4.7.5</span> How This Enters the Model</a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">4.7.6</span> Interpretation</a></li>
+  <li><a href="#design-matrix-example" id="toc-design-matrix-example" class="nav-link" data-scroll-target="#design-matrix-example"><span class="header-section-number">4.7.7</span> Design Matrix Example</a></li>
+  <li><a href="#why-we-drop-one-column" id="toc-why-we-drop-one-column" class="nav-link" data-scroll-target="#why-we-drop-one-column"><span class="header-section-number">4.7.8</span> Why We Drop One Column</a></li>
+  <li><a href="#using-k-1-encoding-baseline-category" id="toc-using-k-1-encoding-baseline-category" class="nav-link" data-scroll-target="#using-k-1-encoding-baseline-category"><span class="header-section-number">4.7.9</span> Using <span class="math inline">\(K-1\)</span> Encoding (Baseline Category)</a></li>
+  <li><a href="#interpretation-with-baseline" id="toc-interpretation-with-baseline" class="nav-link" data-scroll-target="#interpretation-with-baseline"><span class="header-section-number">4.7.10</span> Interpretation with Baseline</a></li>
+  <li><a href="#transforming-features" id="toc-transforming-features" class="nav-link" data-scroll-target="#transforming-features"><span class="header-section-number">4.7.11</span> Transforming Features</a></li>
+  <li><a href="#example-polynomial-regression" id="toc-example-polynomial-regression" class="nav-link" data-scroll-target="#example-polynomial-regression"><span class="header-section-number">4.7.12</span> Example: Polynomial Regression</a></li>
+  <li><a href="#basis-functions" id="toc-basis-functions" class="nav-link" data-scroll-target="#basis-functions"><span class="header-section-number">4.7.13</span> Basis Functions</a></li>
   </ul></li>
-  <li><a href="#geometric-interpretation-of-least-squares" id="toc-geometric-interpretation-of-least-squares" class="nav-link" data-scroll-target="#geometric-interpretation-of-least-squares"><span class="header-section-number">5.3</span> Geometric Interpretation of Least Squares</a></li>
-  <li><a href="#what-is-allowed-in-the-design-matrix" id="toc-what-is-allowed-in-the-design-matrix" class="nav-link" data-scroll-target="#what-is-allowed-in-the-design-matrix"><span class="header-section-number">5.4</span> What is Allowed in the Design Matrix?</a>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">4.8</span> Limitations</a>
   <ul class="collapse">
-  <li><a href="#intercept-term" id="toc-intercept-term" class="nav-link" data-scroll-target="#intercept-term"><span class="header-section-number">5.4.1</span> Intercept Term</a></li>
-  <li><a href="#categorical-variables" id="toc-categorical-variables" class="nav-link" data-scroll-target="#categorical-variables"><span class="header-section-number">5.4.2</span> Categorical Variables</a></li>
-  <li><a href="#one-hot-encoding" id="toc-one-hot-encoding" class="nav-link" data-scroll-target="#one-hot-encoding"><span class="header-section-number">5.4.3</span> One-Hot Encoding</a></li>
-  <li><a href="#example-hogwarts-house-k-4" id="toc-example-hogwarts-house-k-4" class="nav-link" data-scroll-target="#example-hogwarts-house-k-4"><span class="header-section-number">5.4.4</span> Example (Hogwarts House, <span class="math inline">\(K = 4\)</span>)</a></li>
-  <li><a href="#how-this-enters-the-model" id="toc-how-this-enters-the-model" class="nav-link" data-scroll-target="#how-this-enters-the-model"><span class="header-section-number">5.4.5</span> How This Enters the Model</a></li>
-  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">5.4.6</span> Interpretation</a></li>
-  <li><a href="#design-matrix-example" id="toc-design-matrix-example" class="nav-link" data-scroll-target="#design-matrix-example"><span class="header-section-number">5.4.7</span> Design Matrix Example</a></li>
-  <li><a href="#why-we-drop-one-column" id="toc-why-we-drop-one-column" class="nav-link" data-scroll-target="#why-we-drop-one-column"><span class="header-section-number">5.4.8</span> Why We Drop One Column</a></li>
-  <li><a href="#using-k-1-encoding-baseline-category" id="toc-using-k-1-encoding-baseline-category" class="nav-link" data-scroll-target="#using-k-1-encoding-baseline-category"><span class="header-section-number">5.4.9</span> Using <span class="math inline">\(K-1\)</span> Encoding (Baseline Category)</a></li>
-  <li><a href="#interpretation-with-baseline" id="toc-interpretation-with-baseline" class="nav-link" data-scroll-target="#interpretation-with-baseline"><span class="header-section-number">5.4.10</span> Interpretation with Baseline</a></li>
-  <li><a href="#transforming-features" id="toc-transforming-features" class="nav-link" data-scroll-target="#transforming-features"><span class="header-section-number">5.4.11</span> Transforming Features</a></li>
-  <li><a href="#example-polynomial-regression" id="toc-example-polynomial-regression" class="nav-link" data-scroll-target="#example-polynomial-regression"><span class="header-section-number">5.4.12</span> Example: Polynomial Regression</a></li>
-  <li><a href="#basis-functions" id="toc-basis-functions" class="nav-link" data-scroll-target="#basis-functions"><span class="header-section-number">5.4.13</span> Basis Functions</a></li>
+  <li><a href="#linearity-assumption" id="toc-linearity-assumption" class="nav-link" data-scroll-target="#linearity-assumption"><span class="header-section-number">4.8.1</span> Linearity Assumption</a></li>
+  <li><a href="#sensitivity-to-outliers" id="toc-sensitivity-to-outliers" class="nav-link" data-scroll-target="#sensitivity-to-outliers"><span class="header-section-number">4.8.2</span> Sensitivity to Outliers</a></li>
+  <li><a href="#solution-stability" id="toc-solution-stability" class="nav-link" data-scroll-target="#solution-stability"><span class="header-section-number">4.8.3</span> Solution Stability</a></li>
   </ul></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">5.5</span> Limitations</a>
+  <li><a href="#code-examples" id="toc-code-examples" class="nav-link" data-scroll-target="#code-examples"><span class="header-section-number">4.9</span> Code Examples</a>
   <ul class="collapse">
-  <li><a href="#linearity-assumption" id="toc-linearity-assumption" class="nav-link" data-scroll-target="#linearity-assumption"><span class="header-section-number">5.5.1</span> Linearity Assumption</a></li>
-  <li><a href="#sensitivity-to-outliers" id="toc-sensitivity-to-outliers" class="nav-link" data-scroll-target="#sensitivity-to-outliers"><span class="header-section-number">5.5.2</span> Sensitivity to Outliers</a></li>
-  <li><a href="#solution-stability" id="toc-solution-stability" class="nav-link" data-scroll-target="#solution-stability"><span class="header-section-number">5.5.3</span> Solution Stability</a></li>
+  <li><a href="#well-posed-simulated-data" id="toc-well-posed-simulated-data" class="nav-link" data-scroll-target="#well-posed-simulated-data"><span class="header-section-number">4.9.1</span> Well-posed simulated data</a></li>
+  <li><a href="#ill-posed-simulated-data" id="toc-ill-posed-simulated-data" class="nav-link" data-scroll-target="#ill-posed-simulated-data"><span class="header-section-number">4.9.2</span> Ill-posed simulated data</a></li>
   </ul></li>
-  <li><a href="#code-examples" id="toc-code-examples" class="nav-link" data-scroll-target="#code-examples"><span class="header-section-number">5.6</span> Code Examples</a>
-  <ul class="collapse">
-  <li><a href="#well-posed-simulated-data" id="toc-well-posed-simulated-data" class="nav-link" data-scroll-target="#well-posed-simulated-data"><span class="header-section-number">5.6.1</span> Well-posed simulated data</a></li>
-  <li><a href="#ill-posed-simulated-data" id="toc-ill-posed-simulated-data" class="nav-link" data-scroll-target="#ill-posed-simulated-data"><span class="header-section-number">5.6.2</span> Ill-posed simulated data</a></li>
-  </ul></li>
-  <li><a href="#feature-engineering-polynoimal-regression" id="toc-feature-engineering-polynoimal-regression" class="nav-link" data-scroll-target="#feature-engineering-polynoimal-regression"><span class="header-section-number">5.7</span> Feature Engineering: Polynoimal Regression</a></li>
-  <li><a href="#real-data" id="toc-real-data" class="nav-link" data-scroll-target="#real-data"><span class="header-section-number">5.8</span> Real Data</a></li>
-  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">5.9</span> Review Questions</a></li>
-  </ul></li>
+  <li><a href="#feature-engineering-polynoimal-regression" id="toc-feature-engineering-polynoimal-regression" class="nav-link" data-scroll-target="#feature-engineering-polynoimal-regression"><span class="header-section-number">4.10</span> Feature Engineering: Polynoimal Regression</a></li>
+  <li><a href="#real-data" id="toc-real-data" class="nav-link" data-scroll-target="#real-data"><span class="header-section-number">4.11</span> Real Data</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">4.12</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -641,8 +639,8 @@ window.Quarto = {
 <p>(We can drop the <span class="math inline">\(\frac{1}{N}\)</span> with impunity.)</p>
 <p>This is the called the <strong>least squares problem</strong>.</p>
 </section>
-<section id="min-argmin-and-monotone-transformations" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Min, Argmin, and Monotone Transformations</h1>
+<section id="min-argmin-and-monotone-transformations" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="min-argmin-and-monotone-transformations"><span class="header-section-number">4.3</span> Min, Argmin, and Monotone Transformations</h2>
 <p>The <strong>minimum</strong> of a function is its smallest output value, while the <span class="math inline">\(\arg\min\)</span> is the input value, or set of input values, where that minimum occurs. For example, if <span class="math display">\[
 L(x)=(x-2)^2+1,
 \]</span> then <span class="math display">\[
@@ -651,8 +649,9 @@ L(x)=(x-2)^2+1,
 \arg\min_x L(x)=2.
 \]</span> Thus, the minimum is a function value, while the <span class="math inline">\(\arg\min\)</span> identifies where that value is achieved.</p>
 <p>A strictly increasing transformation preserves the ordering of the objective values and therefore does not change the <span class="math inline">\(\arg\min\)</span>. For example, dividing the function above by <span class="math inline">\(10\)</span> changes its minimum value from <span class="math inline">\(1\)</span> to <span class="math inline">\(1/10\)</span>, but its minimizer is still <span class="math inline">\(x=2\)</span>. In the same way, replacing <span class="math inline">\(\frac{1}{N}\sum_{n=1}^N\ell_n(w)\)</span> with <span class="math inline">\(\sum_{n=1}^N\ell_n(w)\)</span> changes the scale of the objective but not the value of <span class="math inline">\(w\)</span> that minimizes it, because <span class="math inline">\(N&gt;0\)</span>.</p>
-<section id="solving-the-least-squares-problem" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="solving-the-least-squares-problem"><span class="header-section-number">5.1</span> Solving the Least Squares Problem</h2>
+</section>
+<section id="solving-the-least-squares-problem" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="solving-the-least-squares-problem"><span class="header-section-number">4.4</span> Solving the Least Squares Problem</h2>
 <p>We need to solve this optimization problem. Luckily, its actually quite simple, and well-within the domain of the calculus and linear algebra you already know.</p>
 <p>Conceptually, it helps to define some new concepts. Let <span class="math inline">\(X \in \mathbb{R}^{N \times D}\)</span> be the <strong>design matrix</strong>, where row <span class="math inline">\(n\)</span> is <span class="math inline">\(x_n^\top\)</span>. Furthermore, define <span class="math inline">\(y \in \mathbb{R}^N\)</span> be the vector of outputs. This gives us really compact notation for <span class="math inline">\(\hat{R}(w)\)</span>: <span class="math display">\[
 \hat{R}(w) = \frac{1}{N} \|y - Xw\|^2.
@@ -721,11 +720,11 @@ X^\top X w = X^\top y.
 </ul>
 <p>This will <em>not</em> work if we have more covariates (features) <span class="math inline">\(D\)</span> than samples <span class="math inline">\(N\)</span>.</p>
 </section>
-<section id="forming-predictions" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="forming-predictions"><span class="header-section-number">5.2</span> Forming Predictions</h2>
+<section id="forming-predictions" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="forming-predictions"><span class="header-section-number">4.5</span> Forming Predictions</h2>
 <p>Once we have solved the least squares problem and obtained <span class="math inline">\(\hat{w}\)</span>, we can now use it to define our fitted model and generate predictions.</p>
-<section id="a-forming-the-estimated-score-function" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="a-forming-the-estimated-score-function"><span class="header-section-number">5.2.1</span> (a) Forming the Estimated Score Function</h3>
+<section id="a-forming-the-estimated-score-function" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="a-forming-the-estimated-score-function"><span class="header-section-number">4.5.1</span> (a) Forming the Estimated Score Function</h3>
 <p>Recall that our model class is: <span class="math display">\[
 s_w(x) = w^\top x.
 \]</span></p>
@@ -734,8 +733,8 @@ s_w(x) = w^\top x.
 \]</span></p>
 <p>This is now our learned model. Given any new input <span class="math inline">\(x\)</span>, we can compute a prediction by evaluating this linear function.</p>
 </section>
-<section id="b-predictions-on-the-training-data" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="b-predictions-on-the-training-data"><span class="header-section-number">5.2.2</span> (b) Predictions on the Training Data</h3>
+<section id="b-predictions-on-the-training-data" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="b-predictions-on-the-training-data"><span class="header-section-number">4.5.2</span> (b) Predictions on the Training Data</h3>
 <p>It can be instructive to compute predictions on the training data. To do this, we can apply <span class="math inline">\(\hat{s}\)</span> to each observed input <span class="math inline">\(x_n\)</span>:</p>
 <p><span class="math display">\[
 \hat{y}_n = \hat{s}(x_n) = \hat{w}^\top x_n.
@@ -762,8 +761,8 @@ x_N^\top \hat{w}
 \]</span></p>
 </section>
 </section>
-<section id="geometric-interpretation-of-least-squares" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="geometric-interpretation-of-least-squares"><span class="header-section-number">5.3</span> Geometric Interpretation of Least Squares</h2>
+<section id="geometric-interpretation-of-least-squares" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="geometric-interpretation-of-least-squares"><span class="header-section-number">4.6</span> Geometric Interpretation of Least Squares</h2>
 <p>The vector <span class="math inline">\(Xw\)</span> always lies in the <strong>column space</strong> of <span class="math inline">\(X\)</span>: <span class="math display">\[
 \text{col}(X) = \{ Xw : w \in \mathbb{R}^D \} \subseteq \mathbb{R}^N.
 \]</span></p>
@@ -4793,16 +4792,16 @@ if (outputEl) {{
 </div>
 </div>
 </section>
-<section id="what-is-allowed-in-the-design-matrix" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="what-is-allowed-in-the-design-matrix"><span class="header-section-number">5.4</span> What is Allowed in the Design Matrix?</h2>
+<section id="what-is-allowed-in-the-design-matrix" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="what-is-allowed-in-the-design-matrix"><span class="header-section-number">4.7</span> What is Allowed in the Design Matrix?</h2>
 <p>The design matrix <span class="math inline">\(X\)</span> encodes how inputs are represented. Typically, one has a set of features or variables they have measured, and so these can go directly into <span class="math inline">\(X\)</span> as the columns. However, in principle, there are very few restrictions on what can be included, and we can include not only the measured covariates directly, but also engineered things derived from them.</p>
 <p><strong>Key Idea:</strong></p>
 <blockquote class="blockquote">
 <p>Linear regression is linear in the parameters <span class="math inline">\(w\)</span>, not necessarily in the raw inputs.</p>
 </blockquote>
 <p>This means we are free to construct features in flexible ways. After all, what gave us the closed form solution for <span class="math inline">\(\hat{w}\)</span> was the linearity in <span class="math inline">\(w\)</span>, we assumed that <span class="math inline">\(X\)</span> was fixed and constant thoughout. So we don’t have similar restrictions on <span class="math inline">\(X\)</span>.</p>
-<section id="intercept-term" class="level3" data-number="5.4.1">
-<h3 data-number="5.4.1" class="anchored" data-anchor-id="intercept-term"><span class="header-section-number">5.4.1</span> Intercept Term</h3>
+<section id="intercept-term" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="intercept-term"><span class="header-section-number">4.7.1</span> Intercept Term</h3>
 <p>To include an intercept, we add a constant feature. This is typically taken to be the first feature, so that <span class="math display">\[
 x_{n1} = 1 \quad \text{for all } n = 1, \dots, N.
 \]</span></p>
@@ -4820,8 +4819,8 @@ X =
 \]</span></p>
 <p>Each row corresponds to one data point, and the first column is constant. In machine learning, the intercept is often referred to as the <strong>bias</strong> term.</p>
 </section>
-<section id="categorical-variables" class="level3" data-number="5.4.2">
-<h3 data-number="5.4.2" class="anchored" data-anchor-id="categorical-variables"><span class="header-section-number">5.4.2</span> Categorical Variables</h3>
+<section id="categorical-variables" class="level3" data-number="4.7.2">
+<h3 data-number="4.7.2" class="anchored" data-anchor-id="categorical-variables"><span class="header-section-number">4.7.2</span> Categorical Variables</h3>
 <p>Many features are not naturally numeric, but instead take values in a finite set of categories. For example:</p>
 <ul>
 <li>color: red, green, blue<br>
@@ -4832,8 +4831,8 @@ X =
 </ul>
 <p>Linear regression requires <strong>numeric inputs</strong>, so we need a way to encode these categories as vectors. The standard (and simplest) approach is <strong>one-hot encoding</strong>.</p>
 </section>
-<section id="one-hot-encoding" class="level3" data-number="5.4.3">
-<h3 data-number="5.4.3" class="anchored" data-anchor-id="one-hot-encoding"><span class="header-section-number">5.4.3</span> One-Hot Encoding</h3>
+<section id="one-hot-encoding" class="level3" data-number="4.7.3">
+<h3 data-number="4.7.3" class="anchored" data-anchor-id="one-hot-encoding"><span class="header-section-number">4.7.3</span> One-Hot Encoding</h3>
 <p>Suppose a variable takes <span class="math inline">\(K\)</span> possible categories. We represent it as a vector in <span class="math inline">\(\mathbb{R}^K\)</span> with a single 1 and the rest 0s.</p>
 <p>Each coordinate corresponds to a specific category. For example, we define:</p>
 <ul>
@@ -4853,8 +4852,8 @@ x_k =
 \end{cases}
 \]</span></p>
 </section>
-<section id="example-hogwarts-house-k-4" class="level3" data-number="5.4.4">
-<h3 data-number="5.4.4" class="anchored" data-anchor-id="example-hogwarts-house-k-4"><span class="header-section-number">5.4.4</span> Example (Hogwarts House, <span class="math inline">\(K = 4\)</span>)</h3>
+<section id="example-hogwarts-house-k-4" class="level3" data-number="4.7.4">
+<h3 data-number="4.7.4" class="anchored" data-anchor-id="example-hogwarts-house-k-4"><span class="header-section-number">4.7.4</span> Example (Hogwarts House, <span class="math inline">\(K = 4\)</span>)</h3>
 <p>Each observation is encoded as:</p>
 <ul>
 <li>Gryffindor <span class="math inline">\(\rightarrow (1, 0, 0, 0)\)</span><br>
@@ -4869,8 +4868,8 @@ x_k =
 x = (0, 0, 1, 0),
 \]</span> so <span class="math inline">\(x_3 = 1\)</span> and all other coordinates are zero.</p>
 </section>
-<section id="how-this-enters-the-model" class="level3" data-number="5.4.5">
-<h3 data-number="5.4.5" class="anchored" data-anchor-id="how-this-enters-the-model"><span class="header-section-number">5.4.5</span> How This Enters the Model</h3>
+<section id="how-this-enters-the-model" class="level3" data-number="4.7.5">
+<h3 data-number="4.7.5" class="anchored" data-anchor-id="how-this-enters-the-model"><span class="header-section-number">4.7.5</span> How This Enters the Model</h3>
 <p>Including this encoding, the model becomes: <span class="math display">\[
 s_w(x) = w_1 x_1 + w_2 x_2 + w_3 x_3 + w_4 x_4 + \text{(other feature contributions)}.
 \]</span></p>
@@ -4885,8 +4884,8 @@ s_w(x) = w_1 + \text{(other contributions)}
 \]</span></li>
 </ul>
 </section>
-<section id="interpretation" class="level3" data-number="5.4.6">
-<h3 data-number="5.4.6" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">5.4.6</span> Interpretation</h3>
+<section id="interpretation" class="level3" data-number="4.7.6">
+<h3 data-number="4.7.6" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">4.7.6</span> Interpretation</h3>
 <p>Each coefficient corresponds to a category:</p>
 <ul>
 <li><span class="math inline">\(w_1\)</span> = effect of being Gryffindor<br>
@@ -4904,8 +4903,8 @@ s_w(x) = w_1 + \text{(other contributions)}
 <li>the model learns a separate contribution for each category</li>
 </ul>
 </section>
-<section id="design-matrix-example" class="level3" data-number="5.4.7">
-<h3 data-number="5.4.7" class="anchored" data-anchor-id="design-matrix-example"><span class="header-section-number">5.4.7</span> Design Matrix Example</h3>
+<section id="design-matrix-example" class="level3" data-number="4.7.7">
+<h3 data-number="4.7.7" class="anchored" data-anchor-id="design-matrix-example"><span class="header-section-number">4.7.7</span> Design Matrix Example</h3>
 <p>Suppose we observe four students:</p>
 <table class="caption-top table">
 <thead>
@@ -4944,8 +4943,8 @@ X =
 \]</span></p>
 <p>Each row has exactly one 1.</p>
 </section>
-<section id="why-we-drop-one-column" class="level3" data-number="5.4.8">
-<h3 data-number="5.4.8" class="anchored" data-anchor-id="why-we-drop-one-column"><span class="header-section-number">5.4.8</span> Why We Drop One Column</h3>
+<section id="why-we-drop-one-column" class="level3" data-number="4.7.8">
+<h3 data-number="4.7.8" class="anchored" data-anchor-id="why-we-drop-one-column"><span class="header-section-number">4.7.8</span> Why We Drop One Column</h3>
 <p>If we include:</p>
 <ul>
 <li>an intercept column of ones, and<br>
@@ -5046,8 +5045,8 @@ Singular matrix</code></pre>
 </div>
 </div>
 </section>
-<section id="using-k-1-encoding-baseline-category" class="level3" data-number="5.4.9">
-<h3 data-number="5.4.9" class="anchored" data-anchor-id="using-k-1-encoding-baseline-category"><span class="header-section-number">5.4.9</span> Using <span class="math inline">\(K-1\)</span> Encoding (Baseline Category)</h3>
+<section id="using-k-1-encoding-baseline-category" class="level3" data-number="4.7.9">
+<h3 data-number="4.7.9" class="anchored" data-anchor-id="using-k-1-encoding-baseline-category"><span class="header-section-number">4.7.9</span> Using <span class="math inline">\(K-1\)</span> Encoding (Baseline Category)</h3>
 <p>To avoid this, we drop one category (say Hufflepuff) and use only <span class="math inline">\(K-1\)</span> columns:</p>
 <ul>
 <li>Gryffindor <span class="math inline">\(\rightarrow (1, 0, 0)\)</span><br>
@@ -5062,8 +5061,8 @@ Singular matrix</code></pre>
 s_w(x) = w_0 + w_1 x_1 + w_2 x_2 + w_3 x_3.
 \]</span></p>
 </section>
-<section id="interpretation-with-baseline" class="level3" data-number="5.4.10">
-<h3 data-number="5.4.10" class="anchored" data-anchor-id="interpretation-with-baseline"><span class="header-section-number">5.4.10</span> Interpretation with Baseline</h3>
+<section id="interpretation-with-baseline" class="level3" data-number="4.7.10">
+<h3 data-number="4.7.10" class="anchored" data-anchor-id="interpretation-with-baseline"><span class="header-section-number">4.7.10</span> Interpretation with Baseline</h3>
 <ul>
 <li><span class="math inline">\(w_0\)</span> = baseline (Hufflepuff)<br>
 </li>
@@ -5075,8 +5074,8 @@ s_w(x) = w_0 + w_1 x_1 + w_2 x_2 + w_3 x_3.
 </ul>
 <p>So coefficients are interpreted <strong>relative to a baseline category</strong></p>
 </section>
-<section id="transforming-features" class="level3" data-number="5.4.11">
-<h3 data-number="5.4.11" class="anchored" data-anchor-id="transforming-features"><span class="header-section-number">5.4.11</span> Transforming Features</h3>
+<section id="transforming-features" class="level3" data-number="4.7.11">
+<h3 data-number="4.7.11" class="anchored" data-anchor-id="transforming-features"><span class="header-section-number">4.7.11</span> Transforming Features</h3>
 <p>Additionally, we can construct new features from the original inputs in many ways, including:</p>
 <ul>
 <li><strong>Polynomial terms</strong>:
@@ -5094,8 +5093,8 @@ s_w(x) = w_0 + w_1 x_1 + w_2 x_2 + w_3 x_3.
 </ul>
 <p>These transformations allow a linear model to capture nonlinear relationships. This is totally allowed so long as the model is still linear in <span class="math inline">\(w\)</span> (and its probably best if <span class="math inline">\(X^\top X\)</span> is invertible).</p>
 </section>
-<section id="example-polynomial-regression" class="level3" data-number="5.4.12">
-<h3 data-number="5.4.12" class="anchored" data-anchor-id="example-polynomial-regression"><span class="header-section-number">5.4.12</span> Example: Polynomial Regression</h3>
+<section id="example-polynomial-regression" class="level3" data-number="4.7.12">
+<h3 data-number="4.7.12" class="anchored" data-anchor-id="example-polynomial-regression"><span class="header-section-number">4.7.12</span> Example: Polynomial Regression</h3>
 <p>Suppose we have a single input <span class="math inline">\(x_0 \in \mathbb{R}\)</span>, and we believe the relationship between <span class="math inline">\(x_0\)</span> and <span class="math inline">\(y\)</span> is nonlinear.</p>
 <p>Instead of using just <span class="math inline">\(x_0\)</span>, we define: <span class="math display">\[
 x = (x_1,x_2,x_3,x_4) = (1, x_0, x_0^2, x_0^3).
@@ -5105,8 +5104,8 @@ s_w(x) = w_0x_1 + w_1x_2 + w_2x_3 + w_3x_4 = w_0 + w_1x_0 + w_2x_0^2 + w_3x_0^3.
 \]</span></p>
 <p>Even though this is nonlinear in <span class="math inline">\(x\)</span>, it is still <strong>linear in <span class="math inline">\(w\)</span></strong>, so all of our previous machinery applies.</p>
 </section>
-<section id="basis-functions" class="level3" data-number="5.4.13">
-<h3 data-number="5.4.13" class="anchored" data-anchor-id="basis-functions"><span class="header-section-number">5.4.13</span> Basis Functions</h3>
+<section id="basis-functions" class="level3" data-number="4.7.13">
+<h3 data-number="4.7.13" class="anchored" data-anchor-id="basis-functions"><span class="header-section-number">4.7.13</span> Basis Functions</h3>
 <p>More generally, we can define a collection of functions (called <strong>basis functions</strong>): <span class="math display">\[
 \phi_1(x), \phi_2(x), \dots, \phi_D(x),
 \]</span></p>
@@ -5156,11 +5155,11 @@ X =
 \]</span></p>
 </section>
 </section>
-<section id="limitations" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="limitations"><span class="header-section-number">5.5</span> Limitations</h2>
+<section id="limitations" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="limitations"><span class="header-section-number">4.8</span> Limitations</h2>
 <p>Linear regression is simple, interpretable, and computationally convenient. However, it has several important limitations that are worth understanding.</p>
-<section id="linearity-assumption" class="level3" data-number="5.5.1">
-<h3 data-number="5.5.1" class="anchored" data-anchor-id="linearity-assumption"><span class="header-section-number">5.5.1</span> Linearity Assumption</h3>
+<section id="linearity-assumption" class="level3" data-number="4.8.1">
+<h3 data-number="4.8.1" class="anchored" data-anchor-id="linearity-assumption"><span class="header-section-number">4.8.1</span> Linearity Assumption</h3>
 <p>The model assumes that the relationship between features and the response is linear: <span class="math display">\[
 s_w(x) = w^\top x.
 \]</span></p>
@@ -5177,8 +5176,8 @@ s_w(x) = w^\top x.
 <li>linear models rely heavily on feature engineering to compensate</li>
 </ul>
 </section>
-<section id="sensitivity-to-outliers" class="level3" data-number="5.5.2">
-<h3 data-number="5.5.2" class="anchored" data-anchor-id="sensitivity-to-outliers"><span class="header-section-number">5.5.2</span> Sensitivity to Outliers</h3>
+<section id="sensitivity-to-outliers" class="level3" data-number="4.8.2">
+<h3 data-number="4.8.2" class="anchored" data-anchor-id="sensitivity-to-outliers"><span class="header-section-number">4.8.2</span> Sensitivity to Outliers</h3>
 <p>Because squared loss penalizes large errors heavily: <span class="math display">\[
 \ell(y, s(x)) = (y - s(x))^2,
 \]</span></p>
@@ -5189,8 +5188,8 @@ s_w(x) = w^\top x.
 </ul>
 <p>This can lead to poor performance if the data contains outliers or corrupted points.</p>
 </section>
-<section id="solution-stability" class="level3" data-number="5.5.3">
-<h3 data-number="5.5.3" class="anchored" data-anchor-id="solution-stability"><span class="header-section-number">5.5.3</span> Solution Stability</h3>
+<section id="solution-stability" class="level3" data-number="4.8.3">
+<h3 data-number="4.8.3" class="anchored" data-anchor-id="solution-stability"><span class="header-section-number">4.8.3</span> Solution Stability</h3>
 <p>The closed-form solution: <span class="math display">\[
 \hat{w} = (X^\top X)^{-1} X^\top y
 \]</span> requires <span class="math inline">\(X^\top X\)</span> to be invertible. For stable numerical computation, <span class="math inline">\(X^\top X\)</span> should also be reasonably well-conditioned.</p>
@@ -5325,8 +5324,8 @@ x_2 = x_1 + \delta z,
 </div>
 </section>
 </section>
-<section id="code-examples" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="code-examples"><span class="header-section-number">5.6</span> Code Examples</h2>
+<section id="code-examples" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="code-examples"><span class="header-section-number">4.9</span> Code Examples</h2>
 <div id="ea277734-d89b-4e2b-a76b-570b727f8054" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -5340,8 +5339,8 @@ x_2 = x_1 + \delta z,
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">1209334</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="well-posed-simulated-data" class="level3" data-number="5.6.1">
-<h3 data-number="5.6.1" class="anchored" data-anchor-id="well-posed-simulated-data"><span class="header-section-number">5.6.1</span> Well-posed simulated data</h3>
+<section id="well-posed-simulated-data" class="level3" data-number="4.9.1">
+<h3 data-number="4.9.1" class="anchored" data-anchor-id="well-posed-simulated-data"><span class="header-section-number">4.9.1</span> Well-posed simulated data</h3>
 <p>First, lets generate some simulated data according to the regression model:</p>
 <div id="2c495f04-8ebe-4147-9960-197f55ecd77e" class="cell">
 <details open="" class="code-fold">
@@ -5382,8 +5381,8 @@ x_2 = x_1 + \delta z,
 </div>
 </div>
 </div>
-<section id="fitting-with-a-package" class="level4" data-number="5.6.1.1">
-<h4 data-number="5.6.1.1" class="anchored" data-anchor-id="fitting-with-a-package"><span class="header-section-number">5.6.1.1</span> Fitting with a package</h4>
+<section id="fitting-with-a-package" class="level4" data-number="4.9.1.1">
+<h4 data-number="4.9.1.1" class="anchored" data-anchor-id="fitting-with-a-package"><span class="header-section-number">4.9.1.1</span> Fitting with a package</h4>
 <p>There are several packages to fit linear regression in Python, one uses the <code>LinearRegression</code> class in the <code>sklearn.linear_model</code> package:</p>
 <div id="d18a016c-bde0-4627-95e4-8510fe67a798" class="cell">
 <details open="" class="code-fold">
@@ -6182,8 +6181,8 @@ Coefficient: [0.9517542]</code></pre>
 </div>
 </div>
 </section>
-<section id="calculating-by-hand" class="level4" data-number="5.6.1.2">
-<h4 data-number="5.6.1.2" class="anchored" data-anchor-id="calculating-by-hand"><span class="header-section-number">5.6.1.2</span> Calculating by hand</h4>
+<section id="calculating-by-hand" class="level4" data-number="4.9.1.2">
+<h4 data-number="4.9.1.2" class="anchored" data-anchor-id="calculating-by-hand"><span class="header-section-number">4.9.1.2</span> Calculating by hand</h4>
 <p>We can also calculate by hand. First, we get our design matrix <code>D</code>:</p>
 <div id="edac0b52-a990-463e-8e0e-ffe347737860" class="cell">
 <details open="" class="code-fold">
@@ -6224,8 +6223,8 @@ Coefficient: [0.9517542]</code></pre>
 </div>
 </div>
 </section>
-<section id="plotting-the-loss" class="level4" data-number="5.6.1.3">
-<h4 data-number="5.6.1.3" class="anchored" data-anchor-id="plotting-the-loss"><span class="header-section-number">5.6.1.3</span> Plotting the loss</h4>
+<section id="plotting-the-loss" class="level4" data-number="4.9.1.3">
+<h4 data-number="4.9.1.3" class="anchored" data-anchor-id="plotting-the-loss"><span class="header-section-number">4.9.1.3</span> Plotting the loss</h4>
 <p>We can plot the loss in this case to see what it looks like:</p>
 <div id="0d698bf2-8b8e-44ab-82e8-ebf210e53a38" class="cell">
 <details open="" class="code-fold">
@@ -6266,8 +6265,8 @@ Coefficient: [0.9517542]</code></pre>
 </div>
 </section>
 </section>
-<section id="ill-posed-simulated-data" class="level3" data-number="5.6.2">
-<h3 data-number="5.6.2" class="anchored" data-anchor-id="ill-posed-simulated-data"><span class="header-section-number">5.6.2</span> Ill-posed simulated data</h3>
+<section id="ill-posed-simulated-data" class="level3" data-number="4.9.2">
+<h3 data-number="4.9.2" class="anchored" data-anchor-id="ill-posed-simulated-data"><span class="header-section-number">4.9.2</span> Ill-posed simulated data</h3>
 <p>This data has more variables than observations. Warning!</p>
 <div id="107c6e3d-6cd8-4a7e-83e6-94fedf05c7eb" class="cell">
 <details open="" class="code-fold">
@@ -6548,8 +6547,8 @@ First 10 coefficients:
        [ 0.20105917]])</code></pre>
 </div>
 </div>
-<section id="another-example" class="level4" data-number="5.6.2.1">
-<h4 data-number="5.6.2.1" class="anchored" data-anchor-id="another-example"><span class="header-section-number">5.6.2.1</span> Another example</h4>
+<section id="another-example" class="level4" data-number="4.9.2.1">
+<h4 data-number="4.9.2.1" class="anchored" data-anchor-id="another-example"><span class="header-section-number">4.9.2.1</span> Another example</h4>
 <div id="5eef424b-fdf5-4be4-aebc-054af809b197" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -6673,8 +6672,8 @@ Coefficients:
 </section>
 </section>
 </section>
-<section id="feature-engineering-polynoimal-regression" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="feature-engineering-polynoimal-regression"><span class="header-section-number">5.7</span> Feature Engineering: Polynoimal Regression</h2>
+<section id="feature-engineering-polynoimal-regression" class="level2" data-number="4.10">
+<h2 data-number="4.10" class="anchored" data-anchor-id="feature-engineering-polynoimal-regression"><span class="header-section-number">4.10</span> Feature Engineering: Polynoimal Regression</h2>
 <p>Let’s generate some data from a truly third-degree polynomial model:</p>
 <div id="c1de64da-4435-45f2-ab91-ef309e5569db" class="cell">
 <details open="" class="code-fold">
@@ -6747,8 +6746,8 @@ Coefficients:
 </div>
 </div>
 </section>
-<section id="real-data" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="real-data"><span class="header-section-number">5.8</span> Real Data</h2>
+<section id="real-data" class="level2" data-number="4.11">
+<h2 data-number="4.11" class="anchored" data-anchor-id="real-data"><span class="header-section-number">4.11</span> Real Data</h2>
 <p>Let’s pull some real data from kaggle. We’ll download data on spotify music.</p>
 <div id="37b5806b-abed-4ba9-848c-15ab8cf1f083" class="cell">
 <details open="" class="code-fold">
@@ -8165,12 +8164,11 @@ R^2: 0.2063611019875572</code></pre>
 </div>
 </div>
 </section>
-<section id="review-questions" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">5.9</span> Review Questions</h2>
+<section id="review-questions" class="level2" data-number="4.12">
+<h2 data-number="4.12" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">4.12</span> Review Questions</h2>
 <p>See: <a href="../questions/002_linear_regression_questions.html" class="quarto-xref"><span>Chapter 25</span></a>.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

@@ -523,7 +523,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 28, 2026</p>
+      <p class="date-modified">August 31, 2026</p>
     </div>
   </div>
     
@@ -559,12 +559,12 @@ Answer
 </section>
 <section id="question-3" class="level3" data-number="27.0.3">
 <h3 data-number="27.0.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">27.0.3</span> Question 3</h3>
-<p>A single observation has true class <span class="math inline">\(c\)</span> and one-hot vector <span class="math inline">\(t\)</span>. Starting from <span class="math display">\[\ell(t,p)=-\sum_{k=1}^K t_k\log p_k,\]</span> compute <span class="math inline">\(\ell(t,p)\)</span> explicitly in terms of only <span class="math inline">\(p_c\)</span>. Then explain why a predicted probability <span class="math inline">\(p_c=1\)</span> gives the smallest possible loss.</p>
+<p>A single observation has true class <span class="math inline">\(c\)</span> and one-hot vector <span class="math inline">\(t\)</span>. Starting from <span class="math display">\[L_{\mathrm{CE}}(t,p)=-\sum_{k=1}^K t_k\log p_k,\]</span> compute <span class="math inline">\(L_{\mathrm{CE}}(t,p)\)</span> explicitly in terms of only <span class="math inline">\(p_c\)</span>. Then explain why a predicted probability approaching <span class="math inline">\(p_c=1\)</span> gives the smallest possible loss (i.e.&nbsp;a lower bound on the loss).</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>Because <span class="math inline">\(t_c=1\)</span> and <span class="math inline">\(t_k=0\)</span> for <span class="math inline">\(k \neq c\)</span>, <span class="math display">\[\ell(t,p)=-\log p_c.\]</span> Since <span class="math inline">\(0&lt;p_c\le 1\)</span>, we have <span class="math inline">\(\log p_c\le 0\)</span>, so <span class="math inline">\(-\log p_c\ge 0\)</span>. The minimum possible value is <span class="math inline">\(0\)</span>, attained only when <span class="math inline">\(p_c=1\)</span>.</p>
+<p>Because <span class="math inline">\(t_c=1\)</span> and <span class="math inline">\(t_k=0\)</span> for <span class="math inline">\(k \neq c\)</span>, <span class="math display">\[L_{\mathrm{CE}}(t,p)=-\log p_c.\]</span> Since <span class="math inline">\(0&lt;p_c&lt; 1\)</span>, we have <span class="math inline">\(\log p_c&lt; 0\)</span>, so <span class="math inline">\(-\log p_c&gt; 0\)</span>. The lower bound of <span class="math inline">\(0\)</span> is approached only when <span class="math inline">\(p_c \to 1\)</span>.</p>
 </details>
 </section>
 <section id="question-4" class="level3" data-number="27.0.4">
