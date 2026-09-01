@@ -520,7 +520,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 28, 2026</p>
+      <p class="date-modified">September 1, 2026</p>
     </div>
   </div>
     
@@ -657,17 +657,21 @@ Answer
 <h3 data-number="24.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">24.0.7</span> Question 7</h3>
 <p>Apply the scalar-intermediate chain rule to <span class="math display">\[
 L(w)=\frac12(a^\top w-b)^2,
-\]</span> where <span class="math inline">\(a,w\in\mathbb{R}^D\)</span> and <span class="math inline">\(b\in\mathbb{R}\)</span>. Identify the intermediate scalar and derive <span class="math inline">\(\nabla_wL\)</span>.</p>
+\]</span> where <span class="math inline">\(a,w\in\mathbb{R}^D\)</span> and <span class="math inline">\(b\in\mathbb{R}\)</span>. Identify a scalar intermediate <span class="math inline">\(s(w)\)</span> and an outer function <span class="math inline">\(\ell(s)\)</span> such that <span class="math inline">\(L(w)=\ell(s(w))\)</span>, then derive <span class="math inline">\(\nabla_wL(w)\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>Let <span class="math inline">\(s=a^\top w-b\)</span>. Then <span class="math inline">\(L=s^2/2\)</span>, so <span class="math display">\[
-\frac{dL}{ds}=s,
+<p>Let <span class="math display">\[
+s(w)=a^\top w-b,
 \qquad
-\nabla_ws=a.
-\]</span> Thus <span class="math display">\[
-\nabla_wL=\frac{dL}{ds}\nabla_ws
+\ell(s)=\frac12s^2.
+\]</span> Then <span class="math inline">\(L(w)=\ell(s(w))\)</span>. Since <span class="math display">\[
+\frac{d\ell}{ds}=s,
+\qquad
+\nabla_ws(w)=a,
+\]</span> the chain rule gives <span class="math display">\[
+\nabla_wL(w)=\frac{d\ell}{ds}\nabla_ws(w)
 =(a^\top w-b)a.
 \]</span></p>
 </details>
@@ -676,45 +680,49 @@ Answer
 <h3 data-number="24.0.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">24.0.8</span> Question 8</h3>
 <p>Starting from <span class="math display">\[
 \sigma(s)=\frac{1}{1+e^{-s}},
-\]</span> compute <span class="math inline">\(\sigma'(s)\)</span> and express the result only in terms of <span class="math inline">\(p=\sigma(s)\)</span>.</p>
+\]</span> compute <span class="math inline">\(d\sigma/ds\)</span> and express the result only in terms of <span class="math inline">\(p=\sigma(s)\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
 <p>Direct differentiation gives <span class="math display">\[
-\sigma'(s)=\frac{e^{-s}}{(1+e^{-s})^2}.
+\frac{d\sigma}{ds}=\frac{e^{-s}}{(1+e^{-s})^2}.
 \]</span> Since <span class="math display">\[
 p=\frac1{1+e^{-s}},
 \qquad
 1-p=\frac{e^{-s}}{1+e^{-s}},
 \]</span> we obtain <span class="math display">\[
-\sigma'(s)=p(1-p).
+\frac{d\sigma}{ds}=p(1-p).
 \]</span></p>
 </details>
 </section>
 <section id="question-9" class="level3" data-number="24.0.9">
 <h3 data-number="24.0.9" class="anchored" data-anchor-id="question-9"><span class="header-section-number">24.0.9</span> Question 9</h3>
-<p>Let <span class="math inline">\(y\in\{0,1\}\)</span> and define <span class="math display">\[
-s=x^\top w,\qquad
-p=\sigma(s),\qquad
-\ell=-\left[y\log p+(1-y)\log(1-p)\right].
-\]</span> Use the chain rule through <span class="math inline">\(p\)</span> and <span class="math inline">\(s\)</span> to derive <span class="math inline">\(\nabla_w\ell=(p-y)x\)</span>. Display the three derivative factors before simplifying.</p>
+<p>For fixed <span class="math inline">\(x\)</span> and <span class="math inline">\(y\in\{0,1\}\)</span>, define <span class="math display">\[
+s(w)=x^\top w,
+\qquad
+p(w)=\sigma(s(w)),
+\]</span> and let <span class="math display">\[
+\ell_y(p)=-\left[y\log p+(1-y)\log(1-p)\right],
+\qquad
+L(w)=\ell_y(p(w)).
+\]</span> Use the chain rule through <span class="math inline">\(p\)</span> and <span class="math inline">\(s\)</span> to derive <span class="math inline">\(\nabla_wL(w)=(p(w)-y)x\)</span>. Display the three derivative factors before simplifying.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>The three factors are <span class="math display">\[
-\frac{\partial\ell}{\partial p}
+<p>Writing <span class="math inline">\(s=s(w)\)</span> and <span class="math inline">\(p=p(w)\)</span>, the three factors are <span class="math display">\[
+\frac{d\ell_y}{dp}
 =-\frac{y}{p}+\frac{1-y}{1-p}
 =\frac{p-y}{p(1-p)},
 \]</span> <span class="math display">\[
 \frac{dp}{ds}=p(1-p),
 \qquad
-\nabla_ws=x.
+\nabla_ws(w)=x.
 \]</span> Therefore <span class="math display">\[
-\nabla_w\ell
-=\frac{\partial\ell}{\partial p}
-\frac{dp}{ds}\nabla_ws
+\nabla_wL(w)
+=\frac{d\ell_y}{dp}
+\frac{dp}{ds}\nabla_ws(w)
 =(p-y)x.
 \]</span></p>
 </details>
@@ -722,20 +730,28 @@ Answer
 <section id="question-10" class="level3" data-number="24.0.10">
 <h3 data-number="24.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">24.0.10</span> Question 10</h3>
 <p>Let <span class="math display">\[
-z_1=w_1+w_2,\qquad
-z_2=w_1w_2,\qquad
-L=\frac12(z_1^2+z_2^2).
+z_1(w)=w_1+w_2,
+\qquad
+z_2(w)=w_1w_2,
+\]</span> and define <span class="math display">\[
+\ell(z)=\frac12(z_1^2+z_2^2),
+\qquad
+L(w)=\ell(z(w)).
 \]</span> Use <span class="math display">\[
 \frac{\partial L}{\partial w_j}
 =\sum_{k=1}^2
-\frac{\partial L}{\partial z_k}
+\frac{\partial \ell}{\partial z_k}
 \frac{\partial z_k}{\partial w_j}
 \]</span> to compute <span class="math inline">\(\nabla_wL\)</span> at <span class="math inline">\(w=(1,2)^\top\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>At <span class="math inline">\(w=(1,2)^\top\)</span>, <span class="math inline">\((z_1,z_2)=(3,2)\)</span>. Thus <span class="math display">\[
+<p>At <span class="math inline">\(w=(1,2)^\top\)</span>, <span class="math inline">\((z_1,z_2)=(3,2)\)</span> and <span class="math display">\[
+\frac{\partial\ell}{\partial z_1}=z_1,
+\qquad
+\frac{\partial\ell}{\partial z_2}=z_2.
+\]</span> Thus <span class="math display">\[
 \frac{\partial L}{\partial w_1}
 =z_1(1)+z_2(w_2)=3+4=7,
 \]</span> and <span class="math display">\[

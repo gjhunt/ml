@@ -522,7 +522,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 28, 2026</p>
+      <p class="date-modified">September 1, 2026</p>
     </div>
   </div>
     
@@ -536,7 +536,7 @@ window.Quarto = {
 <div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
-<p>In single-variable calculus, the basic question is how one quantity changes as another quantity changes. If <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span>, then the <strong>derivative</strong> <span class="math inline">\(f'(x)\)</span> measures how the scalar output changes as the scalar input changes. The familiar rules describe common patterns: constants differentiate to zero, linear terms differentiate to their coefficients, and quadratic terms produce a factor of two.</p>
+<p>In single-variable calculus, the basic question is how one quantity changes as another quantity changes. If <span class="math inline">\(f: \mathbb{R} \to \mathbb{R}\)</span>, then the <strong>derivative</strong> <span class="math inline">\(\frac{df}{dx}\)</span> measures how the scalar output changes as the scalar input changes. The familiar rules describe common patterns: constants differentiate to zero, linear terms differentiate to their coefficients, and quadratic terms produce a factor of two.</p>
 <p>In multivariable calculus, the same idea is extended to functions with several inputs. For a scalar-valued function such as <span class="math inline">\(L(w_1,\ldots,w_d)\)</span>, the <strong>gradient</strong> collects the partial derivatives into one vector. <strong>Matrix calculus</strong> systematizes this notation and extends it to expressions involving vectors and matrices. The underlying calculus is not new. The main difference is that every object now has a shape, and the notation has to keep track of those shapes.</p>
 <section id="scalar-objectives-and-gradients" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="scalar-objectives-and-gradients"><span class="header-section-number">3.1</span> Scalar Objectives and Gradients</h2>
@@ -644,66 +644,81 @@ w^\top w=\sum_{j=1}^D w_j^2,
 </section>
 <section id="the-chain-rule-for-a-scalar-intermediate" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="the-chain-rule-for-a-scalar-intermediate"><span class="header-section-number">3.5</span> The Chain Rule for a Scalar Intermediate</h2>
-<p>Suppose a scalar loss depends on <span class="math inline">\(w\)</span> through a scalar score: <span class="math display">\[
-w\longmapsto s(w)\longmapsto L(s(w)).
-\]</span> The ordinary chain rule becomes <span class="math display">\[
-\nabla_wL=\frac{dL}{ds}\,\nabla_ws.
-\]</span></p>
-<p><strong>Example.</strong> For <span class="math display">\[
-L(w)=\frac12(a^\top w-b)^2,
-\]</span> define <span class="math inline">\(s=a^\top w-b\)</span>. Then <span class="math inline">\(L=s^2/2\)</span>, so <span class="math display">\[
-\frac{dL}{ds}=s,
+<p>Suppose <span class="math inline">\(s:\mathbb{R}^D\to\mathbb{R}\)</span> is a scalar intermediate and <span class="math inline">\(\ell:\mathbb{R}\to\mathbb{R}\)</span> is a scalar function. Define the composite objective <span class="math inline">\(L:\mathbb{R}^D\to\mathbb{R}\)</span> by <span class="math display">\[
+L(w)=\ell(s(w)).
+\]</span> Thus the composition is <span class="math display">\[
+w\longmapsto s(w)\longmapsto \ell(s(w))=L(w).
+\]</span> Writing <span class="math inline">\(s=s(w)\)</span> for the scalar intermediate value, the ordinary chain rule becomes <span class="math display">\[
+\nabla_wL(w)=\frac{d\ell}{ds}\,\nabla_ws(w),
+\]</span> where <span class="math inline">\(d\ell/ds\)</span> is evaluated at <span class="math inline">\(s=s(w)\)</span>.</p>
+<p><strong>Example.</strong> Define <span class="math display">\[
+s(w)=a^\top w-b,
 \qquad
-\nabla_ws=a.
-\]</span> Consequently, <span class="math display">\[
-\nabla_wL=(a^\top w-b)a.
+\ell(s)=\frac12s^2.
+\]</span> Then <span class="math display">\[
+L(w)=\ell(s(w))=\frac12(a^\top w-b)^2.
+\]</span> Since <span class="math display">\[
+\frac{d\ell}{ds}=s,
+\qquad
+\nabla_ws(w)=a,
+\]</span> the chain rule gives <span class="math display">\[
+\nabla_wL(w)=\frac{d\ell}{ds}\nabla_ws(w)
+=(a^\top w-b)a.
 \]</span></p>
 <section id="example" class="level3" data-number="3.5.1">
 <h3 data-number="3.5.1" class="anchored" data-anchor-id="example"><span class="header-section-number">3.5.1</span> Example:</h3>
-<p>Let <span class="math display">\[
-s=x^\top w,\qquad p=\sigma(s)=\frac{1}{1+e^{-s}},
-\]</span> and define <span class="math display">\[
-\ell=-\left[y\log p+(1-y)\log(1-p)\right].
+<p>For fixed <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, let <span class="math display">\[
+s(w)=x^\top w,
+\qquad
+p(w)=\sigma(s(w)),
+\]</span> where <span class="math inline">\(\sigma(s)=1/(1+e^{-s})\)</span>. Define the outer loss <span class="math display">\[
+\ell_y(p)=-\left[y\log p+(1-y)\log(1-p)\right]
+\]</span> and the complete objective <span class="math display">\[
+L(w)=\ell_y(p(w)).
 \]</span></p>
-<p>The needed scalar derivatives are <span class="math display">\[
-\frac{\partial\ell}{\partial p}
+<p>To reduce clutter, write <span class="math inline">\(s=s(w)\)</span> and <span class="math inline">\(p=p(w)\)</span>. The needed scalar derivatives are <span class="math display">\[
+\frac{d\ell_y}{dp}
 =-\frac{y}{p}+\frac{1-y}{1-p}
 =\frac{p-y}{p(1-p)},
 \]</span> <span class="math display">\[
 \frac{dp}{ds}=p(1-p),
 \qquad
-\nabla_ws=x.
+\nabla_ws(w)=x.
 \]</span> Applying the chain rule through the two scalar intermediates gives <span class="math display">\[
-\nabla_w\ell
-=\frac{\partial\ell}{\partial p}
-\frac{dp}{ds}\nabla_ws
+\nabla_wL(w)
+=\frac{d\ell_y}{dp}
+\frac{dp}{ds}\nabla_ws(w)
 =(p-y)x.
 \]</span></p>
 </section>
 </section>
 <section id="the-chain-rule-through-several-intermediates" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="the-chain-rule-through-several-intermediates"><span class="header-section-number">3.6</span> The Chain Rule Through Several Intermediates</h2>
-<p>Now suppose <span class="math inline">\(L\)</span> depends on a vector <span class="math inline">\(z=(z_1,\ldots,z_m)^\top\)</span>, and every <span class="math inline">\(z_k\)</span> may depend on <span class="math inline">\(w\)</span>. For each parameter coordinate <span class="math inline">\(w_j\)</span>, <span class="math display">\[
+<p>Suppose <span class="math inline">\(z:\mathbb{R}^D\to\mathbb{R}^m\)</span> is a vector intermediate and <span class="math inline">\(\ell:\mathbb{R}^m\to\mathbb{R}\)</span> is a scalar function. Define the composite objective by <span class="math display">\[
+L(w)=\ell(z(w)).
+\]</span> For each parameter coordinate <span class="math inline">\(w_j\)</span>, the chain rule gives <span class="math display">\[
 \frac{\partial L}{\partial w_j}
 =\sum_{k=1}^m
-\frac{\partial L}{\partial z_k}
+\frac{\partial \ell}{\partial z_k}
 \frac{\partial z_k}{\partial w_j}.
-\]</span></p>
+\]</span> Here the derivatives of <span class="math inline">\(\ell\)</span> are evaluated at <span class="math inline">\(z(w)\)</span>.</p>
 <p><strong>Example.</strong> Let</p>
 <p><span class="math display">\[
-z_1=w_1+w_2,\qquad
-z_2=w_1w_2,
+z_1(w)=w_1+w_2,\qquad
+z_2(w)=w_1w_2,
 \]</span></p>
-<p>and define</p>
+<p>and define the outer function and composite objective by</p>
 <p><span class="math display">\[
-L=\frac12(z_1^2+z_2^2).
+\ell(z)=\frac12(z_1^2+z_2^2),
+\qquad
+L(w)=\ell(z(w)).
 \]</span></p>
 <p>Both <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> influence the loss through both <span class="math inline">\(z_1\)</span> and <span class="math inline">\(z_2\)</span>.</p>
 <p>First differentiate the loss with respect to the intermediate variables:</p>
 <p><span class="math display">\[
-\frac{\partial L}{\partial z_1}=z_1,
+\frac{\partial \ell}{\partial z_1}=z_1,
 \qquad
-\frac{\partial L}{\partial z_2}=z_2.
+\frac{\partial \ell}{\partial z_2}=z_2.
 \]</span></p>
 <p>Next differentiate the intermediate variables with respect to the parameters:</p>
 <p><span class="math display">\[
@@ -730,10 +745,10 @@ z_2=(1)(2)=2.
 <p>For <span class="math inline">\(w_1\)</span>, the chain rule gives two contributions, one through <span class="math inline">\(z_1\)</span> and one through <span class="math inline">\(z_2\)</span>:</p>
 <p><span class="math display">\[
 \frac{\partial L}{\partial w_1}=
-\frac{\partial L}{\partial z_1}
+\frac{\partial \ell}{\partial z_1}
 \frac{\partial z_1}{\partial w_1}
 +
-\frac{\partial L}{\partial z_2}
+\frac{\partial \ell}{\partial z_2}
 \frac{\partial z_2}{\partial w_1}.
 \]</span></p>
 <p>Substituting the derivatives and evaluating at the point,</p>
@@ -746,9 +761,9 @@ z_1(1)+z_2(w_2)=
 <p>Similarly, for <span class="math inline">\(w_2\)</span>,</p>
 <p><span class="math display">\[
 \frac{\partial L}{\partial w_2}=
-\frac{\partial L}{\partial z_1}
+\frac{\partial \ell}{\partial z_1}
 \frac{\partial z_1}{\partial w_2}+
-\frac{\partial L}{\partial z_2}
+\frac{\partial \ell}{\partial z_2}
 \frac{\partial z_2}{\partial w_2},
 \]</span></p>
 <p>so</p>
