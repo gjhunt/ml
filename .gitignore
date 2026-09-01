@@ -61,3 +61,5 @@ _build/*
 f24_lecture_notes
 lectures/scrap
 /.quarto/
+
+quiz/
