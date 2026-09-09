@@ -523,7 +523,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 31, 2026</p>
+      <p class="date-modified">September 9, 2026</p>
     </div>
   </div>
     
@@ -539,70 +539,70 @@ window.Quarto = {
 </div>
 <section id="question-1" class="level3" data-number="27.0.1">
 <h3 data-number="27.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">27.0.1</span> Question 1</h3>
-<p>For scores <span class="math inline">\(z=(z_1,\dots,z_K)\in\mathbb{R}^K\)</span>, the lecture defines <span class="math display">\[p_k=\frac{e^{z_k}}{\sum_{j=1}^K e^{z_j}}.\]</span> Verify directly that <span class="math inline">\(p_k&gt;0\)</span> for every <span class="math inline">\(k\)</span> and <span class="math inline">\(\sum_{k=1}^K p_k=1\)</span>. Then value that <span class="math inline">\(p\)</span> takes on when all scores are equal to the same constant <span class="math inline">\(c\)</span>.</p>
+<p>For scores <span class="math inline">\(s=(s_1,\dots,s_K)^\top\in\mathbb{R}^K\)</span>, define the softmax probabilities by <span class="math display">\[p_k=\frac{e^{s_k}}{\sum_{j=1}^K e^{s_j}}.\]</span> Verify directly that <span class="math inline">\(p_k&gt;0\)</span> for every <span class="math inline">\(k\)</span> and <span class="math inline">\(\sum_{k=1}^K p_k=1\)</span>. Then find the value that <span class="math inline">\(p\)</span> takes when all scores are equal to the same constant <span class="math inline">\(c\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>Since <span class="math inline">\(e^{z_k}&gt;0\)</span> and the denominator <span class="math inline">\(\sum_j e^{z_j}\)</span> is positive, each <span class="math inline">\(p_k&gt;0\)</span>. Also <span class="math display">\[\sum_{k=1}^K p_k=\frac{\sum_k e^{z_k}}{\sum_j e^{z_j}}=1.\]</span> If <span class="math inline">\(z_1=\cdots=z_K=c\)</span>, then <span class="math display">\[p_k=\frac{e^c}{K e^c}=\frac1K,\]</span> so <span class="math inline">\(p=(1/K,\dots,1/K)\)</span>.</p>
+<p>Since <span class="math inline">\(e^{s_k}&gt;0\)</span> and the denominator <span class="math inline">\(\sum_j e^{s_j}\)</span> is positive, each <span class="math inline">\(p_k&gt;0\)</span>. Also <span class="math display">\[\sum_{k=1}^K p_k=\frac{\sum_k e^{s_k}}{\sum_j e^{s_j}}=1.\]</span> If <span class="math inline">\(s_1=\cdots=s_K=c\)</span>, then <span class="math display">\[p_k=\frac{e^c}{K e^c}=\frac1K,\]</span> so <span class="math inline">\(p=(1/K,\dots,1/K)^\top\)</span>.</p>
 </details>
 </section>
 <section id="question-2" class="level3" data-number="27.0.2">
 <h3 data-number="27.0.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">27.0.2</span> Question 2</h3>
-<p>The prediction rule in the lecture uses either largest score or largest softmax probability. Show that <span class="math display">\[\arg\max_k z_k=\arg\max_k \frac{e^{z_k}}{\sum_{j=1}^K e^{z_j}},\]</span> where <span class="math inline">\(z_k = w_k^\top x\)</span>.</p>
+<p>The prediction rule in the lecture uses either largest score or largest softmax probability. Show that <span class="math display">\[\arg\max_k s_k=\arg\max_k \frac{e^{s_k}}{\sum_{j=1}^K e^{s_j}},\]</span> where <span class="math inline">\(s_k=s_k(x)=w_k^\top x\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>The denominator <span class="math inline">\(\sum_{j=1}^K e^{z_j}\)</span> is the same positive number for every class, and <span class="math inline">\(u\mapsto e^u\)</span> is strictly increasing. Hence <span class="math display">\[z_a&gt;z_b \iff e^{z_a}&gt;e^{z_b} \iff p_a&gt;p_b.\]</span> Therefore the maximizing class is identical for scores and softmax probabilities, since they are increasing functions of one another.</p>
+<p>The denominator <span class="math inline">\(\sum_{j=1}^K e^{s_j}\)</span> is the same positive number for every class, and <span class="math inline">\(u\mapsto e^u\)</span> is strictly increasing. Hence <span class="math display">\[s_a&gt;s_b \iff e^{s_a}&gt;e^{s_b} \iff p_{W,a}(x)&gt;p_{W,b}(x).\]</span> Therefore the maximizing class or classes are identical for scores and softmax probabilities.</p>
 </details>
 </section>
 <section id="question-3" class="level3" data-number="27.0.3">
 <h3 data-number="27.0.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">27.0.3</span> Question 3</h3>
-<p>A single observation has true class <span class="math inline">\(c\)</span> and one-hot vector <span class="math inline">\(t\)</span>. Starting from <span class="math display">\[L_{\mathrm{CE}}(t,p)=-\sum_{k=1}^K t_k\log p_k,\]</span> compute <span class="math inline">\(L_{\mathrm{CE}}(t,p)\)</span> explicitly in terms of only <span class="math inline">\(p_c\)</span>. Then explain why a predicted probability approaching <span class="math inline">\(p_c=1\)</span> gives the smallest possible loss (i.e.&nbsp;a lower bound on the loss).</p>
+<p>A single observation has true class <span class="math inline">\(y\)</span> and one-hot vector <span class="math inline">\(t\)</span>. Starting from <span class="math display">\[L_{\mathrm{CE}}(t,p)=-\sum_{k=1}^K t_k\log p_k,\]</span> compute <span class="math inline">\(L_{\mathrm{CE}}(t,p)\)</span> explicitly in terms of only <span class="math inline">\(p_y\)</span>. Then explain why the loss has lower bound <span class="math inline">\(0\)</span> and approaches it as <span class="math inline">\(p_y\to1\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>Because <span class="math inline">\(t_c=1\)</span> and <span class="math inline">\(t_k=0\)</span> for <span class="math inline">\(k \neq c\)</span>, <span class="math display">\[L_{\mathrm{CE}}(t,p)=-\log p_c.\]</span> Since <span class="math inline">\(0&lt;p_c&lt; 1\)</span>, we have <span class="math inline">\(\log p_c&lt; 0\)</span>, so <span class="math inline">\(-\log p_c&gt; 0\)</span>. The lower bound of <span class="math inline">\(0\)</span> is approached only when <span class="math inline">\(p_c \to 1\)</span>.</p>
+<p>Because <span class="math inline">\(t_y=1\)</span> and <span class="math inline">\(t_k=0\)</span> for <span class="math inline">\(k \neq y\)</span>, <span class="math display">\[L_{\mathrm{CE}}(t,p)=-\log p_y.\]</span> Since <span class="math inline">\(0&lt;p_y&lt;1\)</span>, we have <span class="math inline">\(\log p_y&lt;0\)</span>, so <span class="math inline">\(-\log p_y&gt;0\)</span>. The lower bound of <span class="math inline">\(0\)</span> is approached only when <span class="math inline">\(p_y\to1\)</span>.</p>
 </details>
 </section>
 <section id="question-4" class="level3" data-number="27.0.4">
 <h3 data-number="27.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">27.0.4</span> Question 4</h3>
-<p>Fill in the algebra that converts: <span class="math display">\[-\log\left(\frac{e^{w_c^\top x}}{\sum_{j=1}^K e^{w_j^\top x}}\right)\]</span> into <span class="math display">\[\log\left(\sum_{j=1}^K e^{w_j^\top x}\right)-w_c^\top x.\]</span></p>
+<p>Fill in the algebra that converts: <span class="math display">\[-\log\left(\frac{e^{w_y^\top x}}{\sum_{j=1}^K e^{w_j^\top x}}\right)\]</span> into <span class="math display">\[\log\left(\sum_{j=1}^K e^{w_j^\top x}\right)-w_y^\top x.\]</span></p>
 <details>
 <summary>
 Answer
 </summary>
-<p>Using <span class="math inline">\(-\log(a/b)=-\log a+\log b\)</span>, <span class="math display">\[-\log\left(\frac{e^{w_c^\top x}}{\sum_j e^{w_j^\top x}}\right)
-=-\log(e^{w_c^\top x})+\log\left(\sum_j e^{w_j^\top x}\right).\]</span> Since <span class="math inline">\(\log(e^{w_c^\top x})=w_c^\top x\)</span>, the expression is <span class="math display">\[\log\left(\sum_j e^{w_j^\top x}\right)-w_c^\top x.\]</span></p>
+<p>Using <span class="math inline">\(-\log(a/b)=-\log a+\log b\)</span>, <span class="math display">\[-\log\left(\frac{e^{w_y^\top x}}{\sum_j e^{w_j^\top x}}\right)
+=-\log(e^{w_y^\top x})+\log\left(\sum_j e^{w_j^\top x}\right).\]</span> Since <span class="math inline">\(\log(e^{w_y^\top x})=w_y^\top x\)</span>, the expression is <span class="math display">\[\log\left(\sum_j e^{w_j^\top x}\right)-w_y^\top x.\]</span></p>
 </details>
 </section>
 <section id="question-5" class="level3" data-number="27.0.5">
 <h3 data-number="27.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">27.0.5</span> Question 5</h3>
-<p>Check the matrix dimensions in the ERM formulation. With <span class="math inline">\(X\in\mathbb{R}^{N\times D}\)</span>, <span class="math inline">\(W\in\mathbb{R}^{D\times K}\)</span>, <span class="math inline">\(T\in\mathbb{R}^{N\times K}\)</span>, and <span class="math inline">\(P=\operatorname{softmax}(XW)\)</span> rowwise, list the dimensions of <span class="math inline">\(XW\)</span>, <span class="math inline">\(P-T\)</span>, and <span class="math inline">\(X^\top(P-T)\)</span>. Why is the final gradient shape correct?</p>
+<p>Check the matrix dimensions in the ERM formulation. With <span class="math inline">\(X\in\mathbb{R}^{N\times D}\)</span>, <span class="math inline">\(W\in\mathbb{R}^{D\times K}\)</span>, <span class="math inline">\(T\in\mathbb{R}^{N\times K}\)</span>, <span class="math inline">\(S=XW\)</span>, and <span class="math inline">\(P=\operatorname{softmax}(S)\)</span> rowwise, list the dimensions of <span class="math inline">\(S\)</span>, <span class="math inline">\(P-T\)</span>, and <span class="math inline">\(X^\top(P-T)\)</span>. Why is the final gradient shape correct?</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>We have <span class="math inline">\(XW\in\mathbb{R}^{N\times K}\)</span>, so <span class="math inline">\(P\in\mathbb{R}^{N\times K}\)</span> and <span class="math inline">\(P-T\in\mathbb{R}^{N\times K}\)</span>. Since <span class="math inline">\(X^\top\in\mathbb{R}^{D\times N}\)</span>, <span class="math display">\[X^\top(P-T)\in\mathbb{R}^{D\times K}.\]</span> This matches the shape of <span class="math inline">\(W\)</span>, as required for <span class="math inline">\(\nabla_W\hat R(W)\)</span>.</p>
+<p>We have <span class="math inline">\(S=XW\in\mathbb{R}^{N\times K}\)</span>, so <span class="math inline">\(P\in\mathbb{R}^{N\times K}\)</span> and <span class="math inline">\(P-T\in\mathbb{R}^{N\times K}\)</span>. Since <span class="math inline">\(X^\top\in\mathbb{R}^{D\times N}\)</span>, <span class="math display">\[X^\top(P-T)\in\mathbb{R}^{D\times K}.\]</span> This matches the shape of <span class="math inline">\(W\)</span>, as required for <span class="math inline">\(\nabla_W\widehat R(W)\)</span>.</p>
 </details>
 </section>
 <section id="question-6" class="level3" data-number="27.0.6">
 <h3 data-number="27.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">27.0.6</span> Question 6</h3>
-<p>For one data point with scores <span class="math inline">\(z=W^\top x\in\mathbb{R}^K\)</span> and one-hot label <span class="math inline">\(t\)</span>, define <span class="math display">\[L(z)=-\sum_{a=1}^K t_a\log p_a,\qquad p_a=\frac{e^{z_a}}{\sum_j e^{z_j}}.\]</span> Using the softmax derivative identity <span class="math inline">\(\partial p_a/\partial z_b=p_a(\mathbf 1\{a=b\}-p_b)\)</span>, compute <span class="math inline">\(\partial L/\partial z_b\)</span> and simplify it to a compact expression. Then use <span class="math inline">\(z_b=w_b^\top x\)</span> to find <span class="math inline">\(\nabla_{w_b}L\)</span>.</p>
+<p>For one data point with score vector <span class="math inline">\(s=s_W(x)=W^\top x\in\mathbb{R}^K\)</span> and one-hot label <span class="math inline">\(t\)</span>, define <span class="math display">\[\ell(t,s)=-\sum_{a=1}^K t_a\log p_a,\qquad p_a=\frac{e^{s_a}}{\sum_j e^{s_j}}.\]</span> Using the softmax derivative identity <span class="math inline">\(\partial p_a/\partial s_b=p_a(\mathbf 1\{a=b\}-p_b)\)</span>, compute <span class="math inline">\(\partial\ell/\partial s_b\)</span> and simplify it to a compact expression. Then use <span class="math inline">\(s_b=w_b^\top x\)</span> to find <span class="math inline">\(\nabla_{w_b}\ell\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>By the chain rule, <span class="math display">\[\frac{\partial L}{\partial z_b}=-\sum_a t_a\frac1{p_a}\frac{\partial p_a}{\partial z_b}.\]</span> Using <span class="math inline">\(\partial p_a/\partial z_b=p_a(\mathbf 1\{a=b\}-p_b)\)</span> gives <span class="math display">\[\frac{\partial L}{\partial z_b}=-\sum_a t_a(\mathbf 1\{a=b\}-p_b)=-t_b+p_b\sum_a t_a.\]</span> Since <span class="math inline">\(t\)</span> is one-hot, <span class="math inline">\(\sum_a t_a=1\)</span>, so <span class="math display">\[\frac{\partial L}{\partial z_b}=p_b-t_b.\]</span> Finally, <span class="math inline">\(\nabla_{w_b}z_b=x\)</span>, and the scalar chain rule gives <span class="math display">\[\nabla_{w_b}L=(p_b-t_b)x.\]</span></p>
+<p>By the chain rule, <span class="math display">\[\frac{\partial\ell}{\partial s_b}=-\sum_a t_a\frac1{p_a}\frac{\partial p_a}{\partial s_b}.\]</span> Using <span class="math inline">\(\partial p_a/\partial s_b=p_a(\mathbf 1\{a=b\}-p_b)\)</span> gives <span class="math display">\[\frac{\partial\ell}{\partial s_b}=-\sum_a t_a(\mathbf 1\{a=b\}-p_b)=-t_b+p_b\sum_a t_a.\]</span> Since <span class="math inline">\(t\)</span> is one-hot, <span class="math inline">\(\sum_a t_a=1\)</span>, so <span class="math display">\[\frac{\partial\ell}{\partial s_b}=p_b-t_b.\]</span> Finally, <span class="math inline">\(\nabla_{w_b}s_b=x\)</span>, and the scalar chain rule gives <span class="math display">\[\nabla_{w_b}\ell=(p_b-t_b)x.\]</span></p>
 </details>
 </section>
 <section id="question-7" class="level3" data-number="27.0.7">
 <h3 data-number="27.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">27.0.7</span> Question 7</h3>
-<p>Consider the standard softmax derivative identity</p>
+<p>For the score matrix <span class="math inline">\(S=XW\)</span> and rowwise probabilities <span class="math inline">\(P=\operatorname{softmax}(S)\)</span>, consider the standard softmax derivative identity:</p>
 <p><span class="math display">\[
-\frac{\partial P_{na}}{\partial Z_{nb}} = P_{na}(\mathbf{1}\{a=b\}-P_{nb}).
+\frac{\partial P_{na}}{\partial S_{nb}} = P_{na}(\mathbf{1}\{a=b\}-P_{nb}).
 \]</span></p>
 <p>Verify this identity separately for the cases <span class="math inline">\(a=b\)</span> and <span class="math inline">\(a\neq b\)</span> by differentiating the softmax quotient.</p>
 <details>
@@ -611,47 +611,47 @@ Answer
 </summary>
 <p>Fix a row <span class="math inline">\(n\)</span>. To simplify notation, write</p>
 <p><span class="math display">\[
-S = \sum_j e^{Z_j}, \qquad P_a = \frac{e^{Z_a}}{S}.
+C_n = \sum_j e^{S_{nj}}, \qquad P_{na} = \frac{e^{S_{na}}}{C_n}.
 \]</span></p>
-<p>First suppose <span class="math inline">\(a=b\)</span>. Then both the numerator and denominator depend on <span class="math inline">\(Z_a\)</span>. By the quotient rule,</p>
+<p>First suppose <span class="math inline">\(a=b\)</span>. Then both the numerator and denominator depend on <span class="math inline">\(S_{na}\)</span>. By the quotient rule,</p>
 <p><span class="math display">\[
-\frac{\partial P_a}{\partial Z_a} = \frac{e^{Z_a}S - e^{Z_a}e^{Z_a}}{S^2}.
+\frac{\partial P_{na}}{\partial S_{na}} = \frac{e^{S_{na}}C_n-e^{S_{na}}e^{S_{na}}}{C_n^2}.
 \]</span></p>
 <p>Rewriting in terms of probabilities gives</p>
 <p><span class="math display">\[
-\frac{\partial P_a}{\partial Z_a} = \frac{e^{Z_a}}{S}\left(1-\frac{e^{Z_a}}{S}\right) = P_a(1-P_a).
+\frac{\partial P_{na}}{\partial S_{na}} = \frac{e^{S_{na}}}{C_n}\left(1-\frac{e^{S_{na}}}{C_n}\right) = P_{na}(1-P_{na}).
 \]</span></p>
 <p>This matches the identity because when <span class="math inline">\(a=b\)</span>,</p>
 <p><span class="math display">\[
-P_a(\mathbf{1}\{a=b\}-P_b) = P_a(1-P_a).
+P_{na}(\mathbf{1}\{a=b\}-P_{nb}) = P_{na}(1-P_{na}).
 \]</span></p>
-<p>Now suppose <span class="math inline">\(a\neq b\)</span>. Then the numerator <span class="math inline">\(e^{Z_a}\)</span> does not depend on <span class="math inline">\(Z_b\)</span>, but the denominator does. Again using the quotient rule,</p>
+<p>Now suppose <span class="math inline">\(a\neq b\)</span>. Then the numerator <span class="math inline">\(e^{S_{na}}\)</span> does not depend on <span class="math inline">\(S_{nb}\)</span>, but the denominator does. Again using the quotient rule,</p>
 <p><span class="math display">\[
-\frac{\partial P_a}{\partial Z_b} = \frac{0\cdot S - e^{Z_a}e^{Z_b}}{S^2}.
+\frac{\partial P_{na}}{\partial S_{nb}} = \frac{0\cdot C_n-e^{S_{na}}e^{S_{nb}}}{C_n^2}.
 \]</span></p>
 <p>Rewriting in terms of probabilities gives</p>
 <p><span class="math display">\[
-\frac{\partial P_a}{\partial Z_b} = -\frac{e^{Z_a}}{S}\frac{e^{Z_b}}{S} = -P_aP_b.
+\frac{\partial P_{na}}{\partial S_{nb}} = -\frac{e^{S_{na}}}{C_n}\frac{e^{S_{nb}}}{C_n} = -P_{na}P_{nb}.
 \]</span></p>
 <p>This matches the identity because when <span class="math inline">\(a\neq b\)</span>,</p>
 <p><span class="math display">\[
-P_a(\mathbf{1}\{a=b\}-P_b) = P_a(0-P_b) = -P_aP_b.
+P_{na}(\mathbf{1}\{a=b\}-P_{nb}) = P_{na}(0-P_{nb}) = -P_{na}P_{nb}.
 \]</span></p>
 <p>Therefore, in both cases,</p>
 <p><span class="math display">\[
-\frac{\partial P_{na}}{\partial Z_{nb}} = P_{na}(\mathbf{1}\{a=b\}-P_{nb}).
+\frac{\partial P_{na}}{\partial S_{nb}} = P_{na}(\mathbf{1}\{a=b\}-P_{nb}).
 \]</span></p>
 </details>
 </section>
 <section id="question-8" class="level3" data-number="27.0.8">
 <h3 data-number="27.0.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">27.0.8</span> Question 8</h3>
-<p>Show precisely why the parameterization is redundant. For any <span class="math inline">\(a\in\mathbb{R}^D\)</span>, define <span class="math inline">\(w_k'=w_k+a\)</span> for every class <span class="math inline">\(k\)</span>. Prove that <span class="math inline">\(p_k(x;W')=p_k(x;W)\)</span> for every <span class="math inline">\(x\)</span> and <span class="math inline">\(k\)</span>.</p>
+<p>Show precisely why the parameterization is redundant. For any <span class="math inline">\(a\in\mathbb{R}^D\)</span>, define <span class="math inline">\(w_k'=w_k+a\)</span> for every class <span class="math inline">\(k\)</span>. Prove that <span class="math inline">\(p_{W',k}(x)=p_{W,k}(x)\)</span> for every <span class="math inline">\(x\)</span> and <span class="math inline">\(k\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>The new score is <span class="math display">\[w_k'^\top x=(w_k+a)^\top x=w_k^\top x+a^\top x.\]</span> Thus every score has the same added constant <span class="math inline">\(a^\top x\)</span>. The softmax probability becomes <span class="math display">\[p_k(x;W')=\frac{e^{w_k^\top x+a^\top x}}{\sum_j e^{w_j^\top x+a^\top x}}
-=\frac{e^{a^\top x}e^{w_k^\top x}}{e^{a^\top x}\sum_j e^{w_j^\top x}}=p_k(x;W).\]</span></p>
+<p>The new score is <span class="math display">\[w_k'^\top x=(w_k+a)^\top x=w_k^\top x+a^\top x.\]</span> Thus every score has the same added constant <span class="math inline">\(a^\top x\)</span>. The softmax probability becomes <span class="math display">\[p_{W',k}(x)=\frac{e^{w_k^\top x+a^\top x}}{\sum_j e^{w_j^\top x+a^\top x}}
+=\frac{e^{a^\top x}e^{w_k^\top x}}{e^{a^\top x}\sum_j e^{w_j^\top x}}=p_{W,k}(x).\]</span></p>
 </details>
 </section>
 <section id="question-9" class="level3" data-number="27.0.9">
@@ -659,11 +659,11 @@ Answer
 <p>For <span class="math inline">\(K=2\)</span>, multinomial logistic regression has two class weight vectors, <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span>. However, the class probability depends only on their difference. Your goal is to show that the two-class softmax model can be rewritten as a binary logistic regression model with one contrast weight vector.</p>
 <p>Starting from</p>
 <p><span class="math display">\[
-p_1(x)=\frac{e^{w_1^\top x}}{e^{w_1^\top x}+e^{w_2^\top x}},
+p_{W,1}(x)=\frac{e^{w_1^\top x}}{e^{w_1^\top x}+e^{w_2^\top x}},
 \]</span></p>
-<p>rewrite <span class="math inline">\(p_1(x)\)</span> in the form</p>
+<p>rewrite <span class="math inline">\(p_{W,1}(x)\)</span> in the form</p>
 <p><span class="math display">\[
-p_1(x)=\sigma(v^\top x),
+p_{W,1}(x)=\sigma(v^\top x),
 \]</span></p>
 <p>where <span class="math inline">\(\sigma(u)=1/(1+e^{-u})\)</span>. Identify the contrast vector <span class="math inline">\(v\)</span> in terms of <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span>.</p>
 <details>
@@ -672,41 +672,41 @@ Answer
 </summary>
 <p>Divide the numerator and denominator by <span class="math inline">\(e^{w_1^\top x}\)</span>:</p>
 <p><span class="math display">\[
-p_1(x)=\frac{1}{1+e^{w_2^\top x-w_1^\top x}}.
+p_{W,1}(x)=\frac{1}{1+e^{w_2^\top x-w_1^\top x}}.
 \]</span></p>
 <p>Since <span class="math inline">\(w_2^\top x-w_1^\top x=-(w_1-w_2)^\top x\)</span>, we can write</p>
 <p><span class="math display">\[
-p_1(x)=\frac{1}{1+e^{-(w_1-w_2)^\top x}}.
+p_{W,1}(x)=\frac{1}{1+e^{-(w_1-w_2)^\top x}}.
 \]</span></p>
 <p>Using <span class="math inline">\(\sigma(u)=1/(1+e^{-u})\)</span>, this becomes</p>
 <p><span class="math display">\[
-p_1(x)=\sigma((w_1-w_2)^\top x).
+p_{W,1}(x)=\sigma((w_1-w_2)^\top x).
 \]</span></p>
 <p>Therefore, the relevant binary logistic regression weight vector is</p>
 <p><span class="math display">\[
 v=w_1-w_2.
 \]</span></p>
-<p>Only the contrast vector <span class="math inline">\(w_1-w_2\)</span> matters for the probability <span class="math inline">\(p_1(x)\)</span>. The individual vectors <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> are not separately identifiable from the model probabilities.</p>
+<p>Only the contrast vector <span class="math inline">\(w_1-w_2\)</span> matters for the probability <span class="math inline">\(p_{W,1}(x)\)</span>. The individual vectors <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> are not separately identifiable from the model probabilities.</p>
 </details>
 </section>
 <section id="question-10" class="level3" data-number="27.0.10">
 <h3 data-number="27.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">27.0.10</span> Question 10</h3>
-<p>Compute one softmax probability vector by hand. For <span class="math inline">\(K=3\)</span> and scores <span class="math inline">\(z=(0,\log 2,\log 3)\)</span>, find <span class="math inline">\(p\)</span> and identify the predicted class under the lecture’s <span class="math inline">\(\arg\max\)</span> rule.</p>
+<p>Compute one softmax probability vector by hand. For <span class="math inline">\(K=3\)</span> and scores <span class="math inline">\(s=(0,\log 2,\log 3)^\top\)</span>, find <span class="math inline">\(p\)</span> and identify the predicted class under the lecture’s <span class="math inline">\(\arg\max\)</span> rule.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>The exponentiated scores are <span class="math inline">\((1,2,3)\)</span>, whose sum is <span class="math inline">\(6\)</span>. Therefore <span class="math display">\[p=\left(\frac16,\frac26,\frac36\right)=\left(\frac16,\frac13,\frac12\right).\]</span> The largest probability and largest score are both for class <span class="math inline">\(3\)</span>, so the predicted class is <span class="math inline">\(3\)</span> if classes are indexed as <span class="math inline">\(1,2,3\)</span>.</p>
+<p>The exponentiated scores are <span class="math inline">\((1,2,3)\)</span>, whose sum is <span class="math inline">\(6\)</span>. Therefore <span class="math display">\[p=\left(\frac16,\frac26,\frac36\right)^\top=\left(\frac16,\frac13,\frac12\right)^\top.\]</span> The largest probability and largest score are both for class <span class="math inline">\(3\)</span>, so the predicted class is <span class="math inline">\(3\)</span> if classes are indexed as <span class="math inline">\(1,2,3\)</span>.</p>
 </details>
 </section>
 <section id="question-11" class="level3" data-number="27.0.11">
 <h3 data-number="27.0.11" class="anchored" data-anchor-id="question-11"><span class="header-section-number">27.0.11</span> Question 11</h3>
-<p>For one observation with true class <span class="math inline">\(2\)</span> and scores <span class="math inline">\(z=(0,\log 2,\log 3)\)</span>, compute the cross-entropy loss exactly. Then state how the answer changes if the true class is <span class="math inline">\(3\)</span>.</p>
+<p>For one observation with true class <span class="math inline">\(2\)</span> and scores <span class="math inline">\(s=(0,\log 2,\log 3)^\top\)</span>, compute the cross-entropy loss exactly. Then state how the answer changes if the true class is <span class="math inline">\(3\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>From the previous computation, <span class="math inline">\(p=(1/6,1/3,1/2)\)</span>. If the true class is <span class="math inline">\(2\)</span>, the loss is <span class="math display">\[-\log p_2=-\log(1/3)=\log 3.\]</span> If the true class is <span class="math inline">\(3\)</span>, the loss is <span class="math display">\[-\log p_3=-\log(1/2)=\log 2,\]</span> which is smaller because the model assigns larger probability to class <span class="math inline">\(3\)</span>.</p>
+<p>From the previous computation, <span class="math inline">\(p=(1/6,1/3,1/2)^\top\)</span>. If the true class is <span class="math inline">\(2\)</span>, the loss is <span class="math display">\[-\log p_2=-\log(1/3)=\log 3.\]</span> If the true class is <span class="math inline">\(3\)</span>, the loss is <span class="math display">\[-\log p_3=-\log(1/2)=\log 2,\]</span> which is smaller because the model assigns larger probability to class <span class="math inline">\(3\)</span>.</p>
 </details>
 </section>
 <section id="question-12" class="level3" data-number="27.0.12">
@@ -716,12 +716,12 @@ Answer
 <summary>
 Answer
 </summary>
-<p>Take true class <span class="math inline">\(1\)</span>. Let <span class="math display">\[p=(0.51,0.48,0.01),\qquad q=(0.99,0.005,0.005).\]</span> Both predict class <span class="math inline">\(1\)</span>, but their losses are <span class="math display">\[-\log(0.51)\quad\text{and}\quad -\log(0.99),\]</span> which are different, with <span class="math inline">\(q\)</span> much smaller. Cross-entropy depends on the probability assigned to the true class, not only on the predicted label.</p>
+<p>Take true class <span class="math inline">\(1\)</span>. Let <span class="math display">\[p=(0.51,0.48,0.01)^\top,\qquad q=(0.99,0.005,0.005)^\top.\]</span> Both predict class <span class="math inline">\(1\)</span>, but their losses are <span class="math display">\[-\log(0.51)\quad\text{and}\quad -\log(0.99),\]</span> which are different, with <span class="math inline">\(q\)</span> much smaller. Cross-entropy depends on the probability assigned to the true class, not only on the predicted label.</p>
 </details>
 </section>
 <section id="question-13" class="level3" data-number="27.0.13">
 <h3 data-number="27.0.13" class="anchored" data-anchor-id="question-13"><span class="header-section-number">27.0.13</span> Question 13</h3>
-<p>The lecture calls models with scores <span class="math inline">\(s_k(x)=h(w_k^\top x)\)</span> linear classifiers when <span class="math inline">\(h\)</span> is strictly increasing. Prove that the predicted class is unchanged by replacing <span class="math inline">\(s_k(x)\)</span> with <span class="math inline">\(w_k^\top x\)</span>.</p>
+<p>The lecture notes that applying the same strictly increasing function <span class="math inline">\(h\)</span> to every class score does not change the prediction. Prove that <span class="math display">\[\arg\max_k h(w_k^\top x)=\arg\max_k w_k^\top x.\]</span></p>
 <details>
 <summary>
 Answer
@@ -732,7 +732,7 @@ Answer
 <section id="question-14" class="level3" data-number="27.0.14">
 <h3 data-number="27.0.14" class="anchored" data-anchor-id="question-14"><span class="header-section-number">27.0.14</span> Question 14</h3>
 <p>The lecture says that the logistic regression objective is not quadratic. One way to check this is to look at the second derivative. If a function is quadratic, its second derivative should be constant.</p>
-<p>Consider the simplest possible case: one observation, <span class="math inline">\(K=2\)</span>, true class <span class="math inline">\(1\)</span>, and scores <span class="math inline">\((\theta,0)\)</span>. Then</p>
+<p>Consider the simplest possible case: one observation, <span class="math inline">\(K=2\)</span>, true class <span class="math inline">\(1\)</span>, and score vector <span class="math inline">\(s=(\theta,0)^\top\)</span>. Then</p>
 <p><span class="math display">\[
 p_1=\frac{e^\theta}{e^\theta+1},
 \]</span></p>
@@ -742,28 +742,28 @@ L(\theta)=-\log p_1=\log(1+e^{-\theta}).
 \]</span></p>
 <p>The first derivative is</p>
 <p><span class="math display">\[
-L'(\theta)=-\frac{1}{1+e^\theta}.
+\frac{dL}{d\theta}=-\frac{1}{1+e^\theta}.
 \]</span></p>
-<p>Compute <span class="math inline">\(L''(\theta)\)</span>. Is it constant? What does this tell you about whether <span class="math inline">\(L(\theta)\)</span> is quadratic?</p>
+<p>Compute <span class="math inline">\(d^2L/d\theta^2\)</span>. Is it constant? What does this tell you about whether <span class="math inline">\(L(\theta)\)</span> is quadratic?</p>
 <details>
 <summary>
 Answer
 </summary>
 <p>Differentiating</p>
 <p><span class="math display">\[
-L'(\theta)=-\frac{1}{1+e^\theta}
+\frac{dL}{d\theta}=-\frac{1}{1+e^\theta}
 \]</span></p>
 <p>gives</p>
 <p><span class="math display">\[
-L''(\theta)=\frac{e^\theta}{(1+e^\theta)^2}.
+\frac{d^2L}{d\theta^2}=\frac{e^\theta}{(1+e^\theta)^2}.
 \]</span></p>
 <p>This depends on <span class="math inline">\(\theta\)</span>, so it is not constant. Therefore <span class="math inline">\(L(\theta)\)</span> is not quadratic.</p>
 </details>
 </section>
 <section id="question-15" class="level3" data-number="27.0.15">
 <h3 data-number="27.0.15" class="anchored" data-anchor-id="question-15"><span class="header-section-number">27.0.15</span> Question 15</h3>
-<p>The gradient <span class="math inline">\(\nabla_W \hat R(W)\)</span> has the same shape as the weight matrix <span class="math inline">\(W\)</span>. This means each entry of the gradient tells us how the loss changes with respect to one particular weight.</p>
-<p>Suppose <span class="math inline">\(D=2\)</span> and <span class="math inline">\(K=3\)</span>, so <span class="math inline">\(W\)</span> has two rows and three columns. List the six scalar partial derivatives contained in <span class="math inline">\(\nabla_W \hat R(W)\)</span>, and place each one in the correct position in the <span class="math inline">\(2\times 3\)</span> gradient matrix.</p>
+<p>The gradient <span class="math inline">\(\nabla_W \widehat R(W)\)</span> has the same shape as the weight matrix <span class="math inline">\(W\)</span>. This means each entry of the gradient tells us how the loss changes with respect to one particular weight.</p>
+<p>Suppose <span class="math inline">\(D=2\)</span> and <span class="math inline">\(K=3\)</span>, so <span class="math inline">\(W\)</span> has two rows and three columns. List the six scalar partial derivatives contained in <span class="math inline">\(\nabla_W \widehat R(W)\)</span>, and place each one in the correct position in the <span class="math inline">\(2\times 3\)</span> gradient matrix.</p>
 <details>
 <summary>
 Answer
@@ -777,9 +777,9 @@ W_{21}&amp;W_{22}&amp;W_{23}
 \]</span></p>
 <p>Since the gradient has the same shape as <span class="math inline">\(W\)</span>,</p>
 <p><span class="math display">\[
-\nabla_W\hat R(W)=\begin{pmatrix}
-\frac{\partial\hat R}{\partial W_{11}} &amp; \frac{\partial\hat R}{\partial W_{12}} &amp; \frac{\partial\hat R}{\partial W_{13}}\\
-\frac{\partial\hat R}{\partial W_{21}} &amp; \frac{\partial\hat R}{\partial W_{22}} &amp; \frac{\partial\hat R}{\partial W_{23}}
+\nabla_W\widehat R(W)=\begin{pmatrix}
+\frac{\partial\widehat R}{\partial W_{11}} &amp; \frac{\partial\widehat R}{\partial W_{12}} &amp; \frac{\partial\widehat R}{\partial W_{13}}\\
+\frac{\partial\widehat R}{\partial W_{21}} &amp; \frac{\partial\widehat R}{\partial W_{22}} &amp; \frac{\partial\widehat R}{\partial W_{23}}
 \end{pmatrix}.
 \]</span></p>
 <p>Column <span class="math inline">\(k\)</span> contains the derivatives with respect to the weight vector for class <span class="math inline">\(k\)</span>. Row <span class="math inline">\(d\)</span> contains the derivatives with respect to the coefficient for feature <span class="math inline">\(d\)</span> across all classes.</p>

@@ -524,7 +524,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 31, 2026</p>
+      <p class="date-modified">September 9, 2026</p>
     </div>
   </div>
     
@@ -542,16 +542,16 @@ window.Quarto = {
 <h3 data-number="26.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">26.0.1</span> Question 1</h3>
 <p>Starting from <span class="math display">\[
 \sigma(t)=\frac{1}{1+e^{-t}},
-\]</span> compute <span class="math inline">\(\sigma'(t)\)</span> and express the answer only in terms of <span class="math inline">\(\sigma(t)\)</span>.</p>
-<!-- Source: Sigmoid definition and the lecture claim $\sigma'(t)=\sigma(t)(1-\sigma(t))$. -->
+\]</span> compute <span class="math inline">\(d\sigma(t)/dt\)</span> and express the answer only in terms of <span class="math inline">\(\sigma(t)\)</span>.</p>
+<!-- Source: Sigmoid definition and the lecture identity $d\sigma(t)/dt=\sigma(t)(1-\sigma(t))$. -->
 <details>
 <summary>
 Answer
 </summary>
 <p>Differentiate directly: <span class="math display">\[
-\sigma'(t)=\frac{e^{-t}}{(1+e^{-t})^2}.
+\frac{d\sigma(t)}{dt}=\frac{e^{-t}}{(1+e^{-t})^2}.
 \]</span> Since <span class="math inline">\(\sigma(t)=1/(1+e^{-t})\)</span> and <span class="math inline">\(1-\sigma(t)=e^{-t}/(1+e^{-t})\)</span>, <span class="math display">\[
-\sigma'(t)=\sigma(t)(1-\sigma(t)).
+\frac{d\sigma(t)}{dt}=\sigma(t)(1-\sigma(t)).
 \]</span></p>
 </details>
 </section>
@@ -718,16 +718,16 @@ p=\sigma(-2)=\frac{1}{1+e^2}.
 <h3 data-number="26.0.9" class="anchored" data-anchor-id="question-9"><span class="header-section-number">26.0.9</span> Question 9</h3>
 <p>Carry out one gradient-descent update. Let <span class="math display">\[
 X=\begin{pmatrix}1&amp;0\\1&amp;1\end{pmatrix},\quad y=\begin{pmatrix}0\\1\end{pmatrix},\quad w^{(0)}=\begin{pmatrix}0\\0\end{pmatrix}.
-\]</span> With learning rate <span class="math inline">\(\eta=1\)</span>, compute <span class="math inline">\(w^{(1)}\)</span> using <span class="math inline">\(w^{(1)}=w^{(0)}-\eta X^\top(p-y)/N\)</span>.</p>
+\]</span> With learning rate <span class="math inline">\(\eta=1\)</span>, compute <span class="math inline">\(p^{(0)}=\sigma(Xw^{(0)})\)</span> and then compute <span class="math inline">\(w^{(1)}\)</span> using <span class="math inline">\(w^{(1)}=w^{(0)}-\eta X^\top(p^{(0)}-y)/N\)</span>.</p>
 <!-- Source: Gradient descent iteration formula for logistic regression. -->
 <details>
 <summary>
 Answer
 </summary>
-<p>At <span class="math inline">\(w^{(0)}=0\)</span>, the logits are <span class="math inline">\((0,0)^\top\)</span>, so <span class="math inline">\(p=(1/2,1/2)^\top\)</span>. Then <span class="math display">\[
-p-y=(1/2,-1/2)^\top,
+<p>At <span class="math inline">\(w^{(0)}=0\)</span>, the scores are <span class="math inline">\((0,0)^\top\)</span>, so <span class="math inline">\(p^{(0)}=(1/2,1/2)^\top\)</span>. Then <span class="math display">\[
+p^{(0)}-y=(1/2,-1/2)^\top,
 \]</span> and <span class="math display">\[
-X^\top(p-y)=
+X^\top(p^{(0)}-y)=
 \begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix}
 \begin{pmatrix}1/2\\-1/2\end{pmatrix}
 =\begin{pmatrix}0\\-1/2\end{pmatrix}.
@@ -740,48 +740,48 @@ w^{(1)}=(0,1/4)^\top.
 <h3 data-number="26.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">26.0.10</span> Question 10</h3>
 <p>Connect the one-score and two-score forms of a binary linear classifier. Suppose</p>
 <p><span class="math display">\[
-s_1(x)=w_1^\top x,
+s_0(x)=w_0^\top x,
 \qquad
-s_2(x)=w_2^\top x,
+s_1(x)=w_1^\top x,
 \]</span></p>
 <p>and the classifier predicts the class with the larger score:</p>
 <p><span class="math display">\[
-\hat{y}(x)=\arg\max_{k\in\{1,2\}} s_k(x).
+\hat y(x)=\arg\max_{k\in\{0,1\}} s_k(x).
 \]</span></p>
 <p>Show that this decision rule can be written using a single vector <span class="math inline">\(w\)</span>.</p>
-<!-- Source: Over-complete two-score parameterization and reduction to $w=w_1-w_2$. -->
+<!-- Source: Over-complete two-score parameterization and reduction to $w=w_1-w_0$. -->
 <details>
 <summary>
 Answer
 </summary>
-<p>The classifier predicts class <span class="math inline">\(1\)</span> exactly when the score for class <span class="math inline">\(1\)</span> is at least as large as the score for class <span class="math inline">\(2\)</span>:</p>
+<p>The classifier predicts class <span class="math inline">\(1\)</span> exactly when the score for class <span class="math inline">\(1\)</span> is at least as large as the score for class <span class="math inline">\(0\)</span>:</p>
 <p><span class="math display">\[
-s_1(x)\ge s_2(x).
+s_1(x)\ge s_0(x).
 \]</span></p>
 <p>Substituting the definitions of the two scores gives</p>
 <p><span class="math display">\[
-w_1^\top x\ge w_2^\top x.
+w_1^\top x\ge w_0^\top x.
 \]</span></p>
 <p>Moving all terms to one side,</p>
 <p><span class="math display">\[
-w_1^\top x-w_2^\top x\ge 0.
+w_1^\top x-w_0^\top x\ge 0.
 \]</span></p>
 <p>Factoring out <span class="math inline">\(x\)</span> gives</p>
 <p><span class="math display">\[
-(w_1-w_2)^\top x\ge 0.
+(w_1-w_0)^\top x\ge 0.
 \]</span></p>
 <p>Therefore, if we define</p>
 <p><span class="math display">\[
-w=w_1-w_2,
+w=w_1-w_0,
 \]</span></p>
 <p>then the same decision rule is</p>
 <p><span class="math display">\[
 \text{predict class }1 \text{ if } w^\top x\ge 0,
 \]</span></p>
-<p>and predict class <span class="math inline">\(2\)</span> otherwise.</p>
-<p>Thus the two-score classifier depends only on the difference between the two weight vectors, <span class="math inline">\(w_1-w_2\)</span>. The separate vectors <span class="math inline">\(w_1\)</span> and <span class="math inline">\(w_2\)</span> are an over-parameterization for binary classification, since the decision boundary is determined by the single vector</p>
+<p>and predict class <span class="math inline">\(0\)</span> otherwise.</p>
+<p>Thus the two-score classifier depends only on the difference between the two weight vectors, <span class="math inline">\(w_1-w_0\)</span>. The separate vectors <span class="math inline">\(w_0\)</span> and <span class="math inline">\(w_1\)</span> are an over-parameterization for binary classification, since the decision boundary is determined by the single vector</p>
 <p><span class="math display">\[
-w=w_1-w_2.
+w=w_1-w_0.
 \]</span></p>
 </details>
 </section>

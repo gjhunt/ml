@@ -126,32 +126,6 @@ format:
       margin-width: 300px
     css: assets/code_style.css
 
-  pdf:
-    toc: true
-    toc-depth: 1
-    number-sections: true
-    colorlinks: true
-    listings: false
-    keep-tex: true
-    highlight-style: pygments
-    code-block-bg: "#fbfbfb"
-    code-block-border-left: "#e6e6e6"
-    code-block-border-left-width: 10pt
-    code-block-padding-left: 6
-    code-block-padding-right: 6
-    code-block-padding-top: 4
-    code-block-padding-bottom: 4
-    engine: xelatex
-    monofont: "DejaVu Sans Mono"
-    include-in-header:
-      - assets/code_style.tex
-    include-before-body:
-      - assets/code_style_body.tex
-
-  epub:
-    toc: true
-    number-sections: true
-
 execute:
   echo: true
   output: true
