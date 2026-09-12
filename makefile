@@ -1,4 +1,4 @@
-.PHONY: render html pdf epub preview clean md hash compare-hash
+.PHONY: render html pdf epub preview clean md hash compare-hash codex_container
 
 # Main build target
 render: html
@@ -40,3 +40,20 @@ compare-hash: md
 # Remove generated outputs
 clean:
 	rm -rf docs _build hash.ref
+
+#--- codex
+BUILD_TAG := 
+PORT := 8080
+CONTAINER_NAME := codex
+IMAGE := gjhunt/codex:24.04$(BUILD_TAG)
+CONTAINERFILE := Containerfile
+
+codex_container:
+	podman run --rm -it \
+		-p 127.0.0.1:$(PORT):8080 \
+		--name $(CONTAINER_NAME) \
+		-e USE_HTTPS=false \
+		-e USE_PASS=true \
+		-v $$(pwd):/home/repro/codex \
+        --userns=keep-id \
+		$(IMAGE)
