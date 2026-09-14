@@ -8,7 +8,7 @@
 
 <meta name="author" content="Gregory Hunt">
 
-<title>33&nbsp; LASSO - Review Questions – Statistical Learning</title>
+<title>30&nbsp; LASSO - Review Questions – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../questions/011_elastic_net_logistic_erm_questions.html" rel="next">
+<link href="../questions/012_nn_questions.html" rel="next">
 <link href="../questions/009_ridge_questions.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -114,7 +114,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/010_lasso_questions.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/010_lasso_questions.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -201,26 +201,20 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/005_evaluation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/006_model_selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Model Selection</span></span></a>
+  <a href="../lectures/005_evaluation_and_model_selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation and Selection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/007_knn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Nearest-Neighbor Methods</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/008_bias_variance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
   </div>
 </li>
       </ul>
@@ -237,19 +231,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/009_ridge.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/010_lasso.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../lectures/011_elastic_net_logistic_erm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
   </div>
 </li>
       </ul>
@@ -266,19 +254,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/012_nn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/013_backprop.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/014_nn_arch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
   </div>
 </li>
       </ul>
@@ -295,19 +283,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/015_unsupervised.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/016_pca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/017_kmeans.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
   </div>
 </li>
       </ul>
@@ -324,19 +312,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/018_trees.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/019_random_forests.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/020_boosting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
   </div>
 </li>
       </ul>
@@ -353,121 +341,109 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/001_derivatives_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/002_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/003_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/004_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../questions/005_evaluation_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Model Evaluation - Review Questions</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../questions/006_model_selection_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Model Selection - Review Questions</span></span></a>
+  <a href="../questions/005_evaluation_and_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Model Evaluation and Selection Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/007_knn_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">K-Nearest Neighbors - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Nearest-Neighbor Methods - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/008_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/009_ridge_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/010_lasso_questions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../questions/011_elastic_net_logistic_erm_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/012_nn_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/013_backprop_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/014_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/016_pca_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA) - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA) - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/017_kmeans_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">K-means - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">K-means - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/018_trees_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Trees - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Trees - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/019_random_forests_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Random Forests and Bagging - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Random Forests and Bagging - Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/020_boosting_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Boosting Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Boosting Review Questions</span></span></a>
   </div>
 </li>
       </ul>
@@ -482,34 +458,34 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1"><span class="header-section-number">33.0.1</span> Question 1</a></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">33.0.2</span> Question 2</a></li>
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">33.0.3</span> Question 3</a></li>
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">33.0.4</span> Question 4</a></li>
-  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5"><span class="header-section-number">33.0.5</span> Question 5</a></li>
-  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6"><span class="header-section-number">33.0.6</span> Question 6</a></li>
-  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7"><span class="header-section-number">33.0.7</span> Question 7</a></li>
-  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8"><span class="header-section-number">33.0.8</span> Question 8</a></li>
-  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9"><span class="header-section-number">33.0.9</span> Question 9</a></li>
-  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10"><span class="header-section-number">33.0.10</span> Question 10</a></li>
-  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11"><span class="header-section-number">33.0.11</span> Question 11</a></li>
-  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12"><span class="header-section-number">33.0.12</span> Question 12</a></li>
-  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13"><span class="header-section-number">33.0.13</span> Question 13</a></li>
-  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14"><span class="header-section-number">33.0.14</span> Question 14</a></li>
-  <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15"><span class="header-section-number">33.0.15</span> Question 15</a></li>
-  <li><a href="#question-16" id="toc-question-16" class="nav-link" data-scroll-target="#question-16"><span class="header-section-number">33.0.16</span> Question 16</a></li>
-  <li><a href="#question-17" id="toc-question-17" class="nav-link" data-scroll-target="#question-17"><span class="header-section-number">33.0.17</span> Question 17</a></li>
-  <li><a href="#question-18" id="toc-question-18" class="nav-link" data-scroll-target="#question-18"><span class="header-section-number">33.0.18</span> Question 18</a></li>
-  <li><a href="#question-19" id="toc-question-19" class="nav-link" data-scroll-target="#question-19"><span class="header-section-number">33.0.19</span> Question 19</a></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1"><span class="header-section-number">30.0.1</span> Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2"><span class="header-section-number">30.0.2</span> Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3"><span class="header-section-number">30.0.3</span> Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4"><span class="header-section-number">30.0.4</span> Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5"><span class="header-section-number">30.0.5</span> Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6"><span class="header-section-number">30.0.6</span> Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7"><span class="header-section-number">30.0.7</span> Question 7</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8"><span class="header-section-number">30.0.8</span> Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9"><span class="header-section-number">30.0.9</span> Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10"><span class="header-section-number">30.0.10</span> Question 10</a></li>
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11"><span class="header-section-number">30.0.11</span> Question 11</a></li>
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12"><span class="header-section-number">30.0.12</span> Question 12</a></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13"><span class="header-section-number">30.0.13</span> Question 13</a></li>
+  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14"><span class="header-section-number">30.0.14</span> Question 14</a></li>
+  <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15"><span class="header-section-number">30.0.15</span> Question 15</a></li>
+  <li><a href="#question-16" id="toc-question-16" class="nav-link" data-scroll-target="#question-16"><span class="header-section-number">30.0.16</span> Question 16</a></li>
+  <li><a href="#question-17" id="toc-question-17" class="nav-link" data-scroll-target="#question-17"><span class="header-section-number">30.0.17</span> Question 17</a></li>
+  <li><a href="#question-18" id="toc-question-18" class="nav-link" data-scroll-target="#question-18"><span class="header-section-number">30.0.18</span> Question 18</a></li>
+  <li><a href="#question-19" id="toc-question-19" class="nav-link" data-scroll-target="#question-19"><span class="header-section-number">30.0.19</span> Question 19</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/010_lasso_questions.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../questions/000_intro_and_erm_questions.html">Practice Questions</a></li><li class="breadcrumb-item"><a href="../questions/010_lasso_questions.html"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-lasso-questions" class="quarto-section-identifier"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></h1>
+<h1 class="title"><span id="sec-lasso-questions" class="quarto-section-identifier"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></h1>
 </div>
 
 
@@ -527,7 +503,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 18, 2026</p>
+      <p class="date-modified">September 14, 2026</p>
     </div>
   </div>
     
@@ -541,8 +517,8 @@ window.Quarto = {
 <div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
-<section id="question-1" class="level3" data-number="33.0.1">
-<h3 data-number="33.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">33.0.1</span> Question 1</h3>
+<section id="question-1" class="level3" data-number="30.0.1">
+<h3 data-number="30.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">30.0.1</span> Question 1</h3>
 LASSO stands for least absolute shrinkage and selection operator. Why?
 <details>
 <summary>
@@ -551,11 +527,11 @@ Answer
 <p>The penalty <span class="math display">\[
 \lambda\|w\|_1=\lambda\sum_j |w_j|
 \]</span> causes shrinkage because it makes large coefficient magnitudes costly, pulling estimates toward zero.</p>
-<p>Selection occurs because the <span class="math inline">\(\ell_1\)</span> penalty can set some coefficients exactly equal to zero. A coefficient with <span class="math inline">\(\hat w_j=0\)</span> effectively removes predictor <span class="math inline">\(j\)</span> from the fitted linear model. This <em>selects</em> out the corresponding variable.</p>
+<p>Selection occurs because the <span class="math inline">\(\ell_1\)</span> penalty can set some coefficients exactly equal to zero. A coefficient with <span class="math inline">\(\widehat w_j=0\)</span> effectively removes predictor <span class="math inline">\(j\)</span> from the fitted linear model. This <em>selects</em> out the corresponding variable.</p>
 </details>
 </section>
-<section id="question-2" class="level3" data-number="33.0.2">
-<h3 data-number="33.0.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">33.0.2</span> Question 2</h3>
+<section id="question-2" class="level3" data-number="30.0.2">
+<h3 data-number="30.0.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">30.0.2</span> Question 2</h3>
 <p>For <span class="math inline">\(w=(3,-1,0,2)\)</span>, compute <span class="math inline">\(\|w\|_1\)</span>, <span class="math inline">\(\|w\|_2^2\)</span>, and the number of “selected” variables.</p>
 <details>
 <summary>
@@ -568,8 +544,8 @@ Answer
 \]</span> There are three nonzero coefficients, so the number of selected variables is <span class="math inline">\(3\)</span>.</p>
 </details>
 </section>
-<section id="question-3" class="level3" data-number="33.0.3">
-<h3 data-number="33.0.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">33.0.3</span> Question 3</h3>
+<section id="question-3" class="level3" data-number="30.0.3">
+<h3 data-number="30.0.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">30.0.3</span> Question 3</h3>
 <p>What is the main optimization hurdle for LASSO as compared to ridge?</p>
 <details>
 <summary>
@@ -579,8 +555,8 @@ Answer
 <p>LASSO uses the <span class="math inline">\(\ell_1\)</span> penalty <span class="math inline">\(\|w\|_1=\sum_j |w_j|\)</span>. The absolute value is not differentiable at zero, so the objective is convex but nonsmooth. Because of this nonsmoothness, LASSO generally does not have a simple closed-form matrix formula like ridge.</p>
 </details>
 </section>
-<section id="question-4" class="level3" data-number="33.0.4">
-<h3 data-number="33.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">33.0.4</span> Question 4</h3>
+<section id="question-4" class="level3" data-number="30.0.4">
+<h3 data-number="30.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">30.0.4</span> Question 4</h3>
 <p>State the subdifferential of <span class="math inline">\(|u|\)</span> at <span class="math inline">\(u&gt;0\)</span>, <span class="math inline">\(u=0\)</span>, and <span class="math inline">\(u&lt;0\)</span>.</p>
 <details>
 <summary>
@@ -595,69 +571,69 @@ Answer
 \]</span> At zero, the subdifferential is an entire interval rather than a single slope.</p>
 </details>
 </section>
-<section id="question-5" class="level3" data-number="33.0.5">
-<h3 data-number="33.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">33.0.5</span> Question 5</h3>
+<section id="question-5" class="level3" data-number="30.0.5">
+<h3 data-number="30.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">30.0.5</span> Question 5</h3>
 <p>In coordinate descent, the partial residual for coordinate <span class="math inline">\(j\)</span> is <span class="math display">\[
-r_j=y-\sum_{k\ne j}x_kw_k.
-\]</span> Show that if <span class="math inline">\(\hat y=Xw=\sum_k x_kw_k\)</span>, then <span class="math display">\[
-r_j=y-\hat y+x_jw_j.
+r_j=y-\sum_{\ell\ne j}X_{:\ell}w_\ell.
+\]</span> Show that if <span class="math inline">\(\widehat y=Xw=\sum_{\ell=1}^D X_{:\ell}w_\ell\)</span>, then <span class="math display">\[
+r_j=y-\widehat y+X_{:j}w_j.
 \]</span></p>
 <details>
 <summary>
 Answer
 </summary>
 <p>Since <span class="math display">\[
-\hat y=\sum_k x_kw_k=x_jw_j+\sum_{k\ne j}x_kw_k,
+\widehat y=\sum_{\ell=1}^D X_{:\ell}w_\ell=X_{:j}w_j+\sum_{\ell\ne j}X_{:\ell}w_\ell,
 \]</span> we have <span class="math display">\[
-\sum_{k\ne j}x_kw_k=\hat y-x_jw_j.
+\sum_{\ell\ne j}X_{:\ell}w_\ell=\widehat y-X_{:j}w_j.
 \]</span> Substitute into the definition of <span class="math inline">\(r_j\)</span>: <span class="math display">\[
-r_j=y-(\hat y-x_jw_j)=y-\hat y+x_jw_j.
+r_j=y-(\widehat y-X_{:j}w_j)=y-\widehat y+X_{:j}w_j.
 \]</span></p>
 </details>
 </section>
-<section id="question-6" class="level3" data-number="33.0.6">
-<h3 data-number="33.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">33.0.6</span> Question 6</h3>
-<p>In the coordinate-descent derivation, <span class="math inline">\(c_j=(1/N)x_j^\top r_j\)</span>. Give an interpretation of <span class="math inline">\(c_j\)</span>.</p>
+<section id="question-6" class="level3" data-number="30.0.6">
+<h3 data-number="30.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">30.0.6</span> Question 6</h3>
+<p>In the coordinate-descent derivation, <span class="math inline">\(z_j=(1/N)X_{:j}^\top r_j\)</span>. Give an interpretation of <span class="math inline">\(z_j\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
 <p>The value <span class="math display">\[
-c_j=\frac1N x_j^\top r_j
-\]</span> measures the empirical alignment, or correlation up to scaling, between feature <span class="math inline">\(j\)</span> and the remaining residual. If <span class="math inline">\(|c_j|\)</span> is large, feature <span class="math inline">\(j\)</span> explains residual variation not already explained by the other variables.</p>
+z_j=\frac1N X_{:j}^\top r_j
+\]</span> measures the empirical alignment, or covariance-like relationship, between feature <span class="math inline">\(j\)</span> and the remaining residual. If <span class="math inline">\(|z_j|\)</span> is large, feature <span class="math inline">\(j\)</span> explains residual variation not already explained by the other variables.</p>
 </details>
 </section>
-<section id="question-7" class="level3" data-number="33.0.7">
-<h3 data-number="33.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">33.0.7</span> Question 7</h3>
+<section id="question-7" class="level3" data-number="30.0.7">
+<h3 data-number="30.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">30.0.7</span> Question 7</h3>
 <p>Starting from <span class="math display">\[
-\frac{1}{2N}\|r_j-x_jw_j\|_2^2+
+\frac{1}{2N}\|r_j-X_{:j}w_j\|_2^2+
 \lambda|w_j|,
 \]</span> expand the terms that depend on <span class="math inline">\(w_j\)</span> and derive <span class="math display">\[
-g(w_j)=\frac12a_jw_j^2-c_jw_j+
+g_j(w_j)=\frac12a_jw_j^2-z_jw_j+
 \lambda|w_j|,
-\]</span> where <span class="math inline">\(a_j=(1/N)x_j^\top x_j\)</span> and <span class="math inline">\(c_j=(1/N)x_j^\top r_j\)</span>. You can drop any term that doesn’t depend on <span class="math inline">\(w_j\)</span>.</p>
+\]</span> where <span class="math inline">\(a_j=(1/N)X_{:j}^\top X_{:j}\)</span> and <span class="math inline">\(z_j=(1/N)X_{:j}^\top r_j\)</span>. You can drop any term that doesn’t depend on <span class="math inline">\(w_j\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
 <p>Expand the squared term: <span class="math display">\[
-\frac{1}{2N}(r_j-x_jw_j)^\top(r_j-x_jw_j)
+\frac{1}{2N}(r_j-X_{:j}w_j)^\top(r_j-X_{:j}w_j)
 =
-\frac{1}{2N}\left(r_j^\top r_j-2w_jx_j^\top r_j+w_j^2x_j^\top x_j\right).
+\frac{1}{2N}\left(r_j^\top r_j-2w_jX_{:j}^\top r_j+w_j^2X_{:j}^\top X_{:j}\right).
 \]</span> The term <span class="math inline">\((1/(2N))r_j^\top r_j\)</span> does not depend on <span class="math inline">\(w_j\)</span>, so it can be dropped for minimization. The remaining terms are <span class="math display">\[
--\frac1N w_jx_j^\top r_j+
-\frac12\frac1N x_j^\top x_j w_j^2+
+-\frac1N w_jX_{:j}^\top r_j+
+\frac12\frac1N X_{:j}^\top X_{:j} w_j^2+
 \lambda|w_j|.
-\]</span> Using <span class="math inline">\(a_j=(1/N)x_j^\top x_j\)</span> and <span class="math inline">\(c_j=(1/N)x_j^\top r_j\)</span> gives <span class="math display">\[
-g(w_j)=\frac12a_jw_j^2-c_jw_j+
+\]</span> Using <span class="math inline">\(a_j=(1/N)X_{:j}^\top X_{:j}\)</span> and <span class="math inline">\(z_j=(1/N)X_{:j}^\top r_j\)</span> gives <span class="math display">\[
+g_j(w_j)=\frac12a_jw_j^2-z_jw_j+
 \lambda|w_j|.
 \]</span></p>
 </details>
 </section>
-<section id="question-8" class="level3" data-number="33.0.8">
-<h3 data-number="33.0.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">33.0.8</span> Question 8</h3>
+<section id="question-8" class="level3" data-number="30.0.8">
+<h3 data-number="30.0.8" class="anchored" data-anchor-id="question-8"><span class="header-section-number">30.0.8</span> Question 8</h3>
 <p>For the coordinate objective <span class="math display">\[
-g(w_j)=\frac12a_jw_j^2-c_jw_j+
+g_j(w_j)=\frac12a_jw_j^2-z_jw_j+
 \lambda|w_j|,
 \]</span> derive the subdifferential.</p>
 <details>
@@ -665,51 +641,51 @@ g(w_j)=\frac12a_jw_j^2-c_jw_j+
 Answer
 </summary>
 <p>The differentiable part is <span class="math display">\[
-\frac12a_jw_j^2-c_jw_j,
+\frac12a_jw_j^2-z_jw_j,
 \]</span> whose derivative is <span class="math display">\[
-a_jw_j-c_j.
+a_jw_j-z_j.
 \]</span> The nonsmooth part is <span class="math inline">\(\lambda|w_j|\)</span>, whose subdifferential is <span class="math display">\[
 \lambda\partial|w_j|.
 \]</span> Adding the derivative of the smooth part and the subdifferential of the nonsmooth part gives <span class="math display">\[
-\partial g(w_j)=a_jw_j-c_j+
+\partial g_j(w_j)=a_jw_j-z_j+
 \lambda\partial|w_j|.
 \]</span></p>
 </details>
 </section>
-<section id="question-9" class="level3" data-number="33.0.9">
-<h3 data-number="33.0.9" class="anchored" data-anchor-id="question-9"><span class="header-section-number">33.0.9</span> Question 9</h3>
+<section id="question-9" class="level3" data-number="30.0.9">
+<h3 data-number="30.0.9" class="anchored" data-anchor-id="question-9"><span class="header-section-number">30.0.9</span> Question 9</h3>
 <p>At <span class="math inline">\(w_j=0\)</span>, show that <span class="math display">\[
-\partial g(0)=[-c_j-\lambda,
--c_j+
+\partial g_j(0)=[-z_j-\lambda,
+-z_j+
 \lambda].
-\]</span> Then state the condition on <span class="math inline">\(c_j\)</span> under which <span class="math inline">\(w_j=0\)</span> satisfies the optimality condition.</p>
+\]</span> Then state the condition on <span class="math inline">\(z_j\)</span> under which <span class="math inline">\(w_j=0\)</span> satisfies the optimality condition.</p>
 <details>
 <summary>
 Answer
 </summary>
 <p>At <span class="math inline">\(w_j=0\)</span>, <span class="math display">\[
-a_jw_j-c_j=-c_j.
+a_jw_j-z_j=-z_j.
 \]</span> Also, <span class="math display">\[
 \partial|0|=[-1,1].
 \]</span> Therefore <span class="math display">\[
-\partial g(0)=-c_j+
-\lambda[-1,1]=[-c_j-
-\lambda,-c_j+
+\partial g_j(0)=-z_j+
+\lambda[-1,1]=[-z_j-
+\lambda,-z_j+
 \lambda].
-\]</span> The optimality condition is <span class="math inline">\(0\in\partial g(0)\)</span>. This holds exactly when <span class="math display">\[
--c_j-
-\lambda\le0\le -c_j+
+\]</span> The optimality condition is <span class="math inline">\(0\in\partial g_j(0)\)</span>. This holds exactly when <span class="math display">\[
+-z_j-
+\lambda\le0\le -z_j+
 \lambda,
 \]</span> which is equivalent to <span class="math display">\[
-|c_j|\le\lambda.
+|z_j|\le\lambda.
 \]</span></p>
 </details>
 </section>
-<section id="question-10" class="level3" data-number="33.0.10">
-<h3 data-number="33.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">33.0.10</span> Question 10</h3>
-<p>Derive the positive-coordinate case of the LASSO update: if <span class="math inline">\(c_j&gt;\lambda\)</span>, show that the minimizer satisfies</p>
+<section id="question-10" class="level3" data-number="30.0.10">
+<h3 data-number="30.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">30.0.10</span> Question 10</h3>
+<p>Derive the positive-coordinate case of the LASSO update: if <span class="math inline">\(z_j&gt;\lambda\)</span>, show that the minimizer satisfies</p>
 <p><span class="math display">\[
-w_j=\frac{c_j-\lambda}{a_j}.
+w_j=\frac{z_j-\lambda}{a_j}.
 \]</span></p>
 <details>
 <summary>
@@ -717,41 +693,41 @@ Answer
 </summary>
 <p>The coordinate-wise objective has subdifferential</p>
 <p><span class="math display">\[
-\partial g(w_j)=a_jw_j-c_j+\lambda \partial |w_j|.
+\partial g_j(w_j)=a_jw_j-z_j+\lambda \partial |w_j|.
 \]</span></p>
 <p>A value of <span class="math inline">\(w_j\)</span> is optimal exactly when</p>
 <p><span class="math display">\[
-0 \in \partial g(w_j).
+0 \in \partial g_j(w_j).
 \]</span></p>
-<p>Assume <span class="math inline">\(c_j&gt;\lambda\)</span>. First check whether <span class="math inline">\(w_j=0\)</span> can be optimal. At <span class="math inline">\(w_j=0\)</span>,</p>
+<p>Assume <span class="math inline">\(z_j&gt;\lambda\)</span>. First check whether <span class="math inline">\(w_j=0\)</span> can be optimal. At <span class="math inline">\(w_j=0\)</span>,</p>
 <p><span class="math display">\[
-\partial g(0)=[-c_j-\lambda,,-c_j+\lambda].
+\partial g_j(0)=[-z_j-\lambda,-z_j+\lambda].
 \]</span></p>
-<p>Since <span class="math inline">\(c_j&gt;\lambda\)</span>, the upper endpoint satisfies <span class="math inline">\(-c_j+\lambda&lt;0\)</span>. Therefore this whole interval is negative, so <span class="math inline">\(0\notin\partial g(0)\)</span>. Thus <span class="math inline">\(w_j=0\)</span> is not optimal.</p>
-<p>Now check whether a negative value can be optimal. If <span class="math inline">\(w_j&lt;0\)</span>, then <span class="math inline">\(\partial |w_j|={-1}\)</span>, so</p>
+<p>Since <span class="math inline">\(z_j&gt;\lambda\)</span>, the upper endpoint satisfies <span class="math inline">\(-z_j+\lambda&lt;0\)</span>. Therefore this whole interval is negative, so <span class="math inline">\(0\notin\partial g_j(0)\)</span>. Thus <span class="math inline">\(w_j=0\)</span> is not optimal.</p>
+<p>Now check whether a negative value can be optimal. If <span class="math inline">\(w_j&lt;0\)</span>, then <span class="math inline">\(\partial |w_j|=\{-1\}\)</span>, so</p>
 <p><span class="math display">\[
-\partial g(w_j)={a_jw_j-c_j-\lambda}.
+\partial g_j(w_j)=\{a_jw_j-z_j-\lambda\}.
 \]</span></p>
-<p>Since <span class="math inline">\(a_j&gt;0\)</span> and <span class="math inline">\(w_j&lt;0\)</span>, we have <span class="math inline">\(a_jw_j&lt;0\)</span>. Also, <span class="math inline">\(c_j&gt;\lambda&gt;0\)</span>. Therefore <span class="math inline">\(a_jw_j-c_j-\lambda&lt;0\)</span>, so the subdifferential cannot contain zero for any <span class="math inline">\(w_j&lt;0\)</span>.</p>
-<p>So the minimizer must be positive. For <span class="math inline">\(w_j&gt;0\)</span>, <span class="math inline">\(\partial |w_j|={1}\)</span>, so</p>
+<p>Since <span class="math inline">\(a_j&gt;0\)</span> and <span class="math inline">\(w_j&lt;0\)</span>, we have <span class="math inline">\(a_jw_j&lt;0\)</span>. Also, <span class="math inline">\(z_j&gt;\lambda&gt;0\)</span>. Therefore <span class="math inline">\(a_jw_j-z_j-\lambda&lt;0\)</span>, so the subdifferential cannot contain zero for any <span class="math inline">\(w_j&lt;0\)</span>.</p>
+<p>So the minimizer must be positive. For <span class="math inline">\(w_j&gt;0\)</span>, <span class="math inline">\(\partial |w_j|=\{1\}\)</span>, so</p>
 <p><span class="math display">\[
-\partial g(w_j)={a_jw_j-c_j+\lambda}.
+\partial g_j(w_j)=\{a_jw_j-z_j+\lambda\}.
 \]</span></p>
 <p>To make zero belong to this set, solve</p>
 <p><span class="math display">\[
-a_jw_j-c_j+\lambda=0.
+a_jw_j-z_j+\lambda=0.
 \]</span></p>
 <p>This gives</p>
 <p><span class="math display">\[
-w_j=\frac{c_j-\lambda}{a_j}.
+w_j=\frac{z_j-\lambda}{a_j}.
 \]</span></p>
-<p>Because <span class="math inline">\(c_j&gt;\lambda\)</span> and <span class="math inline">\(a_j&gt;0\)</span>, this value is positive. Therefore it is consistent with the positive case and satisfies the subgradient optimality condition. Since <span class="math inline">\(g\)</span> is convex, it is the minimizer.</p>
+<p>Because <span class="math inline">\(z_j&gt;\lambda\)</span> and <span class="math inline">\(a_j&gt;0\)</span>, this value is positive. Therefore it is consistent with the positive case and satisfies the subgradient optimality condition. Since <span class="math inline">\(g_j\)</span> is convex, it is the minimizer.</p>
 </details>
 </section>
-<section id="question-11" class="level3" data-number="33.0.11">
-<h3 data-number="33.0.11" class="anchored" data-anchor-id="question-11"><span class="header-section-number">33.0.11</span> Question 11</h3>
-<p>Compute <span class="math inline">\(S(c,\lambda)\)</span> for <span class="math inline">\(\lambda=0.5\)</span> and <span class="math display">\[
-c\in\{-1.2,-0.5,-0.1,0.7,2.0\}.
+<section id="question-11" class="level3" data-number="30.0.11">
+<h3 data-number="30.0.11" class="anchored" data-anchor-id="question-11"><span class="header-section-number">30.0.11</span> Question 11</h3>
+<p>Compute <span class="math inline">\(S(z,\lambda)\)</span> for <span class="math inline">\(\lambda=0.5\)</span> and <span class="math display">\[
+z\in\{-1.2,-0.5,-0.1,0.7,2.0\}.
 \]</span></p>
 <details>
 <summary>
@@ -760,48 +736,48 @@ Answer
 <p>Using soft-thresholding:</p>
 <ul>
 <li><span class="math inline">\(S(-1.2,0.5)=-1.2+0.5=-0.7\)</span>.</li>
-<li><span class="math inline">\(S(-0.5,0.5)=0\)</span> because <span class="math inline">\(|c|\le\lambda\)</span>.</li>
-<li><span class="math inline">\(S(-0.1,0.5)=0\)</span> because <span class="math inline">\(|c|\le\lambda\)</span>.</li>
+<li><span class="math inline">\(S(-0.5,0.5)=0\)</span> because <span class="math inline">\(|z|\le\lambda\)</span>.</li>
+<li><span class="math inline">\(S(-0.1,0.5)=0\)</span> because <span class="math inline">\(|z|\le\lambda\)</span>.</li>
 <li><span class="math inline">\(S(0.7,0.5)=0.7-0.5=0.2\)</span>.</li>
 <li><span class="math inline">\(S(2.0,0.5)=2.0-0.5=1.5\)</span>.</li>
 </ul>
 </details>
 </section>
-<section id="question-12" class="level3" data-number="33.0.12">
-<h3 data-number="33.0.12" class="anchored" data-anchor-id="question-12"><span class="header-section-number">33.0.12</span> Question 12</h3>
-<p>A coordinate has <span class="math inline">\(a_j=2\)</span>, <span class="math inline">\(c_j=-3\)</span>, and <span class="math inline">\(\lambda=1\)</span>. Compute the coordinate descent update for <span class="math inline">\(w_j\)</span>.</p>
+<section id="question-12" class="level3" data-number="30.0.12">
+<h3 data-number="30.0.12" class="anchored" data-anchor-id="question-12"><span class="header-section-number">30.0.12</span> Question 12</h3>
+<p>A coordinate has <span class="math inline">\(a_j=2\)</span>, <span class="math inline">\(z_j=-3\)</span>, and <span class="math inline">\(\lambda=1\)</span>. Compute the coordinate descent update for <span class="math inline">\(w_j\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
 <p>Since <span class="math display">\[
-c_j=-3&lt;-
+z_j=-3&lt;-
 \lambda=-1,
 \]</span> use the negative case: <span class="math display">\[
-w_j\leftarrow\frac{c_j+
+w_j\leftarrow\frac{z_j+
 \lambda}{a_j}=\frac{-3+1}{2}=-1.
 \]</span></p>
 </details>
 </section>
-<section id="question-13" class="level3" data-number="33.0.13">
-<h3 data-number="33.0.13" class="anchored" data-anchor-id="question-13"><span class="header-section-number">33.0.13</span> Question 13</h3>
-<p>Compare ridge and LASSO in the orthonormal-predictor case. If <span class="math inline">\(z_j\)</span> is the OLS coefficient, what does ridge do to <span class="math inline">\(z_j\)</span>, and what does LASSO do to <span class="math inline">\(z_j\)</span>?</p>
+<section id="question-13" class="level3" data-number="30.0.13">
+<h3 data-number="30.0.13" class="anchored" data-anchor-id="question-13"><span class="header-section-number">30.0.13</span> Question 13</h3>
+<p>Compare ridge and LASSO in the orthonormal-predictor case under the normalized-loss convention used in the LASSO lecture. If <span class="math inline">\(z_j\)</span> is the OLS coefficient, what does ridge do to <span class="math inline">\(z_j\)</span>, and what does LASSO do to <span class="math inline">\(z_j\)</span>?</p>
 <details>
 <summary>
 Answer
 </summary>
 <p>In the orthonormal case, ridge rescales every coefficient by the same factor: <span class="math display">\[
-\hat w^{ridge}_j=\frac{1}{1+
+\widehat w_{\lambda,j}^{\mathrm{ridge}}=\frac{1}{1+
 \lambda}z_j
-\]</span> under the lecture’s ridge convention.</p>
+\]</span> under this convention.</p>
 <p>LASSO applies soft-thresholding: <span class="math display">\[
-\hat w^{lasso}_j=S(z_j,\lambda)=\operatorname{sign}(z_j)(|z_j|-
+\widehat w_{\lambda,j}^{\mathrm{LASSO}}=S(z_j,\lambda)=\operatorname{sign}(z_j)(|z_j|-
 \lambda)_+.
 \]</span> Thus ridge continuously shrinks all coefficients, while LASSO sets coefficients to zero when <span class="math inline">\(|z_j|\le\lambda\)</span> and shrinks the rest by subtracting <span class="math inline">\(\lambda\)</span> from their magnitude.</p>
 </details>
 </section>
-<section id="question-14" class="level3" data-number="33.0.14">
-<h3 data-number="33.0.14" class="anchored" data-anchor-id="question-14"><span class="header-section-number">33.0.14</span> Question 14</h3>
+<section id="question-14" class="level3" data-number="30.0.14">
+<h3 data-number="30.0.14" class="anchored" data-anchor-id="question-14"><span class="header-section-number">30.0.14</span> Question 14</h3>
 <p>For orthonormal predictors, let <span class="math inline">\(z=(2.0,0.4,-1.5)\)</span> and <span class="math inline">\(\lambda=1\)</span>. Compute the LASSO solution and the ridge solution using the shrinkage factor <span class="math inline">\(1/(1+
 \lambda)\)</span>.</p>
 <details>
@@ -815,17 +791,17 @@ S(0.4,1)=0,
 \qquad
 S(-1.5,1)=-0.5.
 \]</span> So <span class="math display">\[
-\hat w^{lasso}=(1.0,0,-0.5).
+\widehat w_\lambda^{\mathrm{LASSO}}=(1.0,0,-0.5).
 \]</span> For ridge, the shrinkage factor is <span class="math display">\[
 \frac{1}{1+
 \lambda}=\frac12.
 \]</span> Thus <span class="math display">\[
-\hat w^{ridge}=(1.0,0.2,-0.75).
+\widehat w_\lambda^{\mathrm{ridge}}=(1.0,0.2,-0.75).
 \]</span></p>
 </details>
 </section>
-<section id="question-15" class="level3" data-number="33.0.15">
-<h3 data-number="33.0.15" class="anchored" data-anchor-id="question-15"><span class="header-section-number">33.0.15</span> Question 15</h3>
+<section id="question-15" class="level3" data-number="30.0.15">
+<h3 data-number="30.0.15" class="anchored" data-anchor-id="question-15"><span class="header-section-number">30.0.15</span> Question 15</h3>
 <p>In two dimensions, describe the set <span class="math display">\[
 \{(w_1,w_2): |w_1|+|w_2|\le 1\}.
 \]</span> List its four vertices.</p>
@@ -846,8 +822,8 @@ Answer
 \]</span> These vertices lie on the coordinate axes.</p>
 </details>
 </section>
-<section id="question-16" class="level3" data-number="33.0.16">
-<h3 data-number="33.0.16" class="anchored" data-anchor-id="question-16"><span class="header-section-number">33.0.16</span> Question 16</h3>
+<section id="question-16" class="level3" data-number="30.0.16">
+<h3 data-number="30.0.16" class="anchored" data-anchor-id="question-16"><span class="header-section-number">30.0.16</span> Question 16</h3>
 <p>Use the geometry from the lecture to explain why LASSO can produce exact zeros while ridge usually does not.</p>
 <details>
 <summary>
@@ -857,8 +833,8 @@ Answer
 <p>The solution is where the smallest attainable loss contour touches the constraint region. Because the <span class="math inline">\(\ell_1\)</span> ball has corners on the axes, tangency often occurs at a point where one or more coordinates are exactly zero. The ridge ball is smooth and round, so tangency is less likely to occur exactly on an axis; ridge usually shrinks coefficients without setting them exactly to zero.</p>
 </details>
 </section>
-<section id="question-17" class="level3" data-number="33.0.17">
-<h3 data-number="33.0.17" class="anchored" data-anchor-id="question-17"><span class="header-section-number">33.0.17</span> Question 17</h3>
+<section id="question-17" class="level3" data-number="30.0.17">
+<h3 data-number="30.0.17" class="anchored" data-anchor-id="question-17"><span class="header-section-number">30.0.17</span> Question 17</h3>
 <p>For coefficient vectors <span class="math inline">\(u=(1,1)\)</span> and <span class="math inline">\(v=(2,0)\)</span>, compare their <span class="math inline">\(\ell_1\)</span> and squared <span class="math inline">\(\ell_2\)</span> penalties. Use this to explain why LASSO may be indifferent between spreading and concentrating coefficients in some correlated-feature settings.</p>
 <details>
 <summary>
@@ -875,19 +851,19 @@ Answer
 \]</span> The two vectors have the same <span class="math inline">\(\ell_1\)</span> norm but different squared <span class="math inline">\(\ell_2\)</span> norms. This shows that an <span class="math inline">\(\ell_1\)</span> penalty may not strongly prefer spreading weight across correlated variables, while ridge’s squared <span class="math inline">\(\ell_2\)</span> penalty favors spreading because it penalizes concentration more heavily.</p>
 </details>
 </section>
-<section id="question-18" class="level3" data-number="33.0.18">
-<h3 data-number="33.0.18" class="anchored" data-anchor-id="question-18"><span class="header-section-number">33.0.18</span> Question 18</h3>
-<p>Describe the qualitative relationship between <span class="math inline">\(\lambda\)</span> and selected model complexity.</p>
+<section id="question-18" class="level3" data-number="30.0.18">
+<h3 data-number="30.0.18" class="anchored" data-anchor-id="question-18"><span class="header-section-number">30.0.18</span> Question 18</h3>
+<p>Describe the typical qualitative relationship between <span class="math inline">\(\lambda\)</span> and selected model complexity.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>As <span class="math inline">\(\lambda\)</span> increases, the number of nonzero coefficients decreases. Larger <span class="math inline">\(\lambda\)</span> imposes stronger <span class="math inline">\(\ell_1\)</span> regularization, so more coefficients fail the soft-thresholding condition and become zero.</p>
-<p>Thus selected model complexity, measured by the number of nonzero coefficients, decreases as <span class="math inline">\(\lambda\)</span> increases.</p>
+<p>As <span class="math inline">\(\lambda\)</span> increases, the number of nonzero coefficients generally tends to decrease. Larger <span class="math inline">\(\lambda\)</span> imposes stronger <span class="math inline">\(\ell_1\)</span> regularization, so more coefficients tend to fail the soft-thresholding condition and become zero.</p>
+<p>Thus selected model complexity, measured by the number of nonzero coefficients, typically decreases as <span class="math inline">\(\lambda\)</span> increases. The active-set size need not change monotonically in every dataset, especially when predictors are correlated.</p>
 </details>
 </section>
-<section id="question-19" class="level3" data-number="33.0.19">
-<h3 data-number="33.0.19" class="anchored" data-anchor-id="question-19"><span class="header-section-number">33.0.19</span> Question 19</h3>
+<section id="question-19" class="level3" data-number="30.0.19">
+<h3 data-number="30.0.19" class="anchored" data-anchor-id="question-19"><span class="header-section-number">30.0.19</span> Question 19</h3>
 <p>Why should predictors be standardized before applying LASSO?</p>
 <details>
 <summary>
@@ -1521,12 +1497,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../questions/009_ridge_questions.html" class="pagination-link" aria-label="Ridge Regression - Review Questions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../questions/011_elastic_net_logistic_erm_questions.html" class="pagination-link" aria-label="Elastic Net and Penalized Logistic Regression - Review Questions">
-        <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Elastic Net and Penalized Logistic Regression - Review Questions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../questions/012_nn_questions.html" class="pagination-link" aria-label="Feed-Forward Neural Networks - Review Questions">
+        <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

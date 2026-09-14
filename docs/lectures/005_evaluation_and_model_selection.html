@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Gregory Hunt">
+
+<title>7&nbsp; Model Evaluation and Selection – Statistical Learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../lectures/007_knn.html" rel="next">
+<link href="../lectures/004_multiclass_logistic_regression.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="assets/code_style.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/005_evaluation_and_model_selection.html">Evaluation and Model Selection</a></li><li class="breadcrumb-item"><a href="../lectures/005_evaluation_and_model_selection.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation and Selection</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Statistical Learning</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/gjhunt/ml" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Statistical Learning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Foundations and Linear Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/000_intro_and_erm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/001_derivatives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/002_linear_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/003_logistic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/004_multiclass_logistic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Evaluation and Model Selection</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/005_evaluation_and_model_selection.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation and Selection</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/007_knn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Nearest-Neighbor Methods</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/008_bias_variance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Regularization and Penalized Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/009_ridge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Penalized ERM and Ridge Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/010_lasso.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">LASSO Regression</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Neural Networks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/012_nn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/013_backprop.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/014_nn_arch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unsupervised Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/015_unsupervised.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Unsupervised Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/016_pca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/017_kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">K-means</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Tree-Based Methods</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/018_trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/019_random_forests.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Random Forests and Bagging</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/020_boosting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Boosting</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Practice Questions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/000_intro_and_erm_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Introduction to Statistical Machine Learning - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/001_derivatives_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Matrix Calculus for Machine Learning - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/002_linear_regression_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Linear Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/003_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/004_multiclass_logistic_regression_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/005_evaluation_and_model_selection_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Model Evaluation and Selection Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/007_knn_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Nearest-Neighbor Methods - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/008_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/009_ridge_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Ridge Regression - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/010_lasso_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">LASSO - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/012_nn_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Feed-Forward Neural Networks - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/013_backprop_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Training Neural Networks with Backpropagation - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/014_nn_arch_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/016_pca_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Principal Component Analysis (PCA) - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/017_kmeans_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">K-means - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/018_trees_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Trees - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/019_random_forests_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Random Forests and Bagging - Review Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../questions/020_boosting_questions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Boosting Review Questions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#performance-metrics" id="toc-performance-metrics" class="nav-link active" data-scroll-target="#performance-metrics"><span class="header-section-number">7.1</span> Performance Metrics</a></li>
+  <li><a href="#what-do-we-want-to-measure" id="toc-what-do-we-want-to-measure" class="nav-link" data-scroll-target="#what-do-we-want-to-measure"><span class="header-section-number">7.2</span> What Do We Want to Measure?</a>
+  <ul class="collapse">
+  <li><a href="#holdout-evaluation" id="toc-holdout-evaluation" class="nav-link" data-scroll-target="#holdout-evaluation"><span class="header-section-number">7.2.1</span> Holdout evaluation</a></li>
+  </ul></li>
+  <li><a href="#why-not-evaluate-on-the-training-data" id="toc-why-not-evaluate-on-the-training-data" class="nav-link" data-scroll-target="#why-not-evaluate-on-the-training-data"><span class="header-section-number">7.3</span> Why Not Evaluate on the Training Data?</a>
+  <ul class="collapse">
+  <li><a href="#polynomial-regression-example" id="toc-polynomial-regression-example" class="nav-link" data-scroll-target="#polynomial-regression-example"><span class="header-section-number">7.3.1</span> Polynomial Regression Example</a></li>
+  <li><a href="#repeating-the-simulation" id="toc-repeating-the-simulation" class="nav-link" data-scroll-target="#repeating-the-simulation"><span class="header-section-number">7.3.2</span> Repeating the Simulation</a></li>
+  <li><a href="#why-can-complexity-increase-overfitting" id="toc-why-can-complexity-increase-overfitting" class="nav-link" data-scroll-target="#why-can-complexity-increase-overfitting"><span class="header-section-number">7.3.3</span> Why Can Complexity Increase Overfitting?</a></li>
+  </ul></li>
+  <li><a href="#cross-validation-estimates-performance" id="toc-cross-validation-estimates-performance" class="nav-link" data-scroll-target="#cross-validation-estimates-performance"><span class="header-section-number">7.4</span> Cross-Validation Estimates Performance</a>
+  <ul class="collapse">
+  <li><a href="#k-fold-cross-validation" id="toc-k-fold-cross-validation" class="nav-link" data-scroll-target="#k-fold-cross-validation"><span class="header-section-number">7.4.1</span> <span class="math inline">\(k\)</span>-fold cross-validation</a></li>
+  <li><a href="#example-estimate-the-performance-of-degree-3" id="toc-example-estimate-the-performance-of-degree-3" class="nav-link" data-scroll-target="#example-estimate-the-performance-of-degree-3"><span class="header-section-number">7.4.2</span> Example: Estimate the Performance of Degree 3</a></li>
+  <li><a href="#which-model-did-we-evaluate-none-of-them" id="toc-which-model-did-we-evaluate-none-of-them" class="nav-link" data-scroll-target="#which-model-did-we-evaluate-none-of-them"><span class="header-section-number">7.4.3</span> Which Model Did We Evaluate? None of Them!</a></li>
+  </ul></li>
+  <li><a href="#from-evaluation-to-model-selection" id="toc-from-evaluation-to-model-selection" class="nav-link" data-scroll-target="#from-evaluation-to-model-selection"><span class="header-section-number">7.5</span> From Evaluation to Model Selection</a>
+  <ul class="collapse">
+  <li><a href="#the-model-building-meta-procedure" id="toc-the-model-building-meta-procedure" class="nav-link" data-scroll-target="#the-model-building-meta-procedure"><span class="header-section-number">7.5.1</span> The Model-Building Meta-Procedure</a></li>
+  <li><a href="#can-we-trust-the-winning-validation-score" id="toc-can-we-trust-the-winning-validation-score" class="nav-link" data-scroll-target="#can-we-trust-the-winning-validation-score"><span class="header-section-number">7.5.2</span> Can We Trust the Winning Validation Score?</a></li>
+  </ul></li>
+  <li><a href="#train-validation-and-test" id="toc-train-validation-and-test" class="nav-link" data-scroll-target="#train-validation-and-test"><span class="header-section-number">7.6</span> Train, Validation, and Test</a></li>
+  <li><a href="#simulation-selection-and-validation-optimism" id="toc-simulation-selection-and-validation-optimism" class="nav-link" data-scroll-target="#simulation-selection-and-validation-optimism"><span class="header-section-number">7.7</span> Simulation: Selection and Validation Optimism</a>
+  <ul class="collapse">
+  <li><a href="#monte-carlo-view" id="toc-monte-carlo-view" class="nav-link" data-scroll-target="#monte-carlo-view"><span class="header-section-number">7.7.1</span> Monte Carlo View</a></li>
+  <li><a href="#capacity-of-the-selection-procedure" id="toc-capacity-of-the-selection-procedure" class="nav-link" data-scroll-target="#capacity-of-the-selection-procedure"><span class="header-section-number">7.7.2</span> Capacity of the Selection Procedure</a></li>
+  </ul></li>
+  <li><a href="#using-cv-for-selection" id="toc-using-cv-for-selection" class="nav-link" data-scroll-target="#using-cv-for-selection"><span class="header-section-number">7.8</span> Using CV for Selection</a></li>
+  <li><a href="#evaluate-the-entire-pipeline" id="toc-evaluate-the-entire-pipeline" class="nav-link" data-scroll-target="#evaluate-the-entire-pipeline"><span class="header-section-number">7.9</span> Evaluate the Entire Pipeline</a>
+  <ul class="collapse">
+  <li><a href="#nested-cross-validation" id="toc-nested-cross-validation" class="nav-link" data-scroll-target="#nested-cross-validation"><span class="header-section-number">7.9.1</span> Nested cross-validation</a></li>
+  </ul></li>
+  <li><a href="#in-practice-penguins" id="toc-in-practice-penguins" class="nav-link" data-scroll-target="#in-practice-penguins"><span class="header-section-number">7.10</span> In Practice: Penguins</a>
+  <ul class="collapse">
+  <li><a href="#a-traintest-split" id="toc-a-traintest-split" class="nav-link" data-scroll-target="#a-traintest-split"><span class="header-section-number">7.10.1</span> A Train/Test Split</a></li>
+  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation"><span class="header-section-number">7.10.2</span> Cross-Validation</a></li>
+  <li><a href="#trainvalidationtest-selection" id="toc-trainvalidationtest-selection" class="nav-link" data-scroll-target="#trainvalidationtest-selection"><span class="header-section-number">7.10.3</span> Train/Validation/Test Selection</a></li>
+  </ul></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">7.11</span> Review Questions</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/005_evaluation_and_model_selection.html">Evaluation and Model Selection</a></li><li class="breadcrumb-item"><a href="../lectures/005_evaluation_and_model_selection.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation and Selection</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model Evaluation and Selection</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Gregory Hunt </p>
+          </div>
+  </div>
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">September 12, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
+<p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
+</div>
+<ul>
+<li><strong>Evaluation:</strong> How well does a model or fitting procedure perform on new data?</li>
+<li><strong>Selection:</strong> Which model or fitting procedure should we use?</li>
+</ul>
+<p>Evaluation gives performance estimates. We may then use those estimates for selection. Once an estimate guides a choice, however, it has become part of the model-building process.</p>
+<section id="performance-metrics" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="performance-metrics"><span class="header-section-number">7.1</span> Performance Metrics</h2>
+<p>Let our data be <span class="math display">\[
+\mathcal D=\{(x_i,y_i)\}_{i=1}^N.
+\]</span></p>
+<p>A <strong>performance metric</strong> takes a dataset and a model and returns a number. Write the chosen metric as <span class="math inline">\(M(\mathcal D,f)\)</span>. For example:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>What it measures</th>
+<th>Better</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mean squared error (MSE)</td>
+<td>Squared prediction errors</td>
+<td>Lower</td>
+</tr>
+<tr class="even">
+<td>Classification error</td>
+<td>Fraction of incorrect labels</td>
+<td>Lower</td>
+</tr>
+<tr class="odd">
+<td>Log loss / cross-entropy</td>
+<td>Quality of predicted probabilities</td>
+<td>Lower</td>
+</tr>
+<tr class="even">
+<td>F1 score</td>
+<td>A combination of precision and recall</td>
+<td>Higher</td>
+</tr>
+<tr class="odd">
+<td>Correlation</td>
+<td>Linear association between outcomes and predictions</td>
+<td>Higher, toward 1</td>
+</tr>
+</tbody>
+</table>
+<p>For regression, <span class="math display">\[
+\operatorname{MSE}(\mathcal D,f)
+=\frac1N\sum_{i=1}^N\big(y_i-f(x_i)\big)^2.
+\]</span></p>
+<p>MSE, classification error, and log loss average observation-level losses. Other metrics do not need to have that form. F1 is computed from a confusion matrix, and correlation summarizes all outcomes and predictions together.</p>
+<p>The evaluation metric also need not equal the loss used to fit the model. We might fit logistic regression using cross-entropy, then evaluate classification error or F1. The metric should match the practical prediction goal.</p>
+</section>
+<section id="what-do-we-want-to-measure" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="what-do-we-want-to-measure"><span class="header-section-number">7.2</span> What Do We Want to Measure?</h2>
+<p>Suppose a fitting procedure <span class="math inline">\(A\)</span> uses training data to produce <span class="math display">\[
+\hat f=A(\mathcal D_{\mathrm{train}}).
+\]</span></p>
+<p>We want to know how <span class="math inline">\(\hat f\)</span> performs on <strong>new observations from the population where it will be used</strong>.</p>
+<section id="holdout-evaluation" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="holdout-evaluation"><span class="header-section-number">7.2.1</span> Holdout evaluation</h3>
+<p>One practical approach is:</p>
+<ol type="1">
+<li>Split the available data into <span class="math inline">\(\mathcal D_{\mathrm{train}}\)</span> and <span class="math inline">\(\mathcal D_{\mathrm{eval}}\)</span> (for example, assign <span class="math inline">\(p\%\)</span> to training and <span class="math inline">\((1-p)\%\)</span> to evaluation).</li>
+<li>Fit <span class="math inline">\(\hat f=A(\mathcal D_{\mathrm{train}})\)</span>.</li>
+<li>Compute <span class="math inline">\(M(\mathcal D_{\mathrm{eval}},\hat f)\)</span>.</li>
+</ol>
+<p>For i.i.d. data, a random split gives an evaluation sample that did not influence the model. Its score estimates performance on new data, although a different split would give a different estimate.</p>
+</section>
+</section>
+<section id="why-not-evaluate-on-the-training-data" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="why-not-evaluate-on-the-training-data"><span class="header-section-number">7.3</span> Why Not Evaluate on the Training Data?</h2>
+<p>Training data are informative about <strong>fit to those observations</strong>. They are not neutral evidence about performance on new observations because we used them to choose the fitted model: <span class="math display">\[
+\hat f=A(\mathcal D_{\mathrm{train}}).
+\]</span></p>
+<p>The fitting algorithm searched for a function that did well on this particular sample. Any accidental pattern that helps on the sample is rewarded along with real structure.</p>
+<p>An analogy:</p>
+<ul>
+<li><strong>Practice questions:</strong> studying and grading yourself on the same questions measures how well you learned those questions. A new exam tests whether the learning transfers.</li>
+</ul>
+<p>Likewise, low training error may reflect a reproducible relationship, adaptation to random noise, or both. An independent evaluation sample asks which improvements carry over.</p>
+<p>Training error still matters. A model with large training error has not even fit the observed data well. The point is that training error alone cannot measure generalization.</p>
+<p><strong>Overfitting</strong> occurs when adaptation to sample-specific variation harms performance on new observations. It usually appears as very low training error together with worse evaluation error.</p>
+<section id="polynomial-regression-example" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="polynomial-regression-example"><span class="header-section-number">7.3.1</span> Polynomial Regression Example</h3>
+<p>Generate training and evaluation data independently from <span class="math display">\[
+Y=\sin(2\pi X)+\varepsilon,
+\qquad X\sim\operatorname{Uniform}(-1,1),
+\qquad \varepsilon\sim N(0,0.25^2).
+\]</span></p>
+<p>Fit least-squares polynomials of increasing degree. The dashed curve is known only because this is a simulation.</p>
+<div id="eval-select-v3-08" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.patches <span class="im">import</span> Patch</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> KFold</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> PolynomialFeatures</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_sine_data(n, rng, noise_std<span class="op">=</span><span class="fl">0.25</span>):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size<span class="op">=</span>n)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.sin(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> x) <span class="op">+</span> rng.normal(<span class="dv">0</span>, noise_std, size<span class="op">=</span>n)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x, y</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> polynomial_model(degree):</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> make_pipeline(</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        PolynomialFeatures(degree<span class="op">=</span>degree, include_bias<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        LinearRegression(fit_intercept<span class="op">=</span><span class="va">False</span>),</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fit_polynomial_curves(x_train, y_train, x_eval, y_eval, max_degree<span class="op">=</span><span class="dv">15</span>):</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    degrees <span class="op">=</span> np.arange(max_degree <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    models <span class="op">=</span> []</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    train_mse <span class="op">=</span> []</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    eval_mse <span class="op">=</span> []</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> degree <span class="kw">in</span> degrees:</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> polynomial_model(degree)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        model.fit(x_train.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), y_train)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        models.append(model)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        train_mse.append(</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            mean_squared_error(y_train, model.predict(x_train.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)))</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        eval_mse.append(</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>            mean_squared_error(y_eval, model.predict(x_eval.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)))</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> degrees, models, np.array(train_mse), np.array(eval_mse)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">455</span>)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>x_train, y_train <span class="op">=</span> make_sine_data(<span class="dv">30</span>, rng)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>x_eval, y_eval <span class="op">=</span> make_sine_data(<span class="dv">1000</span>, rng)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>degrees, models, train_mse, eval_mse <span class="op">=</span> fit_polynomial_curves(</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    x_train, y_train, x_eval, y_eval</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="eval-select-v3-09" class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">500</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">13</span>, <span class="fl">3.5</span>), sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax, degree <span class="kw">in</span> <span class="bu">zip</span>(axes, [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>]):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    ax.scatter(x_train, y_train, s<span class="op">=</span><span class="dv">20</span>, alpha<span class="op">=</span><span class="fl">0.65</span>, label<span class="op">=</span><span class="st">"Training data"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    ax.plot(grid[:, <span class="dv">0</span>], np.sin(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> grid[:, <span class="dv">0</span>]), <span class="st">"k--"</span>, label<span class="op">=</span><span class="st">"True mean"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    ax.plot(grid[:, <span class="dv">0</span>], models[degree].predict(grid), color<span class="op">=</span><span class="st">"tab:red"</span>, label<span class="op">=</span><span class="st">"Fit"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(title<span class="op">=</span><span class="ss">f"Degree </span><span class="sc">{</span>degree<span class="sc">}</span><span class="ss">"</span>, xlabel<span class="op">=</span><span class="st">"$x$"</span>, ylim<span class="op">=</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].set_ylabel(<span class="st">"$y$"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="005_evaluation_and_model_selection_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="eval-select-v3-10" class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">4.5</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ax.plot(degrees, np.log10(train_mse), <span class="st">"o-"</span>, label<span class="op">=</span><span class="st">"Training MSE"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ax.plot(degrees, np.log10(eval_mse), <span class="st">"o-"</span>, label<span class="op">=</span><span class="st">"Evaluation MSE"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">"Polynomial degree"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="vs">r"$\log_</span><span class="sc">{10}</span><span class="vs">(\mathrm</span><span class="sc">{MSE}</span><span class="vs">)$"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    xticks<span class="op">=</span>degrees,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"One random training/evaluation split"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="005_evaluation_and_model_selection_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A polynomial of degree at most <span class="math inline">\(d+1\)</span> can reproduce any polynomial of degree at most <span class="math inline">\(d\)</span> by setting its last coefficient to zero. Let <span class="math inline">\(\hat f_d\)</span> be the least-squares fit of degree at most <span class="math inline">\(d\)</span>. Then <span class="math display">\[
+\operatorname{MSE}_{\mathrm{train}}(\hat f_{d+1})
+\le
+\operatorname{MSE}_{\mathrm{train}}(\hat f_d).
+\]</span></p>
+<p>There is no corresponding guarantee for evaluation error. In this run, moderate degrees capture the signal. The highest degrees continue to reduce training error while producing unstable shapes that do not generalize.</p>
+</section>
+<section id="repeating-the-simulation" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2" class="anchored" data-anchor-id="repeating-the-simulation"><span class="header-section-number">7.3.2</span> Repeating the Simulation</h3>
+<p>One split can be unusual. Repeat the entire experiment many times and summarize the error curves across repetitions.</p>
+<div id="eval-select-v3-13" class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> repeated_polynomial_experiment(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    n_repetitions<span class="op">=</span><span class="dv">200</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    n_train<span class="op">=</span><span class="dv">30</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    n_eval<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    max_degree<span class="op">=</span><span class="dv">15</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    seed<span class="op">=</span><span class="dv">456</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    rng <span class="op">=</span> np.random.default_rng(seed)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    train_curves <span class="op">=</span> []</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    eval_curves <span class="op">=</span> []</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_repetitions):</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        x_train, y_train <span class="op">=</span> make_sine_data(n_train, rng)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        x_eval, y_eval <span class="op">=</span> make_sine_data(n_eval, rng)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        degrees, _, train_mse, eval_mse <span class="op">=</span> fit_polynomial_curves(</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            x_train, y_train, x_eval, y_eval, max_degree</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        train_curves.append(train_mse)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        eval_curves.append(eval_mse)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> degrees, np.array(train_curves), np.array(eval_curves)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>degrees, train_curves, eval_curves <span class="op">=</span> repeated_polynomial_experiment()</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="fl">4.5</span>))</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> curves, label, color <span class="kw">in</span> [</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    (train_curves, <span class="st">"Training MSE"</span>, <span class="st">"tab:blue"</span>),</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    (eval_curves, <span class="st">"Evaluation MSE"</span>, <span class="st">"tab:orange"</span>),</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>]:</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    log_curves <span class="op">=</span> np.log10(curves)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    median <span class="op">=</span> np.median(log_curves, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    q25, q75 <span class="op">=</span> np.percentile(log_curves, [<span class="dv">25</span>, <span class="dv">75</span>], axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    ax.plot(degrees, median, label<span class="op">=</span>label, color<span class="op">=</span>color)</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(degrees, q25, q75, color<span class="op">=</span>color, alpha<span class="op">=</span><span class="fl">0.18</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">"Polynomial degree"</span>,</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="vs">r"$\log_</span><span class="sc">{10}</span><span class="vs">(\mathrm</span><span class="sc">{MSE}</span><span class="vs">)$"</span>,</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    xticks<span class="op">=</span>degrees,</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Repeated experiments: median and middle 50%"</span>,</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="005_evaluation_and_model_selection_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The usual cartoon summarizes this common pattern:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.sstatic.net/rpqa6.jpg" class="img-fluid figure-img"></p>
+<figcaption>Training and evaluation error versus model complexity.</figcaption>
+</figure>
+</div>
+<p>The evaluation curve often decreases at first as the model captures more signal, then increases when added flexibility mostly fits sample-specific variation. This U shape is a useful pattern, not a theorem that every dataset must follow.</p>
+</section>
+<section id="why-can-complexity-increase-overfitting" class="level3" data-number="7.3.3">
+<h3 data-number="7.3.3" class="anchored" data-anchor-id="why-can-complexity-increase-overfitting"><span class="header-section-number">7.3.3</span> Why Can Complexity Increase Overfitting?</h3>
+<p>Several views reinforce the same point:</p>
+<ul>
+<li><strong>Capacity:</strong> a richer model class can represent more real structure, but it can also represent more noise.</li>
+<li><strong>Search:</strong> fitting searches within a collection of functions and chooses one that looks good on the training sample. A larger collection offers more chances to fit accidental patterns.</li>
+<li><strong>Sensitivity:</strong> highly flexible fits can change substantially when the sample changes slightly. That instability is evidence that some fitted structure may be sample-specific.</li>
+</ul>
+<p>Complexity is not inherently bad. A class can be too simple to represent the signal. The goal is enough flexibility to learn structure without relying too heavily on noise, judged using data that did not determine the fit.</p>
+</section>
+</section>
+<section id="cross-validation-estimates-performance" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="cross-validation-estimates-performance"><span class="header-section-number">7.4</span> Cross-Validation Estimates Performance</h2>
+<p>A holdout score depends on one split and fits the model using only part of the data. <strong>Cross-validation (CV)</strong> repeats the fit/evaluate process over several folds.</p>
+<p>Start with a fixed fitting procedure <span class="math inline">\(A\)</span>, such as least-squares polynomial regression of degree 3. The procedure is fixed even though each training fold produces different fitted coefficients.</p>
+<section id="k-fold-cross-validation" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="k-fold-cross-validation"><span class="header-section-number">7.4.1</span> <span class="math inline">\(k\)</span>-fold cross-validation</h3>
+<p>Partition <span class="math inline">\(\mathcal D\)</span> into disjoint folds <span class="math inline">\(\mathcal F_1,\ldots,\mathcal F_k\)</span>. For <span class="math inline">\(j=1,\ldots,k\)</span>, fit without fold <span class="math inline">\(j\)</span> and evaluate on the omitted fold: <span class="math display">\[
+\hat f^{(-j)}=A(\mathcal D\setminus\mathcal F_j),
+\qquad
+e_j=M(\mathcal F_j,\hat f^{(-j)}).
+\]</span></p>
+<p>Return a summary, often <span class="math display">\[
+\operatorname{CV}(\mathcal D,A)=\frac1k\sum_{j=1}^k e_j.
+\]</span></p>
+<p>Five or ten folds are common. Leave-one-out is the special case <span class="math inline">\(k=N\)</span>.</p>
+<p><strong>CV returns a performance estimate for a fixed procedure <span class="math inline">\(A\)</span>. It does not, by itself, select a model or hyperparameter.</strong> We may subsequently compare CV estimates to make a selection.</p>
+<div id="eval-select-v3-17" class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">3</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> fold <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="st">"tab:orange"</span> <span class="cf">if</span> fold <span class="op">==</span> row <span class="cf">else</span> <span class="st">"tab:blue"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        ax.barh(row, <span class="dv">1</span>, left<span class="op">=</span>fold, height<span class="op">=</span><span class="fl">0.7</span>, color<span class="op">=</span>color, edgecolor<span class="op">=</span><span class="st">"white"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    xticks<span class="op">=</span>np.arange(<span class="dv">5</span>) <span class="op">+</span> <span class="fl">0.5</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    xticklabels<span class="op">=</span>[<span class="ss">f"Fold </span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>)],</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    yticks<span class="op">=</span>np.arange(<span class="dv">5</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    yticklabels<span class="op">=</span>[<span class="ss">f"Fit </span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">6</span>)],</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    xlim<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">5</span>),</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>ax.invert_yaxis()</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>ax.legend(</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    handles<span class="op">=</span>[</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        Patch(color<span class="op">=</span><span class="st">"tab:blue"</span>, label<span class="op">=</span><span class="st">"Train"</span>),</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        Patch(color<span class="op">=</span><span class="st">"tab:orange"</span>, label<span class="op">=</span><span class="st">"Evaluate"</span>),</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    loc<span class="op">=</span><span class="st">"upper center"</span>,</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.12</span>),</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    ncol<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="005_evaluation_and_model_selection_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="example-estimate-the-performance-of-degree-3" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="example-estimate-the-performance-of-degree-3"><span class="header-section-number">7.4.2</span> Example: Estimate the Performance of Degree 3</h3>
+<p>Generate one dataset and evaluate the fixed procedure <span class="math inline">\(A_3\)</span>: fit a degree-3 polynomial by least squares.</p>
+<div id="eval-select-v3-19" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">457</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x_cv, y_cv <span class="op">=</span> make_sine_data(<span class="dv">100</span>, rng)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>cv <span class="op">=</span> KFold(n_splits<span class="op">=</span><span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">457</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>degree3_mse <span class="op">=</span> []</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> train_index, eval_index <span class="kw">in</span> cv.split(x_cv):</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> polynomial_model(<span class="dv">3</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    model.fit(x_cv[train_index, <span class="va">None</span>], y_cv[train_index])</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> model.predict(x_cv[eval_index, <span class="va">None</span>])</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    degree3_mse.append(mean_squared_error(y_cv[eval_index], predictions))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>degree3_mse <span class="op">=</span> np.array(degree3_mse)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fold MSEs:"</span>, np.<span class="bu">round</span>(degree3_mse, <span class="dv">4</span>))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean CV MSE: </span><span class="sc">{</span>degree3_mse<span class="sc">.</span>mean()<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fold MSEs: [0.4459 0.42   0.4489 0.5077 0.4601]
+Mean CV MSE: 0.4565</code></pre>
+</div>
+</div>
+</section>
+<section id="which-model-did-we-evaluate-none-of-them" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="which-model-did-we-evaluate-none-of-them"><span class="header-section-number">7.4.3</span> Which Model Did We Evaluate? None of Them!</h3>
+<p>Five-fold CV fitted five functions, <span class="math display">\[
+\hat f^{(-1)},\ldots,\hat f^{(-5)},
+\]</span> each using a different <span class="math inline">\(4/5\)</span> of the observations. The CV score is not an evaluation of any one of these functions, nor of the final function later fitted on all <span class="math inline">\(N\)</span> observations.</p>
+<p>It estimates the performance of the <strong>procedure</strong> <span class="math inline">\(A\)</span> when trained on samples of size approximately <span class="math inline">\(N(k-1)/k\)</span>. After evaluation, we ordinarily fit <span class="math display">\[
+\hat f_{\mathrm{final}}=A(\mathcal D)
+\]</span> using all available training data. None of the fold models is the final model.</p>
+<p>Here <span class="math inline">\(A\)</span> should be construed broadly: everything fixed in advance that turns training data into a fitted predictor. It can include preprocessing, feature construction, an estimator, and fixed settings. If those steps are learned from the data, they must be repeated inside every training fold.</p>
+<p>CV uses the available data efficiently, but it does not create independent experiments. The training folds overlap, so the fold scores are generally dependent. Their sample standard deviation is not automatically a standard error for the mean CV score.</p>
+</section>
+</section>
+<section id="from-evaluation-to-model-selection" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="from-evaluation-to-model-selection"><span class="header-section-number">7.5</span> From Evaluation to Model Selection</h2>
+<p>We have already encountered model selection in the polynomial example. For each degree <span class="math inline">\(d\)</span>, define <span class="math inline">\(A_d\)</span> to mean: construct polynomial features through degree <span class="math inline">\(d\)</span> and fit their coefficients by least squares. For example, <span class="math inline">\(A_5\)</span> takes a dataset, constructs the features <span class="math inline">\(1,x,\ldots,x^5\)</span>, and fits their coefficients. Comparing degrees <span class="math inline">\(0,\ldots,15\)</span> means comparing the procedures <span class="math display">\[
+A_0,A_1,\ldots,A_{15}.
+\]</span></p>
+<p>The general notation <span class="math inline">\(A_\lambda\)</span> says the same thing while allowing other choices. The index <span class="math inline">\(\lambda\)</span> might be polynomial degree, number of neighbors, regularization strength, tree depth, or even model family. We write the candidate collection as <span class="math display">\[
+\{A_\lambda:\lambda\in\Lambda\}.
+\]</span> For the polynomial example, <span class="math inline">\(\lambda=d\)</span> and <span class="math inline">\(\Lambda=\{0,\ldots,15\}\)</span>.</p>
+<p>Three objects now matter:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\hat f\)</span></td>
+<td>One fitted prediction function</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(A_\lambda\)</span></td>
+<td>A fixed fitting procedure for a chosen <span class="math inline">\(\lambda\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mathcal P\)</span></td>
+<td>The larger procedure that compares candidates, selects <span class="math inline">\(\lambda\)</span>, and refits</td>
+</tr>
+</tbody>
+</table>
+<p>We estimate candidate performance using separate <strong>validation data</strong>. The word <em>validation</em> describes the role of these data: their scores guide modeling choices. For any candidate fixed in advance, its validation score can reasonably estimate its performance. Once we choose the candidate with the best score, that score has also influenced the final model.</p>
+<section id="the-model-building-meta-procedure" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="the-model-building-meta-procedure"><span class="header-section-number">7.5.1</span> The Model-Building Meta-Procedure</h3>
+<p>Selection creates a larger procedure. Let <span class="math inline">\(\mathcal P\)</span> denote the following <strong>meta-procedure</strong>:</p>
+<ol type="1">
+<li>Split supplied data into <span class="math inline">\(\mathcal D_{\mathrm{train}}\)</span> and <span class="math inline">\(\mathcal D_{\mathrm{val}}\)</span>.</li>
+<li>For each <span class="math inline">\(\lambda\in\Lambda\)</span>, fit and score <span class="math display">\[
+\hat f_\lambda=A_\lambda(\mathcal D_{\mathrm{train}}),
+\qquad
+e_\lambda=M(\mathcal D_{\mathrm{val}},\hat f_\lambda).
+\]</span></li>
+<li>Select <span class="math inline">\(\hat\lambda=\arg\min_{\lambda\in\Lambda}e_\lambda\)</span> (for a lower-is-better metric).</li>
+<li>Refit <span class="math inline">\(A_{\hat\lambda}\)</span> on all supplied data and return the result.</li>
+</ol>
+<p>Symbolically, <span class="math display">\[
+\hat f=\mathcal P(\mathcal D).
+\]</span></p>
+<p>The final model depends on both the training and validation portions. Evaluation is no longer outside the learning process: inside <span class="math inline">\(\mathcal P\)</span>, it helps determine the output.</p>
+</section>
+<section id="can-we-trust-the-winning-validation-score" class="level3" data-number="7.5.2">
+<h3 data-number="7.5.2" class="anchored" data-anchor-id="can-we-trust-the-winning-validation-score"><span class="header-section-number">7.5.2</span> Can We Trust the Winning Validation Score?</h3>
+<p>Validation estimates contain sampling noise. Taking the best score favors candidates whose estimated performance happened to be favorable. Thus <span class="math inline">\(e_{\hat\lambda}\)</span> is usually optimistic as an estimate of the selected model’s future performance.</p>
+<p>The same capacity ideas now operate at the level of the selection procedure:</p>
+<ul>
+<li>A larger search space <span class="math inline">\(\Lambda\)</span> offers more opportunities to find a favorable validation fluctuation.</li>
+<li>Flexible candidates can differ more substantially from one another.</li>
+<li>Repeatedly checking validation results and revising the search adapts the procedure more strongly to those data.</li>
+</ul>
+<p>This is <strong>overfitting to the validation set</strong>. The amount can be small when the search is modest and estimates are stable; it can be serious after a large or adaptive search.</p>
+<p>The same warning applies when <span class="math inline">\(e_\lambda\)</span> is a CV estimate. CV first estimates each fixed <span class="math inline">\(A_\lambda\)</span>; minimizing those estimates is a separate selection step.</p>
+</section>
+</section>
+<section id="train-validation-and-test" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="train-validation-and-test"><span class="header-section-number">7.6</span> Train, Validation, and Test</h2>
+<p>To obtain an independent final evaluation, we can split the data into three sets:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathcal D_{\mathrm{train}}\)</span></td>
+<td>Fit candidate models</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mathcal D_{\mathrm{val}}\)</span></td>
+<td>Choose models and hyperparameters</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mathcal D_{\mathrm{test}}\)</span></td>
+<td>Evaluate after all choices are finished</td>
+</tr>
+</tbody>
+</table>
+<p>A simple workflow is:</p>
+<ol type="1">
+<li>Fit candidates on <span class="math inline">\(\mathcal D_{\mathrm{train}}\)</span>.</li>
+<li>Select <span class="math inline">\(\hat\lambda\)</span> using <span class="math inline">\(\mathcal D_{\mathrm{val}}\)</span>.</li>
+<li>Refit <span class="math inline">\(A_{\hat\lambda}\)</span> on <span class="math inline">\(\mathcal D_{\mathrm{train}}\cup\mathcal D_{\mathrm{val}}\)</span>.</li>
+<li>Evaluate once on <span class="math inline">\(\mathcal D_{\mathrm{test}}\)</span>.</li>
+</ol>
+<p>“Once” means that the test result does not guide another revision. If it does, the test data have become validation data in practice. The names matter less than how the data are used.</p>
+</section>
+<section id="simulation-selection-and-validation-optimism" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="simulation-selection-and-validation-optimism"><span class="header-section-number">7.7</span> Simulation: Selection and Validation Optimism</h2>
+<p>We can observe these roles directly in a simulation. Fit polynomial degrees <span class="math inline">\(0,\ldots,20\)</span> on training data, select the smallest validation MSE, and inspect test error only after selection.</p>
+<div id="eval-select-v3-26" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> selection_signal(x):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="fl">0.6</span> <span class="op">*</span> np.sin(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> x)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="fl">0.45</span> <span class="op">*</span> np.sin(<span class="dv">8</span> <span class="op">*</span> np.pi <span class="op">*</span> x)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> <span class="fl">0.3</span> <span class="op">*</span> np.sin(<span class="dv">14</span> <span class="op">*</span> np.pi <span class="op">*</span> x)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> np.exp(<span class="op">-</span><span class="dv">120</span> <span class="op">*</span> (x <span class="op">-</span> <span class="fl">0.2</span>) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span> <span class="fl">0.8</span> <span class="op">*</span> np.exp(<span class="op">-</span><span class="dv">100</span> <span class="op">*</span> (x <span class="op">+</span> <span class="fl">0.35</span>) <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_selection_data(n, rng, noise_std<span class="op">=</span><span class="fl">1.5</span>):</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, size<span class="op">=</span>n)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> selection_signal(x) <span class="op">+</span> rng.normal(<span class="dv">0</span>, noise_std, size<span class="op">=</span>n)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x, y</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_selection_experiment(</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    max_degree<span class="op">=</span><span class="dv">20</span>,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    n_train<span class="op">=</span><span class="dv">250</span>,</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    n_val<span class="op">=</span><span class="dv">100</span>,</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    n_test<span class="op">=</span><span class="dv">1000</span>,</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    noise_std<span class="op">=</span><span class="fl">1.5</span>,</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    rng<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>):</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> rng <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>        rng <span class="op">=</span> np.random.default_rng()</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    x_train, y_train <span class="op">=</span> make_selection_data(n_train, rng, noise_std)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    x_val, y_val <span class="op">=</span> make_selection_data(n_val, rng, noise_std)</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    x_test, y_test <span class="op">=</span> make_selection_data(n_test, rng, noise_std)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    degrees <span class="op">=</span> np.arange(max_degree <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>    train_mse <span class="op">=</span> []</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    val_mse <span class="op">=</span> []</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    test_mse <span class="op">=</span> []</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> degree <span class="kw">in</span> degrees:</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> polynomial_model(degree)</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>        model.fit(x_train[:, <span class="va">None</span>], y_train)</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>        train_mse.append(mean_squared_error(y_train, model.predict(x_train[:, <span class="va">None</span>])))</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>        val_mse.append(mean_squared_error(y_val, model.predict(x_val[:, <span class="va">None</span>])))</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>        test_mse.append(mean_squared_error(y_test, model.predict(x_test[:, <span class="va">None</span>])))</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>    train_mse <span class="op">=</span> np.array(train_mse)</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    val_mse <span class="op">=</span> np.array(val_mse)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    test_mse <span class="op">=</span> np.array(test_mse)</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    selected_degree <span class="op">=</span> <span class="bu">int</span>(np.argmin(val_mse))</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>        <span class="st">"degrees"</span>: degrees,</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>        <span class="st">"train_mse"</span>: train_mse,</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>        <span class="st">"val_mse"</span>: val_mse,</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>        <span class="st">"test_mse"</span>: test_mse,</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>        <span class="st">"selected_degree"</span>: selected_degree,</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> run_selection_experiment(rng<span class="op">=</span>np.random.default_rng(<span class="dv">458</span>))</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>d_hat <span class="op">=</span> result[<span class="st">"selected_degree"</span>]</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Validation-selected degree: </span><span class="sc">{</span>d_hat<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Selected validation MSE: </span><span class="sc">{</span>result[<span class="st">'val_mse'</span>][d_hat]<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test MSE at the selected degree: </span><span class="sc">{</span>result[<span class="st">'test_mse'</span>][d_hat]<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Validation-selected degree: 17
+Selected validation MSE: 2.145
+Test MSE at the selected degree: 2.486</code></pre>
+</div>
+</div>
+<div id="eval-select-v3-27" class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">4.8</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ax.semilogy(result[<span class="st">"degrees"</span>], result[<span class="st">"train_mse"</span>], <span class="st">"o-"</span>, label<span class="op">=</span><span class="st">"Training MSE"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ax.semilogy(result[<span class="st">"degrees"</span>], result[<span class="st">"val_mse"</span>], <span class="st">"o-"</span>, label<span class="op">=</span><span class="st">"Validation MSE"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>ax.semilogy(result[<span class="st">"degrees"</span>], result[<span class="st">"test_mse"</span>], <span class="st">"o-"</span>, label<span class="op">=</span><span class="st">"Test MSE"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>ax.axvline(d_hat, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="ss">f"Selected degree: </span><span class="sc">{</span>d_hat<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">"Polynomial degree"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">"MSE (log scale)"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    xticks<span class="op">=</span>result[<span class="st">"degrees"</span>],</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"One model-selection experiment"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="005_evaluation_and_model_selection_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The test curve is shown for teaching purposes. In a real analysis, looking at the entire test curve and then reconsidering the degree would use the test set for selection.</p>
+<p>The validation and test curves estimate similar performance for each degree, but they are noisy. We specifically select the minimum point of the validation curve, so the selected validation error receives a favorable-selection advantage.</p>
+<section id="monte-carlo-view" class="level3" data-number="7.7.1">
+<h3 data-number="7.7.1" class="anchored" data-anchor-id="monte-carlo-view"><span class="header-section-number">7.7.1</span> Monte Carlo View</h3>
+<p>Repeat the full train/validation/test experiment. The first plot summarizes candidate error curves; the second examines errors at the validation-selected degree.</p>
+<div id="eval-select-v3-30" class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">459</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n_repetitions <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> [run_selection_experiment(rng<span class="op">=</span>rng) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_repetitions)]</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>all_train <span class="op">=</span> np.array([r[<span class="st">"train_mse"</span>] <span class="cf">for</span> r <span class="kw">in</span> results])</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>all_val <span class="op">=</span> np.array([r[<span class="st">"val_mse"</span>] <span class="cf">for</span> r <span class="kw">in</span> results])</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>all_test <span class="op">=</span> np.array([r[<span class="st">"test_mse"</span>] <span class="cf">for</span> r <span class="kw">in</span> results])</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>selected_degrees <span class="op">=</span> np.array([r[<span class="st">"selected_degree"</span>] <span class="cf">for</span> r <span class="kw">in</span> results])</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>degrees <span class="op">=</span> results[<span class="dv">0</span>][<span class="st">"degrees"</span>]</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="fl">4.8</span>))</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> curves, label, color <span class="kw">in</span> [</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    (all_train, <span class="st">"Training MSE"</span>, <span class="st">"tab:blue"</span>),</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    (all_val, <span class="st">"Validation MSE"</span>, <span class="st">"tab:orange"</span>),</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    (all_test, <span class="st">"Test MSE"</span>, <span class="st">"tab:green"</span>),</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>]:</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    log_curves <span class="op">=</span> np.log10(curves)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    median <span class="op">=</span> np.median(log_curves, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    q25, q75 <span class="op">=</span> np.percentile(log_curves, [<span class="dv">25</span>, <span class="dv">75</span>], axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    ax.plot(degrees, median, label<span class="op">=</span>label, color<span class="op">=</span>color)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    ax.fill_between(degrees, q25, q75, color<span class="op">=</span>color, alpha<span class="op">=</span><span class="fl">0.15</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">"Polynomial degree"</span>,</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="vs">r"$\log_</span><span class="sc">{10}</span><span class="vs">(\mathrm</span><span class="sc">{MSE}</span><span class="vs">)$"</span>,</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>    xticks<span class="op">=</span>degrees,</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Repeated selection experiments: median and middle 50%"</span>,</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="005_evaluation_and_model_selection_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="eval-select-v3-31" class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>selected_train <span class="op">=</span> all_train[np.arange(n_repetitions), selected_degrees]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>selected_val <span class="op">=</span> all_val[np.arange(n_repetitions), selected_degrees]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>selected_test <span class="op">=</span> all_test[np.arange(n_repetitions), selected_degrees]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].hist(selected_degrees, bins<span class="op">=</span>np.arange(degrees[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> <span class="dv">2</span>) <span class="op">-</span> <span class="fl">0.5</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>             edgecolor<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].<span class="bu">set</span>(</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">"Validation-selected degree"</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">"Count"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    xticks<span class="op">=</span>degrees[::<span class="dv">2</span>],</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].boxplot(</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    [selected_train, selected_val, selected_test],</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    tick_labels<span class="op">=</span>[<span class="st">"Train"</span>, <span class="st">"Validation"</span>, <span class="st">"Test"</span>],</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].<span class="bu">set</span>(ylabel<span class="op">=</span><span class="st">"MSE at the selected degree"</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean selected validation MSE: </span><span class="sc">{</span>selected_val<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean corresponding test MSE: </span><span class="sc">{</span>selected_test<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="005_evaluation_and_model_selection_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Mean selected validation MSE: 2.438
+Mean corresponding test MSE: 2.517</code></pre>
+</div>
+</div>
+<p>Across repetitions, validation and test error curves are similar when evaluated degree by degree. At the <strong>validation-selected</strong> degree, validation error is systematically lower: selection found a model with both good performance and, often, favorable validation noise.</p>
+</section>
+<section id="capacity-of-the-selection-procedure" class="level3" data-number="7.7.2">
+<h3 data-number="7.7.2" class="anchored" data-anchor-id="capacity-of-the-selection-procedure"><span class="header-section-number">7.7.2</span> Capacity of the Selection Procedure</h3>
+<p>The model family has capacity, but so does the search. For example, let <span class="math inline">\(K\)</span> be the maximum degree we are willing to consider and define <span class="math display">\[
+\hat d_K=\arg\min_{0\le d\le K} e_d.
+\]</span></p>
+<p>The selected validation error <span class="math display">\[
+e_{\hat d_K}=\min_{0\le d\le K}e_d
+\]</span> can never increase with <span class="math inline">\(K\)</span>: enlarging the search retains every old option. Test error has no such monotonicity guarantee.</p>
+<p>This is a useful model of <strong>meta-capacity</strong>. A more extensive search can improve the selected model, but it also creates more opportunities to overfit validation noise.</p>
+<div id="eval-select-v3-34" class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>selected_val_by_K <span class="op">=</span> []</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>selected_test_by_K <span class="op">=</span> []</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>selected_degree_by_K <span class="op">=</span> []</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> results:</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    val_by_K <span class="op">=</span> []</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    test_by_K <span class="op">=</span> []</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    degree_by_K <span class="op">=</span> []</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> K <span class="kw">in</span> degrees:</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        best_degree <span class="op">=</span> <span class="bu">int</span>(np.argmin(r[<span class="st">"val_mse"</span>][: K <span class="op">+</span> <span class="dv">1</span>]))</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        degree_by_K.append(best_degree)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        val_by_K.append(r[<span class="st">"val_mse"</span>][best_degree])</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        test_by_K.append(r[<span class="st">"test_mse"</span>][best_degree])</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    selected_val_by_K.append(val_by_K)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    selected_test_by_K.append(test_by_K)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    selected_degree_by_K.append(degree_by_K)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>selected_val_by_K <span class="op">=</span> np.array(selected_val_by_K)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>selected_test_by_K <span class="op">=</span> np.array(selected_test_by_K)</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>selected_degree_by_K <span class="op">=</span> np.array(selected_degree_by_K)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">11</span>, <span class="fl">4.2</span>))</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(degrees, np.median(selected_degree_by_K, axis<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].<span class="bu">set</span>(</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">"Maximum degree considered, $K$"</span>,</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">"Median selected degree"</span>,</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>    xticks<span class="op">=</span>degrees[::<span class="dv">2</span>],</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    degrees,</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    np.median(selected_val_by_K, axis<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Selected validation MSE"</span>,</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].plot(</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>    degrees,</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>    np.median(selected_test_by_K, axis<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="st">"Corresponding test MSE"</span>,</span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].<span class="bu">set</span>(</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">"Maximum degree considered, $K$"</span>,</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">"Median MSE"</span>,</span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>    xticks<span class="op">=</span>degrees[::<span class="dv">2</span>],</span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>].legend()</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>fig.tight_layout()</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="005_evaluation_and_model_selection_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="using-cv-for-selection" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="using-cv-for-selection"><span class="header-section-number">7.8</span> Using CV for Selection</h2>
+<p>A separate validation set is simple, but leaves fewer observations for fitting. Inside the same meta-procedure, we can replace the single validation score with <span class="math display">\[
+e_\lambda=\operatorname{CV}(\mathcal D_{\mathrm{train}},A_\lambda).
+\]</span></p>
+<p>We then select the smallest <span class="math inline">\(e_\lambda\)</span>, refit the selected procedure on all available training data, and evaluate its result on untouched test data.</p>
+<p>Here <code>train</code> means all data available for model building; CV creates its own internal training and validation folds. The test set remains outside the entire selection procedure.</p>
+<p>Again, CV estimates performance first. Comparing its estimates is what performs selection.</p>
+</section>
+<section id="evaluate-the-entire-pipeline" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="evaluate-the-entire-pipeline"><span class="header-section-number">7.9</span> Evaluate the Entire Pipeline</h2>
+<p>The meta-procedure <span class="math inline">\(\mathcal P\)</span> may include preprocessing, feature selection, fitting several <span class="math inline">\(A_\lambda\)</span>, comparing their CV estimates, selecting <span class="math inline">\(\hat\lambda\)</span>, and refitting. An honest test evaluates the output of this <strong>entire procedure</strong>.</p>
+<p>Anything learned from data must happen inside the training portion. For example, selecting features using all responses before splitting leaks evaluation information; splitting afterward does not undo it.</p>
+<p>Pipelines help enforce this rule: fit scaling, imputation, polynomial features, or feature-selection steps separately inside each fold along with the estimator.</p>
+<section id="nested-cross-validation" class="level3" data-number="7.9.1">
+<h3 data-number="7.9.1" class="anchored" data-anchor-id="nested-cross-validation"><span class="header-section-number">7.9.1</span> Nested cross-validation</h3>
+<p>If we cross-validate the complete CV-based selection procedure <span class="math inline">\(\mathcal P\)</span>, each outer training fold runs its own inner CV selection, and the outer evaluation fold assesses the result. This is <strong>nested cross-validation</strong>.</p>
+<p>We will not develop its two loops here. CV-based selection followed by one evaluation on a separate test set illustrates the same essential separation.</p>
+</section>
+</section>
+<section id="in-practice-penguins" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="in-practice-penguins"><span class="header-section-number">7.10</span> In Practice: Penguins</h2>
+<p>We now repeat the main workflows on the three-species penguins data from the previous lecture. Use flipper length and bill length to predict species, and evaluate predictions using accuracy.</p>
+<p>The examples below demonstrate three different uses of the data. Treat each as a separate analysis rather than consecutive stages of one analysis.</p>
+<div id="eval-select-v3-penguins-01" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> ConfusionMatrixDisplay, accuracy_score</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> (</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    StratifiedKFold,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    cross_val_score,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    train_test_split,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://gist.githubusercontent.com/slopp/ce3b90b9168f2f921784de84fa445651/raw/penguins.csv"</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#features = ["flipper_length_mm", "bill_length_mm"]</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">#penguins = pd.read_csv(url)[features + ["species"]].dropna()</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> pd.read_csv(url).dropna()</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>X_peng <span class="op">=</span> penguins[features].to_numpy()</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>y_peng <span class="op">=</span> penguins[<span class="st">"species"</span>].to_numpy()</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Observations: </span><span class="sc">{</span><span class="bu">len</span>(penguins)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(penguins[<span class="st">"species"</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Observations: 333
+species
+Adelie       146
+Gentoo       119
+Chinstrap     68
+Name: count, dtype: int64</code></pre>
+</div>
+</div>
+<section id="a-traintest-split" class="level3" data-number="7.10.1">
+<h3 data-number="7.10.1" class="anchored" data-anchor-id="a-traintest-split"><span class="header-section-number">7.10.1</span> A Train/Test Split</h3>
+<p>First evaluate one fixed procedure: standardize the two features, then fit multiclass logistic regression. Stratification keeps the species proportions similar in the two subsets.</p>
+<div id="eval-select-v3-penguins-03" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> penguin_classifier(degree<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> make_pipeline(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        PolynomialFeatures(degree<span class="op">=</span>degree, include_bias<span class="op">=</span><span class="va">False</span>),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        StandardScaler(),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        LogisticRegression(C<span class="op">=</span>np.inf, max_iter<span class="op">=</span><span class="dv">10000</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    X_peng,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    y_peng,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.20</span>,</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    stratify<span class="op">=</span>y_peng,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">460</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>linear_classifier <span class="op">=</span> penguin_classifier(degree<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>linear_classifier.fit(X_train, y_train)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>test_predictions <span class="op">=</span> linear_classifier.predict(X_test)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training observations: </span><span class="sc">{</span><span class="bu">len</span>(y_train)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test observations: </span><span class="sc">{</span><span class="bu">len</span>(y_test)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test accuracy: </span><span class="sc">{</span>accuracy_score(y_test, test_predictions)<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Training observations: 266
+Test observations: 67
+Test accuracy: 0.925</code></pre>
+</div>
+</div>
+<div id="eval-select-v3-penguins-04" class="cell">
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test, test_predictions)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Penguins: test-set predictions"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="005_evaluation_and_model_selection_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The test observations did not fit the scaler or the classifier. Test accuracy therefore estimates the performance of this particular fitted model on new penguins from the same population.</p>
+</section>
+<section id="cross-validation" class="level3" data-number="7.10.2">
+<h3 data-number="7.10.2" class="anchored" data-anchor-id="cross-validation"><span class="header-section-number">7.10.2</span> Cross-Validation</h3>
+<p>Next hold the procedure fixed and estimate its performance using five-fold CV. Both standardization and logistic fitting occur separately within every training fold because they are in the pipeline.</p>
+<div id="eval-select-v3-penguins-06" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>folds <span class="op">=</span> StratifiedKFold(n_splits<span class="op">=</span><span class="dv">5</span>, shuffle<span class="op">=</span><span class="va">True</span>, random_state<span class="op">=</span><span class="dv">461</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>cv_accuracy <span class="op">=</span> cross_val_score(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    penguin_classifier(degree<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    X_peng,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    y_peng,</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">=</span>folds,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    scoring<span class="op">=</span><span class="st">"accuracy"</span>,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Fold accuracies:"</span>, np.<span class="bu">round</span>(cv_accuracy, <span class="dv">3</span>))</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Mean CV accuracy: </span><span class="sc">{</span>cv_accuracy<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Fold accuracies: [0.97  0.925 0.925 0.939 0.97 ]
+Mean CV accuracy: 0.946</code></pre>
+</div>
+</div>
+<p>These five scores come from five fitted models. None is a final model. Their average estimates the performance of the fixed degree-1 fitting procedure.</p>
+</section>
+<section id="trainvalidationtest-selection" class="level3" data-number="7.10.3">
+<h3 data-number="7.10.3" class="anchored" data-anchor-id="trainvalidationtest-selection"><span class="header-section-number">7.10.3</span> Train/Validation/Test Selection</h3>
+<p>Finally, use validation accuracy to choose polynomial degree <span class="math inline">\(d\)</span>. If validation accuracy ties, choose the smaller degree.</p>
+<div id="eval-select-v3-penguins-08" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First reserve the test set. Then split the remaining data into</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># training and validation sets: 60% / 20% / 20% overall.</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>X_train_val, X_test, y_train_val, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    X_peng,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    y_peng,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.20</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    stratify<span class="op">=</span>y_peng,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">460</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>X_train, X_val, y_train, y_val <span class="op">=</span> train_test_split(</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    X_train_val,</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    y_train_val,</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.25</span>,</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    stratify<span class="op">=</span>y_train_val,</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">1460</span>,</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>candidate_degrees <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">20</span>])</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>validation_accuracy <span class="op">=</span> []</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> degree <span class="kw">in</span> candidate_degrees:</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> penguin_classifier(degree)</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    model.fit(X_train, y_train)</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> model.predict(X_val)</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    validation_accuracy.append(accuracy_score(y_val, predictions))</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>validation_accuracy <span class="op">=</span> np.array(validation_accuracy)</span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>best_accuracy <span class="op">=</span> validation_accuracy.<span class="bu">max</span>()</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>selected_degree <span class="op">=</span> <span class="bu">int</span>(candidate_degrees[validation_accuracy <span class="op">==</span> best_accuracy].<span class="bu">min</span>())</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> degree, accuracy <span class="kw">in</span> <span class="bu">zip</span>(candidate_degrees, validation_accuracy):</span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Degree </span><span class="sc">{</span>degree<span class="sc">}</span><span class="ss">: validation accuracy = </span><span class="sc">{</span>accuracy<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Selected degree: </span><span class="sc">{</span>selected_degree<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Degree 1: validation accuracy = 0.940
+Degree 5: validation accuracy = 0.925
+Degree 20: validation accuracy = 0.925
+Selected degree: 1</code></pre>
+</div>
+</div>
+<div id="eval-select-v3-penguins-09" class="cell">
+<details open="" class="code-fold">
+<summary>Show code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Refit the selected procedure on training plus validation data.</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>final_classifier <span class="op">=</span> penguin_classifier(selected_degree)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>final_classifier.fit(X_train_val, y_train_val)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the test set only after selection and refitting are complete.</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>final_predictions <span class="op">=</span> final_classifier.predict(X_test)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>final_test_accuracy <span class="op">=</span> accuracy_score(y_test, final_predictions)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Final test accuracy: </span><span class="sc">{</span>final_test_accuracy<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Final test accuracy: 0.925</code></pre>
+</div>
+</div>
+<p>The validation scores selected the degree, so the winning validation accuracy is part of model building. The final test accuracy evaluates the refitted output of the whole procedure:</p>
+<ol type="1">
+<li>create polynomial features,</li>
+<li>learn the scaling transformation,</li>
+<li>fit logistic-regression coefficients,</li>
+<li>compare degrees using validation accuracy,</li>
+<li>select a degree and refit.</li>
+</ol>
+<p>This small example is the practical version of the meta-procedure <span class="math inline">\(\mathcal P\)</span>.</p>
+</section>
+</section>
+<section id="review-questions" class="level2" data-number="7.11">
+<h2 data-number="7.11" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">7.11</span> Review Questions</h2>
+<p>See: <a href="../questions/005_evaluation_and_model_selection_questions.html" class="quarto-xref"><span>Chapter 26</span></a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lectures/004_multiclass_logistic_regression.html" class="pagination-link" aria-label="Multiclass Logistic Regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multiclass Logistic Regression</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../lectures/007_knn.html" class="pagination-link" aria-label="Nearest-Neighbor Methods">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Nearest-Neighbor Methods</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

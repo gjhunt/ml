@@ -38,8 +38,7 @@ book:
 
     - part: "Evaluation and Model Selection"
       chapters:
-        - lectures/005_evaluation.ipynb
-        - lectures/006_model_selection.ipynb
+        - lectures/005_evaluation_and_model_selection.ipynb
         - lectures/007_knn.ipynb
         - lectures/008_bias_variance.ipynb
 
@@ -47,7 +46,6 @@ book:
       chapters:
         - lectures/009_ridge.ipynb
         - lectures/010_lasso.ipynb
-        - lectures/011_elastic_net_logistic_erm.ipynb
 
     - part: "Neural Networks"
       chapters:
@@ -74,13 +72,11 @@ book:
         - questions/002_linear_regression_questions.ipynb
         - questions/003_logistic_regression_questions.ipynb
         - questions/004_multiclass_logistic_regression_questions.ipynb
-        - questions/005_evaluation_questions.ipynb
-        - questions/006_model_selection_questions.ipynb
+        - questions/005_evaluation_and_model_selection_questions.ipynb
         - questions/007_knn_questions.ipynb
         - questions/008_bias_variance_questions.ipynb
         - questions/009_ridge_questions.ipynb
         - questions/010_lasso_questions.ipynb
-        - questions/011_elastic_net_logistic_erm_questions.ipynb
         - questions/012_nn_questions.ipynb
         - questions/013_backprop_questions.ipynb
         - questions/014_nn_arch_questions.ipynb
