@@ -8,7 +8,7 @@
 
 <meta name="author" content="Gregory Hunt">
 
-<title>9&nbsp; Bias-Variance Tradeoff – Statistical Learning</title>
+<title>9&nbsp; Bias–Variance Tradeoff – Statistical Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,7 +148,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/005_evaluation_and_model_selection.html">Evaluation and Model Selection</a></li><li class="breadcrumb-item"><a href="../lectures/008_bias_variance.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/005_evaluation_and_model_selection.html">Evaluation and Model Selection</a></li><li class="breadcrumb-item"><a href="../lectures/008_bias_variance.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bias–Variance Tradeoff</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -248,7 +248,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/008_bias_variance.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bias–Variance Tradeoff</span></span></a>
   </div>
 </li>
       </ul>
@@ -417,7 +417,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../questions/008_bias_variance_questions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff - Review Questions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Bias–Variance Tradeoff — Review Questions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -503,9 +503,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/005_evaluation_and_model_selection.html">Evaluation and Model Selection</a></li><li class="breadcrumb-item"><a href="../lectures/008_bias_variance.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/005_evaluation_and_model_selection.html">Evaluation and Model Selection</a></li><li class="breadcrumb-item"><a href="../lectures/008_bias_variance.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bias–Variance Tradeoff</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bias-Variance Tradeoff</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Bias–Variance Tradeoff</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -523,7 +523,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 12, 2026</p>
+      <p class="date-modified">September 15, 2026</p>
     </div>
   </div>
     
@@ -537,197 +537,143 @@ window.Quarto = {
 <div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
-<p>Why does a learned model make mistakes? One useful way to think about this is coming from two sources:</p>
-<p><strong>Bias</strong> - Error from restricting ourselves to a model class - We approximate a complex reality with a simpler function</p>
-<p><strong>Variance</strong> - Error from sensitivity to the particular training dataset - Different samples → different fitted models</p>
-<p>Our key intuition is flexible models are low bias, high variance, where as rigid models are high bias, low variance. They tend to move opposite of each other. This tension is the <strong>bias–variance tradeoff</strong>.</p>
+<p>Why does a learned predictor make mistakes? Two important sources are:</p>
+<p><strong>Bias</strong> - Systematic error: the average fitted predictor differs from the population target</p>
+<p><strong>Variance</strong> - Instability: different training samples produce different fitted predictors</p>
+<p>Flexible procedures often have lower bias and higher variance, while rigid procedures often have higher bias and lower variance. This tension is the <strong>bias–variance tradeoff</strong>.</p>
 <section id="statistical-setup" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="statistical-setup"><span class="header-section-number">9.1</span> Statistical Setup</h2>
-<p>Let’s try to make this more rigorous. The easiest way to do this is in a <em>regression</em> context with a squared-error loss.</p>
-<p>Assume a standard data-generating model: <span class="math display">\[
-Y = f^*(X) + \varepsilon
+<p>The cleanest version of the decomposition uses regression with squared-error loss. Define <span class="math display">\[
+f^*(x)=\mathbb E[Y\mid X=x],
+\]</span> the population-optimal predictor under squared error. We can then write <span class="math display">\[
+Y=f^*(X)+\varepsilon,
+\]</span> where <span class="math inline">\(\mathbb E[\varepsilon\mid X]=0\)</span>. For simplicity, assume the conditional noise variance is constant: <span class="math display">\[
+\operatorname{Var}(\varepsilon\mid X)=\sigma^2.
 \]</span></p>
-<p>Here <span class="math inline">\(f^*\)</span> is the <strong>true</strong> model, now just the <em>best</em> one.</p>
-<p>Where: - <span class="math inline">\(f^*(X)\)</span>: true underlying signal - <span class="math inline">\(\varepsilon\)</span>: noise</p>
-<p>pretty mild assumptions assumptions: - <span class="math inline">\(\mathbb{E}[\varepsilon \mid X] = 0\)</span> - <span class="math inline">\(\mathrm{Var}(\varepsilon \mid X) = \sigma^2\)</span></p>
-<p>Assume we have some training data:</p>
-<p><span class="math display">\[
-\mathcal{D} = \{(X_i, Y_i)\}_{i=1}^n \overset{iid}{\sim} P
-\]</span></p>
-<p>We use this training data to learn a predictor: <span class="math display">\[
-\hat f = \hat f_{\mathcal{D}}
-\]</span></p>
-<p>Here, <span class="math inline">\(\hat f\)</span> is <strong>random</strong> because it depends on the random dataset <span class="math inline">\(\mathcal{D}\)</span>.</p>
-<p>Under this model there are <strong>two sources of randomness</strong>: 1. Noise in outputs <span class="math inline">\(\varepsilon\)</span> 2. Randomness of the dataset <span class="math inline">\(\mathcal{D}\)</span></p>
-<p>Consider evaluating at a new new test point: <span class="math display">\[
-(X, Y) \sim P
-\]</span></p>
-<p>We let’s consider the point-wise risk (for a fixed <span class="math inline">\(x\)</span>): <span class="math display">\[
-R_f(x) = \mathbb{E}\big[(Y - \hat f(x))^2 \mid X = x\big]
-\]</span></p>
-<p>Notice here that we are using <strong>squared error</strong> to measure fit. This is important, and our derivation won’t work (exactly) without it.</p>
-<p>We define quantities <strong>at a fixed <span class="math inline">\(x\)</span></strong>. So that the expectation is over the randomness of the dataset <span class="math inline">\(\mathcal{D}\)</span>. Define the <strong>bias</strong> as : <span class="math display">\[
-\mathrm{Bias}_f(x) = \mathbb{E}_{\mathcal{D}}[\hat f(x)] - f^*(x)
-\]</span></p>
-<p>The interpretation is that <em>bias</em> measures far the <em>average model</em> is from truth. Its a measure of <strong>model misspecification</strong>.</p>
-<p>Define the <strong>variance</strong> as <span class="math display">\[
-\mathrm{Var}_f(x) = \mathrm{Var}_{\mathcal{D}}(\hat f(x))
-\]</span></p>
-<p>The interpretation is how much predictions fluctuate across datasets. Variance measures <strong>instability</strong>.</p>
-<p>We can show that</p>
-<p><span class="math display">\[R_f(x)=
-\mathrm{Bias}_f(x)^2
-+
-\mathrm{Var}_f(x)
-+
-\sigma^2
-\]</span></p>
-<p>So that pointwise risk is a combination of:</p>
-<ul>
-<li><strong>Squared Bias</strong>: Error from using the wrong function class</li>
-<li><strong>Variance</strong>: Error from estimating with finite data</li>
-<li><strong><span class="math inline">\(\sigma^2\)</span></strong>: Irreducible error (Even perfect prediction of <span class="math inline">\(f^*\)</span> cannot remove this.)</li>
-</ul>
+<p>Let <span class="math display">\[
+\mathcal D=\{(x_n,y_n)\}_{n=1}^N
+\]</span> be a random training sample. A fixed fitting procedure <span class="math inline">\(A\)</span> produces <span class="math display">\[
+\hat f_{\mathcal D}=A(\mathcal D).
+\]</span> Thus <span class="math inline">\(\hat f_{\mathcal D}\)</span> is random: a different training sample generally produces a different fitted function.</p>
+<p>Now draw a new test observation <span class="math inline">\((X,Y)\sim P\)</span>, independently of <span class="math inline">\(\mathcal D\)</span>. At a fixed input <span class="math inline">\(x\)</span>, define the pointwise risk <span class="math display">\[
+R(x)=\mathbb E_{\mathcal D,Y\mid X=x}\left[(Y-\hat f_{\mathcal D}(x))^2\right].
+\]</span> This expectation averages over both possible training datasets and the noise in the new response.</p>
+<p>At the same fixed <span class="math inline">\(x\)</span>, define <span class="math display">\[
+\operatorname{Bias}(x)=\mathbb E_{\mathcal D}[\hat f_{\mathcal D}(x)]-f^*(x)
+\]</span> and <span class="math display">\[
+\operatorname{Var}(x)=\operatorname{Var}_{\mathcal D}(\hat f_{\mathcal D}(x)).
+\]</span> Bias measures how far the <em>average fitted prediction</em> is from <span class="math inline">\(f^*(x)\)</span>. It can come from a restricted model class, smoothing, regularization, or other systematic features of the fitting procedure. Variance measures how much the fitted prediction changes across training datasets.</p>
+<p>We will show that <span class="math display">\[
+R(x)=\operatorname{Bias}(x)^2+\operatorname{Var}(x)+\sigma^2.
+\]</span> The three terms are systematic error, dataset-to-dataset instability, and irreducible noise.</p>
 </section>
 <section id="derivation" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="derivation"><span class="header-section-number">9.2</span> Derivation</h2>
-<p>Let’s show that: <span class="math display">\[
-R_f(x) = \mathbb{E}\big[(Y - \hat f(x))^2 \mid X = x\big]
-= \mathrm{Bias}_f(x)^2 + \mathrm{Var}_f(x) + \sigma^2
+<p>Fix an input <span class="math inline">\(x\)</span>. All expectations below average over the random training dataset and, where relevant, the new response noise. We want to show <span class="math display">\[
+R(x)=\operatorname{Bias}(x)^2+\operatorname{Var}(x)+\sigma^2.
 \]</span></p>
-<p><strong>Step 1:</strong> Substitute the data-generating model</p>
-<p>Recall: <span class="math display">\[
-Y = f^*(x) + \varepsilon
+<p><strong>Step 1: Substitute the data-generating model.</strong></p>
+<p>At <span class="math inline">\(X=x\)</span>, we have <span class="math inline">\(Y=f^*(x)+\varepsilon\)</span>. Therefore <span class="math display">\[
+R(x)=\mathbb E\left[(f^*(x)-\hat f_{\mathcal D}(x)+\varepsilon)^2\right].
 \]</span></p>
-<p>Plug into the risk: <span class="math display">\[
-R(x) = \mathbb{E}\big[(f^*(x) + \varepsilon - \hat f(x))^2\big]
-\]</span></p>
-<p>Rearrange: <span class="math display">\[
-= \mathbb{E}\big[(f^*(x) - \hat f(x) + \varepsilon)^2\big]
-\]</span></p>
-<p><strong>Step 2:</strong> Expand the square</p>
+<p><strong>Step 2: Expand the square.</strong></p>
 <p><span class="math display">\[
-= \mathbb{E}\big[(f^*(x) - \hat f(x))^2 + 2\varepsilon(f^*(x) - \hat f(x)) + \varepsilon^2\big]
+\begin{aligned}
+R(x)={}&amp;\mathbb E_{\mathcal D}\left[(f^*(x)-\hat f_{\mathcal D}(x))^2\right]\\
+&amp;+2\mathbb E_{\mathcal D,\varepsilon\mid x}\left[\varepsilon(f^*(x)-\hat f_{\mathcal D}(x))\right]\\
+&amp;+\mathbb E[\varepsilon^2\mid X=x].
+\end{aligned}
+\]</span> The subscripts emphasize that the first term varies only with the training dataset, while the cross term varies with both the training dataset and the new test noise.</p>
+<p><strong>Step 3: Handle the terms involving test noise.</strong></p>
+<p>Consider the first cross term: <span class="math display">\[
+\mathbb E_{\mathcal D,\varepsilon\mid x}\left[\varepsilon(f^*(x)-\hat f_{\mathcal D}(x))\right].
+\]</span> The clean way to evaluate it is to condition on the training dataset first. Once <span class="math inline">\(\mathcal D\)</span> is fixed, both <span class="math inline">\(f^*(x)\)</span> and <span class="math inline">\(\hat f_{\mathcal D}(x)\)</span> are fixed numbers. Only the new test noise <span class="math inline">\(\varepsilon\)</span> is still random. Therefore <span class="math display">\[
+\begin{aligned}
+&amp;\mathbb E_{\mathcal D,\varepsilon\mid x}\left[\varepsilon(f^*(x)-\hat f_{\mathcal D}(x))\right]\\
+&amp;=\mathbb E_{\mathcal D}\left[
+\mathbb E_{\varepsilon\mid x,\mathcal D}\left[\varepsilon(f^*(x)-\hat f_{\mathcal D}(x))\right]
+\right]\\
+&amp;=\mathbb E_{\mathcal D}\left[
+(f^*(x)-\hat f_{\mathcal D}(x))\mathbb E[\varepsilon\mid X=x,\mathcal D]
+\right].
+\end{aligned}
+\]</span> The test observation is independent of <span class="math inline">\(\mathcal D\)</span>, so conditioning on <span class="math inline">\(\mathcal D\)</span> gives no new information about its noise. Hence <span class="math display">\[
+\mathbb E[\varepsilon\mid X=x,\mathcal D]
+=\mathbb E[\varepsilon\mid X=x]=0,
+\]</span> and the entire cross term is zero. We did <strong>not</strong> assume that <span class="math inline">\(f^*(x)-\hat f_{\mathcal D}(x)\)</span> has mean zero; the result follows from the mean-zero test noise.</p>
+<p>For the remaining noise term, <span class="math display">\[
+\mathbb E[\varepsilon^2\mid X=x]
+=\operatorname{Var}(\varepsilon\mid X=x)
++\mathbb E[\varepsilon\mid X=x]^2
+=\sigma^2.
+\]</span> Thus <span class="math display">\[
+R(x)=\mathbb E_{\mathcal D}\left[(f^*(x)-\hat f_{\mathcal D}(x))^2\right]+\sigma^2.
 \]</span></p>
-<p>Split expectation: <span class="math display">\[
-= \mathbb{E}\big[(f^*(x) - \hat f(x))^2\big]
-+ 2\mathbb{E}\big[\varepsilon(f^*(x) - \hat f(x))\big]
-+ \mathbb{E}[\varepsilon^2]
-\]</span></p>
-<p><strong>Step 3:</strong> Handle each term</p>
-<ol type="i">
-<li>Noise term <span class="math display">\[
-\mathbb{E}[\varepsilon^2] = \sigma^2
-\]</span></li>
-<li>Cross term <span class="math display">\[
-\mathbb{E}[\varepsilon(f^*(x) - \hat f(x))] = 0
-\]</span></li>
-</ol>
-<p>This happens because - <span class="math inline">\(\varepsilon\)</span> has mean zero given <span class="math inline">\(X\)</span> - <span class="math inline">\(\hat f(x)\)</span> depends only on <span class="math inline">\(\mathcal{D}\)</span>, independent of <span class="math inline">\(\varepsilon\)</span> at test time</p>
-<p>So <span class="math display">\[
-\mathbb{E}[\varepsilon(f^*(x) - \hat f(x))] = \mathbb{E}[\varepsilon]\mathbb{E}[(f^*(x) - \hat f(x))] =  0 \cdot \mathbb{E}[(f^*(x) - \hat f(x))] = 0
-\]</span></p>
-<p><strong>Step 4:</strong> Focus on the main term</p>
-<p>We now have: <span class="math display">\[
-R(x) = \mathbb{E}\big[(f^*(x) - \hat f(x))^2\big] + \sigma^2
-\]</span></p>
-<p>Now decompose: <span class="math display">\[
-f^*(x) - \hat f(x)=
-\big(f^*(x) - \mathbb{E}[\hat f(x)]\big)
-+
-\big(\mathbb{E}[\hat f(x)] - \hat f(x)\big)
-\]</span></p>
-<p><strong>Step 5:</strong> Expand again</p>
-<p><span class="math display">\[
-(f^*(x) - \hat f(x))^2=
-\big(f^*(x) - \mathbb{E}[\hat f(x)]\big)^2
-+
-\big(\mathbb{E}[\hat f(x)] - \hat f(x)\big)^2
-+\
-2\big(f^*(x) - \mathbb{E}[\hat f(x)]\big)\big(\mathbb{E}[\hat f(x)] - \hat f(x)\big)
-\]</span></p>
-<p>Taking expectation over <span class="math inline">\(\mathcal{D}\)</span>:</p>
-<ul>
-<li>First term is constant: <span class="math display">\[
-= \big(f^*(x) - \mathbb{E}[\hat f(x)]\big)^2
-\]</span></li>
-</ul>
-<p>since <span class="math inline">\(f^*\)</span> is constant, and the expectation is certainly a constant.</p>
-<ul>
-<li><p>Second term: <span class="math display">\[
-= \mathrm{Var}_{\mathcal{D}}(\hat f(x))
-\]</span></p></li>
-<li><p>Cross term vanishes: <span class="math display">\[
-\mathbb{E}\big[\hat f(x) - \mathbb{E}[\hat f(x)]\big] = 0
-\]</span> this happens because <span class="math display">\[
-\mathbb{E}\big[\hat f(x) - \mathbb{E}[\hat f(x)]\big]=
-\mathbb{E}[\hat f(x)] - \mathbb{E}[\hat f(x)]= 0
-\]</span></p></li>
-</ul>
-<p>So the entire cross term will be zero.</p>
-<p><strong>Step 6:</strong> Final result</p>
-<p>Putting this all together, we get:</p>
-<p><span class="math display">\[
-\mathbb{E}\big[(f^*(x) - \hat f(x))^2\big]=
-\underbrace{\big(\mathbb{E}[\hat f(x)] - f^*(x)\big)^2}_{\mathrm{Bias}_f(x)^2}
-+
-\underbrace{\mathrm{Var}(\hat f(x))}_{\mathrm{Var}_f(x)}
-\]</span></p>
-<p>So we get our result: <span class="math display">\[
+<p><strong>Step 4: Separate bias from variance.</strong></p>
+<p>Let the average fitted prediction be <span class="math display">\[
+\bar f(x)=\mathbb E_{\mathcal D}[\hat f_{\mathcal D}(x)].
+\]</span> Add and subtract <span class="math inline">\(\bar f(x)\)</span>: <span class="math display">\[
+f^*(x)-\hat f_{\mathcal D}(x)
+=\underbrace{f^*(x)-\bar f(x)}_{\text{systematic difference}}
++\underbrace{\bar f(x)-\hat f_{\mathcal D}(x)}_{\text{dataset-to-dataset fluctuation}}.
+\]</span> Now square <strong>before</strong> taking the expectation: <span class="math display">\[
+\begin{aligned}
+(f^*(x)-\hat f_{\mathcal D}(x))^2
+={}&amp;(f^*(x)-\bar f(x))^2\\
+&amp;+(\bar f(x)-\hat f_{\mathcal D}(x))^2\\
+&amp;+2(f^*(x)-\bar f(x))(\bar f(x)-\hat f_{\mathcal D}(x)).
+\end{aligned}
+\]</span> At this point the only randomness is in <span class="math inline">\(\mathcal D\)</span>. The first factor in the cross term, <span class="math inline">\(f^*(x)-\bar f(x)\)</span>, does not change across training datasets, so it can be pulled outside the expectation: <span class="math display">\[
+\begin{aligned}
+&amp;2\mathbb E_{\mathcal D}\left[(f^*(x)-\bar f(x))(\bar f(x)-\hat f_{\mathcal D}(x))\right]\\
+&amp;=2(f^*(x)-\bar f(x))
+\mathbb E_{\mathcal D}[\bar f(x)-\hat f_{\mathcal D}(x)]\\
+&amp;=2(f^*(x)-\bar f(x))
+\left(\bar f(x)-\mathbb E_{\mathcal D}[\hat f_{\mathcal D}(x)]\right)\\
+&amp;=2(f^*(x)-\bar f(x))(\bar f(x)-\bar f(x))=0.
+\end{aligned}
+\]</span> This cross term vanishes because the dataset-to-dataset fluctuation is centered around the average fit <span class="math inline">\(\bar f(x)\)</span>.</p>
+<p>The two squared terms become <span class="math display">\[
+\mathbb E_{\mathcal D}[(f^*(x)-\bar f(x))^2]
+=(f^*(x)-\bar f(x))^2=\operatorname{Bias}(x)^2
+\]</span> and <span class="math display">\[
+\mathbb E_{\mathcal D}[(\bar f(x)-\hat f_{\mathcal D}(x))^2]
+=\operatorname{Var}_{\mathcal D}(\hat f_{\mathcal D}(x))
+=\operatorname{Var}(x).
+\]</span> Therefore <span class="math display">\[
 R(x)=
-\mathrm{Bias}_f(x)^2
-+
-\mathrm{Var}_f(x)
-+
-\sigma^2
+\underbrace{\big(\mathbb E_{\mathcal D}[\hat f_{\mathcal D}(x)]-f^*(x)\big)^2}_{\operatorname{Bias}(x)^2}
++\underbrace{\operatorname{Var}_{\mathcal D}(\hat f_{\mathcal D}(x))}_{\operatorname{Var}(x)}
++\underbrace{\sigma^2}_{\text{irreducible noise}}.
 \]</span></p>
-<p>This decomposition separates three sources of error:</p>
-<ul>
-<li><strong>Squred Bias</strong>: error from model misspecification<br>
-</li>
-<li><strong>Variance</strong>: error from dataset sensitivity<br>
-</li>
-<li><strong>Noise</strong>: irreducible randomness in <span class="math inline">\(Y\)</span></li>
-</ul>
 </section>
 <section id="why-do-we-call-it-a-tradeoff" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="why-do-we-call-it-a-tradeoff"><span class="header-section-number">9.3</span> Why do we call it a tradeoff?</h2>
-<p>Typically, we find that flexibility typically goes with model complexity, and:</p>
+<p>A common pattern is:</p>
 <ul>
-<li>Increasing model flexibility:
-<ul>
-<li>reduces bias (better approximation of <span class="math inline">\(f^*\)</span>)</li>
-<li>increases variance (more sensitivity to <span class="math inline">\(\mathcal{D}\)</span>)</li>
-</ul></li>
-<li>Decreasing flexibility:
-<ul>
-<li>increases bias</li>
-<li>reduces variance</li>
-</ul></li>
+<li>More flexibility lowers bias by allowing a closer approximation to <span class="math inline">\(f^*\)</span>, but raises variance by making the fit more sensitive to <span class="math inline">\(\mathcal D\)</span>.</li>
+<li>Less flexibility raises bias, but lowers variance.</li>
 </ul>
-<p>Examples of flexibility include: - Polynomial degree - Number of parameters - KNN neighborhood size</p>
-<p>We can visualize it here:</p>
+<p>Examples include polynomial degree, the number of model parameters, and the number <span class="math inline">\(m\)</span> of neighbors in nearest-neighbor regression. For nearest-neighbor regression, <strong>smaller <span class="math inline">\(m\)</span> means more flexibility</strong>.</p>
+<p>These are typical tendencies, not monotonic laws that every method must follow.</p>
+<p>A standard cartoon summarizes the typical pattern:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://www.tutorialspoint.com/machine_learning/images/bias_variance_tradeoff.jpg" class="img-fluid figure-img"></p>
-<figcaption>Bias-variance decomposition figure.</figcaption>
+<p><img src="../images/bias_variance_tradeoff.jpg" class="img-fluid figure-img"></p>
+<figcaption>Typical bias–variance tradeoff as model complexity changes.</figcaption>
 </figure>
 </div>
+<p><a href="https://www.tutorialspoint.com/machine_learning/images/bias_variance_tradeoff.jpg">Image source</a></p>
 </section>
 <section id="role-of-sample-size" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="role-of-sample-size"><span class="header-section-number">9.4</span> Role of Sample Size</h2>
-<p>As the sample size increases:</p>
+<p>More training data often lowers variance because a fitted predictor becomes less sensitive to any particular observation. Bias may remain similar when the model class and fitting behavior remain similar, but it can also change with <span class="math inline">\(N\)</span>. For example, with nearest-neighbor regression, more data can make a neighborhood around <span class="math inline">\(x\)</span> more local and thereby reduce bias.</p>
+<p>Useful responses to the two problems are:</p>
 <ul>
-<li><strong>Variance decreases</strong></li>
-<li><strong>Bias typically stays the same</strong></li>
+<li>High variance: collect more data or use a less flexible procedure.</li>
+<li>High bias: use a more flexible model or fitting procedure.</li>
 </ul>
-<p>Recall that variance measures how much <span class="math inline">\(\hat f(x)\)</span> changes across different training datasets. So this is more sensitive with a small sample size. However bias often depends more on the <strong>model class</strong>, less so than the dataset size. (In practice, bias can sometimes decrease slightly with <span class="math inline">\(n\)</span>, but classically not as much as variance increases).</p>
-<p>Practical takeaway:</p>
-<ul>
-<li>If variance is high → get more data or regularize</li>
-<li>If bias is high → use a richer model</li>
-</ul>
-<p>Here is an example of what these actual quantities look like in a simulation:</p>
+<p>We can estimate the decomposition by Monte Carlo simulation. For each value of <span class="math inline">\(m\)</span>, we fit nearest-neighbor regression on many random training datasets. We estimate bias and variance at each point on a common grid, then average those pointwise quantities across the grid.</p>
 <div id="010f26a7-cd00-4e23-aaaa-c7c39ec1bf34" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -735,7 +681,7 @@ R(x)=
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsRegressor</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">2026</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># True regression function</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
@@ -748,9 +694,16 @@ R(x)=
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>x_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">200</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>f_true <span class="op">=</span> f(x_grid.ravel())</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>n_train <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>k_values <span class="op">=</span> [<span class="bu">int</span>(i) <span class="cf">for</span> i <span class="kw">in</span> np.linspace(<span class="dv">1</span>,n_train,num<span class="op">=</span>n_train)]</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>n_datasets <span class="op">=</span> <span class="dv">300</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>N_train <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>m_values <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">51</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>n_datasets <span class="op">=</span> <span class="dv">200</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the same simulated datasets for every value of m</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>datasets <span class="op">=</span> []</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_datasets):</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    X_train <span class="op">=</span> rng.uniform(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span>N_train)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    y_train <span class="op">=</span> f(X_train) <span class="op">+</span> rng.normal(<span class="dv">0</span>, sigma, size<span class="op">=</span>N_train)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    datasets.append((X_train.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), y_train))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div id="0ca3a04c-1a35-4a7d-a6a0-235e20847091" class="cell">
@@ -758,62 +711,52 @@ R(x)=
 <summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bias2_list <span class="op">=</span> []</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>var_list <span class="op">=</span> []</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>noise_list <span class="op">=</span> []</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>test_error_list <span class="op">=</span> []</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> k_values:</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    preds <span class="op">=</span> []</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_datasets):</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Simulate one training dataset</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        X_train <span class="op">=</span> rng.uniform(<span class="dv">0</span>, <span class="dv">1</span>, size<span class="op">=</span>n_train)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        y_train <span class="op">=</span> f(X_train) <span class="op">+</span> rng.normal(<span class="dv">0</span>, sigma, size<span class="op">=</span>n_train)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Fit KNN regression</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> KNeighborsRegressor(n_neighbors<span class="op">=</span>k)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        model.fit(X_train.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), y_train)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>risk_list <span class="op">=</span> []</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> m <span class="kw">in</span> m_values:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    preds <span class="op">=</span> []</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> X_train, y_train <span class="kw">in</span> datasets:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        model <span class="op">=</span> KNeighborsRegressor(n_neighbors<span class="op">=</span>m)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        model.fit(X_train, y_train)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        preds.append(model.predict(x_grid))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    preds <span class="op">=</span> np.array(preds)  <span class="co"># shape: (n_datasets, len(x_grid))</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Average prediction over datasets</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    mean_pred <span class="op">=</span> preds.mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Predict on common grid</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        y_hat <span class="op">=</span> model.predict(x_grid)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        preds.append(y_hat)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pointwise bias^2 and variance</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    bias2_x <span class="op">=</span> (mean_pred <span class="op">-</span> f_true) <span class="op">**</span> <span class="dv">2</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    var_x <span class="op">=</span> preds.var(axis<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    preds <span class="op">=</span> np.array(preds)  <span class="co"># shape: (n_datasets, len(x_grid))</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Average prediction over datasets</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    mean_pred <span class="op">=</span> preds.mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Average the pointwise quantities over the grid</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    bias2 <span class="op">=</span> bias2_x.mean()</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    variance <span class="op">=</span> var_x.mean()</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    risk <span class="op">=</span> bias2 <span class="op">+</span> variance <span class="op">+</span> sigma<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pointwise bias^2 and variance</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    bias2_x <span class="op">=</span> (mean_pred <span class="op">-</span> f_true) <span class="op">**</span> <span class="dv">2</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    var_x <span class="op">=</span> preds.var(axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Global averages over x</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    bias2 <span class="op">=</span> bias2_x.mean()</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    variance <span class="op">=</span> var_x.mean()</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    noise <span class="op">=</span> sigma<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    test_error <span class="op">=</span> bias2 <span class="op">+</span> variance <span class="op">+</span> noise</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    bias2_list.append(bias2)</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    var_list.append(variance)</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    noise_list.append(noise)</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    test_error_list.append(test_error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    bias2_list.append(bias2)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    var_list.append(variance)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    risk_list.append(risk)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div id="afe2d538-c8c4-42fb-9f6b-dbef44abc020" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.plot(k_values, bias2_list, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'Bias^2'</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.plot(k_values, var_list, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'Variance'</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.plot(k_values, test_error_list, marker<span class="op">=</span><span class="st">'o'</span>, label<span class="op">=</span><span class="st">'Bias^2 + Variance + Noise'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.plot(m_values, bias2_list, label<span class="op">=</span><span class="st">'Squared bias'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.plot(m_values, var_list, label<span class="op">=</span><span class="st">'Variance'</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.plot(m_values, risk_list, label<span class="op">=</span><span class="st">'Risk'</span>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.axhline(sigma<span class="op">**</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, label<span class="op">=</span><span class="st">'Noise'</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'k in KNN regression'</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Error'</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Bias-Variance Tradeoff in KNN Regression'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="vs">r'Number of neighbors $m$'</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Monte Carlo estimate'</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Bias–Variance Tradeoff in Nearest-Neighbor Regression'</span>)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>While technically this very mathematically precise statement about a bias-variance decomposition depends on using a squared-error loss in a regression context. It is still often a good guiding principle for other losses and even classification.</p>
+<p>As <span class="math inline">\(m\)</span> increases, nearest-neighbor regression becomes less flexible: variance falls while squared bias generally rises. Their sum is smallest at an intermediate value in this simulation.</p>
+<p>The exact decomposition derived above relies on squared-error regression. Bias and variance remain useful qualitative ideas for other losses and for classification, but the same three-term identity does not automatically apply.</p>
 </section>
 <section id="review-questions" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">9.5</span> Review Questions</h2>
