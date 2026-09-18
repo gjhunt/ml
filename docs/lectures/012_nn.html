@@ -492,21 +492,21 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#feature-learning" id="toc-feature-learning" class="nav-link active" data-scroll-target="#feature-learning"><span class="header-section-number">12.1</span> Feature Learning</a></li>
-  <li><a href="#what-is-the-form-of-each-layer" id="toc-what-is-the-form-of-each-layer" class="nav-link" data-scroll-target="#what-is-the-form-of-each-layer"><span class="header-section-number">12.2</span> What Is the Form of Each Layer?</a></li>
-  <li><a href="#why-are-they-called-networks" id="toc-why-are-they-called-networks" class="nav-link" data-scroll-target="#why-are-they-called-networks"><span class="header-section-number">12.3</span> Why Are They Called “Networks”?</a></li>
-  <li><a href="#one-hidden-layer-network" id="toc-one-hidden-layer-network" class="nav-link" data-scroll-target="#one-hidden-layer-network"><span class="header-section-number">12.4</span> One-hidden-layer Network</a>
+  <li><a href="#from-fixed-to-learned-features" id="toc-from-fixed-to-learned-features" class="nav-link active" data-scroll-target="#from-fixed-to-learned-features"><span class="header-section-number">12.1</span> From Fixed to Learned Features</a></li>
+  <li><a href="#inside-a-layer" id="toc-inside-a-layer" class="nav-link" data-scroll-target="#inside-a-layer"><span class="header-section-number">12.2</span> Inside a Layer</a>
   <ul class="collapse">
-  <li><a href="#regression-output" id="toc-regression-output" class="nav-link" data-scroll-target="#regression-output"><span class="header-section-number">12.4.1</span> Regression Output</a></li>
-  <li><a href="#classification-output" id="toc-classification-output" class="nav-link" data-scroll-target="#classification-output"><span class="header-section-number">12.4.2</span> Classification Output</a></li>
+  <li><a href="#dimensions-width-and-depth" id="toc-dimensions-width-and-depth" class="nav-link" data-scroll-target="#dimensions-width-and-depth"><span class="header-section-number">12.2.1</span> Dimensions, Width, and Depth</a></li>
+  <li><a href="#activation-functions" id="toc-activation-functions" class="nav-link" data-scroll-target="#activation-functions"><span class="header-section-number">12.2.2</span> Activation Functions</a></li>
   </ul></li>
-  <li><a href="#loss-functions-and-erm" id="toc-loss-functions-and-erm" class="nav-link" data-scroll-target="#loss-functions-and-erm"><span class="header-section-number">12.5</span> Loss Functions and ERM</a>
+  <li><a href="#putting-the-layers-together" id="toc-putting-the-layers-together" class="nav-link" data-scroll-target="#putting-the-layers-together"><span class="header-section-number">12.3</span> Putting the Layers Together</a></li>
+  <li><a href="#the-network-picture" id="toc-the-network-picture" class="nav-link" data-scroll-target="#the-network-picture"><span class="header-section-number">12.4</span> The Network Picture</a></li>
+  <li><a href="#one-hidden-layer-regression" id="toc-one-hidden-layer-regression" class="nav-link" data-scroll-target="#one-hidden-layer-regression"><span class="header-section-number">12.5</span> One Hidden Layer: Regression</a></li>
+  <li><a href="#one-hidden-layer-classification" id="toc-one-hidden-layer-classification" class="nav-link" data-scroll-target="#one-hidden-layer-classification"><span class="header-section-number">12.6</span> One Hidden Layer: Classification</a>
   <ul class="collapse">
-  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression"><span class="header-section-number">12.5.1</span> Regression</a></li>
-  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification"><span class="header-section-number">12.5.2</span> Classification</a></li>
-  <li><a href="#erm-problem" id="toc-erm-problem" class="nav-link" data-scroll-target="#erm-problem"><span class="header-section-number">12.5.3</span> ERM Problem</a></li>
+  <li><a href="#a-nested-classifier-with-explicit-shapes" id="toc-a-nested-classifier-with-explicit-shapes" class="nav-link" data-scroll-target="#a-nested-classifier-with-explicit-shapes"><span class="header-section-number">12.6.1</span> A Nested Classifier with Explicit Shapes</a></li>
   </ul></li>
-  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">12.6</span> Review Questions</a></li>
+  <li><a href="#losses-and-empirical-risk" id="toc-losses-and-empirical-risk" class="nav-link" data-scroll-target="#losses-and-empirical-risk"><span class="header-section-number">12.7</span> Losses and Empirical Risk</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">12.8</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -533,7 +533,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 18, 2026</p>
+      <p class="date-modified">September 18, 2026</p>
     </div>
   </div>
     
@@ -547,215 +547,109 @@ window.Quarto = {
 <div style="border-left: 5px solid #b7791f; background-color: #fff8e1; padding: 0.8em 1em; margin: 1em 0; border-radius: 4px;">
 <p><strong>Warning: AI-assisted materials</strong><br><br> These materials were developed with assistance from AI tools. All content has been reviewed and edited by the instructor, who takes final responsibility for its accuracy, clarity, and appropriateness for the course. Students should treat these materials as instructor-reviewed course content while applying the same critical judgment they would use with any technical material. Please report any suspected errors or unclear explanations to ghunt@wm.edu.</p>
 </div>
-<p>Let’s now consider another class of models within the ERM framework: <strong>feed-forward neural networks</strong>.</p>
-<p>As a point of reference, consider two of our basic models:</p>
-<ol type="1">
-<li><p><strong>Linear regression</strong>, where the goal was to predict a continuous outcome</p>
+<p>Linear regression uses a scalar score <span class="math inline">\(s_w(x)=w^\top x\)</span>. Multiclass logistic regression uses a vector of scores <span class="math inline">\(s_W(x)=W^\top x\)</span> and converts them to probabilities with softmax. A neural network keeps this score-and-loss framework but builds its score by <strong>composing learned layers</strong>:</p>
 <p><span class="math display">\[
-y \in \mathbb{R}
+s_\theta(x)=s_L\!\left(s_{L-1}\!\left(\cdots s_2(s_1(x))\cdots\right)\right).
 \]</span></p>
-<p>from an input</p>
+<p>Each layer takes the previous layer’s output as its input. Each map <span class="math inline">\(s_i\)</span> has parameters <span class="math inline">\(\theta_i\)</span>; we collect them into <span class="math inline">\(\theta=(\theta_1,\ldots,\theta_L)\)</span>. To understand what we gain from this composition, start with the idea of learning features.</p>
+<section id="from-fixed-to-learned-features" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="from-fixed-to-learned-features"><span class="header-section-number">12.1</span> From Fixed to Learned Features</h2>
+<p>With two raw features, polynomial regression might use the <strong>fixed</strong> feature map</p>
 <p><span class="math display">\[
-x \in \mathbb{R}^D.
+\psi(x)=(x_1,x_2,x_1^2,x_1x_2,x_2^2)^\top,
+\qquad s_w(x)=w^\top\psi(x).
 \]</span></p>
-<p>We chose the class of linear score functions</p>
+<p>We choose these transformations beforehand; fitting chooses only how to combine them.</p>
+<p>A neural network instead learns intermediate features. With two hidden layers, the sequence is</p>
 <p><span class="math display">\[
-\mathcal{S} = \{s_w(x) = w^\top x : w \in \mathbb{R}^D\},
+h^{(1)}=s_1(x),\qquad h^{(2)}=s_2(h^{(1)}),\qquad s_\theta(x)=s_3(h^{(2)}).
 \]</span></p>
-<p>and, using squared error loss, arrived at the least squares problem.</p></li>
-<li><p><strong>Logistic regression</strong>, where the goal was to predict a categorical outcome</p>
-<p><span class="math display">\[
-y \in \{1,\ldots,K\}.
-\]</span></p>
-<p>We again used a linear score function</p>
-<p><span class="math display">\[
-s_W(x) = W^\top x,
-\]</span></p>
-<p>but then mapped the score to probabilities</p>
-<p><span class="math display">\[
-p_W(x) = \mathrm{softmax}(W^\top x).
-\]</span></p>
-<p>and optimized <span class="math inline">\(W\)</span> using the categorical cross-entropy loss.</p></li>
-</ol>
-<p>While these models seem relatively basic, remember that we can do any sort of feature engineering on <span class="math inline">\(x\)</span> beforehand to make complex models that are non-linear in <span class="math inline">\(x\)</span>.</p>
-<p>Neural networks fit into this same setup. The main difference is that we will replace the linear score function in <span class="math inline">\(x\)</span> with a more flexible function <span class="math inline">\(s_\theta\)</span> made of a series of function compositions. At a high level, the neural network score function is built by composing several simpler functions. For example, we might write</p>
-<p><span class="math display">\[
-s_\theta(x)=
-s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
-\]</span></p>
-<p>Here each function <span class="math inline">\(s_i\)</span> represents one <strong>layer</strong> of the network. Each layer has its own parameters. The full parameter vector for the network is then the collection of all layer-specific parameters:</p>
-<p><span class="math display">\[
-\theta = (\theta_1, \theta_2, \dots, \theta_L).
-\]</span></p>
-<p>This composition structure is the key difference from linear and logistic regression. In linear and logistic regression, the score function was a single linear function of the input. In a neural network, the score function is built by passing the input through a sequence of learned transformations. <strong>Now, the model will no longer be linear in the parameters <span class="math inline">\(\theta\)</span> like it was linear in <span class="math inline">\(w\)</span> for linear and logistic regression.</strong> In fact, in general, it may no longer be convex in <span class="math inline">\(\theta\)</span>.</p>
-<p>In the simplest feed-forward networks, each layer applies an affine transformation followed by a nonlinear activation function. We will make this precise shortly. For now, the important point is that <span class="math inline">\(s_\theta(x)\)</span> is not just a single weighted sum of the features. It is a layered function whose intermediate representations are learned from the data.</p>
-<p>So the ERM setup becomes</p>
-<p><span class="math display">\[
-\hat{\theta} = \arg\min_\theta \hat{R}(\theta),
-\]</span></p>
-<p>where</p>
-<p><span class="math display">\[
-\hat{R}(\theta) = \frac{1}{N}\sum_{n=1}^N \ell(y_n, s_\theta(x_n)).
-\]</span></p>
-<p>For some loss function <span class="math inline">\(\ell\)</span>. Typically we’ll use squared-error for regression and categorical cross entropy for classification tasks.</p>
-<section id="feature-learning" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="feature-learning"><span class="header-section-number">12.1</span> Feature Learning</h2>
-<p>Linear and logistic regression are often quite useful. They are simple, interpretable, and relatively easy to fit. But they also have a major limitation: the score function is linear in the input representation. There are two broad ways to address this.</p>
-<p>The first approach is <strong>feature engineering</strong>. We can manually construct new features and put them into the design matrix <span class="math inline">\(X\)</span>. For example, if the raw input has two components,</p>
-<p><span class="math display">\[
-x = (x_1, x_2),
-\]</span></p>
-<p>we might construct additional features like</p>
-<p><span class="math display">\[
-x_1^2, \quad x_2^2, \quad x_1x_2.
-\]</span></p>
-<p>Then a linear model in this expanded feature representation can represent nonlinear relationships in the original raw inputs.</p>
-<p>The second approach is to let the model <strong>learn the representation itself</strong>. This is the basic idea behind neural networks.</p>
-<p>Instead of manually specifying all of the transformed features, we define a model that learns intermediate features from the data. These learned features are then combined to make predictions. In a neural network, the model learns new features internally and then uses those learned features for prediction.</p>
-<p>Recall that we wrote the neural network score as</p>
-<p><span class="math display">\[
-s_\theta(x)=
-s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)).
-\]</span></p>
-<p>We can think of each intermediate layer as producing a new representation of the input. The first layer takes the original features <span class="math inline">\(x\)</span> and transforms them into a new set of (so-called <em>hidden</em>) features,</p>
-<p><span class="math display">\[
-h^{(1)} = s_1(x).
-\]</span></p>
-<p>The second layer takes this learned representation and transforms it again,</p>
-<p><span class="math display">\[
-h^{(2)} = s_2(h^{(1)}).
-\]</span></p>
-<p>Continuing this way,</p>
-<p><span class="math display">\[
-h^{(i)} = s_i(h^{(i-1)}).
-\]</span></p>
-<p>The final layer then uses the last learned representation to produce the score,</p>
-<p><span class="math display">\[
-s_\theta(x) = s_L(h^{(L-1)}).
-\]</span></p>
-<p>So the network is not just applying one model directly to the original inputs. It is constructing a sequence of representations,</p>
-<p><span class="math display">\[
-x \mapsto h^{(1)} \mapsto h^{(2)} \mapsto \cdots \mapsto h^{(L-1)} \mapsto s_\theta(x).
-\]</span></p>
-<p>This is the sense in which the network learns features internally. Each hidden layer produces features that are learned from the data, and the final layer combines those learned features to make a prediction.</p>
+<p>The coordinates of <span class="math inline">\(h^{(1)}\)</span> and <span class="math inline">\(h^{(2)}\)</span> are the new features. They are called <strong>hidden</strong> because they are intermediate values, rather than observed inputs or the final output. Their definitions depend on the layer parameters: fitting learns both the features and their final combination <strong>jointly</strong>.</p>
+<p>What operations should these learned maps perform?</p>
 </section>
-<section id="what-is-the-form-of-each-layer" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="what-is-the-form-of-each-layer"><span class="header-section-number">12.2</span> What Is the Form of Each Layer?</h2>
-<p>The next question is: what is the form of each layer <span class="math inline">\(s_i\)</span>?</p>
-<p>In a standard feed-forward neural network, each hidden layer usually has two parts:</p>
-<ol type="1">
-<li>an affine transformation, followed by</li>
-<li>a nonlinear <strong>activation function</strong></li>
-</ol>
-<p>That is, a typical hidden layer has the form</p>
+<section id="inside-a-layer" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="inside-a-layer"><span class="header-section-number">12.2</span> Inside a Layer</h2>
+<p>A typical hidden layer has two steps: form weighted sums of its inputs, then apply a nonlinear function to each result.</p>
+<p>Let <span class="math inline">\(h^{(0)}=x\in\mathbb R^D\)</span>. If layer <span class="math inline">\(i\)</span> receives <span class="math inline">\(h^{(i-1)}\)</span>, it computes</p>
 <p><span class="math display">\[
-s_i(h) = \phi_i(W^{(i)}h + b^{(i)}).
+a^{(i)}=W^{(i)}h^{(i-1)}+b^{(i)},\qquad
+h^{(i)}=\phi_i(a^{(i)}).
 \]</span></p>
-<p>Here:</p>
-<ul>
-<li><span class="math inline">\(h\)</span> is the input to the layer</li>
-<li><span class="math inline">\(W^{(i)}\)</span> is a matrix of weights</li>
-<li><span class="math inline">\(b^{(i)}\)</span> is a vector of bias/intercept terms</li>
-<li><span class="math inline">\(\phi_i\)</span> is the activation function used at layer <span class="math inline">\(i\)</span></li>
-</ul>
-<p>The subscript on <span class="math inline">\(\phi_i\)</span> allows different layers to use different activation functions.</p>
-<p>So each layer first forms weighted combinations of the previous layer’s features, then applies a nonlinear transformation.</p>
-<p>Suppose the input to layer <span class="math inline">\(i\)</span> has dimension <span class="math inline">\(d_{i-1}\)</span>, and the output of layer <span class="math inline">\(i\)</span> has dimension <span class="math inline">\(d_i\)</span>. That is,</p>
+<p>The entries of <span class="math inline">\(W^{(i)}\)</span> are weights and those of <span class="math inline">\(b^{(i)}\)</span> are biases (intercepts). The vector <span class="math inline">\(a^{(i)}\)</span> is the <strong>pre-activation</strong>: the weighted sums before applying the <strong>activation function</strong> <span class="math inline">\(\phi_i\)</span>.</p>
+<p>To see what one unit does, take row <span class="math inline">\(j\)</span> of <span class="math inline">\(W^{(i)}\)</span>, written <span class="math inline">\((w_j^{(i)})^\top\)</span>:</p>
 <p><span class="math display">\[
-h \in \mathbb{R}^{d_{i-1}}
+a_j^{(i)}=(w_j^{(i)})^\top h^{(i-1)}+b_j^{(i)},
+\qquad h_j^{(i)}=\phi_i(a_j^{(i)}).
 \]</span></p>
-<p>and</p>
+<p>Each unit uses its own weights to combine the previous features and produces one new feature. Stacking these results gives <span class="math inline">\(h^{(i)}\)</span>. Applying <span class="math inline">\(\phi_i\)</span> <strong>componentwise</strong> means applying the same scalar function separately to each entry of <span class="math inline">\(a^{(i)}\)</span>.</p>
+<p>Thus the layer map is <span class="math inline">\(s_i(h)=\phi_i(W^{(i)}h+b^{(i)})\)</span>. For the fixed activation functions below, its learned parameters are <span class="math inline">\(\theta_i=(W^{(i)},b^{(i)})\)</span>.</p>
+<section id="dimensions-width-and-depth" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="dimensions-width-and-depth"><span class="header-section-number">12.2.1</span> Dimensions, Width, and Depth</h3>
+<p>Suppose layer <span class="math inline">\(i\)</span> receives <span class="math inline">\(d_{i-1}\)</span> features and produces <span class="math inline">\(d_i\)</span> features, with <span class="math inline">\(d_0=D\)</span>. Then</p>
 <p><span class="math display">\[
-s_i(h) \in \mathbb{R}^{d_i}.
+W^{(i)}\in\mathbb R^{d_i\times d_{i-1}},\qquad
+b^{(i)},a^{(i)},h^{(i)}\in\mathbb R^{d_i}.
 \]</span></p>
-<p>Then the weight matrix and bias vector have sizes</p>
+<p>There is one row of weights per output unit and one column per input feature. Each output unit also needs one bias, so the layer has</p>
 <p><span class="math display">\[
-W^{(i)} \in \mathbb{R}^{d_i \times d_{i-1}},
+d_id_{i-1}+d_i=d_i(d_{i-1}+1)
 \]</span></p>
-<p>and</p>
-<p><span class="math display">\[
-b^{(i)} \in \mathbb{R}^{d_i}.
-\]</span></p>
-<p>Therefore,</p>
-<p><span class="math display">\[
-W^{(i)}h + b^{(i)} \in \mathbb{R}^{d_i}.
-\]</span></p>
-<p>The activation function <span class="math inline">\(\phi_i\)</span> is usually applied componentwise, so it maps</p>
-<p><span class="math display">\[
-\phi_i : \mathbb{R}^{d_i} \to \mathbb{R}^{d_i}.
-\]</span></p>
-<p>Thus,</p>
-<p><span class="math display">\[
-s_i(h)=
-\phi_i(W^{(i)}h + b^{(i)})
-\in \mathbb{R}^{d_i}.
-\]</span></p>
-<p>For the first layer, the input is the original feature vector <span class="math inline">\(x\)</span>:</p>
-<p><span class="math display">\[
-h^{(1)}=
-\phi_1(W^{(1)}x + b^{(1)}).
-\]</span></p>
-<p>For the next layer, the input is the learned representation from the previous layer:</p>
-<p><span class="math display">\[
-h^{(2)}=
-\phi_2(W^{(2)}h^{(1)} + b^{(2)}).
-\]</span></p>
-<p>Continuing this way,</p>
-<p><span class="math display">\[
-h^{(i)}=
-\phi_i(W^{(i)}h^{(i-1)} + b^{(i)}).
-\]</span></p>
-<p>So the network builds a sequence of learned representations:</p>
-<p><span class="math display">\[
-x \mapsto h^{(1)} \mapsto h^{(2)} \mapsto \cdots.
-\]</span></p>
-<p>The layer-specific parameter vector <span class="math inline">\(\theta_i\)</span> consists of all entries of the weight matrix <span class="math inline">\(W^{(i)}\)</span> and the bias vector <span class="math inline">\(b^{(i)}\)</span>.</p>
-<p>Typically, the activation function <span class="math inline">\(\phi_i\)</span> does not have parameters associated with it. In that case,</p>
-<p><span class="math display">\[
-\theta_i = (W^{(i)}, b^{(i)}).
-\]</span></p>
-<p>The full network parameter vector <span class="math inline">\(\theta\)</span> is the collection of the parameters from all layers:</p>
-<p><span class="math display">\[
-\theta = (\theta_1, \theta_2, \dots, \theta_L).
-\]</span></p>
-<p>Common choices for the activation function include:</p>
-<ul>
-<li><strong>ReLU</strong>:</li>
-</ul>
-<p><span class="math display">\[
-\phi_i(t) = \max\{0,t\}
-\]</span></p>
-<ul>
-<li><strong>Sigmoid</strong>:</li>
-</ul>
-<p><span class="math display">\[
-\phi_i(t) = \frac{1}{1 + e^{-t}}
-\]</span></p>
-<ul>
-<li><strong>Hyperbolic tangent</strong>:</li>
-</ul>
-<p><span class="math display">\[
-\phi_i(t) = \tanh(t)
-\]</span></p>
-<ul>
-<li><strong>Identity activation</strong>:</li>
-</ul>
-<p><span class="math display">\[
-\phi_i(t) = t
-\]</span></p>
-<p>The identity activation is often used in the output layer for regression. Nonlinear activations such as ReLU, sigmoid, or tanh are used in hidden layers to make the network more flexible than a purely linear model. If we don’t include any activation functions then the network will essentially reduce to a very complicated representation of a linear score.</p>
+<p>parameters.</p>
+<p>The <strong>width</strong> of layer <span class="math inline">\(i\)</span> is <span class="math inline">\(d_i\)</span>. Here <strong>depth</strong> <span class="math inline">\(L\)</span> counts learned layers, including the output layer but excluding the input. Some sources count only hidden layers, so specify the convention.</p>
 </section>
-<section id="why-are-they-called-networks" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="why-are-they-called-networks"><span class="header-section-number">12.3</span> Why Are They Called “Networks”?</h2>
-<p>They are called <strong>neural networks</strong> because the model is organized as a network of connected units.</p>
-<p>Each unit, or node, takes inputs from the previous layer, forms a weighted combination of those inputs, applies an activation function, and passes the result forward to the next layer. The connections between units are the weights. The values at the hidden units are intermediate learned features.</p>
-<p>For example, in a feed-forward network, information flows through the model as</p>
+<section id="activation-functions" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="activation-functions"><span class="header-section-number">12.2.2</span> Activation Functions</h3>
+<p>Common choices for hidden units are</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Activation</th>
+<th>Scalar function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ReLU</td>
+<td><span class="math inline">\(\phi(t)=\max\{0,t\}\)</span></td>
+</tr>
+<tr class="even">
+<td>Sigmoid</td>
+<td><span class="math inline">\(\sigma(t)=1/(1+e^{-t})\)</span></td>
+</tr>
+<tr class="odd">
+<td>Hyperbolic tangent</td>
+<td><span class="math inline">\(\phi(t)=\tanh(t)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>For example, ReLU keeps positive pre-activations and replaces negative ones with zero. The identity activation <span class="math inline">\(\phi(t)=t\)</span> leaves values unchanged; it is common at a regression output.</p>
+<p>Why use nonlinear activations in hidden layers? Without them, two successive layers reduce to</p>
 <p><span class="math display">\[
-x \mapsto h^{(1)} \mapsto h^{(2)} \mapsto \cdots \mapsto s_\theta(x).
+W^{(2)}(W^{(1)}x+b^{(1)})+b^{(2)}
+=(W^{(2)}W^{(1)})x+(W^{(2)}b^{(1)}+b^{(2)}),
 \]</span></p>
-<p>This looks like a network because each layer contains several units, and each unit is connected to units in the next layer. The network is called <strong>feed-forward</strong> because the information moves in one direction: from the input layer, through the hidden layers, to the output layer.</p>
-<p>The word “neural” comes from a loose analogy with biological neurons, but in this course we should think of these as mathematical models: compositions of weighted sums and nonlinear activation functions.</p>
-<p>An example:</p>
+<p>which is just one affine map. Adding more affine layers still gives an affine score in <span class="math inline">\(x\)</span>.</p>
+<p>Consequently the <span class="math inline">\(\phi\)</span> make the network nonlinear in both the input <span class="math inline">\(x\)</span> (and the parameters <span class="math inline">\(\theta\)</span>).</p>
+</section>
+</section>
+<section id="putting-the-layers-together" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="putting-the-layers-together"><span class="header-section-number">12.3</span> Putting the Layers Together</h2>
+<p>For two hidden layers and an affine output, the calculation is</p>
+<p><span class="math display">\[
+\begin{aligned}
+h^{(1)}&amp;=\phi_1(W^{(1)}x+b^{(1)}),\\
+h^{(2)}&amp;=\phi_2(W^{(2)}h^{(1)}+b^{(2)}),\\
+s_\theta(x)&amp;=Vh^{(2)}+b^{\mathrm{out}}.
+\end{aligned}
+\]</span></p>
+<p>Here <span class="math inline">\(V\)</span> and <span class="math inline">\(b^{\mathrm{out}}\)</span> are the output weights and bias. Substituting each intermediate result into the next makes the nested structure explicit:</p>
+<p><span class="math display">\[
+s_\theta(x)=V\phi_2\!\left(W^{(2)}\phi_1(W^{(1)}x+b^{(1)})+b^{(2)}\right)+b^{\mathrm{out}}.
+\]</span></p>
+</section>
+<section id="the-network-picture" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="the-network-picture"><span class="header-section-number">12.4</span> The Network Picture</h2>
+<p>The diagram has input width <span class="math inline">\(D=3\)</span>, hidden widths <span class="math inline">\(4\)</span> and <span class="math inline">\(3\)</span>, and one scalar output. A connection is one weight; each non-input unit also has a bias. Information moves from input to output, so the network is <strong>feed-forward</strong>.</p>
 <div id="fd34d9c4-5d36-442e-b91f-47b3211c3958" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -832,248 +726,77 @@ x \mapsto h^{(1)} \mapsto h^{(2)} \mapsto \cdots \mapsto s_\theta(x).
 <span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="012_nn_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
 </div>
-<p>Two common ways to describe the size of a neural network are its <strong>depth</strong> and its <strong>width</strong>.</p>
-<p>The <strong>depth</strong> of the network refers to the number of layers in the composition. For example, if</p>
-<p><span class="math display">\[
-s_\theta(x)=
-s_L(s_{L-1}(\cdots s_2(s_1(x)) \cdots)),
-\]</span></p>
-<p>then the network has depth <span class="math inline">\(L\)</span>, depending on whether we are counting all layers in the composition. Sometimes people count only the hidden layers, so it is useful to be explicit about the convention.</p>
-<p>The <strong>width</strong> of layer <span class="math inline">\(i\)</span> refers to the number of units in that layer. In our notation, if</p>
-<p><span class="math display">\[
-s_i : \mathbb{R}^{d_{i-1}} \to \mathbb{R}^{d_i},
-\]</span></p>
-<p>then layer <span class="math inline">\(i\)</span> has width <span class="math inline">\(d_i\)</span>.</p>
-<p>The quantity <span class="math inline">\(d_{i-1}\)</span> is the width of the previous layer, and <span class="math inline">\(d_i\)</span> is the width of the current layer. Since</p>
-<p><span class="math display">\[
-W^{(i)} \in \mathbb{R}^{d_i \times d_{i-1}},
-\]</span></p>
-<p>the number of weights in layer <span class="math inline">\(i\)</span> is</p>
-<p><span class="math display">\[
-d_i d_{i-1}.
-\]</span></p>
-<p>There are also <span class="math inline">\(d_i\)</span> bias terms, since</p>
-<p><span class="math display">\[
-b^{(i)} \in \mathbb{R}^{d_i}.
-\]</span></p>
-<p>So the total number of parameters in layer <span class="math inline">\(i\)</span> is</p>
-<p><span class="math display">\[
-d_i d_{i-1} + d_i.
-\]</span></p>
-<p>Thus, wider layers usually mean more parameters, and deeper networks mean more layers of learned transformations.</p>
+</div>
+</div>
+<p>For this diagram, <span class="math inline">\(W^{(1)}\in\mathbb R^{4\times3}\)</span>, <span class="math inline">\(W^{(2)}\in\mathbb R^{3\times4}\)</span>, and the scalar output layer has a weight vector in <span class="math inline">\(\mathbb R^3\)</span>. The input layer supplies data; it has no fitted parameters. The two hidden layers produce <span class="math inline">\(h^{(1)}\in\mathbb R^4\)</span> and <span class="math inline">\(h^{(2)}\in\mathbb R^3\)</span> before the output score is formed.</p>
 </section>
-<section id="one-hidden-layer-network" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="one-hidden-layer-network"><span class="header-section-number">12.4</span> One-hidden-layer Network</h2>
-<p>Consider a simple one-hidden-layer network. Suppose the input is</p>
+<section id="one-hidden-layer-regression" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="one-hidden-layer-regression"><span class="header-section-number">12.5</span> One Hidden Layer: Regression</h2>
+<p>With <span class="math inline">\(x\in\mathbb R^D\)</span> and <span class="math inline">\(H\)</span> hidden units,</p>
 <p><span class="math display">\[
-x \in \mathbb{R}^D.
+h=\phi(Wx+b)\in\mathbb R^H,\qquad
+W\in\mathbb R^{H\times D},\quad b\in\mathbb R^H.
 \]</span></p>
-<p>The network has <span class="math inline">\(H\)</span> hidden units. The hidden layer is defined by</p>
+<p>The <span class="math inline">\(j\)</span>th learned feature is <span class="math inline">\(h_j=\phi(w_j^\top x+b_j)\)</span>, where <span class="math inline">\(w_j^\top\)</span> is row <span class="math inline">\(j\)</span> of <span class="math inline">\(W\)</span>. A scalar output layer gives</p>
 <p><span class="math display">\[
-h = \phi(Wx + b),
+s_\theta(x)=v^\top h+b^{\mathrm{out}}
+=v^\top\phi(Wx+b)+b^{\mathrm{out}},\qquad v\in\mathbb R^H,\quad b^{\mathrm{out}}\in\mathbb R.
 \]</span></p>
-<p>where</p>
-<p><span class="math display">\[
-W \in \mathbb{R}^{H \times D},
-\]</span></p>
-<p><span class="math display">\[
-b \in \mathbb{R}^H,
-\]</span></p>
-<p>and therefore</p>
-<p><span class="math display">\[
-h \in \mathbb{R}^H.
-\]</span></p>
-<p>The first hidden <strong>unit</strong> computes</p>
-<p><span class="math display">\[
-h_1 = \phi(w_1^\top x + b_1),
-\]</span></p>
-<p>the second hidden unit computes</p>
-<p><span class="math display">\[
-h_2 = \phi(w_2^\top x + b_2),
-\]</span></p>
-<p>and so on, up to</p>
-<p><span class="math display">\[
-h_H = \phi(w_H^\top x + b_H).
-\]</span></p>
-<p>Here <span class="math inline">\(w_j^\top\)</span> is the <span class="math inline">\(j\)</span>th row of <span class="math inline">\(W\)</span>. Each hidden unit takes a linear combination of the input features and then applies the activation function.</p>
-<p>Stacking the hidden units together gives</p>
-<p><span class="math display">\[
-h =
-\begin{pmatrix}
-h_1 \\
-h_2 \\
-\vdots \\
-h_H
-\end{pmatrix}
-\in \mathbb{R}^H.
-\]</span></p>
-<p>So the hidden layer transforms the original input vector <span class="math inline">\(x \in \mathbb{R}^D\)</span> into a learned feature vector <span class="math inline">\(h \in \mathbb{R}^H\)</span>.</p>
-<p>The output layer then depends on the prediction task.</p>
-<section id="regression-output" class="level3" data-number="12.4.1">
-<h3 data-number="12.4.1" class="anchored" data-anchor-id="regression-output"><span class="header-section-number">12.4.1</span> Regression Output</h3>
-<p>For regression, we usually want a single real-valued prediction. So the output layer (the last layer) maps</p>
-<p><span class="math display">\[
-\mathbb{R}^H \to \mathbb{R}.
-\]</span></p>
-<p>A common choice is a linear output layer:</p>
-<p><span class="math display">\[
-s_\theta(x) = v^\top h + c,
-\]</span></p>
-<p>where</p>
-<p><span class="math display">\[
-v \in \mathbb{R}^H
-\]</span></p>
-<p>and</p>
-<p><span class="math display">\[
-c \in \mathbb{R}.
-\]</span></p>
-<p>Thus,</p>
-<p><span class="math display">\[
-s_\theta(x) \in \mathbb{R}.
-\]</span></p>
-<p>This is equivalent to choosing a <em>linear</em> activation for this last layer.</p>
-<p>All together, then:</p>
-<p><span class="math display">\[
-s_\theta(x) = v^\top \phi(Wx + b) + c.
-\]</span></p>
-<p>So for regression, a one-hidden-layer network first transforms <span class="math inline">\(x\)</span> into learned features,</p>
-<p><span class="math display">\[
-h = \phi(Wx + b),
-\]</span></p>
-<p>and then applies a linear regression-style output layer to those learned features.</p>
+<p>The output is a linear regression-style combination of the learned features. For regression, the prediction is <span class="math inline">\(f_\theta(x)=s_\theta(x)\)</span>; we typically fit using squared loss.</p>
 </section>
-<section id="classification-output" class="level3" data-number="12.4.2">
-<h3 data-number="12.4.2" class="anchored" data-anchor-id="classification-output"><span class="header-section-number">12.4.2</span> Classification Output</h3>
-<p>For classification with <span class="math inline">\(K\)</span> classes, we usually want the network to produce one score for each class. These scores are called <strong>logits</strong>.</p>
-<p>To do this, we choose the final layer to have width <span class="math inline">\(K\)</span>. If the hidden representation is</p>
+<section id="one-hidden-layer-classification" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="one-hidden-layer-classification"><span class="header-section-number">12.6</span> One Hidden Layer: Classification</h2>
+<p>For <span class="math inline">\(K\)</span> classes, the output layer has <span class="math inline">\(K\)</span> units. With the same <span class="math inline">\(h\in\mathbb R^H\)</span>,</p>
 <p><span class="math display">\[
-h \in \mathbb{R}^H,
+s_\theta(x)=Vh+b^{\mathrm{out}}=V\phi(Wx+b)+b^{\mathrm{out}}\in\mathbb R^K,
+\qquad V\in\mathbb R^{K\times H},\quad b^{\mathrm{out}}\in\mathbb R^K.
 \]</span></p>
-<p>then the final affine transformation has the form</p>
+<p>The entries <span class="math inline">\(s_{\theta,c}(x)\)</span> are <strong>logits</strong>: arbitrary real class scores, not probabilities. Softmax converts them to probabilities,</p>
 <p><span class="math display">\[
-Vh + c,
+p_{\theta,c}(x)
+=\frac{e^{s_{\theta,c}(x)}}{\sum_{r=1}^K e^{s_{\theta,r}(x)}},
+\qquad c=1,\ldots,K.
 \]</span></p>
-<p>where</p>
+<p>We fit the parameters using categorical cross-entropy, as in multiclass logistic regression.</p>
+<p>The predicted class is <span class="math inline">\(\arg\max_c s_{\theta,c}(x)=\arg\max_c p_{\theta,c}(x)\)</span>. Here <span class="math inline">\(s_\theta\)</span> denotes logits and <span class="math inline">\(p_\theta\)</span> denotes probabilities. If software includes softmax in the final layer, its output is <span class="math inline">\(p_\theta\)</span>; the loss must match that convention.</p>
+<section id="a-nested-classifier-with-explicit-shapes" class="level3" data-number="12.6.1">
+<h3 data-number="12.6.1" class="anchored" data-anchor-id="a-nested-classifier-with-explicit-shapes"><span class="header-section-number">12.6.1</span> A Nested Classifier with Explicit Shapes</h3>
+<p>Suppose <span class="math inline">\(D=2\)</span>, the hidden widths are <span class="math inline">\(3\)</span> and <span class="math inline">\(2\)</span>, and <span class="math inline">\(K=3\)</span>. One possible architecture is</p>
 <p><span class="math display">\[
-V \in \mathbb{R}^{K \times H}
+\begin{aligned}
+h^{(1)}&amp;=\operatorname{ReLU}(W^{(1)}x+b^{(1)})\in\mathbb R^3,
+&amp;W^{(1)}&amp;\in\mathbb R^{3\times2},\\
+h^{(2)}&amp;=\operatorname{ReLU}(W^{(2)}h^{(1)}+b^{(2)})\in\mathbb R^2,
+&amp;W^{(2)}&amp;\in\mathbb R^{2\times3},\\
+s_\theta(x)&amp;=Vh^{(2)}+b^{\mathrm{out}}\in\mathbb R^3,
+&amp;V&amp;\in\mathbb R^{3\times2}.
+\end{aligned}
 \]</span></p>
-<p>and</p>
-<p><span class="math display">\[
-c \in \mathbb{R}^K.
-\]</span></p>
-<p>Thus,</p>
-<p><span class="math display">\[
-Vh+c \in \mathbb{R}^K.
-\]</span></p>
-<p>These <span class="math inline">\(K\)</span> values are the class logits, or class scores. By default, we will treat the network output as these logits:</p>
-<p><span class="math display">\[
-s_\theta(x) = Vh+c.
-\]</span></p>
-<p>Since the hidden representation is given by</p>
-<p><span class="math display">\[
-h = \phi(Wx+b),
-\]</span></p>
-<p>the full network output is</p>
-<p><span class="math display">\[
-s_\theta(x) = V\phi(Wx+b)+c.
-\]</span></p>
-<p>The vector <span class="math inline">\(s_\theta(x)\)</span> is in <span class="math inline">\(\mathbb{R}^K\)</span>, but its entries are not probabilities. They can be positive, negative, or zero, and they do not have to sum to one.</p>
-<p>To convert the logits into predicted class probabilities, we apply the <strong>softmax function</strong>:</p>
-<p><span class="math display">\[
-p_\theta(x) = \operatorname{softmax}(s_\theta(x)).
-\]</span></p>
-<p>Equivalently,</p>
-<p><span class="math display">\[
-p_\theta(x) = \operatorname{softmax}(V\phi(Wx+b)+c).
-\]</span></p>
-<p>The vector <span class="math inline">\(p_\theta(x)\)</span> is in <span class="math inline">\(\mathbb{R}^K\)</span>. Each entry is nonnegative, and the entries sum to one. Therefore, <span class="math inline">\(p_\theta(x)\)</span> can be interpreted as a vector of predicted class probabilities.</p>
-<p>This distinction is useful because many software libraries expect the model itself to output logits. The softmax step is then applied inside the loss function, such as cross-entropy loss, or later when we want to report predicted probabilities. Later, when we define the loss function for classification, we will use the logits as the default network output and make sure the loss function matches this convention.</p>
-<p>Sometimes, an alternative convention is to describe the classification network as having a <strong>softmax output layer</strong>. This usually means that the final affine layer produces logits and softmax is applied afterward to convert those logits into probabilities: <span class="math display">\[
-s_\theta(x) = \operatorname{softmax}(V\phi(Wx+b)+c).
-\]</span> Both conventions are common, but in software it is often cleaner to treat the model output as logits and let the loss function handle the softmax step.</p>
-<p>The main point is that the final output layer usually depends on the task:</p>
-<ul>
-<li>For regression, the standard choice is a <strong>linear output layer</strong> that produces real-valued predictions.</li>
-<li>For classification, the standard choice is a <strong>linear output layer</strong> that produces <span class="math inline">\(K\)</span> logits. Softmax is applied afterward when probabilities are needed.</li>
-</ul>
+<p>Here <span class="math inline">\(b^{(1)}\in\mathbb R^3\)</span>, <span class="math inline">\(b^{(2)}\in\mathbb R^2\)</span>, and <span class="math inline">\(b^{\mathrm{out}}\in\mathbb R^3\)</span>. The last three numbers are logits; softmax acts <strong>after</strong> this final affine map. Every matrix and bias in the display is collected in <span class="math inline">\(\theta\)</span> and will be fit from the data.</p>
 </section>
 </section>
-<section id="loss-functions-and-erm" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="loss-functions-and-erm"><span class="header-section-number">12.5</span> Loss Functions and ERM</h2>
-<p>Once we have defined the network architecture defining <span class="math inline">\(s_\theta(x)\)</span>, we still need to choose a loss function. The loss function should match the prediction task.</p>
-<section id="regression" class="level3" data-number="12.5.1">
-<h3 data-number="12.5.1" class="anchored" data-anchor-id="regression"><span class="header-section-number">12.5.1</span> Regression</h3>
-<p>For regression, the target is continuous:</p>
+<section id="losses-and-empirical-risk" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="losses-and-empirical-risk"><span class="header-section-number">12.7</span> Losses and Empirical Risk</h2>
+<p>Given <span class="math inline">\(\mathcal D=\{(x_n,y_n)\}_{n=1}^N\)</span>, the architecture supplies <span class="math inline">\(s_\theta\)</span> and the task supplies a loss. We fit all layer parameters by</p>
 <p><span class="math display">\[
-y \in \mathbb{R}.
+\hat\theta=\arg\min_\theta\hat R(\theta),\qquad
+\hat R(\theta)=\frac1N\sum_{n=1}^N\ell(y_n,s_\theta(x_n)).
 \]</span></p>
-<p>The network output is also a real number:</p>
+<p>For regression, one choice is <span class="math inline">\(\ell(y,s)=(y-s)^2\)</span>. For classification with label <span class="math inline">\(y\in\{1,\ldots,K\}\)</span>, categorical cross-entropy is</p>
 <p><span class="math display">\[
-s_\theta(x) \in \mathbb{R}.
+\ell(y,s_\theta(x))=-\log p_{\theta,y}(x).
 \]</span></p>
-<p>A common choice is squared loss:</p>
-<p><span class="math display">\[
-\ell(y, s_\theta(x))=
-(y - s_\theta(x))^2.
-\]</span></p>
-<p>Then the empirical risk is</p>
-<p><span class="math display">\[
-\hat{R}(\theta)=
-\frac{1}{N}
-\sum_{n=1}^N
-(y_n - s_\theta(x_n))^2.
-\]</span></p>
+<p>If <span class="math inline">\(t_c\)</span> is the one-hot encoding of <span class="math inline">\(y\)</span>, the same loss is <span class="math inline">\(-\sum_{c=1}^K t_c\log p_{\theta,c}(x)\)</span>.</p>
+<p>The loss is the same as in the corresponding linear or logistic model; the difference is the <strong>nested, learned score function</strong>. Unlike a linear score in its coefficients, the network score is generally nonlinear in <span class="math inline">\(\theta\)</span>, and the empirical-risk problem is generally nonconvex.</p>
 </section>
-<section id="classification" class="level3" data-number="12.5.2">
-<h3 data-number="12.5.2" class="anchored" data-anchor-id="classification"><span class="header-section-number">12.5.2</span> Classification</h3>
-<p>For classification with <span class="math inline">\(K\)</span> classes, the network output is a vector of logits:</p>
-<p><span class="math display">\[
-s_\theta(x)\in \mathbb{R}^K.
-\]</span></p>
-<p>Like multi-class logistic regression, a common loss function for multiclass classification is <strong>categorical cross-entropy</strong>.</p>
-<p>If the true class label is <span class="math inline">\(y \in \{1,\dots,K\}\)</span>, then the loss is</p>
-<p><span class="math display">\[
-\ell(y, s_\theta(x))=
--\log(p_{\theta,y}(x)).
-\]</span></p>
-<p>where <span class="math inline">\(p_\theta(x) = \operatorname{softmax}(s_\theta(x)).\)</span></p>
-<p>Equivalently, if the outcome is represented as a one-hot vector</p>
-<p><span class="math display">\[
-t =
-\begin{pmatrix}
-t_1 \\
-t_2 \\
-\vdots \\
-t_K
-\end{pmatrix},
-\]</span></p>
-<p>where <span class="math inline">\(t_k = 1\)</span> for the correct class and <span class="math inline">\(t_k = 0\)</span> otherwise, then categorical cross-entropy can be written as</p>
-<p><span class="math display">\[
-\ell(y, s_\theta(x))=
--\sum_{k=1}^K t_k \log(p_{\theta,k}(x)).
-\]</span></p>
-</section>
-<section id="erm-problem" class="level3" data-number="12.5.3">
-<h3 data-number="12.5.3" class="anchored" data-anchor-id="erm-problem"><span class="header-section-number">12.5.3</span> ERM Problem</h3>
-<p>In either case, the overall framework is unchanged. We choose parameters by minimizing empirical risk:</p>
-<p><span class="math display">\[
-\hat{\theta}=
-\arg\min_\theta
-\hat{R}(\theta),
-\]</span></p>
-<p>where</p>
-<p><span class="math display">\[
-\hat{R}(\theta)=
-\frac{1}{N}
-\sum_{n=1}^N
-\ell(y_n, s_\theta(x_n)).
-\]</span></p>
-<p>The model class has changed from a linear score function to a neural network, but the learning problem is still an ERM problem.</p>
-</section>
-</section>
-<section id="review-questions" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">12.6</span> Review Questions</h2>
+<section id="review-questions" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">12.8</span> Review Questions</h2>
 <p>See: <a href="../questions/012_nn_questions.html" class="quarto-xref"><span>Chapter 31</span></a>.</p>
 
 

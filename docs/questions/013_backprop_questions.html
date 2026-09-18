@@ -474,8 +474,6 @@ window.Quarto = {
   <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14"><span class="header-section-number">32.0.14</span> Question 14</a></li>
   <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15"><span class="header-section-number">32.0.15</span> Question 15</a></li>
   <li><a href="#question-16" id="toc-question-16" class="nav-link" data-scroll-target="#question-16"><span class="header-section-number">32.0.16</span> Question 16</a></li>
-  <li><a href="#question-17" id="toc-question-17" class="nav-link" data-scroll-target="#question-17"><span class="header-section-number">32.0.17</span> Question 17</a></li>
-  <li><a href="#question-18" id="toc-question-18" class="nav-link" data-scroll-target="#question-18"><span class="header-section-number">32.0.18</span> Question 18</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -502,7 +500,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 18, 2026</p>
+      <p class="date-modified">September 18, 2026</p>
     </div>
   </div>
     
@@ -646,7 +644,7 @@ L=\frac12(1-0.9254)^2\approx 0.0028.
 </section>
 <section id="question-4" class="level3" data-number="32.0.4">
 <h3 data-number="32.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">32.0.4</span> Question 4</h3>
-<p>Carry the backward pass through the same scalar example from Question 4. Compute</p>
+<p>Carry the backward pass through the same scalar example from Question 3. Compute</p>
 <p><span class="math display">\[
 \frac{\partial L}{\partial s},\quad
 \frac{\partial L}{\partial v},\quad
@@ -692,7 +690,7 @@ Answer
 </section>
 <section id="question-5" class="level3" data-number="32.0.5">
 <h3 data-number="32.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">32.0.5</span> Question 5</h3>
-<p>After the backward pass in Question 5, gradient descent with learning rate <span class="math inline">\(\eta&gt;0\)</span> updates <span class="math inline">\(w\)</span> by</p>
+<p>After the backward pass in Question 4, gradient descent with learning rate <span class="math inline">\(\eta&gt;0\)</span> updates <span class="math inline">\(w\)</span> by</p>
 <p><span class="math display">\[
 w^{(t+1)}=w^{(t)}-\eta \frac{\partial L}{\partial w}.
 \]</span></p>
@@ -729,7 +727,7 @@ Answer
 </section>
 <section id="question-7" class="level3" data-number="32.0.7">
 <h3 data-number="32.0.7" class="anchored" data-anchor-id="question-7"><span class="header-section-number">32.0.7</span> Question 7</h3>
-<p>Assume a mini-batch of size <span class="math inline">\(B\)</span> is sampled uniformly with replacement from the training indices <span class="math inline">\({1,\dots,N}\)</span>. Let <span class="math inline">\(k_1,\dots,k_B\)</span> denote the sampled indices, and define the mini-batch gradient as</p>
+<p>Hold <span class="math inline">\(\theta\)</span> fixed. Assume a mini-batch of size <span class="math inline">\(B\)</span> is sampled uniformly with replacement from the training indices <span class="math inline">\(\{1,\dots,N\}\)</span>. Let <span class="math inline">\(k_1,\dots,k_B\)</span> denote the sampled indices, and define the mini-batch gradient as</p>
 <p><span class="math display">\[
 \hat g_B=\frac{1}{B}\sum_{j=1}^B \nabla_\theta \ell(y_{k_j},s_\theta(x_{k_j})).
 \]</span></p>
@@ -745,7 +743,7 @@ Answer
 <p><span class="math display">\[
 g_i=\nabla_\theta \ell(y_i,s_\theta(x_i)).
 \]</span></p>
-<p>Since <span class="math inline">\(k_1,\dots,k_B\)</span> are sampled uniformly with replacement from <span class="math inline">\({1,\dots,N}\)</span>, each sampled index <span class="math inline">\(k_j\)</span> has the same distribution. Therefore, for each draw,</p>
+<p>Since <span class="math inline">\(k_1,\dots,k_B\)</span> are sampled uniformly with replacement from <span class="math inline">\(\{1,\dots,N\}\)</span>, each sampled index <span class="math inline">\(k_j\)</span> has the same distribution. Therefore, for each draw,</p>
 <p><span class="math display">\[
 \mathbb E[g_{k_j}]=\frac{1}{N}\sum_{i=1}^N g_i.
 \]</span></p>
@@ -834,11 +832,11 @@ Answer
 </section>
 <section id="question-10" class="level3" data-number="32.0.10">
 <h3 data-number="32.0.10" class="anchored" data-anchor-id="question-10"><span class="header-section-number">32.0.10</span> Question 10</h3>
-<p>At a single node <span class="math inline">\(r=f(q)\)</span>, suppose the upstream gradient is</p>
+<p>At a single node <span class="math inline">\(r=f(q)\)</span>, suppose the incoming derivative is</p>
 <p><span class="math display">\[
 \frac{\partial L}{\partial r}=5,
 \]</span></p>
-<p>and <span class="math inline">\(f(q)=q^3\)</span> at <span class="math inline">\(q=2\)</span>. Compute the downstream gradient <span class="math inline">\(\partial L/\partial q\)</span>.</p>
+<p>and <span class="math inline">\(f(q)=q^3\)</span> at <span class="math inline">\(q=2\)</span>. Compute the outgoing derivative <span class="math inline">\(\partial L/\partial q\)</span>.</p>
 <details>
 <summary>
 Answer
@@ -851,7 +849,7 @@ Answer
 <p><span class="math display">\[
 \frac{\partial r}{\partial q}=3(2)^2=12.
 \]</span></p>
-<p>The downstream gradient is upstream times local derivative:</p>
+<p>The outgoing derivative is the incoming derivative times the local derivative:</p>
 <p><span class="math display">\[
 \frac{\partial L}{\partial q}=
 \frac{\partial L}{\partial r}\frac{\partial r}{\partial q}
@@ -1040,87 +1038,6 @@ Answer
 </section>
 <section id="question-15" class="level3" data-number="32.0.15">
 <h3 data-number="32.0.15" class="anchored" data-anchor-id="question-15"><span class="header-section-number">32.0.15</span> Question 15</h3>
-<p>A dense layer has</p>
-<p><span class="math display">\[
-Z=XW+b,
-\]</span></p>
-<p>where <span class="math inline">\(X\in\mathbb R^{B\times d}\)</span>, <span class="math inline">\(W\in\mathbb R^{d\times m}\)</span>, <span class="math inline">\(b\in\mathbb R^m\)</span>, and the upstream gradient is</p>
-<p><span class="math display">\[
-G=\frac{\partial L}{\partial Z}\in\mathbb R^{B\times m}.
-\]</span></p>
-<p>State the shapes of</p>
-<p><span class="math display">\[
-\frac{\partial L}{\partial X},\qquad
-\frac{\partial L}{\partial W},\qquad
-\frac{\partial L}{\partial b},
-\]</span></p>
-<p>look the dense-layer backward formulas from the lecture, and check that the right-hand side of each formula has the correct shape.</p>
-<details>
-<summary>
-Answer
-</summary>
-<p>Each gradient has the same shape as the quantity it differentiates:</p>
-<p><span class="math display">\[
-\frac{\partial L}{\partial X}\in\mathbb R^{B\times d},\qquad
-\frac{\partial L}{\partial W}\in\mathbb R^{d\times m},\qquad
-\frac{\partial L}{\partial b}\in\mathbb R^m.
-\]</span></p>
-<p>The dense-layer backward formulas are</p>
-<p><span class="math display">\[
-\frac{\partial L}{\partial X}=GW^T,\qquad
-\frac{\partial L}{\partial W}=X^TG,\qquad
-\frac{\partial L}{\partial b}=\sum_{i=1}^B G_i,
-\]</span></p>
-<p>where <span class="math inline">\(G_i\)</span> is row <span class="math inline">\(i\)</span> of <span class="math inline">\(G\)</span>.</p>
-<p>Now check the shapes. Since <span class="math inline">\(G\in\mathbb R^{B\times m}\)</span> and <span class="math inline">\(W^T\in\mathbb R^{m\times d}\)</span>,</p>
-<p><span class="math display">\[
-GW^T\in\mathbb R^{B\times d},
-\]</span></p>
-<p>which matches the shape of <span class="math inline">\(X\)</span>.</p>
-<p>Since <span class="math inline">\(X^T\in\mathbb R^{d\times B}\)</span> and <span class="math inline">\(G\in\mathbb R^{B\times m}\)</span>,</p>
-<p><span class="math display">\[
-X^TG\in\mathbb R^{d\times m},
-\]</span></p>
-<p>which matches the shape of <span class="math inline">\(W\)</span>.</p>
-<p>Finally, summing <span class="math inline">\(G\in\mathbb R^{B\times m}\)</span> over the <span class="math inline">\(B\)</span> batch rows gives a vector in <span class="math inline">\(\mathbb R^m\)</span>:</p>
-<p><span class="math display">\[
-\sum_{i=1}^B G_i\in\mathbb R^m,
-\]</span></p>
-<p>which matches the shape of <span class="math inline">\(b\)</span>.</p>
-</details>
-</section>
-<section id="question-16" class="level3" data-number="32.0.16">
-<h3 data-number="32.0.16" class="anchored" data-anchor-id="question-16"><span class="header-section-number">32.0.16</span> Question 16</h3>
-<p>Suppose flattening tensors gives <span class="math inline">\(X\)</span> with shape <span class="math inline">\(20\times120\)</span> and <span class="math inline">\(Y\)</span> with shape <span class="math inline">\(20\times60\)</span>. What is the shape of the Jacobian</p>
-<p><span class="math display">\[
-J=\frac{\partial \operatorname{vec}(Y)}{\partial \operatorname{vec}(X)},
-\]</span></p>
-<p>and how many entries does it contain?</p>
-<details>
-<summary>
-Answer
-</summary>
-<p>The flattened input has</p>
-<p><span class="math display">\[
-n=20\cdot120=2400
-\]</span></p>
-<p>entries, and the flattened output has</p>
-<p><span class="math display">\[
-m=20\cdot60=1200
-\]</span></p>
-<p>entries. Therefore,</p>
-<p><span class="math display">\[
-J\in\mathbb R^{1200\times2400}.
-\]</span></p>
-<p>The number of entries is</p>
-<p><span class="math display">\[
-1200\cdot2400=2{,}880{,}000.
-\]</span></p>
-<p>This is why the lecture emphasizes computing VJPs directly rather than explicitly forming <span class="math inline">\(J\)</span>.</p>
-</details>
-</section>
-<section id="question-17" class="level3" data-number="32.0.17">
-<h3 data-number="32.0.17" class="anchored" data-anchor-id="question-17"><span class="header-section-number">32.0.17</span> Question 17</h3>
 <p>Consider the quadratic objective</p>
 <p><span class="math display">\[
 R(\theta)=\frac{1}{2}\theta^2.
@@ -1133,6 +1050,7 @@ R'(\theta)=\theta.
 <p><span class="math display">\[
 \theta^{(t+1)}=\theta^{(t)}-\eta \theta^{(t)}.
 \]</span></p>
+<p>Assume <span class="math inline">\(\theta^{(0)}\ne0\)</span>.</p>
 <ol type="1">
 <li>What is the formula for <span class="math inline">\(\theta^{(t)}\)</span> in terms of <span class="math inline">\(\theta^{(0)}\)</span>?</li>
 <li>For which values of <span class="math inline">\(\eta\)</span> does <span class="math inline">\(\theta^{(t)}\)</span> converge to <span class="math inline">\(0\)</span>?</li>
@@ -1180,8 +1098,8 @@ a=1-\eta.
 <p>If <span class="math inline">\(\eta&gt;2\)</span>, then <span class="math inline">\(|1-\eta|&gt;1\)</span>, so the iterates grow in magnitude. This is the precise sense in which a learning rate that is too large can make gradient descent unstable.</p>
 </details>
 </section>
-<section id="question-18" class="level3" data-number="32.0.18">
-<h3 data-number="32.0.18" class="anchored" data-anchor-id="question-18"><span class="header-section-number">32.0.18</span> Question 18</h3>
+<section id="question-16" class="level3" data-number="32.0.16">
+<h3 data-number="32.0.16" class="anchored" data-anchor-id="question-16"><span class="header-section-number">32.0.16</span> Question 16</h3>
 <p>Changing the mini-batch objective from an average</p>
 <p><span class="math display">\[
 \frac1{|B_t|}\sum_{n\in B_t}\ell_n(\theta)
