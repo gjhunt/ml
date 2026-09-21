@@ -266,7 +266,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/014_nn_arch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">NNs: Generalization, Regularization, and Modeling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Neural Networks: Generalization, Regularization, and Modeling</span></span></a>
   </div>
 </li>
       </ul>
@@ -500,7 +500,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 18, 2026</p>
+      <p class="date-modified">September 21, 2026</p>
     </div>
   </div>
     
@@ -516,12 +516,12 @@ window.Quarto = {
 </div>
 <section id="question-1" class="level3" data-number="33.0.1">
 <h3 data-number="33.0.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">33.0.1</span> Question 1</h3>
-<p>Give one precise way in which each of the following can increase model flexibility: depth, width, and amount of training.</p>
+<p>Explain how increasing depth or width can increase model flexibility, and how increasing the amount of training can change the fitted model without changing its function class.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>Increasing depth adds more composed transformations, so the network can build more complex hierarchical representations. Increasing width adds more units in a layer, so the layer can represent more features or directions at once. Increasing the amount of training can let the optimizer fit the empirical risk more closely.</p>
+<p>Increasing depth adds more composed transformations, so the network can build more complex hierarchical representations. Increasing width adds more units in a layer, so the layer can represent more features or directions at once. Increasing the amount of training can let the optimizer fit the empirical risk more closely, but does not enlarge the function class available to the fixed architecture.</p>
 <p>Greater flexibility can increase the opportunity to overfit, but test performance also depends on the data, architecture, regularization, optimization bias, and validation-based model selection. Over-parameterized models may still generalize well, so flexibility alone does not determine test error.</p>
 </details>
 </section>
@@ -576,7 +576,7 @@ Answer
 </section>
 <section id="question-4" class="level3" data-number="33.0.4">
 <h3 data-number="33.0.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">33.0.4</span> Question 4</h3>
-<p>A weight-decay-style update in the lecture is</p>
+<p>Let <span class="math inline">\(\theta\)</span> here collect only the weights being penalized; biases are excluded and updated without the penalty. The weight-decay-style update is</p>
 <p><span class="math display">\[
 \theta^{(t+1)}=(1-\eta\lambda)\theta^{(t)}-\eta\nabla_\theta\hat R(\theta^{(t)}).
 \]</span></p>
@@ -607,39 +607,39 @@ Answer
 <h3 data-number="33.0.5" class="anchored" data-anchor-id="question-5"><span class="header-section-number">33.0.5</span> Question 5</h3>
 <p>For inverted dropout, the lecture defines</p>
 <p><span class="math display">\[
-m_i\sim\operatorname{Bernoulli}(1-p),\qquad
-\tilde h_i=\frac{m_i h_i}{1-p}.
+m_j\sim\operatorname{Bernoulli}(1-p),\qquad
+\tilde h_j=\frac{m_j h_j}{1-p}.
 \]</span></p>
-<p>Verify that <span class="math inline">\(\mathbb E[\tilde h_i]=h_i\)</span>.</p>
+<p>Hold <span class="math inline">\(h_j\)</span> fixed and take expectation over the dropout mask. Verify that <span class="math inline">\(\mathbb E_m[\tilde h_j\mid h_j]=h_j\)</span>.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>Since <span class="math inline">\(m_i\sim\operatorname{Bernoulli}(1-p)\)</span>,</p>
+<p>Since <span class="math inline">\(m_j\sim\operatorname{Bernoulli}(1-p)\)</span>,</p>
 <p><span class="math display">\[
-\mathbb E[m_i]=1-p.
+\mathbb E[m_j]=1-p.
 \]</span></p>
-<p>Treating <span class="math inline">\(h_i\)</span> as fixed during the dropout draw,</p>
+<p>Treating <span class="math inline">\(h_j\)</span> as fixed during the dropout draw,</p>
 <p><span class="math display">\[
-\mathbb E[\tilde h_i]
-=\mathbb E\left[\frac{m_i h_i}{1-p}\right]
-=\frac{h_i}{1-p}\mathbb E[m_i]
-=\frac{h_i}{1-p}(1-p)
-=h_i.
+\mathbb E[\tilde h_j]
+=\mathbb E\left[\frac{m_j h_j}{1-p}\right]
+=\frac{h_j}{1-p}\mathbb E[m_j]
+=\frac{h_j}{1-p}(1-p)
+=h_j.
 \]</span></p>
 <p>Thus inverted dropout preserves the activation’s expected scale during training.</p>
 </details>
 </section>
 <section id="question-6" class="level3" data-number="33.0.6">
 <h3 data-number="33.0.6" class="anchored" data-anchor-id="question-6"><span class="header-section-number">33.0.6</span> Question 6</h3>
-<p>Take <span class="math inline">\(h_i=3\)</span> and dropout probability <span class="math inline">\(p=0.25\)</span>. Under inverted dropout, what values can <span class="math inline">\(\tilde h_i\)</span> take, and with what probabilities? Compute its mean and variance.</p>
+<p>Take <span class="math inline">\(h_j=3\)</span> and dropout probability <span class="math inline">\(p=0.25\)</span>. Under inverted dropout, what values can <span class="math inline">\(\tilde h_j\)</span> take, and with what probabilities? Compute its mean and variance.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>The unit is dropped with probability <span class="math inline">\(p=0.25\)</span>, so <span class="math inline">\(\tilde h_i=0\)</span> with probability <span class="math inline">\(0.25\)</span>. It is kept with probability <span class="math inline">\(1-p=0.75\)</span>, and then</p>
+<p>The unit is dropped with probability <span class="math inline">\(p=0.25\)</span>, so <span class="math inline">\(\tilde h_j=0\)</span> with probability <span class="math inline">\(0.25\)</span>. It is kept with probability <span class="math inline">\(1-p=0.75\)</span>, and then</p>
 <p><span class="math display">\[
-\tilde h_i=\frac{3}{0.75}=4.
+\tilde h_j=\frac{3}{0.75}=4.
 \]</span></p>
 <p>The mean is</p>
 <p><span class="math display">\[
@@ -665,11 +665,11 @@ Answer
 Answer
 </summary>
 <ol type="1">
-<li>High training and validation loss suggests underfitting: the model is not fitting even the training data well.</li>
+<li>High training and validation loss indicates that even the training data are not fitted well. This may reflect insufficient capacity, insufficient training, or unsuccessful optimization; check optimization before adding capacity.</li>
 <li>Low training loss but much higher and worsening validation loss suggests overfitting: continued training is fitting training-set idiosyncrasies rather than improving generalization.</li>
 <li>Low training loss and low stable validation loss suggests a reasonable fit, at least relative to the available validation data.</li>
 </ol>
-<p>The diagnosis is based on the gap and trend between training and validation performance, not training performance alone.</p>
+<p>Use the overall trends as well as the gap. Dropout is active during training but disabled for validation, so the absolute loss gap alone is not a pure measure of overfitting.</p>
 </details>
 </section>
 <section id="question-8" class="level3" data-number="33.0.8">
@@ -741,18 +741,18 @@ v_t=\frac{1-\rho^t}{1-\rho}g.
 </section>
 <section id="question-11" class="level3" data-number="33.0.11">
 <h3 data-number="33.0.11" class="anchored" data-anchor-id="question-11"><span class="header-section-number">33.0.11</span> Question 11</h3>
-<p>Compute one RMSProp update in one dimension. Let <span class="math inline">\(\theta^{(t)}=2\)</span>, <span class="math inline">\(g_t=4\)</span>, <span class="math inline">\(s_{t-1}=9\)</span>, <span class="math inline">\(\rho=0.9\)</span>, <span class="math inline">\(\eta=0.01\)</span>, and ignore <span class="math inline">\(\epsilon\)</span> for simplicity.</p>
+<p>Compute one RMSProp update in one dimension. Let <span class="math inline">\(\theta^{(t)}=2\)</span>, <span class="math inline">\(g_t=4\)</span>, <span class="math inline">\(r_{t-1}=9\)</span>, <span class="math inline">\(\rho=0.9\)</span>, <span class="math inline">\(\eta=0.01\)</span>, and ignore <span class="math inline">\(\epsilon\)</span> for simplicity.</p>
 <details>
 <summary>
 Answer
 </summary>
 <p>First compute the squared-gradient average:</p>
 <p><span class="math display">\[
-s_t=0.9(9)+0.1(4^2)=8.1+1.6=9.7.
+r_t=0.9(9)+0.1(4^2)=8.1+1.6=9.7.
 \]</span></p>
 <p>Then</p>
 <p><span class="math display">\[
-\sqrt{s_t}=\sqrt{9.7}\approx3.114.
+\sqrt{r_t}=\sqrt{9.7}\approx3.114.
 \]</span></p>
 <p>The update is</p>
 <p><span class="math display">\[
@@ -763,7 +763,7 @@ s_t=0.9(9)+0.1(4^2)=8.1+1.6=9.7.
 </section>
 <section id="question-12" class="level3" data-number="33.0.12">
 <h3 data-number="33.0.12" class="anchored" data-anchor-id="question-12"><span class="header-section-number">33.0.12</span> Question 12</h3>
-<p>Using the lecture’s simplified Adam update, take <span class="math inline">\(m_{t-1}=0\)</span>, <span class="math inline">\(s_{t-1}=0\)</span>, <span class="math inline">\(g_t=2\)</span>, <span class="math inline">\(\beta_1=0.9\)</span>, <span class="math inline">\(\beta_2=0.99\)</span>, <span class="math inline">\(\eta=0.001\)</span>, and ignore <span class="math inline">\(\epsilon\)</span>. Compute the updated used in the Adam update to the parameters.</p>
+<p>Using the lecture’s simplified Adam update, take <span class="math inline">\(m_{t-1}=0\)</span>, <span class="math inline">\(r_{t-1}=0\)</span>, <span class="math inline">\(g_t=2\)</span>, <span class="math inline">\(\beta_1=0.9\)</span>, <span class="math inline">\(\beta_2=0.99\)</span>, <span class="math inline">\(\eta=0.001\)</span>, and ignore both <span class="math inline">\(\epsilon\)</span> and bias correction. Compute the parameter update <span class="math inline">\(\Delta\theta=\theta^{(t+1)}-\theta^{(t)}\)</span>.</p>
 <details>
 <summary>
 Answer
@@ -774,17 +774,18 @@ m_t=0.9(0)+(1-0.9)(2)=0.2.
 \]</span></p>
 <p>The squared-gradient average is</p>
 <p><span class="math display">\[
-s_t=0.99(0)+(1-0.99)(2^2)=0.04.
+r_t=0.99(0)+(1-0.99)(2^2)=0.04.
 \]</span></p>
 <p>Thus</p>
 <p><span class="math display">\[
-\sqrt{s_t}=0.2.
+\sqrt{r_t}=0.2.
 \]</span></p>
 <p>The update size is (ignoring <span class="math inline">\(\epsilon\)</span>)</p>
 <p><span class="math display">\[
-\eta\frac{m_t}{\sqrt{s_t}}
+\eta\frac{m_t}{\sqrt{r_t}}
 =0.001\frac{0.2}{0.2}=0.001.
 \]</span></p>
+<p>Thus <span class="math inline">\(\Delta\theta=-0.001\)</span>: subtract <span class="math inline">\(0.001\)</span> from the current parameter.</p>
 </details>
 </section>
 <section id="question-13" class="level3" data-number="33.0.13">
@@ -826,7 +827,7 @@ Answer
 Answer
 </summary>
 <p>A model is over-parameterized when it has many parameters, possibly enough to fit the training data extremely well. This is a statement about model size and capacity relative to the data.</p>
-<p>A model is overfit when it generalizes poorly: it performs much better on training data than on new data. This is a statement about the gap between training performance and out-of-sample performance.</p>
+<p>Overfitting means fitting sample-specific variation at the expense of performance on new observations. A training–test gap can be evidence of this, but the gap alone is not a complete definition.</p>
 </details>
 </section>
 <section id="question-15" class="level3" data-number="33.0.15">
