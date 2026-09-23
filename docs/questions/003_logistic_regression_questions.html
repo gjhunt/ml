@@ -500,7 +500,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 9, 2026</p>
+      <p class="date-modified">September 23, 2026</p>
     </div>
   </div>
     
@@ -601,11 +601,30 @@ Answer
 <summary>
 Answer
 </summary>
-<p>The componentwise gradient is <span class="math display">\[
-\frac1N\sum_{n=1}^N(p_n-y_n)x_n.
-\]</span> Here <span class="math inline">\(p-y\in\mathbb{R}^N\)</span> and <span class="math inline">\(X^\top\in\mathbb{R}^{D\times N}\)</span>, so <span class="math inline">\(X^\top(p-y)\in\mathbb{R}^D\)</span>. Its <span class="math inline">\(j\)</span>-th coordinate is <span class="math display">\[
-\sum_{n=1}^N X_{nj}(p_n-y_n),
-\]</span> which is exactly the <span class="math inline">\(j\)</span>-th coordinate of the summation.</p>
+<p>Because <span class="math inline">\(w\in\mathbb{R}^D\)</span>, the gradient of the scalar risk with respect to <span class="math inline">\(w\)</span> must also lie in <span class="math inline">\(\mathbb{R}^D\)</span>. We have <span class="math inline">\(p-y\in\mathbb{R}^N\)</span> and <span class="math inline">\(X^\top\in\mathbb{R}^{D\times N}\)</span>, so <span class="math display">\[
+X^\top(p-y)\in\mathbb{R}^D,
+\]</span> as required.</p>
+<p>Averaging the observation-level gradients gives <span class="math display">\[
+\nabla \hat R(w)
+=\frac1N\sum_{n=1}^N(p_n-y_n)x_n.
+\]</span></p>
+<p>Because row <span class="math inline">\(n\)</span> of <span class="math inline">\(X\)</span> is <span class="math inline">\(x_n^\top\)</span>, the columns of <span class="math inline">\(X^\top\)</span> are the observation vectors: <span class="math display">\[
+X^\top=
+\begin{bmatrix}
+x_1 &amp; x_2 &amp; \cdots &amp; x_N
+\end{bmatrix}
+\in\mathbb{R}^{D\times N}.
+\]</span> A matrix-vector product is a linear combination of the matrix’s columns, with coefficients given by the entries of the vector. Therefore, <span class="math display">\[
+\begin{aligned}
+X^\top(p-y)
+&amp;=x_1(p_1-y_1)+x_2(p_2-y_2)+\cdots+x_N(p_N-y_N)\\
+&amp;=\sum_{n=1}^N(p_n-y_n)x_n.
+\end{aligned}
+\]</span> It follows that <span class="math display">\[
+\nabla \hat R(w)
+=\frac1N\sum_{n=1}^N(p_n-y_n)x_n
+=\frac1N X^\top(p-y),
+\]</span> as required.</p>
 </details>
 </section>
 <section id="question-6" class="level3" data-number="24.0.6">
