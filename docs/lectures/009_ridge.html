@@ -517,6 +517,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#coefficient-paths" id="toc-coefficient-paths" class="nav-link" data-scroll-target="#coefficient-paths"><span class="header-section-number">10.9.1</span> Coefficient Paths</a></li>
   </ul></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">10.10</span> Review Questions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/gjhunt/ml/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -921,7 +922,7 @@ w_1X_{:1}+w_2X_{:2}
 </details>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"228f1a79f89148b083abbff4d28686fa","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"7cd87eb6a12e4edba3e7c0544b612b50","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 </div>
@@ -970,7 +971,7 @@ X^\top X=I_D.
 <li>Intermediate <span class="math inline">\(\lambda\)</span> can improve performance on new data.</li>
 <li>Very large <span class="math inline">\(\lambda\)</span> drives the slopes toward zero and can underfit.</li>
 </ul>
-<p>This often produces a U-shaped evaluation-error curve, although the exact shape in any sample is not a theorem. The following teaching simulation combines many predictors, correlated copies, and response noise. Its held-out curve illustrates the pattern; looking across the test curve here is part of the demonstration, not a valid procedure for selecting <span class="math inline">\(\lambda\)</span>.</p>
+<p>This often produces a U-shaped evaluation-error curve, although the exact shape in any sample is not a theorem.</p>
 <div id="62cdf604" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
@@ -1175,11 +1176,14 @@ Final test MSE: 0.3330</code></pre>
 </div>
 </div>
 </div>
-<p>All paths move toward zero as regularization becomes very strong, but they generally do not land exactly at zero for a finite <span class="math inline">\(\lambda\)</span>. ## Review Questions</p>
+<p>All paths move toward zero as regularization becomes very strong, but they generally do not land exactly at zero for a finite <span class="math inline">\(\lambda\)</span>.</p>
+</section>
+</section>
+<section id="review-questions" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">10.10</span> Review Questions</h2>
 <p>See: <a href="../questions/009_ridge_questions.html" class="quarto-xref"><span>Chapter 29</span></a>.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
