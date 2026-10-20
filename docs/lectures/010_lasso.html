@@ -543,7 +543,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 14, 2026</p>
+      <p class="date-modified">October 1, 2026</p>
     </div>
   </div>
     
@@ -798,24 +798,12 @@ f(x)=\max\{|x|-1,0\}.
 </section>
 <section id="coordinate-descent-setup" class="level3" data-number="11.2.2">
 <h3 data-number="11.2.2" class="anchored" data-anchor-id="coordinate-descent-setup"><span class="header-section-number">11.2.2</span> Coordinate Descent Setup</h3>
-<p><strong>Coordinate descent</strong> updates one coefficient while holding all the others fixed:</p>
-<ul>
-<li>Initialize <span class="math inline">\(w\)</span>.</li>
-<li>For <span class="math inline">\(t=1,2,3,\ldots\)</span>:
-<ul>
-<li>For <span class="math inline">\(j=1,\ldots,D\)</span>:
-<ol type="1">
-<li>Choose <span class="math inline">\(\gamma_j\in\partial_j J_\lambda(w)\)</span>.</li>
-<li>Update <span class="math display">\[
-w_j\leftarrow w_j-\eta_t \gamma_j.
-\]</span></li>
-</ol></li>
-</ul></li>
-</ul>
-<p>The updates occur in place. If <span class="math inline">\(J_\lambda\)</span> is differentiable, then <span class="math display">\[
-  \gamma_j=\frac{\partial J_\lambda(w)}{\partial w_j}.
-  \]</span></p>
-<p>Coordinate descent is guaranteed to converge under standard conditions when the objective is convex and separable across coordinates in its nonsmooth part, as it is for LASSO.</p>
+<p>Coordinate descent handles an optimization problem in several coefficients by solving one coefficient at a time. Starting from an initial vector <span class="math inline">\(w\)</span>, we cycle through <span class="math inline">\(j=1,\ldots,D\)</span>. For each <span class="math inline">\(j\)</span>, we hold the other coefficients at their current values and replace <span class="math inline">\(w_j\)</span> with the value that minimizes the objective along that coordinate: <span class="math display">\[
+  w_j \leftarrow
+  \arg\min_{u\in\mathbb R}
+  J_\lambda(w_1,\ldots,w_{j-1},u,w_{j+1},\ldots,w_D).
+\]</span></p>
+<p>Updates happen in place, so each coordinate uses the latest values of the others. Each update can only lower or leave unchanged the objective, since the old value of <span class="math inline">\(w_j\)</span> is one of the available choices. For LASSO, we will find that one-dimensional minimum using the subgradient optimality condition.</p>
 <p>To do this for LASSO, suppose we are updating <span class="math inline">\(w_j\)</span>, and write <span class="math inline">\(X_{:j}\)</span> for feature column <span class="math inline">\(j\)</span>. Define the partial residual <span class="math display">\[
 r_j
 =y-\sum_{\ell\ne j}X_{:\ell}w_\ell.
