@@ -544,7 +544,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 29, 2026</p>
+      <p class="date-modified">October 22, 2026</p>
     </div>
   </div>
     
@@ -785,15 +785,15 @@ w_1X_{:1}+w_2X_{:2}
 <div id="307cec21-daba-4ace-9df0-c5617f6c92b7" class="cell">
 <details open="" class="code-fold">
 <summary>Show code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> risk(w1, w2):</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> squared_error(w1, w2):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#vectorized</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> X[:, <span class="dv">0</span>, <span class="va">None</span>, <span class="va">None</span>] <span class="op">*</span> w1 <span class="op">+</span> X[:, <span class="dv">1</span>, <span class="va">None</span>, <span class="va">None</span>] <span class="op">*</span> w2</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    residuals <span class="op">=</span> y[:, <span class="va">None</span>, <span class="va">None</span>] <span class="op">-</span> pred</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(residuals<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">0</span>)  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(residuals<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">0</span>)  </span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> penalized_risk(w1, w2, lam):</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ridge_objective(w1, w2, lam):</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#vectorized</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> risk(w1, w2) <span class="op">+</span> lam <span class="op">*</span> (w1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> w2<span class="op">**</span><span class="dv">2</span>) </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> squared_error(w1, w2) <span class="op">+</span> lam <span class="op">*</span> (w1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> w2<span class="op">**</span><span class="dv">2</span>) </span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ridge_solution(lam):</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.linalg.solve(X.T <span class="op">@</span> X <span class="op">+</span> lam <span class="op">*</span> np.eye(<span class="dv">2</span>), X.T <span class="op">@</span> y)</span>
@@ -841,8 +841,8 @@ w_1X_{:1}+w_2X_{:2}
 <span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    w2 <span class="op">=</span> np.linspace(ylim[<span class="dv">0</span>], ylim[<span class="dv">1</span>], <span class="dv">400</span>)</span>
 <span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>    W1, W2 <span class="op">=</span> np.meshgrid(w1, w2)</span>
 <span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># OLS risk</span></span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> risk(W1, W2)</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># OLS squared error</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>    Z <span class="op">=</span> squared_error(W1, W2)</span>
 <span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>    levels <span class="op">=</span> np.linspace(np.<span class="bu">min</span>(Z) <span class="op">+</span> <span class="fl">0.2</span>, np.<span class="bu">min</span>(Z) <span class="op">+</span> <span class="fl">8.0</span>, <span class="dv">12</span>)</span>
 <span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>    ax.contour(W1, W2, Z, levels<span class="op">=</span>levels, linewidths<span class="op">=</span><span class="fl">1.2</span>)</span>
 <span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a></span>
@@ -858,14 +858,14 @@ w_1X_{:1}+w_2X_{:2}
 <span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>        ax.plot([<span class="dv">0</span>, w_con[<span class="dv">0</span>]], [<span class="dv">0</span>, w_con[<span class="dv">1</span>]], linewidth<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>        title <span class="op">=</span> (</span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>            <span class="vs">r'Constrained form: $\min_w \hat R(w)$ s.t. $\|w\|_2^2 \leq t$'</span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>            <span class="vs">r'Constrained form: $\min_w \|y-Xw\|_2^2$ s.t. $\|w\|_2^2 \leq t$'</span></span>
 <span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
 <span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> <span class="vs">rf'$t = </span><span class="sc">{</span>t<span class="sc">:.2f}</span><span class="vs">$, implied $\lambda^* \approx </span><span class="sc">{</span>lam_star<span class="sc">:.3f}</span><span class="vs">$'</span></span>
 <span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>        )</span>
 <span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> mode <span class="op">==</span> <span class="st">"penalized"</span>:</span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>        <span class="co"># draw pen risk contours</span></span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>        Zp <span class="op">=</span> penalized_risk(W1, W2, lam)</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>        <span class="co"># draw pen squared_error contours</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>        Zp <span class="op">=</span> ridge_objective(W1, W2, lam)</span>
 <span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>        levels_p <span class="op">=</span> np.linspace(np.<span class="bu">min</span>(Zp) <span class="op">+</span> <span class="fl">0.05</span>, np.<span class="bu">min</span>(Zp) <span class="op">+</span> <span class="fl">5.0</span>, <span class="dv">10</span>)</span>
 <span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>        ax.contour(W1, W2, Zp, levels<span class="op">=</span>levels_p, linestyles<span class="op">=</span><span class="st">'dashed'</span>, linewidths<span class="op">=</span><span class="fl">1.0</span>, colors<span class="op">=</span><span class="st">'red'</span>)</span>
 <span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a></span>
@@ -878,7 +878,7 @@ w_1X_{:1}+w_2X_{:2}
 <span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>        ax.add_patch(circle)</span>
 <span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>        title <span class="op">=</span> (</span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>            <span class="vs">r'Penalized form: $\min_w \hat R(w) + \lambda \|w\|_2^2$'</span></span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>            <span class="vs">r'Penalized form: $\min_w \|y-Xw\|_2^2 + \lambda \|w\|_2^2$'</span></span>
 <span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
 <span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>            <span class="op">+</span> <span class="vs">rf'$\lambda = </span><span class="sc">{</span>lam<span class="sc">:.2f}</span><span class="vs">$, implied $t \approx \|w_\lambda\|_2^2 = </span><span class="sc">{</span>radius<span class="op">**</span><span class="dv">2</span><span class="sc">:.3f}</span><span class="vs">$'</span></span>
 <span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>        )</span>
@@ -930,9 +930,9 @@ w_1X_{:1}+w_2X_{:2}
 </section>
 <section id="orthonormal-predictors" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="orthonormal-predictors"><span class="header-section-number">10.5</span> Orthonormal Predictors</h2>
-<p>The effect of ridge is especially transparent when the columns of <span class="math inline">\(X\)</span> are orthonormal: <span class="math display">\[
+<p>The effect of ridge is especially transparent when the columns of <span class="math inline">\(X\)</span> are orthonormal: mutually orthogonal and each of Euclidean norm one. Thus <span class="math display">\[
 X^\top X=I_D.
-\]</span> Then <span class="math display">\[
+\]</span> In this case, <span class="math inline">\(\widehat w_{\mathrm{OLS}}=X^\top y\)</span>. Then <span class="math display">\[
 \begin{aligned}
 \widehat w_\lambda
 &amp;=(I_D+\lambda I_D)^{-1}X^\top y\\

@@ -503,7 +503,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 14, 2026</p>
+      <p class="date-modified">October 22, 2026</p>
     </div>
   </div>
     
@@ -761,42 +761,48 @@ w_j\leftarrow\frac{z_j+
 </section>
 <section id="question-13" class="level3" data-number="30.0.13">
 <h3 data-number="30.0.13" class="anchored" data-anchor-id="question-13"><span class="header-section-number">30.0.13</span> Question 13</h3>
-<p>Compare ridge and LASSO in the orthonormal-predictor case under the normalized-loss convention used in the LASSO lecture. If <span class="math inline">\(z_j\)</span> is the OLS coefficient, what does ridge do to <span class="math inline">\(z_j\)</span>, and what does LASSO do to <span class="math inline">\(z_j\)</span>?</p>
+<p>Suppose <span class="math inline">\(X^\top X=I_D\)</span>, so <span class="math inline">\(\widehat w_{\mathrm{OLS}}=X^\top y\)</span>. Compare ridge and LASSO using the objectives from their respective lectures: <span class="math display">\[
+J_\lambda^{\mathrm{ridge}}(w)=\|y-Xw\|_2^2+\lambda\|w\|_2^2,
+\qquad
+J_\lambda^{\mathrm{LASSO}}(w)=\frac1{2N}\|y-Xw\|_2^2+\lambda\|w\|_1.
+\]</span> What does each method do to an OLS coefficient <span class="math inline">\(\widehat w_{\mathrm{OLS},j}\)</span>? Explain the factor of <span class="math inline">\(N\)</span> in the LASSO threshold.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>In the orthonormal case, ridge rescales every coefficient by the same factor: <span class="math display">\[
-\widehat w_{\lambda,j}^{\mathrm{ridge}}=\frac{1}{1+
-\lambda}z_j
-\]</span> under this convention.</p>
-<p>LASSO applies soft-thresholding: <span class="math display">\[
-\widehat w_{\lambda,j}^{\mathrm{LASSO}}=S(z_j,\lambda)=\operatorname{sign}(z_j)(|z_j|-
-\lambda)_+.
-\]</span> Thus ridge continuously shrinks all coefficients, while LASSO sets coefficients to zero when <span class="math inline">\(|z_j|\le\lambda\)</span> and shrinks the rest by subtracting <span class="math inline">\(\lambda\)</span> from their magnitude.</p>
+<p>Ridge rescales every OLS coefficient by the same factor: <span class="math display">\[
+\widehat w_{\lambda,j}^{\mathrm{ridge}}
+=\frac{\widehat w_{\mathrm{OLS},j}}{1+\lambda}.
+\]</span></p>
+<p>For LASSO, orthonormality gives <span class="math inline">\(a_j=1/N\)</span> and <span class="math inline">\(z_j=\widehat w_{\mathrm{OLS},j}/N\)</span>. Thus the coordinate update becomes <span class="math display">\[
+\widehat w_{\lambda,j}^{\mathrm{LASSO}}
+=N S\!\left(\frac{\widehat w_{\mathrm{OLS},j}}N,\lambda\right)
+=S(\widehat w_{\mathrm{OLS},j},N\lambda).
+\]</span> LASSO sets a coefficient to zero when <span class="math inline">\(|\widehat w_{\mathrm{OLS},j}|\leq N\lambda\)</span> and subtracts <span class="math inline">\(N\lambda\)</span> from the magnitude of the remaining coefficients. The factor <span class="math inline">\(N\)</span> follows from the <span class="math inline">\(1/(2N)\)</span> squared-error scaling in the stated LASSO objective.</p>
 </details>
 </section>
 <section id="question-14" class="level3" data-number="30.0.14">
 <h3 data-number="30.0.14" class="anchored" data-anchor-id="question-14"><span class="header-section-number">30.0.14</span> Question 14</h3>
-<p>For orthonormal predictors, let <span class="math inline">\(z=(2.0,0.4,-1.5)\)</span> and <span class="math inline">\(\lambda=1\)</span>. Compute the LASSO solution and the ridge solution using the shrinkage factor <span class="math inline">\(1/(1+
-\lambda)\)</span>.</p>
+<p>For <span class="math inline">\(N=4\)</span> observations and orthonormal predictors satisfying <span class="math inline">\(X^\top X=I_D\)</span>, suppose <span class="math display">\[
+\widehat w_{\mathrm{OLS}}=(2.0,0.4,-1.5),
+\qquad \lambda=0.25.
+\]</span> Compute the LASSO and ridge solutions using the objectives in Question 13.</p>
 <details>
 <summary>
 Answer
 </summary>
-<p>For LASSO, <span class="math display">\[
+<p>The LASSO threshold is <span class="math inline">\(N\lambda=4(0.25)=1\)</span>. Therefore <span class="math display">\[
 S(2.0,1)=1.0,
 \qquad
 S(0.4,1)=0,
 \qquad
-S(-1.5,1)=-0.5.
-\]</span> So <span class="math display">\[
+S(-1.5,1)=-0.5,
+\]</span> so <span class="math display">\[
 \widehat w_\lambda^{\mathrm{LASSO}}=(1.0,0,-0.5).
-\]</span> For ridge, the shrinkage factor is <span class="math display">\[
-\frac{1}{1+
-\lambda}=\frac12.
-\]</span> Thus <span class="math display">\[
-\widehat w_\lambda^{\mathrm{ridge}}=(1.0,0.2,-0.75).
+\]</span></p>
+<p>The ridge shrinkage factor is <span class="math inline">\(1/(1+0.25)=0.8\)</span>, giving <span class="math display">\[
+\widehat w_\lambda^{\mathrm{ridge}}
+=0.8(2.0,0.4,-1.5)=(1.6,0.32,-1.2).
 \]</span></p>
 </details>
 </section>
