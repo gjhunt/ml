@@ -49,7 +49,7 @@ IMAGE := gjhunt/codex:24.04$(BUILD_TAG)
 CONTAINERFILE := Containerfile
 
 codex_container:
-	podman run --rm -it \
+	podman run -it \
 		-p 127.0.0.1:$(PORT):8080 \
 		--name $(CONTAINER_NAME) \
 		-e USE_HTTPS=false \
